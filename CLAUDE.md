@@ -23,6 +23,7 @@ Zij is de eigenaar: zij bepaalt wat er komt (via de ideeënbus in de app), vader
 
 ## Techniek
 - Statische site op GitHub Pages, geen buildstap. Installeerbaar op iPad via "Zet op beginscherm" (manifest.json, sw.js).
+- `js/leren.js` bevat herbruikbare leervormen (chat, sorteren, begrippenkaarten, rekenen met afbouwende voorbeelden, toetstraining, uit-je-hoofd-tekenen, herhaalplanning naar toetsdatum, lightstick). Een nieuw hoofdstuk levert alleen inhoud (data) aan, zie `js/modules/economie-h4.js` als voorbeeld.
 - `js/app.js` is de schil (beginscherm, tekenen, tekeningen, ideeënbus, thema, meten).
 - Elk hoofdstuk is een los bestand in `js/modules/` dat zich aanmeldt met `App.addModule({...})`; voeg het toe in `index.html` en in de lijst `CORE` in `sw.js`, en verhoog dan `CACHE`.
 - Geen alert/confirm/prompt: gebruik `App.modal`.

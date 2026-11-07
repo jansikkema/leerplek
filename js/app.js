@@ -65,10 +65,11 @@
     if (canSpeak) speechSynthesis.cancel();
     $$(".say.speaking").forEach(b => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
   }
-  function speak(text, onend) {
+  function nlVoices() { if (!canSpeak) return []; return speechSynthesis.getVoices().filter(v => /^nl/i.test(v.lang)); }
+  function speak(text, onend, opts = {}) {
     if (!canSpeak || !text) { onend && onend(); return; }
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "nl-NL"; if (voice) u.voice = voice; u.rate = 0.95;
+    const u = new SpeechSynthesisUtterance(text.replace(/\*\*/g, "").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, ""));
+    u.lang = "nl-NL"; const v = opts.voice || voice; if (v) u.voice = v; u.rate = opts.rate || 0.95; u.pitch = opts.pitch || 1;
     u.onend = u.onerror = () => onend && onend();
     try { speechSynthesis.speak(u); } catch (e) { onend && onend(); }
   }
@@ -244,7 +245,8 @@
             <div style="flex:1;min-width:220px">
               <div class="nm">${esc(m.vak)} · ${esc(m.titel)}</div>
               <div class="sub">${esc(m.sub || "")}</div>
-              <div class="parts">${m.onderdelen.map(o => `<button class="btn small" data-go="${m.id}-${o.id}">${o.icoon} ${esc(o.naam)}</button>`).join("")}</div>
+              ${m.status ? `<div class="mod-status">${m.status()}</div>` : ""}
+              <div class="parts">${m.onderdelen.filter(o => !m.thuis || m.thuis.includes(o.id)).map(o => `<button class="btn small" data-go="${m.id}-${o.id}">${o.icoon} ${esc(o.thuisNaam || o.naam)}</button>`).join("")}</div>
             </div>
           </div>`).join("")}
       </div>
@@ -463,7 +465,7 @@
 
   /* ---------- publieke functies ---------- */
   window.App = {
-    $, $$, esc, speak, stopSpeak, canSpeak, sayButton, store, db, modal, meetBlock, go, onLeave,
+    $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, bindSay, store, db, modal, meetBlock, go, onLeave,
     shareText, shareImage, imageFromFile, busy,
     tekenMet(tag) { pendingTag = tag || ""; go("tekenen"); },
     addRoute(name, fn) { routes[name] = fn; },
@@ -471,11 +473,14 @@
       modules.push(m);
       m.onderdelen.forEach(o => {
         routes[m.id + "-" + o.id] = el => {
-          el.innerHTML = `<div class="row" style="margin-bottom:12px">${m.onderdelen.map(x =>
-            `<button class="chip ${x.id === o.id ? "sel" : ""}" data-go="${m.id}-${x.id}">${x.icoon} ${esc(x.naam)}</button>`).join("")}</div><div id="mod"></div>`;
-          $$("[data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
-          const r = o.render($("#mod", el));
-          el.appendChild(meetBlock(m.id, m.onderdelen.map(x => [x.id, x.icoon + " " + x.naam])));
+          const groepen = [...new Set(m.onderdelen.map(x => x.groep || ""))];
+          el.innerHTML = `<div class="mod-nav">${groepen.map(g => `<div class="row mod-rij">${g ? `<span class="mod-groep">${esc(g)}</span>` : ""}${m.onderdelen.filter(x => (x.groep || "") === g).map(x =>
+            `<button class="chip ${x.id === o.id ? "sel" : ""}" data-go="${m.id}-${x.id}">${x.icoon} ${esc(x.naam)}</button>`).join("")}</div>`).join("")}</div><div id="mod"></div>`;
+          $$(".mod-nav [data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
+          const r = o.render($("#mod", el), { go, moduleId: m.id });
+          const meet = m.onderdelen.filter(x => !m.meten || m.meten.includes(x.id));
+          if (!m.meten || m.meten.includes(o.id)) el.appendChild(meetBlock(m.id, meet.map(x => [x.id, x.icoon + " " + x.naam])));
+          bindSay(el);
           return r;
         };
       });
