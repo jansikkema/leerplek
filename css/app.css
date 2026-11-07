@@ -8,7 +8,8 @@ body.theme-zon   { --bg:#FFF6E8; --card:#FFFFFF; --card2:#FFF1DC; --ink:#2D2316;
 body.ruim{ --ls:0.06em; --lh:1.9; }
 
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
-html,body{margin:0}
+html,body{margin:0;overflow-x:hidden;touch-action:manipulation}
+img,canvas{max-width:100%}
 body{
   background:var(--bg); color:var(--ink);
   font-family:"Atkinson Hyperlegible",Verdana,Arial,sans-serif;
@@ -124,19 +125,48 @@ details.meet summary{cursor:pointer;font-weight:700;min-height:40px;display:flex
 .star{font-size:1.8em;background:none;border:none;cursor:pointer;filter:grayscale(1);opacity:.35;padding:0 2px}
 .star.on{filter:none;opacity:1}
 
-/* ===== Tekenen ===== */
-.draw-wrap{background:var(--card);border-radius:22px;padding:12px}
-.palette{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
-.swatch{width:44px;height:44px;border-radius:50%;border:3px solid var(--line);cursor:pointer}
-.swatch.sel{border-color:var(--ink);transform:scale(1.1)}
-.sizes{display:flex;gap:6px;margin-left:6px}
-.size{width:46px;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--card2);display:grid;place-items:center;cursor:pointer}
-.size.sel{border-color:var(--accent);background:var(--tint)}
-.size i{display:block;border-radius:50%;background:var(--ink)}
-.dtool{min-height:46px;padding:0 14px;border-radius:12px;border:2px solid var(--line);background:var(--card2);cursor:pointer}
-.dtool.sel{border-color:var(--accent);background:var(--tint)}
+/* ===== Tekenen (werkplaats) ===== */
+.studio{position:relative;background:var(--card);border-radius:22px;padding:10px}
+.studio-top{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.studio-extra{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .spacer{flex:1}
-canvas.paper{display:block;width:100%;background:#fff;border-radius:14px;touch-action:none;cursor:crosshair;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.dtool{min-height:46px;min-width:46px;padding:0 12px;border-radius:12px;border:2px solid var(--line);background:var(--card2);cursor:pointer;font-size:20px;display:inline-flex;align-items:center;justify-content:center}
+.dtool .tl{display:none;font-size:15px;margin-left:6px}
+@media (min-width:1150px){.dtool .tl{display:inline}}
+.dtool.sel{border-color:var(--accent);background:var(--tint)}
+.dtool.sq{padding:0;width:46px}
+.dtool:disabled{opacity:.35}
+.pagenr{font-size:16px;min-width:40px;text-align:center}
+.kleur-dot{width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);cursor:pointer;box-shadow:inset 0 0 0 3px var(--card)}
+.studio-main{display:flex;gap:10px;align-items:flex-start}
+.studio-side{display:flex;flex-direction:column;gap:12px;align-items:center;padding:4px 0;flex:none}
+.vslider{position:relative;width:36px;height:150px;border-radius:18px;background:var(--card2);border:2px solid var(--line);touch-action:none;cursor:ns-resize}
+.vslider.off{opacity:.3;pointer-events:none}
+.vfill{position:absolute;left:0;right:0;bottom:0;border-radius:16px;background:var(--tint)}
+.vthumb{position:absolute;left:3px;width:26px;height:26px;border-radius:50%;background:var(--accent);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.vlab{position:absolute;left:44px;top:50%;transform:translateY(-50%);background:var(--ink);color:var(--bg);font-size:14px;padding:2px 8px;border-radius:8px;opacity:0;pointer-events:none;white-space:nowrap;transition:opacity .15s}
+.vslider.drag .vlab{opacity:1}
+.studio-canvas{flex:1;min-width:0}
+.doek-box{position:relative;overflow:hidden;touch-action:none;border-radius:12px;background:color-mix(in srgb,var(--ink) 14%,var(--card2));user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.doek-stage{position:absolute;left:0;top:0;transform-origin:0 0;box-shadow:0 2px 14px rgba(0,0,0,.25);background:#fff}
+.doek-stage canvas{position:absolute;left:0;top:0;max-width:none}
+.doek-toast{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:rgba(20,16,40,.88);color:#fff;padding:6px 16px;border-radius:999px;font-size:16px;pointer-events:none;opacity:0;transition:opacity .2s;white-space:nowrap}
+.doek-toast.on{opacity:1}
+.kleur-pop{position:absolute;right:10px;top:66px;z-index:20;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);width:300px;max-width:calc(100% - 20px)}
+.kleur-pop[hidden]{display:none}
+.kleur-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.kleur-grid button{aspect-ratio:1;border-radius:50%;border:2px solid var(--line);cursor:pointer;min-height:36px}
+.gebaren{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:.9em;line-height:1.35}
+body.focus-mode .top, body.focus-mode .note-head{display:none}
+.studio.vol .studio-top,.studio.vol .studio-side{display:none}
+.vol-uit{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:30;opacity:.85}
+.vol-uit[hidden]{display:none}
+
+/* ===== Aantekeningen ===== */
+.titel-in{flex:1;min-width:180px;font-weight:700}
+textarea.groot{min-height:55vh;font-size:1.05em;line-height:1.7}
+.thumb-leeg{aspect-ratio:4/3;display:grid;place-items:center;font-size:2.5em;background:var(--card2)}
+.vraag-rij{margin-top:10px;padding:10px 12px;background:var(--card2);border-radius:12px;cursor:pointer;font-size:.9em}
 
 /* ===== Galerij ===== */
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
