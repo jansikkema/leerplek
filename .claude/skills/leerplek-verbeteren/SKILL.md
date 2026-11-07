@@ -32,8 +32,9 @@ Uitkomst per idee: **bouwen**, **aangepast bouwen** (zeg hoe en waarom), **later
 - Gaten in "wat weet ze nog": kijk naar de begrippen. Voorstel: dat begrip vaker laten terugkomen (extra kaart, sorteerkaart, toetsvraag die het verschil vraagt, of een plek op een uit-je-hoofd-plaat). Geen extra uitleg om te lezen.
 - Hoog en opnieuw geopend: noteer in `BESLUITEN.md` dat die vorm werkt (zonder de score), zodat nieuwe hoofdstukken hem ook krijgen.
 
-## Stap 2 · Akkoord op de aanpak
-Laat vader de triage zien en wacht op zijn akkoord voordat je bouwt.
+## Stap 2 · Doorgaan of eerst vragen
+Duidelijk geval (bouwen, klein of middel werk, geen botsing met een besluit)? Bouw direct door en zet de triage in je eindbericht.
+Twijfel, een "niet", een besluit terugdraaien of groot werk? Leg de triage eerst aan vader voor.
 
 ## Stap 3 · Bouwen
 - Volg de techniekregels in `CLAUDE.md`: geen buildstap, `App.modal` in plaats van pop-ups, voorleesknop op elk scherm, korte zinnen.
@@ -59,16 +60,19 @@ Voeg één regel toe aan "Wat is er nieuw": datum + één korte zin, in haar taa
 - `WENSEN.md`: gebouwd → naar "Gedaan" met datum; "later" → onder "Open" met wat, waarom en hoeveel werk.
 - `BESLUITEN.md`: alleen als er iets is besloten dat de volgende keer weer de vraag zou zijn (ook een "niet bouwen" met reden).
 
-## Stap 7 · Akkoord en pushen
-1. Laat vader zien wat er veranderd is (korte lijst + een paar schermafdrukken) en wat hij op de iPad moet controleren.
-2. Pas na zijn akkoord: commit met een duidelijke Nederlandse boodschap, zonder persoonlijke gegevens.
-3. Push naar de werktak van deze sessie. De site wordt pas bijgewerkt na samenvoegen met de tak waar GitHub Pages van publiceert (nu `main`), op verzoek van vader.
+## Stap 7 · Publiceren
+1. **Test in iPad-formaat zonder fouten.** Verplicht: zonder geslaagde test wordt niets gepubliceerd.
+2. **Privacycontrole:** loop `git diff` na op namen, cijfers, resultaten, boektekst en letterlijke tekst uit de ideeënbus of meting.
+3. Commit op de werktak met een duidelijke Nederlandse boodschap, zonder persoonlijke gegevens. Push de werktak.
+4. **Publiceer direct:** `git fetch origin main && git rebase origin/main && git push origin HEAD:main` (nooit forceren). GitHub Pages zet het binnen ongeveer een minuut live; de iPad krijgt het bij de volgende keer openen.
+5. Meld vader wat er nieuw is, met een korte controlelijst voor op haar iPad: app helemaal sluiten en opnieuw openen, en welke schermen ze samen aanklikken.
+6. Gaat er iets mis op de iPad: `git revert <commit>` en meteen weer publiceren (stap 4). Meld wat er misging in `WENSEN.md`.
 
 ## Klaar als
-- [ ] Triage besproken met vader, akkoord gekregen.
+- [ ] Triage gedaan; bij twijfel eerst aan vader gevraagd.
 - [ ] Gebouwd volgens CLAUDE.md, `CACHE` verhoogd.
 - [ ] Test in iPad-formaat zonder fouten, veranderde plek met de hand doorgespeeld.
 - [ ] Regel in "Wat is er nieuw".
 - [ ] `WENSEN.md` en zo nodig `BESLUITEN.md` bijgewerkt.
 - [ ] Niets letterlijks uit de ideeënbus of meting in de repository.
-- [ ] Akkoord van vader, daarna gecommit en gepusht.
+- [ ] Privacycontrole gedaan, gepubliceerd naar `main`, controlelijst voor de iPad aan vader gestuurd.

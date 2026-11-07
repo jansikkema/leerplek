@@ -4,7 +4,8 @@ Persoonlijke leerapp ("leren met BTS") voor een leerling in havo 3, gebouwd door
 Zij is de eigenaar: zij bepaalt wat er komt (via de ideeënbus in de app), vader brengt de wensen in, Claude bouwt.
 
 ## Werkafspraak
-- Eerst laten zien wat er gepubliceerd wordt (wijzigingen, schermafdrukken), dan pas committen en pushen na akkoord van vader.
+- Direct publiceren: na een geslaagde test in iPad-formaat en een privacycontrole gaat een wijziging meteen naar `main` (GitHub Pages). Vader controleert daarna samen met zijn dochter op haar iPad. Gaat er iets mis: terugdraaien met `git revert` en opnieuw publiceren.
+- Inhoudelijke twijfel (een begrip, een idee dat botst met een besluit, groot werk) wel eerst aan vader vragen.
 - Besluiten staan in `BESLUITEN.md`, open wensen in `WENSEN.md`. Vaste werkwijzen: de skills `leerplek-hoofdstuk` en `leerplek-verbeteren` in `.claude/skills/`.
 
 ## Privacy en openbaarheid (deze repository en de site zijn openbaar)

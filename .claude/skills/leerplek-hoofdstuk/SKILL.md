@@ -27,7 +27,7 @@ Nodig: vak, hoofdstuknummer en -titel, het materiaal (foto's of samenvatting), d
 - Maak per paragraaf een lijst: **term (letterlijk uit het boek)** · eigen uitleg in één of twee korte zinnen · eigen voorbeeld uit haar wereld · emoji als icoon.
 - Haal ook de toetstaal eruit: welke soorten vragen stelt het boek (noem, leg uit, bereken, waarom, welke)?
 - Formules: noteer ze precies in de woorden van het boek (zoals "omzet = afzet × verkoopprijs").
-- **Laat deze lijst aan vader zien voordat je verder bouwt.** Markeer elk begrip waar je twijfelt met ❓ en zeg waarom.
+- Twijfel je over een begrip? Markeer het met ❓ en **vraag het vader voordat je verder bouwt**. Zonder twijfel bouw je door.
 
 ## Stap 2 · Per paragraaf de passende vorm kiezen
 Kies vanuit de stof, niet vanuit de vorm. Haar voorkeur: plaat en filmpje eerst.
@@ -44,7 +44,7 @@ Altijd erbij, per hoofdstuk: **begrippenkaarten** (`L.kaarten`), **uit je hoofd 
 
 Heeft een tweede hoofdstuk de plaat, het filmpje, het bouwplan of een ander soort rekenen nodig? Verplaats die vorm dan eerst naar `js/leren.js` (inhoud als data), in plaats van code te kopiëren. Overleg met vader als dat veel werk is.
 
-Leg de keuze per paragraaf in één regel voor aan vader ("§2: bouwplan + sorteren, want het hoofdstuk beschrijft vier onderdelen van ...").
+Noteer de keuze per paragraaf in één regel voor je eindbericht aan vader ("§2: bouwplan + sorteren, want het hoofdstuk beschrijft vier onderdelen van ...").
 
 ## Stap 3 · Inhoud maken
 Maak `js/modules/<vak>-h<nummer>.js` (bijvoorbeeld `geschiedenis-h3.js`) naar het model van `economie-h4.js`:
@@ -74,11 +74,17 @@ node .claude/skills/leerplek-hoofdstuk/test-ipad.js <module-id> <scratchpad>/sch
 - Speel minstens één keer met de hand door: sorteer een kaart fout en goed, maak een rekenronde af, beantwoord een toetsvraag van elk type.
 - Zet de schermafdrukken in de scratchpad, nooit in de repository.
 
-## Stap 6 · Akkoord en pushen
-1. Laat vader zien: de begrippenlijst (met ❓), de vormkeuze per paragraaf, en een paar schermafdrukken.
-2. Pas na zijn akkoord: commit met een duidelijke Nederlandse boodschap ("Geschiedenis H3: …"), zonder persoonlijke gegevens.
-3. Push naar de werktak van deze sessie. De site wordt pas bijgewerkt als die tak is samengevoegd met de tak waar GitHub Pages van publiceert (nu `main`). Dat samenvoegen gebeurt alleen op verzoek van vader.
-4. Werk `WENSEN.md` (onder Gedaan) en zo nodig `BESLUITEN.md` bij.
+## Stap 6 · Documenten bijwerken en publiceren
+Werk eerst `WENSEN.md` (onder Gedaan) en zo nodig `BESLUITEN.md` bij, zodat ze in dezelfde publicatie meegaan. Daarna:
+
+1. **Test in iPad-formaat zonder fouten.** Verplicht: zonder geslaagde test wordt niets gepubliceerd.
+2. **Privacycontrole:** loop `git diff` na op namen, cijfers, resultaten, boektekst en letterlijke tekst uit de ideeënbus of meting.
+3. Commit op de werktak met een duidelijke Nederlandse boodschap, zonder persoonlijke gegevens. Push de werktak.
+4. **Publiceer direct:** `git fetch origin main && git rebase origin/main && git push origin HEAD:main` (nooit forceren). GitHub Pages zet het binnen ongeveer een minuut live; de iPad krijgt het bij de volgende keer openen.
+5. Meld vader wat er nieuw is, met een korte controlelijst voor op haar iPad: app helemaal sluiten en opnieuw openen, en welke schermen ze samen aanklikken.
+6. Gaat er iets mis op de iPad: `git revert <commit>` en meteen weer publiceren (stap 4). Meld wat er misging in `WENSEN.md`.
+
+Noem in je eindbericht ook de vormkeuze per paragraaf.
 
 ## Klaar als
 - [ ] Alle toetswoorden staan letterlijk zoals in het boek; twijfelgevallen zijn met vader besproken.
@@ -87,4 +93,4 @@ node .claude/skills/leerplek-hoofdstuk/test-ipad.js <module-id> <scratchpad>/sch
 - [ ] Elk scherm heeft een voorleesknop.
 - [ ] Geregistreerd in `index.html` en `sw.js`, `CACHE` verhoogd.
 - [ ] Test in iPad-formaat zonder fouten.
-- [ ] Akkoord van vader, daarna gecommit en gepusht.
+- [ ] Privacycontrole gedaan, gepubliceerd naar `main`, controlelijst voor de iPad aan vader gestuurd.

@@ -63,3 +63,7 @@ Let op: deze repository is openbaar. Hier staan geen persoonlijke gegevens, cijf
 ## 14. Na een update eerst het netwerk, daarna de bewaarde versie
 **Wat:** de service worker (`sw.js`) haalt eerst de nieuwste versie op en valt pas terug op de bewaarde versie als er geen internet is.
 **Waarom:** een update komt zo direct binnen, en de app werkt toch zonder internet. Bij nieuwe bestanden: toevoegen aan `CORE` en `CACHE` verhogen.
+
+## 15. Direct publiceren, samen controleren op de iPad
+**Wat (2026-11-07):** na een geslaagde test in iPad-formaat en een privacycontrole gaat een wijziging meteen naar `main` en dus naar de iPad. Vader en dochter controleren het daarna samen op haar iPad. Gaat er iets mis, dan wordt de wijziging teruggedraaid (`git revert`) en opnieuw gepubliceerd.
+**Waarom:** een aparte voorbeeldsite en een akkoordstap vooraf kosten meer moeite dan ze opleveren. Echt controleren kan alleen op haar iPad (Pencil, voorlezen, deelmenu), en samen kijken past bij haar rol als eigenaar. De risico's zijn klein: haar gegevens staan op de iPad en worden door een update niet aangeraakt, en terugdraaien kost een minuut. Wijzigingen aan de opslag krijgen daarom extra zorg.
