@@ -1,6 +1,6 @@
 // Werkt ook zonder internet: eerst het netwerk proberen (zodat updates direct binnenkomen),
 // en als dat niet lukt de laatst bewaarde versie gebruiken.
-const CACHE = "leerplek-v4";
+const CACHE = "leerplek-v5";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
   "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/modules/economie-h4.js",

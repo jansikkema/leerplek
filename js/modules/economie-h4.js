@@ -115,7 +115,7 @@
 
   const REKEN = {
     voorbeeld: { naam: "Purple Cases", icoon: "📱", verhaal: "Je verkoopt deze maand 150 photocard-hoesjes van €8. Jij kocht elk hoesje in voor €3.", afzet: 150, prijs: 8, inkoopPerStuk: 3, kosten: [{ naam: "webshop", bedrag: 40 }, { naam: "reclame", bedrag: 110 }, { naam: "verzekering", bedrag: 25 }, { naam: "verzendmateriaal", bedrag: 75 }] },
-    samen: { naam: "Jouw bedrijf van je tekening", icoon: "🎨", verhaal: "Weet je nog? Je bedacht zelf photocard-houders van €3. Je verkoopt er 100. Eén houder kost jou €2 om te maken (in je boek heet dat de **inkoopwaarde**). Je verzekering kost €50.", afzet: 100, prijs: 3, inkoopPerStuk: 2, kosten: [{ naam: "verzekering", bedrag: 50 }] },
+    samen: { naam: "Photocard-houders", icoon: "📇", verhaal: "Je koopt photocard-houders in voor €2 per stuk. Je verkoopt ze voor €3. Deze maand verkoop je er 100. Je verzekering kost €50.", afzet: 100, prijs: 3, inkoopPerStuk: 2, kosten: [{ naam: "verzekering", bedrag: 50 }] },
     maak() {
       const T = [
         { naam: "Lightstick-hoesjes", icoon: "🔦", ding: "lightstick-hoesjes", p: [6, 8, 10, 12], i: [2, 3, 4] },
@@ -363,6 +363,7 @@
         ${L.lightstick(V.beheersing(IDS))}
         <div style="flex:1;min-width:220px">
           <h1 style="margin:0 0 6px">Economie H4 · Een eigen bedrijf</h1>
+          <button class="say" id="lees-ov">🔊 Lees voor</button>
           <div class="row"><label for="td"><b>📅 Toets op:</b></label><input type="date" id="td" class="date-in" value="${v.toets ? new Date(v.toets).toISOString().slice(0, 10) : ""}">
             <span class="soft">${dagen == null ? "Vul de datum in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "Vandaag! Succes 💜" : dagen === 1 ? "Morgen!" : `Nog ${dagen} dagen.`}</span></div>
           <p class="soft" style="margin:8px 0 0;font-size:.85em">Je lightstick laadt op als je begrippen en toetsvragen echt kent, niet als je alleen leest.</p>
@@ -397,6 +398,7 @@
           <li><b>Voorbeelden uit haar eigen wereld:</b> stof gekoppeld aan interesses blijkt motiverender en beter te onthouden.</li>
           <li><b>Toetstaal oefenen:</b> 'noem', 'leg uit', 'bereken' worden gemarkeerd en uitgelegd, zodat de toets geen verrassing is.</li>
         </ul></details>`;
+    App.sayButton($("#lees-ov", el), () => `Economie hoofdstuk vier. Een eigen bedrijf. ${dagen == null ? "Vul de datum van je toets in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "De toets is vandaag. Succes!" : dagen === 1 ? "De toets is morgen." : "Nog " + dagen + " dagen tot de toets."} Je lightstick is voor ${Math.round(V.beheersing(IDS) * 100)} procent opgeladen. ${taken.length ? "Vandaag, ongeveer " + min + " minuten: " + taken.map(t => t.t).join(". ") + "." : "Alles gedaan voor vandaag."}`);
     $$("[data-go]", el).forEach(b => b.onclick = () => App.go(MOD + "-" + b.dataset.go));
     $("#td", el).onchange = e => { V.update(x => x.toets = e.target.value ? new Date(e.target.value + "T08:00:00").getTime() : null); App.go(MOD + "-overzicht"); };
     $("#auto", el).onchange = e => store.set("auto-voorlezen", e.target.checked);

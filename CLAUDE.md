@@ -3,6 +3,10 @@
 Persoonlijke leerapp ("leren met BTS") voor een leerling in havo 3, gebouwd door haar vader met Claude.
 Zij is de eigenaar: zij bepaalt wat er komt (via de ideeënbus in de app), vader brengt de wensen in, Claude bouwt.
 
+## Werkafspraak
+- Eerst laten zien wat er gepubliceerd wordt (wijzigingen, schermafdrukken), dan pas committen en pushen na akkoord van vader.
+- Besluiten staan in `BESLUITEN.md`, open wensen in `WENSEN.md`. Vaste werkwijzen: de skills `leerplek-hoofdstuk` en `leerplek-verbeteren` in `.claude/skills/`.
+
 ## Privacy en openbaarheid (deze repository en de site zijn openbaar)
 - Geen persoonlijke gegevens in de repository: geen naam, foto's, tekeningen, cijfers of resultaten.
 - Tekeningen, ideeën en scores blijven alleen op het apparaat (IndexedDB/localStorage).

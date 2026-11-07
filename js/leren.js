@@ -4,7 +4,7 @@
    - gespreid herhalen: kaarten en vragen komen terug met groeiende tussenpozen, afgestemd op de toetsdatum;
    - door elkaar oefenen (interleaving) in de toetstraining;
    - uitgewerkte voorbeelden die stap voor stap afbouwen (worked examples / fading) bij rekenen;
-   - beeld + woord (dual coding), korte stukjes (segmenting), voorlezen (lagere leesdruk bij dyslexie);
+   - beeld + woord (dual coding), korte stukjes (segmenting), voorlezen (lagere leesdruk);
    - zelf maken (generation effect): eigen woorden en eigen tekening bij elk begrip;
    - voorbeelden uit haar eigen wereld (context personalization). */
 (function () {
@@ -185,12 +185,14 @@
       el.innerHTML = `
         <div class="card">
           <h2>🃏 Mijn begrippen</h2>
+          <button class="say" id="lees-menu">🔊 Lees voor</button>
           <p>Maak van elk begrip <b>jouw kaart</b>: zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter.</p>
           <div class="row"><button class="btn" id="check">🔁 Check mijn kaarten (${te.length})</button></div>
         </div>
         <div class="kaart-grid">${lijst.map(k => { const e = eigen(k.id), r = V.get().kaarten[k.id];
           return `<button class="kaart-tegel" data-id="${k.id}">${e.thumb ? `<img src="${e.thumb}" alt="">` : `<span class="ic">${k.icoon}</span>`}
             <b>${esc(k.term)}</b><small>${e.woorden ? "✍️ " : ""}${e.thumb ? "🎨 " : ""}${r ? "★".repeat(r.box) + "☆".repeat(4 - r.box) : "nieuw"}</small></button>`; }).join("")}</div>`;
+      App.sayButton($("#lees-menu", el), () => `Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan ${te.length} kaarten klaar om te checken. De begrippen zijn: ${lijst.map(k => k.term).join(", ")}.`);
       $("#check", el).onclick = check;
       $$(".kaart-tegel", el).forEach(b => b.onclick = () => maak(lijst.find(k => k.id === b.dataset.id)));
     }
@@ -375,15 +377,18 @@
     function start() {
       const te = V.teDoen("vragen", vragen.map(v => v.id), 8);
       if (!te.length) {
-        el.innerHTML = `<div class="card"><h2>📝 Toetstraining</h2><p>Voor nu heb je alle vragen gedaan 😎 Ze komen terug als het tijd is.</p>
+        el.innerHTML = `<div class="card"><h2>📝 Toetstraining</h2><button class="say" data-say="Voor nu heb je alle vragen gedaan. Ze komen terug als het tijd is. Je kunt ook toch oefenen, met alles door elkaar.">🔊 Lees voor</button><p>Voor nu heb je alle vragen gedaan 😎 Ze komen terug als het tijd is.</p>
           <button class="btn ghost" id="toch">Toch oefenen (alles door elkaar)</button></div>`;
+        App.bindSay(el);
         $("#toch", el).onclick = () => sessie(shuffle(vragen.map(v => v.id)).slice(0, 8));
         return;
       }
       el.innerHTML = `<div class="card"><h2>📝 Toetstraining</h2>
+        <button class="say" data-say="Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen. Er staan ${te.length} vragen klaar.">🔊 Lees voor</button>
         <p>Vragen zoals op je toets, <b>door elkaar</b>. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen.</p>
         <p class="soft">Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen.</p>
         <button class="btn" id="go">Start (${te.length} vragen)</button></div>`;
+      App.bindSay(el);
       $("#go", el).onclick = () => sessie(shuffle(te));
     }
     function sessie(rij) {
@@ -468,10 +473,12 @@
       const g = V.get().geheugen;
       const sorted = prompts.slice().sort((a, b) => (g[a.id]?.laatst || 0) - (g[b.id]?.laatst || 0));
       el.innerHTML = `<div class="card"><h2>🧠 Uit je hoofd</h2>
+        <button class="say" id="lees-geh">🔊 Lees voor</button>
         <p>Teken een plaat <b>zonder te kijken</b>. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen.</p>
         <p class="soft">Tip: de bovenste heb je het langst niet gedaan.</p></div>
         <div class="menu-lijst">${sorted.map(p => `<button class="btn ghost geh-kies" data-id="${p.id}"><span style="font-size:1.4em;margin-right:10px">${p.icoon}</span> ${esc(p.titel)}
           <span class="soft" style="margin-left:auto;font-size:.8em">${g[p.id] ? "✓ " + new Date(g[p.id].laatst).toLocaleDateString("nl-NL", { day: "numeric", month: "short" }) : "nog niet"}</span></button>`).join("")}</div>`;
+      App.sayButton($("#lees-geh", el), () => `Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: ${sorted.map(p => p.titel).join(". ")}.`);
       $$(".geh-kies", el).forEach(b => b.onclick = () => teken(prompts.find(p => p.id === b.dataset.id)));
     }
     function teken(p) {
