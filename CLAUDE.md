@@ -15,6 +15,12 @@ Zij is de eigenaar: zij bepaalt wat er komt (via de ideeënbus in de app), vader
 - Leesdrempel laag: voorleesknop op elk scherm, korte zinnen, Atkinson Hyperlegible, tekstgrootte en extra ruimte instelbaar.
 - Toetswoorden uit haar boek zijn leidend; check begrippen tegen het boek.
 
+## Opslag
+- Alles staat in IndexedDB (`leerplek`, stores `tekeningen` en `notities`) en localStorage (`lp-*`), alleen op de iPad.
+- Back-up: 'Mijn app' → JSON-bestand via het deelmenu naar Bestanden/iCloud Drive; terugzetten voegt samen (nieuwste wint, niets overschreven).
+- Items in `notities` hebben `soort`: aantekening | huiswerk | document; pagina's met `strokes`, optioneel `foto` (JPEG dataURL) en `aspect`.
+- PDF's worden met pdf.js (vendor/pdfjs, Apache 2.0) omgezet naar afbeeldingen per pagina (max 40).
+
 ## Techniek
 - Statische site op GitHub Pages, geen buildstap. Installeerbaar op iPad via "Zet op beginscherm" (manifest.json, sw.js).
 - `js/app.js` is de schil (beginscherm, tekenen, tekeningen, ideeënbus, thema, meten).

@@ -190,3 +190,25 @@ textarea.groot{min-height:55vh;font-size:1.05em;line-height:1.7}
 .th.sel{border-color:var(--accent)}
 .th .sw{height:64px;display:flex} .th .sw span{flex:1}
 .th .lbl{display:block;padding:8px 10px;background:var(--card);font-size:.9em}
+
+/* ===== Mijn vakken: extra ===== */
+.chip.small{min-height:40px;padding:6px 12px;font-size:.85em}
+.date-in{font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:8px 10px;min-height:46px}
+.af{display:inline-block;margin-left:4px;padding:0 8px;border-radius:8px;background:var(--tint);color:var(--ink)}
+.af.laat{background:var(--min);color:#fff}
+.af.klaar{background:transparent}
+.foto-strip{display:flex;gap:8px;overflow-x:auto;margin-bottom:10px}
+.foto-strip img{height:120px;width:auto;max-width:none;border-radius:8px;margin:0}
+.menu-lijst{display:grid;gap:10px}
+.menu-lijst .btn{display:flex;align-items:center;justify-content:flex-start;text-align:left;cursor:pointer}
+label.btn{display:inline-flex;align-items:center;cursor:pointer}
+.soon{padding:16px 18px}
+.soon-rij{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;background:var(--card2);border:none;border-radius:12px;cursor:pointer;font-size:.95em}
+.soon-rij span{display:inline-block;min-width:110px;color:var(--soft)}
+.soon-rij span.laat{color:var(--min);font-weight:700}
+.backup-tip{display:block;width:100%;text-align:left;border:2px dashed var(--accent);cursor:pointer;font-size:.95em}
+#busy{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.5);display:grid;place-items:center}
+#busy[hidden]{display:none}
+.busy-box{background:var(--card);border-radius:20px;padding:24px 28px;display:flex;gap:16px;align-items:center}
+.spin{width:28px;height:28px;border-radius:50%;border:4px solid var(--line);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}

@@ -128,6 +128,53 @@
     });
   }
 
+  /* ---------- even geduld ---------- */
+  function busy(text) {
+    let b = $("#busy");
+    if (!b) { b = document.createElement("div"); b.id = "busy"; b.innerHTML = `<div class="busy-box"><div class="spin"></div><div class="busy-t"></div></div>`; document.body.appendChild(b); }
+    if (text === false) { b.hidden = true; return; }
+    b.querySelector(".busy-t").textContent = text || "Even geduld…"; b.hidden = false;
+  }
+
+  /* ---------- back-up ---------- */
+  async function maakBackupBestand() {
+    const data = { app: "leerplek", versie: 1, datum: Date.now(), instellingen: {}, tekeningen: await db.all("tekeningen"), notities: await db.all("notities") };
+    try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith("lp-")) data.instellingen[k] = localStorage.getItem(k); } } catch (e) {}
+    const json = JSON.stringify(data);
+    const naam = `leerplek-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    return { json, naam, mb: (json.length / 1048576).toFixed(1), items: data.tekeningen.length + data.notities.length };
+  }
+  async function deelBackup(b) {
+    for (const type of ["application/json", "text/plain"]) {
+      const f = new File([b.json], b.naam, { type });
+      if (navigator.canShare && navigator.canShare({ files: [f] })) {
+        try { await navigator.share({ files: [f], title: "Back-up leerplek" }); store.set("laatste-backup", Date.now()); return "bewaard"; }
+        catch (e) { if (e && e.name === "AbortError") return ""; }
+      }
+    }
+    const url = URL.createObjectURL(new Blob([b.json], { type: "application/json" }));
+    const a = document.createElement("a"); a.href = url; a.download = b.naam; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000); store.set("laatste-backup", Date.now()); return "gedownload";
+  }
+  async function zetTerug(file) {
+    let d; try { d = JSON.parse(await file.text()); } catch (e) { throw new Error("Dit is geen back-up van leerplek."); }
+    if (!d || d.app !== "leerplek") throw new Error("Dit is geen back-up van leerplek.");
+    let n = 0;
+    for (const st of ["tekeningen", "notities"]) for (const it of (d[st] || [])) {
+      const ex = await db.get(st, it.id);
+      if (!ex || (it.bewerkt || it.datum) > (ex.bewerkt || ex.datum)) { await db.put(st, it); n++; }
+    }
+    for (const [k, v] of Object.entries(d.instellingen || {})) {
+      try {
+        if (k === "lp-ideeen") {
+          const nu = store.get("ideeen", []), ids = new Set(nu.map(i => i.id));
+          store.set("ideeen", [...nu, ...JSON.parse(v).filter(i => !ids.has(i.id))]);
+        } else if (localStorage.getItem(k) === null) localStorage.setItem(k, v);
+      } catch (e) {}
+    }
+    applyLook(); return n;
+  }
+
   /* ---------- thema en tekst ---------- */
   const THEMAS = [
     { id: "nacht", naam: "Nacht", c: ["#1B1530", "#B79CFF", "#271F45"] },
@@ -178,11 +225,16 @@
     const groet = uur < 12 ? "Goedemorgen" : uur < 18 ? "Hoi" : "Goedenavond";
     el.innerHTML = `
       <div class="hello"><h1>${groet}! 💜</h1><p class="soft">Waar heb je zin in?</p></div>
-      <div class="section-title">In de les</div>
+      <div id="melding"></div>
+      <div class="section-title">School</div>
       <div class="tiles">
-        <button class="tile big" data-go="notities"><div class="ic">📒</div>
-          <div style="flex:1;min-width:220px"><div class="nm">Aantekeningen</div>
-          <div class="sub">Per vak. Schrijven met je Pencil, een foto van het bord, of inspreken.</div></div></button>
+        <div class="tile big"><div class="ic">📚</div>
+          <div style="flex:1;min-width:220px"><div class="nm">Mijn vakken</div>
+          <div class="sub">Aantekeningen, huiswerk en documenten per vak. Op alles kun je schrijven met je Pencil.</div>
+          <div class="parts">
+            <button class="btn small" data-go="notities">📂 Openen</button>
+            <label class="btn small">📷 Huiswerk fotograferen<input type="file" accept="image/*" capture="environment" id="snelcam" hidden></label>
+          </div></div></div>
       </div>
       <div class="section-title">Leren</div>
       <div class="tiles">
@@ -201,9 +253,26 @@
         <button class="tile" data-go="tekenen"><div class="ic">✏️</div><div class="nm">Tekenen</div><div class="sub">Met je Pencil, net als in Procreate.</div></button>
         <button class="tile" data-go="tekeningen"><div class="ic">🖼️</div><div class="nm">Mijn tekeningen</div><div class="sub">Alles wat je hebt gemaakt. Ook foto's toevoegen.</div></button>
         <button class="tile" data-go="ideeen"><div class="ic">💡</div><div class="nm">Ideeënbus</div><div class="sub">Wat moet er beter of nieuw? Jij bent de baas.</div></button>
-        <button class="tile" data-go="mijn-app"><div class="ic">🎨</div><div class="nm">Mijn app</div><div class="sub">Kleuren en naam van je app.</div></button>
+        <button class="tile" data-go="mijn-app"><div class="ic">🎨</div><div class="nm">Mijn app</div><div class="sub">Kleuren, naam en back-up.</div></button>
       </div>`;
     $$("[data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
+    $("#snelcam", el).onchange = e => { const f = e.target.files[0]; e.target.value = ""; if (f && App.huiswerkFoto) App.huiswerkFoto(f); };
+    (async () => {
+      const m = $("#melding", el); if (!m) return;
+      let html = "";
+      if (App.binnenkort) {
+        const L = await App.binnenkort();
+        if (L.length) html += `<div class="card soon"><b>📅 Binnenkort af</b>${L.map(n => `<button class="soon-rij" data-id="${n.id}">
+          <span class="${n.af < Date.now() - 864e5 ? "laat" : ""}">${new Date(n.af).toLocaleDateString("nl-NL", { weekday: "short", day: "numeric", month: "short" })}</span>
+          <b>${esc(n.vak)}</b> · ${esc(n.titel)}</button>`).join("")}</div>`;
+      }
+      const aantal = (await db.all("notities")).length + (await db.all("tekeningen")).length;
+      const laatste = store.get("laatste-backup", 0);
+      if (aantal >= 3 && Date.now() - laatste > 7 * 864e5) html += `<button class="card backup-tip" data-go="mijn-app">💾 <b>Tijd voor een back-up.</b> <span class="soft">${laatste ? "Je laatste is van " + new Date(laatste).toLocaleDateString("nl-NL", { day: "numeric", month: "long" }) + "." : "Je hebt er nog geen."} Tik hier.</span></button>`;
+      m.innerHTML = html;
+      $$(".soon-rij", m).forEach(b => b.onclick = () => App.openNote(b.dataset.id));
+      $$("[data-go]", m).forEach(b => b.onclick = () => go(b.dataset.go));
+    })();
   };
 
   /* ---------- tekenen ---------- */
@@ -330,7 +399,35 @@
         <p><label for="naam">Naam van je app</label></p>
         <input type="text" id="naam" value="${esc(store.get("naam", "leren met BTS"))}">
         <p class="soft" style="margin-top:16px;font-size:.85em">Iets anders veranderen? Zet het in de <a href="#ideeen" style="color:var(--accent)">ideeënbus</a>.</p>
+      </div>
+      <div class="card">
+        <h2>💾 Back-up</h2>
+        <p>Al je aantekeningen, huiswerk en tekeningen staan <b>alleen op deze iPad</b>. Maak elke week een back-up en bewaar die in <b>Bestanden → iCloud Drive</b>. Dan ben je niks kwijt als de app weg is of je een nieuwe iPad krijgt.</p>
+        <p class="soft" id="opslag" style="font-size:.85em"></p>
+        <div class="row">
+          <button class="btn" id="maak">💾 Back-up maken</button>
+          <label class="btn ghost">↩️ Back-up terugzetten<input type="file" accept=".json,application/json,text/plain" id="terug" hidden></label>
+        </div>
+        <p class="ok" id="bok" style="margin:10px 0 0"></p>
       </div>`;
+    const laatste = store.get("laatste-backup", 0);
+    (async () => {
+      let t = laatste ? `Laatste back-up: ${new Date(laatste).toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}.` : "Nog geen back-up gemaakt.";
+      try { const e = await navigator.storage.estimate(); t += ` In gebruik: ${(e.usage / 1048576).toFixed(0)} MB.`; } catch (e) {}
+      const o = $("#opslag", el); if (o) o.textContent = t;
+    })();
+    $("#maak", el).onclick = async () => {
+      busy("Back-up maken…"); const b = await maakBackupBestand(); busy(false);
+      const r = await modal(`<h2>Back-up klaar</h2><p>${b.items} dingen, ${b.mb} MB.</p><p>Kies in het volgende scherm <b>Bewaar in Bestanden</b> en dan <b>iCloud Drive</b>.</p>`, [["Annuleer", null, "ghost"], ["📤 Bewaar back-up", "ok"]]);
+      if (r !== "ok") return;
+      const res = await deelBackup(b); $("#bok", el).textContent = res ? "✓ Back-up " + res : "";
+    };
+    $("#terug", el).onchange = async e => {
+      const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+      busy("Terugzetten…");
+      try { const n = await zetTerug(f); busy(false); $("#bok", el).textContent = `✓ ${n} ${n === 1 ? "ding" : "dingen"} teruggezet. Wat al op de iPad stond, is niet overschreven.`; }
+      catch (err) { busy(false); await modal(`<h2>Dat lukte niet</h2><p>${esc(err.message)}</p>`, [["Oké", true]]); }
+    };
     $$(".th", el).forEach(b => b.onclick = () => { store.set("thema", b.dataset.t); applyLook(); $$(".th", el).forEach(x => x.classList.toggle("sel", x === b)); });
     $("#naam", el).oninput = e => { store.set("naam", e.target.value || "leren met BTS"); applyLook(); };
   };
@@ -367,7 +464,7 @@
   /* ---------- publieke functies ---------- */
   window.App = {
     $, $$, esc, speak, stopSpeak, canSpeak, sayButton, store, db, modal, meetBlock, go, onLeave,
-    shareText, shareImage, imageFromFile,
+    shareText, shareImage, imageFromFile, busy,
     tekenMet(tag) { pendingTag = tag || ""; go("tekenen"); },
     addRoute(name, fn) { routes[name] = fn; },
     addModule(m) {
