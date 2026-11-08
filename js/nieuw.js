@@ -2,7 +2,7 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
-  { datum: "2026-11-08", tekst: "Bijna heel H4 praat nu met jouw stem: begrippen, bouwplan, plaat, sorteren, rekenen en de toetsvragen. De chat volgt morgen.", idee: true },
+  { datum: "2026-11-08", tekst: "Bijna heel H4 praat nu met jouw stem, ook de chat. Sam praat met de stem die jij koos. Een paar zinnen volgen nog.", idee: true },
   { datum: "2026-11-08", tekst: "Het gekraak tussen de zinnen in het filmpje is weg." },
   { datum: "2026-11-08", tekst: "Het filmpje over omzet en winst praat nu met de stem die jij koos. Veel minder robot!", idee: true },
   { datum: "2026-11-08", tekst: "Bij Mijn app staat nu hoe je de iPad zelf met een mooiere stem laat voorlezen." },

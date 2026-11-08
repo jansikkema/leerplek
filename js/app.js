@@ -55,7 +55,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 15;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 16;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {

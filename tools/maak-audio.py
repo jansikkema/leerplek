@@ -12,7 +12,8 @@ from concurrent.futures import ThreadPoolExecutor
 HIER = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HIER)
 Z = os.path.join(ROOT, "audio", "z"); os.makedirs(Z, exist_ok=True)
 API = "https://generativelanguage.googleapis.com/v1beta/models/"
-TTS, CHECK = os.environ.get("TTS_MODEL", "gemini-3.8-flash-lite-tts")   # klinkt gelijk aan flash-tts (getest), goedkoper, "gemini-3.8-flash"
+# Licht model: klinkt op het gehoor gelijk aan gemini-3.8-flash-tts (getest 2026-11-08) en is goedkoper.
+TTS, CHECK = os.environ.get("TTS_MODEL", "gemini-3.8-flash-lite-tts"), "gemini-3.8-flash"
 DOEL = os.environ.get("DOEL", Z); os.makedirs(DOEL, exist_ok=True)
 BUNDEL, MAXTEKENS = 8, 1000
 
