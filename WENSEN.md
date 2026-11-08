@@ -9,6 +9,16 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Open
 
+### Schetsbord bouwen en testen met een nieuw hoofdstuk (besluit 20)
+- Stijl is gekozen (proef: `tools/proef/schetsbord.html`). Volgende stap: een vaste vorm `L.schetsbord` in `js/leren.js`, waarbij het hoofdstuk alleen tekeninstructies als data aanlevert. Bouwstenen: poppetje, gebouw, pijl, ketting, kaart, doorsnede met labels, grafiek, rekenstap, zinsdelen.
+- Testen met een **nieuw hoofdstuk**, waarin tekst en tekening samen worden gemaakt. In de proef was de stem eerder klaar dan de tekening, omdat bestaande tekst onder een nieuwe animatie stond.
+- **Gelijk lopen:** de tekening per zin laten meelopen met de ingesproken tekst (elke zin start zijn stuk tekening; een label verschijnt als het woord klinkt). Daarna pas de leestijd van losse labels afstemmen.
+- Tempoknop (Rustig / Heel rustig / Vlot) houden; de standaard is wat zij kiest. Opslag in `lp-tempo`.
+- Nog te beoordelen met haar: kan de volledige tekst onder het beeld weg (korte zin + stem, volledige tekst achter een tik)? Helpt de ketting onderaan? Zijn de poppetjes te stijf?
+- Daarna: proefscènes voor de andere vakken die binnenkort komen (aardrijkskunde, wiskunde, Duits, natuurkunde), bij stof die ze echt leert. Bestaande filmpjes (Italië, kaartfilmpje §1.3, H4) later overzetten.
+- Verzamelaar (`tools/verzamel.js`) heeft voorkeursknoppen voor de nieuwe vorm nodig.
+- Werk: groot (de vorm), daarna klein per filmpje. Wacht op: een nieuw hoofdstuk.
+
 ### Video's: proef bij Geschiedenis H1 §1.3
 - Vorm `L.video` gebouwd en gepubliceerd (2026-11-08, versie 19). Bij §1.3 de VPRO-video over het begin van de oorlog, goedgekeurd door vader.
 - Meten via "Na afloop (voor papa)": opent ze de video uit zichzelf nog eens, en wat weet ze de volgende dag nog? Werkt het, dan wordt het vast onderdeel van elk nieuw hoofdstuk (staat al in de skill).
@@ -75,6 +85,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ### Andere filmpjes ook als kaart of met meer beweging
 - Het H4-filmpje (staafjes) beweegt al. Toekomstige hoofdstukken met een verloop in plaats en tijd (aardrijkskunde, geschiedenis) kunnen de kaartvorm gebruiken.
+- Vervangen door het schetsbord (besluit 20): de kaart wordt daar een bouwsteen in.
 - Werk: klein per filmpje (alleen data).
 
 ### Leervormen verder herbruikbaar maken

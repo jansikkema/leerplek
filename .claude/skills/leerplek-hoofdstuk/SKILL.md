@@ -43,6 +43,8 @@ Kies vanuit de stof, niet vanuit de vorm. Haar voorkeur: plaat en filmpje eerst.
 | Gebeurtenissen op volgorde van tijd | **tijdlijn** (rondes, tik wat het eerst kwam) | `L.tijdlijn` |
 | Berekeningen | **rekenen**: kijk mee → samen → zelf | `L.rekenen` (kent nu alleen omzet → nettowinst) |
 
+**Filmpjes in schetsbordstijl (besluit 20):** nieuwe uitlegfilmpjes krijgen de schetsbordstijl: lijn voor lijn getekend, eenvoudige poppetjes, inkt + vakkleur + rood, leestijd bij woorden. Ontwerp de voorleestekst en de tekening samen, per zin. Zolang `L.schetsbord` nog niet in `leren.js` staat: overleg met vader of dit hoofdstuk de eerste wordt (zie WENSEN.md, proef in `tools/proef/schetsbord.html`).
+
 **Video (besluit 18):** per paragraaf hooguit één korte video vóór de leervorm, met `L.video` (`{ id, titel, kanaal, start?, eind? }` + `intro` + `vraag` die zij zelf beantwoordt). Zoek kandidaten met de zoekfunctie van YouTube (`www.youtube.com/results?search_query=…` met `hl=nl`, lees `ytInitialData`), alleen Nederlandstalig (let op automatisch vertaalde titels van Engelse kanalen), en controleer ze met `python3 tools/check-video.py <id> …`. **Leg twee of drie kandidaten per paragraaf voor aan vader (titel, kanaal, lengte, waarom) en publiceer pas na zijn keuze.** Claude kan video's niet bekijken.
 
 Overzicht van het hoofdstuk: `L.overzicht` (zie `geschiedenis-h1.js`). Altijd erbij, per hoofdstuk: **begrippenkaarten** (`L.kaarten`), **uit je hoofd tekenen** (`L.geheugen`) en **toetstraining** (`L.toets`).

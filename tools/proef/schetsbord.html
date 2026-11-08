@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proef schetsbord</title>
+<meta name="robots" content="noindex">
+<!-- Proef van de schetsbordstijl (besluit 20), 2026-11-08. Geen onderdeel van de app.
+     Bouwvoorbeeld voor L.schetsbord in js/leren.js. De opnames (audio/s0-s5.mp3) staan niet in de repository;
+     zonder geluid speelt de proef gewoon af. -->
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --fs:20px; }
+  body.theme-zacht { --bg:#FFF4F1; --card:#FFFFFF; --ink:#2E2630; --soft:#9C8E9C; --accent:#C9577A; --accent-ink:#fff; --line:#F0DAD6; --rood:#D2384F; --vak:#D9722A; --groen:#2E9E5B; }
+  body.theme-nacht { --bg:#1B1530; --card:#271F45; --ink:#F3EEFF; --soft:#8F86B3; --accent:#B79CFF; --accent-ink:#1B1530; --line:#3D3363; --rood:#FF7A8F; --vak:#F0A060; --groen:#6FD39A; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible",Verdana,sans-serif;font-size:var(--fs);line-height:1.55;transition:background .4s,color .4s}
+  .wrap{max-width:980px;margin:0 auto;padding:16px}
+  .kop{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .kop h1{font-size:1.3em;margin:0;flex:1}
+  .card{background:var(--card);border-radius:22px;padding:18px;margin-bottom:14px}
+  svg{width:100%;height:auto;display:block}
+  svg text{font-family:"Atkinson Hyperlegible",Verdana,sans-serif}
+  .jaar{display:inline-block;background:var(--vak);color:var(--card);font-weight:700;border-radius:999px;padding:2px 14px;font-size:.85em;margin-bottom:6px}
+  .tekst{min-height:3.2em;margin:4px 0 0}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .btn{border:none;border-radius:999px;padding:12px 22px;min-height:52px;cursor:pointer;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:700}
+  .btn.ghost{background:var(--card);color:var(--ink);border:2px solid var(--line);font-weight:400}
+  .stip{width:12px;height:12px;border-radius:50%;background:var(--line)}
+  .stip.aan{background:var(--vak)}
+  .stippen{display:flex;gap:6px;margin-left:auto}
+</style>
+</head>
+<body class="theme-zacht">
+<div class="wrap">
+  <div class="kop"><h1>Italië: van winnaar naar dictatuur</h1><button class="btn ghost" id="thema" title="Licht of donker">🌙</button></div>
+  <div class="card">
+    <svg id="bord" viewBox="0 0 800 470" aria-label="Schetsbord"></svg>
+  </div>
+  <div class="card">
+    <div id="jaar"></div>
+    <p class="tekst" id="tekst"></p>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" id="speel">▶ Afspelen</button>
+      <button class="btn ghost" id="volgende">Volgende ›</button>
+      <button class="btn ghost" id="opnieuw">↺ Opnieuw</button>
+      <button class="btn ghost" id="tempo"></button>
+      <div class="stippen" id="stippen"></div>
+    </div>
+  </div>
+</div>
+<script>
+"use strict";
+const NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("bord");
+const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+/* ---------- toeval met vaste zaadjes: elke keer dezelfde 'handgetekende' lijnen ---------- */
+let seed = 1;
+function R() { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }
+const J = a => (R() * 2 - 1) * a;
+const f = n => n.toFixed(1);
+
+/* ---------- handgetekende paden ---------- */
+function ruwD(pts, amp = 1.6) {
+  let d = "";
+  pts.forEach((p, i) => {
+    const x = p[0] + J(amp * .6), y = p[1] + J(amp * .6);
+    if (i === 0) { d = `M${f(x)} ${f(y)}`; return; }
+    const q = pts[i - 1], len = Math.hypot(p[0] - q[0], p[1] - q[1]);
+    const a = Math.min(amp * 1.6, len * .05) + .4;
+    d += ` Q${f((q[0] + p[0]) / 2 + J(a))} ${f((q[1] + p[1]) / 2 + J(a))} ${f(x)} ${f(y)}`;
+  });
+  return d;
+}
+function rondD(pts) {   // Catmull-Rom naar Bézier: vloeiende lijn door de punten
+  let d = `M${f(pts[0][0])} ${f(pts[0][1])}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+    d += ` C${f(p1[0] + (p2[0] - p0[0]) / 6)} ${f(p1[1] + (p2[1] - p0[1]) / 6)} ${f(p2[0] - (p3[0] - p1[0]) / 6)} ${f(p2[1] - (p3[1] - p1[1]) / 6)} ${f(p2[0])} ${f(p2[1])}`;
+  }
+  return d;
+}
+function ovaalPts(cx, cy, rx, ry, ruw = .04) {
+  const n = 22, a0 = R() * 6.28, pts = [];
+  for (let i = 0; i <= n; i++) { const a = a0 + i / n * (Math.PI * 2 + .45), k = 1 + J(ruw); pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]); }
+  return pts;
+}
+
+/* ---------- de tekenaar: verzamelt alles met een starttijd ---------- */
+class Tekenaar {
+  constructor(g) { this.g = g; this.items = []; this.t = 0; }
+  in(g, fn) { const oud = this.g; this.g = g; fn(); this.g = oud; }
+  wacht(ms) { this.t += ms; }
+  lijnPaar(dFn, o = {}) {
+    const kleur = o.c || "var(--ink)", w = o.w || 2.6, els = [];
+    for (const pass of [0, 1]) {
+      const p = mk("path", { d: dFn(), fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, this.g);
+      p.style.stroke = kleur; p.style.strokeWidth = pass ? w * .45 : w; if (pass) p.style.opacity = .55;
+      els.push(p);
+    }
+    const len = els[0].getTotalLength(), dur = Math.max(260, Math.min(1500, len * 1.6 * (o.snel || 1)));
+    els.forEach(el => this.items.push({ soort: "lijn", el, at: this.t, dur, len: el.getTotalLength() + 2 }));
+    this.t += dur * .85;
+    return els;
+  }
+  lijn(pts, o) { return this.lijnPaar(() => ruwD(pts, o && o.amp), o); }
+  boog(pts, o) { return this.lijnPaar(() => rondD(pts.map(p => [p[0] + J(1.2), p[1] + J(1.2)])), o); }
+  ovaal(cx, cy, rx, ry, o = {}) { return this.lijnPaar(() => rondD(ovaalPts(cx, cy, rx, ry, o.ruw)), o); }
+  cirkel(cx, cy, r, o) { return this.ovaal(cx, cy, r, r, o); }
+  rh(x, y, w, h, o) { return this.lijn([[x, y], [x + w, y], [x + w, y + h], [x, y + h], [x, y - 1]], o); }
+  pijl(van, naar, o = {}) {
+    this.lijn([van, naar], o);
+    const a = Math.atan2(naar[1] - van[1], naar[0] - van[0]), k = 12;
+    this.lijn([[naar[0] - k * Math.cos(a - .5), naar[1] - k * Math.sin(a - .5)], naar, [naar[0] - k * Math.cos(a + .5), naar[1] - k * Math.sin(a + .5)]], o);
+  }
+  arcering(poly, o = {}) {   // schuine strepen binnen een vorm, zoals met potlood ingekleurd
+    const id = "c" + Math.random().toString(36).slice(2);
+    const cp = mk("clipPath", { id }, this.g); mk("polygon", { points: poly.map(p => p.join(",")).join(" ") }, cp);
+    const g = mk("g", { "clip-path": `url(#${id})` }, this.g);
+    const xs = poly.map(p => p[0]), ys = poly.map(p => p[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys), h = y1 - y0, gap = o.gap || 6;
+    const t0 = this.t; let i = 0;
+    this.in(g, () => { for (let x = x0 - h; x < x1; x += gap) { this.t = t0 + i++ * 18; this.lijnPaar(() => ruwD([[x, y1 + 2], [x + h + 4, y0 - 2]], .8), { c: o.c, w: o.w || 1.8, snel: .5 }); } });
+    this.t = Math.max(this.t, t0 + 200);
+  }
+  vlak(poly, kleur) {        // effen kleurvlak dat zacht verschijnt
+    const p = mk("polygon", { points: poly.map(p => p.join(",")).join(" ") }, this.g);
+    p.style.fill = kleur; this.items.push({ soort: "fade", el: p, at: this.t, dur: 700 }); this.t += 350;
+  }
+  tekst(x, y, s, o = {}) {
+    const t = mk("text", { x, y, "text-anchor": o.anker || "middle", "font-size": o.grootte || 18, "font-weight": o.vet ? 700 : 400 }, this.g);
+    if (o.draai) t.setAttribute("transform", `rotate(${o.draai} ${x} ${y})`);
+    t.style.fill = o.c || "var(--ink)"; t.textContent = s;
+    this.items.push({ soort: "fade", el: t, at: this.t, dur: 700 });
+    this.t += 700 + 250 + s.split(/\s+/).length * 380;   // leestijd: ruim 2,5 woorden per seconde
+    return t;
+  }
+  doe(fn) { this.items.push({ soort: "fn", at: this.t, fn }); }
+  tegelijk(n, stap, fn) { const t0 = this.t; let eind = t0; for (let i = 0; i < n; i++) { this.t = t0 + i * stap; fn(i); eind = Math.max(eind, this.t); } this.t = eind; }
+}
+
+/* ---------- bouwstenen ---------- */
+function poppetje(b, x, y, o = {}) {   // y = voeten
+  const c = o.c;
+  b.cirkel(x, y - 96, 13, { c });
+  if (o.hemd) { const romp = [[x - 12, y - 80], [x + 12, y - 80], [x + 9, y - 44], [x - 9, y - 44]]; b.arcering(romp, { c, gap: 4.5 }); b.lijn([...romp, romp[0]], { c, w: 2 }); }
+  b.lijn([[x, y - 83], [x, y - 42]], { c });
+  b.lijn(o.armen || [[x - 20, y - 50], [x, y - 72], [x + 20, y - 50]], { c });
+  b.lijn([[x - 15, y], [x, y - 42], [x + 15, y]], { c });
+  if (o.kroon) b.lijn([[x - 11, y - 106], [x - 13, y - 124], [x - 5, y - 114], [x, y - 127], [x + 5, y - 114], [x + 13, y - 124], [x + 11, y - 106]], { c: "var(--vak)", w: 2.4 });
+  if (o.hoed) { b.lijn([[x - 17, y - 108], [x + 17, y - 108]]); b.rh(x - 10, y - 132, 20, 24); }
+  if (o.boos) { b.lijn([[x - 9, y - 104], [x - 2, y - 100]], { w: 2.2 }); b.lijn([[x + 9, y - 104], [x + 2, y - 100]], { w: 2.2 }); }
+}
+function wolk(b, cx, cy, rx, ry, tekst, staart, o = {}) {
+  b.ovaal(cx, cy, rx, ry, { ruw: .03 });
+  if (staart) b.lijn(staart, { w: 2.2 });
+  b.tekst(cx, cy + 6, tekst, { grootte: o.grootte || 19, vet: true, c: o.c });
+}
+function gebouw(b, x, y, w) {   // tempel met zuilen; y = grond
+  const h = w * .75;
+  b.rh(x, y - 18, w, 18);
+  b.lijn([[x - 6, y - h + 20], [x + w / 2, y - h - 22], [x + w + 6, y - h + 20], [x - 6, y - h + 20]]);
+  b.rh(x + 2, y - h + 20, w - 4, 14);
+  const n = 4; b.tegelijk(n, 90, i => { const zx = x + 18 + i * (w - 36) / (n - 1); b.lijn([[zx - 5, y - 18], [zx - 5, y - h + 34]], { w: 2.2 }); b.lijn([[zx + 5, y - 18], [zx + 5, y - h + 34]], { w: 2.2 }); });
+}
+
+/* ---------- de ketting onderaan ---------- */
+const SCHAKELS = ["bedrogen", "crisis + angst", "geweld", "Mars op Rome", "dictatuur"];
+const SX = i => 22 + i * 156;
+function schakel(b, i, nieuw) {
+  const c = nieuw ? "var(--vak)" : "var(--ink)";
+  if (i > 0) b.pijl([SX(i) - 30, 404], [SX(i) - 6, 404], { c: "var(--soft)", w: 2.2 });
+  b.rh(SX(i), 380, 124, 48, { c, w: nieuw ? 3 : 2.2 });
+  b.tekst(SX(i) + 62, 410, SCHAKELS[i], { grootte: nieuw ? 16 : 17, vet: nieuw, c });
+}
+
+/* ---------- de scènes ---------- */
+const SCENES = [
+  { jaar: "1918", t: "Italië stond aan de kant van de **winnaars**. Maar het kreeg minder land dan beloofd. Veel Italianen voelden zich **bedrogen**.",
+    teken(b) {
+      b.lijn([[40, 300], [380, 300]]);
+      b.rh(150, 240, 70, 60); b.rh(80, 262, 70, 38); b.rh(220, 272, 70, 28);
+      b.tekst(185, 280, "1", { grootte: 26, vet: true });
+      poppetje(b, 185, 240, { armen: [[165, 150], [185, 168], [205, 190]] });
+      b.lijn([[165, 152], [165, 100]], { w: 2.2 });
+      b.vlak([[131, 100], [143, 100], [143, 124], [131, 124]], "var(--groen)"); b.vlak([[155, 100], [166, 100], [166, 124], [155, 124]], "var(--rood)");
+      b.rh(131, 100, 34, 24, { w: 2 });
+      b.tekst(185, 330, "Italië: bij de winnaars", { grootte: 17 });
+      b.wacht(800);
+      b.lijnPaar(() => rondD(ovaalPts(580, 165, 150, 95, .12)), { c: "var(--soft)", w: 2.2 });
+      b.tekst(580, 58, "beloofd", { c: "var(--soft)", vet: true });
+      b.wacht(800);
+      const klein = ovaalPts(545, 190, 55, 38, .1);
+      b.lijnPaar(() => rondD(klein), { c: "var(--vak)", w: 3 });
+      b.arcering(klein, { c: "var(--vak)", gap: 7, w: 1.6 });
+      b.tekst(545, 197, "gekregen", { vet: true });
+      b.wacht(800);
+      b.lijn([[176, 136], [183, 140]], { w: 2.2 }); b.lijn([[194, 136], [187, 140]], { w: 2.2 });
+      wolk(b, 290, 112, 72, 28, "Oneerlijk!", [[238, 128], [205, 140]]);
+    } },
+  { jaar: "1919 – 1920", t: "Na de oorlog: veel werklozen, hoge prijzen en stakingen. Arbeiders bezetten fabrieken. Rijke Italianen en de middenklasse waren bang voor een **communistische revolutie**, zoals in Rusland.",
+    teken(b) {
+      b.lijn([[30, 300], [770, 300]]);
+      b.lijn([[60, 300], [60, 190], [60, 150], [105, 190], [105, 150], [150, 190], [150, 150], [195, 190], [240, 190], [240, 300]]);
+      b.rh(205, 110, 24, 80);
+      b.rh(140, 252, 40, 48);
+      b.rh(72, 202, 118, 32, { c: "var(--vak)", w: 2.6 }); b.tekst(131, 225, "BEZET", { vet: true, c: "var(--vak)" });
+      b.tekst(150, 330, "fabriek", { grootte: 17 });
+      poppetje(b, 345, 300, { armen: [[325, 252], [345, 228], [362, 162]] });
+      poppetje(b, 425, 300, { armen: [[408, 162], [425, 228], [445, 252]] });
+      b.rh(326, 118, 118, 42, { c: "var(--rood)", w: 2.8 }); b.tekst(385, 146, "STAKING!", { vet: true, c: "var(--rood)" });
+      b.tekst(385, 330, "arbeiders", { grootte: 17 });
+      b.lijn([[495, 150], [495, 262], [612, 262]], { w: 2 });
+      b.lijn([[500, 252], [528, 240], [552, 222], [575, 190], [600, 152]], { c: "var(--rood)", w: 3 });
+      b.lijn([[588, 156], [601, 150], [603, 164]], { c: "var(--rood)", w: 3 });
+      b.tekst(553, 288, "prijzen", { grootte: 17 });
+      poppetje(b, 705, 300, { hoed: 1 });
+      b.cirkel(684, 160, 5); b.cirkel(674, 144, 3.5);
+      wolk(b, 662, 105, 82, 30, "revolutie?", null);
+      b.tekst(705, 330, "rijk + middenklasse", { grootte: 17 });
+    } },
+  { t: "Benito Mussolini begon de fascistische partij. Zijn knokploegen, de **zwarthemden**, sloegen stakers en socialisten in elkaar. Hij beloofde orde en een groot, sterk Italië.",
+    teken(b) {
+      b.lijn([[30, 300], [770, 300]]);
+      b.rh(115, 250, 90, 50);
+      poppetje(b, 160, 250, { hemd: 1, armen: [[140, 210], [160, 176], [188, 166]] });
+      b.lijn([[186, 160], [218, 145], [218, 184], [186, 172], [186, 160]]);
+      b.tekst(160, 330, "Mussolini", { grootte: 17, vet: true });
+      wolk(b, 345, 100, 112, 32, "Orde! Een sterk Italië!", [[262, 115], [222, 150]], { grootte: 18 });
+      const groep = mk("g", {}, b.g);
+      b.in(groep, () => {
+        poppetje(b, 475, 300, { hemd: 1, armen: [[455, 252], [475, 228], [496, 196]] });
+        b.lijn([[496, 196], [512, 160]], { w: 5 });
+        poppetje(b, 550, 300, { hemd: 1, armen: [[530, 252], [550, 228], [571, 196]] });
+        b.lijn([[571, 196], [587, 160]], { w: 5 });
+      });
+      b.tekst(512, 330, "zwarthemden", { grootte: 17, vet: true });
+      b.lijn([[625, 288], [720, 252], [732, 278], [637, 314], [625, 288]], { c: "var(--soft)" });
+      b.tekst(679, 290, "STAKING", { grootte: 15, c: "var(--soft)", draai: -21 });
+      b.lijn([[612, 232], [596, 210]], { c: "var(--rood)", w: 3 }); b.lijn([[632, 224], [632, 198]], { c: "var(--rood)", w: 3 }); b.lijn([[652, 230], [668, 210]], { c: "var(--rood)", w: 3 });
+      b.doe(() => groep.animate([{ transform: "translate(0,0)" }, { transform: "translate(-4px,1px)" }, { transform: "translate(4px,-1px)" }, { transform: "translate(0,0)" }], { duration: 260, iterations: 6 }));
+    } },
+  { jaar: "1922", t: "De **Mars op Rome**. Duizenden fascisten trokken naar Rome. De koning durfde niets te doen. Hij maakte Mussolini **premier**.",
+    teken(b) {
+      b.lijn([[20, 300], [780, 300]]);
+      gebouw(b, 600, 300, 160);
+      b.tekst(680, 330, "Rome", { grootte: 17, vet: true });
+      const mars = mk("g", {}, b.g);
+      b.in(mars, () => b.tegelijk(5, 260, i => { const g = mk("g", {}, mars); b.in(g, () => poppetje(b, 45 + i * 55, 300, { hemd: 1 })); }));
+      b.doe(() => {
+        mars.animate([{ transform: "translate(0,0)" }, { transform: "translate(230px,0)" }], { duration: 4200 * TEMPO, fill: "forwards", easing: "ease-in-out" });
+        [...mars.children].forEach((g, i) => g.animate([{ transform: "translateY(0)" }, { transform: "translateY(-5px)" }, { transform: "translateY(0)" }], { duration: 600 * TEMPO, iterations: 7, delay: i * 120 }));
+      });
+      b.wacht(4400);
+      b.tekst(385, 330, "fascisten", { grootte: 17, vet: true });
+      poppetje(b, 555, 300, { kroon: 1, armen: [[535, 250], [555, 228], [530, 205]] });
+      b.tekst(555, 330, "koning", { grootte: 17 });
+      wolk(b, 400, 95, 115, 30, "Jij wordt premier!", [[480, 115], [540, 165]]);
+    } },
+  { jaar: "1925 – 1926", t: "Mussolini maakte van Italië een **dictatuur**. Andere partijen werden verboden: een **eenpartijstaat**. Kranten mochten alleen schrijven wat hij wilde.",
+    teken(b) {
+      const P = ["socialisten", "katholieken", "communisten"];
+      b.tegelijk(3, 350, i => { const y = 70 + i * 62; b.rh(70, y, 190, 46); b.tekst(165, y + 30, P[i], { grootte: 18 }); });
+      b.wacht(200);
+      b.tegelijk(3, 200, i => { const y = 70 + i * 62; b.lijn([[80, y + 24], [250, y + 22]], { c: "var(--rood)", w: 3 }); });
+      const vb = mk("g", { transform: "rotate(-10 380 140)" }, b.g);
+      b.in(vb, () => { b.rh(300, 116, 160, 48, { c: "var(--rood)", w: 3.4 }); b.tekst(380, 148, "VERBODEN", { grootte: 20, vet: true, c: "var(--rood)" }); });
+      b.rh(70, 260, 190, 46, { c: "var(--vak)", w: 3 }); b.tekst(165, 290, "fascisten", { vet: true, c: "var(--vak)" });
+      b.tekst(165, 340, "eenpartijstaat", { grootte: 17, vet: true });
+      b.rh(520, 70, 190, 230);
+      b.tekst(615, 108, "DE KRANT", { grootte: 22, vet: true });
+      b.lijn([[535, 120], [695, 120]], { w: 2 });
+      b.tegelijk(6, 90, i => b.lijn([[540, 148 + i * 22], [540 + (i % 3 === 2 ? 100 : 150), 148 + i * 22]], { c: "var(--soft)", w: 2 }));
+      const st = mk("g", { transform: "rotate(-14 615 210)" }, b.g);
+      b.in(st, () => { b.rh(540, 185, 150, 48, { c: "var(--rood)", w: 3.4 }); b.tekst(615, 216, "GOEDGEKEURD", { grootte: 18, vet: true, c: "var(--rood)" }); });
+      b.tekst(615, 340, "kranten", { grootte: 17 });
+    } },
+  { slot: true, t: "**Jouw beurt.** Kijk nog één keer naar de ketting. Kun jij hem uit je hoofd natekenen?",
+    teken(b) { b.tekst(400, 180, "Teken de ketting zelf na ✏️", { grootte: 30, vet: true, c: "var(--vak)" }); } }
+];
+
+/* ---------- afspelen ---------- */
+const TEMPI = [["🐢 Rustig", 1], ["🐌 Heel rustig", 1.4], ["🐇 Vlot", .7]];
+let tempoNr = 0; try { tempoNr = +localStorage.getItem("lp-tempo") || 0; } catch (e) {}
+let TEMPO = TEMPI[tempoNr][1];
+const geluid = new Audio();   // één element: na de eerste tik mag de iPad het steeds afspelen
+const AUDIO = ["audio/s0.mp3", "audio/s1.mp3", "audio/s2.mp3", "audio/s3.mp3", "audio/s4.mp3", "audio/s5.mp3"];
+let nu = -1, lopend = [], timers = [], autoSpelen = false;
+const stage = mk("g", {}, svg), keten = mk("g", {}, svg);
+mk("path", { d: "M20 355 H780", "stroke-dasharray": "4 8", fill: "none" }, svg).style.stroke = "var(--line)";
+
+function stop() { lopend.forEach(a => a.cancel()); lopend = []; timers.forEach(clearTimeout); timers = []; geluid.onended = geluid.onerror = null; geluid.pause(); }
+function speel(items, direct) {
+  let eind = 0;
+  for (const it of items) {
+    if (!it.geschaald) { it.at *= TEMPO; if (it.dur) it.dur *= TEMPO; it.geschaald = true; }
+    if (it.soort === "fn") { if (!direct) timers.push(setTimeout(it.fn, it.at)); continue; }
+    eind = Math.max(eind, it.at + it.dur);
+    if (direct) continue;
+    if (it.soort === "lijn") { it.el.style.strokeDasharray = it.len; lopend.push(it.el.animate([{ strokeDashoffset: it.len }, { strokeDashoffset: 0 }], { duration: it.dur, delay: it.at, fill: "both", easing: "ease-in-out" })); }
+    else lopend.push(it.el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: it.dur, delay: it.at, fill: "both" }));
+  }
+  return eind;
+}
+const md = s => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const kaal = s => s.replace(/\*\*/g, "");
+
+function toon(i) {
+  stop(); nu = i; const sc = SCENES[i];
+  stage.innerHTML = ""; keten.innerHTML = "";
+  seed = 900;                                       // oude schakels direct, zonder animatie
+  const oud = new Tekenaar(keten); for (let k = 0; k < Math.min(i, SCHAKELS.length); k++) schakel(oud, k, false); speel(oud.items, true);
+  seed = 100 + i * 37;
+  const b = new Tekenaar(stage); sc.teken(b);
+  if (i < SCHAKELS.length) { b.wacht(1200); b.in(keten, () => schakel(b, i, true)); }
+  const duur = speel(b.items, false);
+  document.getElementById("jaar").innerHTML = sc.jaar ? `<span class="jaar">${sc.jaar}</span>` : "";
+  document.getElementById("tekst").innerHTML = md(sc.t);
+  document.getElementById("stippen").innerHTML = SCENES.map((_, k) => `<span class="stip ${k <= i ? "aan" : ""}"></span>`).join("");
+  let klaarSpraak = false, klaarBeeld = false;
+  const verder = () => { if (autoSpelen && klaarSpraak && klaarBeeld && nu === i && i < SCENES.length - 1) timers.push(setTimeout(() => toon(i + 1), 2500)); };
+  timers.push(setTimeout(() => { klaarBeeld = true; verder(); }, duur));
+  (window.__starts = window.__starts || []).push([i, Date.now()]);
+  geluid.onended = geluid.onerror = () => { klaarSpraak = true; verder(); };
+  geluid.src = AUDIO[i]; geluid.currentTime = 0;
+  const pr = geluid.play(); if (pr) pr.catch(() => { klaarSpraak = true; verder(); });   // nog niet getikt: dan zonder geluid
+  if (i === SCENES.length - 1) autoSpelen = false, document.getElementById("speel").textContent = "▶ Afspelen";
+}
+document.getElementById("speel").onclick = e => { autoSpelen = !autoSpelen; e.target.textContent = autoSpelen ? "⏸ Pauze" : "▶ Afspelen"; if (autoSpelen) toon(nu >= SCENES.length - 1 ? 0 : Math.max(nu, 0)); else stop(); };
+document.getElementById("volgende").onclick = () => toon(Math.min(nu + 1, SCENES.length - 1));
+document.getElementById("opnieuw").onclick = () => { autoSpelen = false; document.getElementById("speel").textContent = "▶ Afspelen"; toon(0); };
+document.getElementById("thema").onclick = e => { const n = document.body.classList.toggle("theme-nacht"); document.body.classList.toggle("theme-zacht", !n); e.target.textContent = n ? "☀️" : "🌙"; };
+const tk = document.getElementById("tempo"); tk.textContent = TEMPI[tempoNr][0];
+tk.onclick = () => { tempoNr = (tempoNr + 1) % TEMPI.length; TEMPO = TEMPI[tempoNr][1]; tk.textContent = TEMPI[tempoNr][0]; try { localStorage.setItem("lp-tempo", tempoNr); } catch (e) {} toon(Math.max(nu, 0)); };
+const start = () => toon(0);
+document.fonts && document.fonts.ready ? document.fonts.ready.then(start) : start();
+</script>
+</body>
+</html>
