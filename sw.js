@@ -5,8 +5,9 @@
 //   (wifi op school of in de trein) wordt genegeerd.
 // - Valt de startpagina terug op de bewaarde versie, dan komt de rest van die keer laden ook uit de bewaarde versie,
 //   zodat oude en nieuwe bestanden niet door elkaar raken.
+// - Eigen bestanden altijd bij de server nagaan (no-cache), anders geeft de browser tot 10 minuten een oude kopie.
 // - Lettertypes van Google: eerst de bewaarde versie (die veranderen niet).
-const CACHE = "leerplek-v9";
+const CACHE = "leerplek-v10";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
   "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/modules/economie-h4.js",
@@ -62,7 +63,8 @@ self.addEventListener("fetch", e => {
     return;
   }
 
-  const netwerk = fetch(req).then(res => { if (!goed(req, res)) throw new Error("geen goed antwoord"); return bewaar(req, res); });
+  const vers = eigen(req.url) ? fetch(req.url, { cache: "no-cache", credentials: "same-origin" }) : fetch(req);   // niet de 10 minuten oude kopie van de browser
+  const netwerk = vers.then(res => { if (!goed(req, res)) throw new Error("geen goed antwoord"); return bewaar(req, res); });
   e.waitUntil(netwerk.catch(() => {}));   // op de achtergrond doorladen, voor de volgende keer
 
   e.respondWith((async () => {

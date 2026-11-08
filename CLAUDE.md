@@ -32,5 +32,5 @@ Zij is de eigenaar: zij bepaalt wat er komt (via de ideeënbus in de app), vader
 - `js/app.js` is de schil (beginscherm, tekenen, tekeningen, ideeënbus, thema, voorlezen, meten).
 - Voorlezen: `App.speak` kiest de beste Nederlandse stem van de iPad (of haar keuze in 'Mijn app'), zet tekens om met `App.spreekbaar` en leest per zin.
 - `js/nieuw.js` bevat de regels voor het scherm "Wat is er nieuw"; voeg bij elke zichtbare verandering een regel toe.
-- Elk hoofdstuk is een los bestand in `js/modules/` dat zich aanmeldt met `App.addModule({...})`; voeg het toe in `index.html` en in de lijst `CORE` in `sw.js`, en verhoog dan `CACHE`.
+- Elk hoofdstuk is een los bestand in `js/modules/` dat zich aanmeldt met `App.addModule({...})`; voeg het toe in `index.html` en in de lijst `CORE` in `sw.js`, en verhoog dan `CACHE`. Verhoog `CACHE` (sw.js) en `VERSIE` (app.js) bij elke publicatie altijd samen; de versie staat onderaan 'Mijn app'.
 - Geen alert/confirm/prompt: gebruik `App.modal`.

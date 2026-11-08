@@ -55,6 +55,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
+  const VERSIE = 10;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -466,7 +467,9 @@
           <label class="btn ghost">↩️ Back-up terugzetten<input type="file" accept=".json,application/json,text/plain" id="terug" hidden></label>
         </div>
         <p class="ok" id="bok" style="margin:10px 0 0"></p>
-      </div>`;
+      </div>
+      <p class="soft" id="versie" style="text-align:center;font-size:.8em">Versie ${VERSIE}</p>`;
+    (async () => { try { const k = (await caches.keys()).find(n => n.startsWith("leerplek-")); if (k) $("#versie", el).textContent = `Versie ${VERSIE} · bewaard voor offline: ${k.replace("leerplek-v", "")}`; } catch (e) {} })();
     const laatste = store.get("laatste-backup", 0);
     (async () => {
       let t = laatste ? `Laatste back-up: ${new Date(laatste).toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}.` : "Nog geen back-up gemaakt.";
