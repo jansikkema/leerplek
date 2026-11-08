@@ -2,6 +2,7 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
+  { datum: "2026-11-08", tekst: "Bij slechte wifi start de app nu snel. Ook als de wifi eerst een inlogpagina wil, zoals op school." },
   { datum: "2026-11-08", tekst: "Nieuw: dit scherm! Hier zie je wat er in je app verandert." },
   { datum: "2026-11-08", tekst: "Voorlezen klinkt rustiger. De app leest per zin, met pauzes, en zegt bedragen gewoon in euro's." },
   { datum: "2026-11-08", tekst: "Bij Mijn app kies je zelf een stem en hoe snel die praat." },

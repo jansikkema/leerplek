@@ -49,6 +49,7 @@ node .claude/skills/leerplek-hoofdstuk/test-ipad.js "" <scratchpad>/schermen
 ```
 - Test alle modules (lege module-id), want een wijziging in `leren.js` of `app.js` raakt alles.
 - Speel de veranderde plek met de hand door en bekijk de schermafdrukken (in de scratchpad, nooit in de repository).
+- Verandert `sw.js`? Draai ook `node .claude/skills/leerplek-hoofdstuk/test-wifi.js` (geen, trage en slechte wifi).
 - Pencil, voorlezen en het deelmenu kun je hier niet echt testen. Zet die controle op de lijst voor vader (iPad).
 
 ## Stap 5 · "Wat is er nieuw"

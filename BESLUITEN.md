@@ -61,8 +61,8 @@ Let op: deze repository is openbaar. Hier staan geen persoonlijke gegevens, cijf
 **Waarom:** browserpop-ups zijn lelijk, niet voor te lezen en werken in een app op het beginscherm van de iPad niet altijd goed.
 
 ## 14. Na een update eerst het netwerk, daarna de bewaarde versie
-**Wat:** de service worker (`sw.js`) haalt eerst de nieuwste versie op en valt pas terug op de bewaarde versie als er geen internet is.
-**Waarom:** een update komt zo direct binnen, en de app werkt toch zonder internet. Bij nieuwe bestanden: toevoegen aan `CORE` en `CACHE` verhogen.
+**Wat:** de service worker (`sw.js`) haalt eerst de nieuwste versie op, maar wacht daar hooguit 3 seconden op. Duurt het langer, is er geen internet, een foutpagina of een omleiding naar een inlogpagina (wifi op school of in de trein), dan gebruikt hij de bewaarde versie. Valt de startpagina terug, dan komt de rest van die keer laden ook uit de bewaarde versie. (Aangescherpt 2026-11-08.)
+**Waarom:** een update komt zo direct binnen, en de app werkt toch zonder internet. Zonder wachttijd bleef de app bij slechte wifi lang leeg, en bij wifi met een inlogpagina toonde hij die pagina in plaats van de app. Oude en nieuwe bestanden mogen niet door elkaar raken. Bij nieuwe bestanden: toevoegen aan `CORE` en `CACHE` verhogen.
 
 ## 15. Direct publiceren, samen controleren op de iPad
 **Wat (2026-11-07):** na een geslaagde test in iPad-formaat en een privacycontrole gaat een wijziging meteen naar `main` en dus naar de iPad. Vader en dochter controleren het daarna samen op haar iPad. Gaat er iets mis, dan wordt de wijziging teruggedraaid (`git revert`) en opnieuw gepubliceerd.
