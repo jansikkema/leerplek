@@ -355,3 +355,42 @@ textarea.klein-ta{min-height:80px}
 .pb-rij{font-size:.85em;background:var(--card2);border-radius:10px;padding:8px 10px;margin-top:6px}
 .pb-rij span{display:block;font-weight:700;color:var(--soft);font-size:.85em}
 .plan-blok .say-mini{position:absolute;top:12px;right:12px;width:38px;height:38px}
+
+/* tijdlijn */
+.tl-lijn{list-style:none;margin:14px 0 0;padding:0 0 0 18px;border-left:4px solid var(--accent)}
+.tl-lijn li{position:relative;display:flex;gap:12px;align-items:baseline;padding:6px 0}
+.tl-lijn li::before{content:"";position:absolute;left:-27px;top:13px;width:14px;height:14px;border-radius:50%;background:var(--accent)}
+.tl-lijn li.tl-leeg::before{background:var(--line)}
+.tl-jaar{flex:none;min-width:7.5em;font-weight:700;color:var(--gold)}
+.tl-items{display:grid;gap:10px}
+.tl-item{display:flex;gap:8px;align-items:center}
+.tl-kies{flex:1;text-align:left;background:var(--card2);border:2px solid var(--line);border-radius:14px;padding:12px 14px;min-height:52px;cursor:pointer;color:var(--ink)}
+.tl-item.goed .tl-kies{border-color:var(--plus);background:color-mix(in srgb,var(--plus) 18%,transparent)}
+.tl-item.schud{animation:schud .35s}
+@media (max-width:620px){.tl-lijn li{flex-direction:column;gap:0}}
+
+/* filmpje met scènes */
+.scene{display:grid;place-items:center;min-height:200px;position:relative}
+.sc-beeld{font-size:5.5em;line-height:1.1;text-align:center}
+.sc-beeld.in{animation:scIn .6s ease}
+.sc-jaar{position:absolute;top:12px;left:16px;font-weight:700;color:var(--gold);font-size:1.1em}
+@keyframes scIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+
+/* twee kampen en vier lonten (geschiedenis) */
+.kampen{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kamp{background:var(--card2);border-radius:16px;padding:14px;border-top:6px solid var(--accent)}
+.kamp.b{border-top-color:var(--gold)}
+.kamp ul{margin:8px 0 0;padding-left:1.1em}
+.lonten{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.lont{background:var(--card2);border-radius:14px;padding:12px}
+.lont .ic{font-size:1.6em}
+.lont .nm{font-weight:700;margin:4px 0}
+.lont .ex{font-size:.9em}
+.ketting{display:grid;gap:6px;margin-top:8px}
+.ketting div{background:var(--card2);border-radius:12px;padding:8px 12px}
+.ketting div+div::before{content:"⬇ ";color:var(--accent)}
+@media (max-width:620px){.kampen{grid-template-columns:1fr}}
+.mp-kamp{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mp-kamp div,.mp-ketting div{background:#F3EEFF;border-radius:8px;padding:6px 8px}
+.mp-ketting{display:grid;gap:4px}
+.lab-menu{display:grid;gap:10px}

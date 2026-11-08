@@ -55,7 +55,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 17;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 18;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -96,6 +96,7 @@
       .replace(/\b(\d{1,3})\.(\d{3})\b/g, "$1$2")
       .replace(/\s[×x]\s/g, " keer ").replace(/\s[−–-]\s/g, " min ").replace(/\s=\s/g, " is ").replace(/\s\+\s/g, " plus ").replace(/\s÷\s/g, " gedeeld door ")
       .replace(/§\s?(\d+)/g, "paragraaf $1").replace(/\bH(\d+)\b/g, "hoofdstuk $1").replace(/(\d)\s?%/g, "$1 procent")
+      .replace(/\bWO ?1\b/g, "de Eerste Wereldoorlog").replace(/\bWO ?2\b/g, "de Tweede Wereldoorlog").replace(/\bPSEC\b/g, "P S E C")
       .replace(/\bbijv\./gi, "bijvoorbeeld").replace(/\bo\.a\./gi, "onder andere").replace(/\bd\.w\.z\./gi, "dat wil zeggen")
       .replace(/\s?\(\s?/g, ", ").replace(/\s?\)/g, ",")
       .replace(/\s?[·•→|]\s?/g, ". ").replace(/…/g, ".").replace(/[“”"]/g, "")

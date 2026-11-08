@@ -9,6 +9,16 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Open
 
+### Begrippen van Geschiedenis H1 nalopen tegen het boek
+- H1 is gebouwd vanuit de leerdoelen van de docent, zonder het boek. De methode is niet zeker (waarschijnlijk MeMo). De termen zijn de gangbare voor havo 3.
+- Nalopen: centralen (of centrale mogendheden), loopgravenoorlog (of stellingenoorlog), Triple Alliantie (of Drievoudig Verbond), dolkstootlegende, neutraliteitspolitiek, en of het boek "aanleiding" en "directe oorzaak" als hetzelfde gebruikt. Staan er begrippen in het boek die nu ontbreken (bijvoorbeeld pan-Slavisme, revanchisme, Spartacusopstand)?
+- Werk: klein. Wacht op: de begrippenlijst of samenvatting uit haar boek (foto).
+
+### Geschiedenis H1 inspreken
+- 326 teksten (317 verteller, 9 van Sam). Op 2026-11-08 was de daglimiet al bijna op: nog maar 5 ingesproken. De rest leest de iPad-stem tot de volgende run (geplande taak).
+- Werk: klein, ongeveer 35 verzoeken.
+
+
 ### Begrippen van H4 nalopen tegen het boek
 - **4 of 5 P's?** De app gebruikt er vijf (met Personeel) en meldt dat het er soms vier zijn. Check welke het boek en de docent gebruiken. Bij vier: Personeel weghalen uit plaat, sorteren, kaarten, toetsvraag en uit-je-hoofd-plaat.
 - **"Inkoopwaarde" bij zelfgemaakte producten.** Wie zelf maakt, heeft eerder kosten van grondstoffen of een kostprijs dan een inkoopwaarde. De rekenronde 'Samen' gebruikt nu een ingekocht product, maar het bedrijfje Purple Cases heet "zelfgemaakt" en rekent wel met inkoop. Check hoe het boek dit noemt, en pas zo nodig de plaat, het filmpje en de rekenvoorbeelden aan.
@@ -49,9 +59,11 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 ### Leervormen verder herbruikbaar maken
 - De plaat (kijk- en doe-versie), het filmpje en het bouwplan staan nu in `economie-h4.js`. Rekenen in `leren.js` kent alleen de rekentrap omzet → nettowinst.
 - Voorstel: bij het tweede hoofdstuk dat zo'n vorm nodig heeft, die vorm eerst naar `leren.js` verplaatsen (inhoud als data), in plaats van de code te kopiëren.
+- Stand 2026-11-08: plaat, filmpje (scènes), tijdlijn en overzicht staan nu in `leren.js` (voor Geschiedenis H1). H4 kan de plaat en het overzicht ook gaan gebruiken; dat verandert de voorleesteksten van H4 niet als de tekst gelijk blijft. Nog open: bouwplan en andere soorten rekenen.
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-08 · Geschiedenis H1 De Eerste Wereldoorlog.** Tijdlijn (vier rondes), plaat 'kruitvat' met twee sorteerrondes, filmpje van Sarajevo tot Versailles, sorteren aanleiding/oorzaak/gevolg, podcast-chat over Weimar, filmpje Italië, plaat Nederland neutraal, oorzaak-lab met vijf sorteerrondes, 35 begrippen, 31 toetsvragen, 6 uit-je-hoofd-platen. Nieuwe vormen in `leren.js`. Voorlezen: WO1 en PSEC worden goed uitgesproken; filmpje leest ook voor bij zelf doorklikken als 'alles automatisch voorlezen' aanstaat.
 - **2026-11-08 · Starten bij slechte wifi.** Hooguit 3 seconden wachten op internet, daarna de bewaarde versie. Foutpagina's en inlogpagina's van wifi worden genegeerd. Getest: oude versie 45 s bij trage wifi en vastgelopen bij inlogpagina of storing; nieuwe versie 3 s en 0,1 s.
 - **2026-11-08 · Scherm "Wat is er nieuw".** Regels in `js/nieuw.js`, melding op het beginscherm tot ze het gezien heeft, links vanuit de ideeënbus en 'Mijn app'.
 - **2026-11-08 · Voorlezen klinkt natuurlijker.** Beste stem automatisch (robot- en grapstemmen overgeslagen), zelf stem en tempo kiezen in 'Mijn app', tekens en bedragen omgezet naar gewone woorden, per zin voorlezen, chat met twee echte stemmen in plaats van verschoven toonhoogte.

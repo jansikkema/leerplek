@@ -512,5 +512,194 @@
     return opr;
   }
 
-  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, md, euro, shuffle };
+  /* ================= 7. tijdlijn: gebeurtenissen op volgorde zetten ================= */
+  // d = { titel, uitleg, rondes: [{ naam, items: [{ wanneer (getal om te sorteren), jaar (tekst), t, uitleg? }] }], alles: aantal voor de ronde 'door elkaar' }
+  // Ze tikt steeds de gebeurtenis die het eerst kwam. Goed: hij schuift op de tijdlijn, met jaartal. Fout: hij schudt en ze krijgt een tip.
+  function tijdlijn(el, d, onKlaar) {
+    const rondes = d.rondes.slice();
+    if (d.alles) rondes.push({ naam: "🔀 Alles door elkaar", alles: true });
+    let ronde = 0, gelegd = [], over = [], fouten = 0, wacht = false;
+    const klaarRondes = new Set();
+    function kiesItems(r) {
+      if (!r.alles) return r.items.slice();
+      const pool = shuffle(d.rondes.flatMap(x => x.items)), jaren = new Set(), uit = [];
+      for (const it of pool) { const j = Math.floor(it.wanneer); if (!jaren.has(j)) { jaren.add(j); uit.push(it); } if (uit.length >= d.alles) break; }
+      return uit;
+    }
+    function start(i) { ronde = i; const r = rondes[i]; over = shuffle(kiesItems(r)); gelegd = []; fouten = 0; wacht = false; render(); }
+    function render() {
+      const r = rondes[ronde];
+      el.innerHTML = `
+        <div class="card tijdlijn">
+          <div class="row ronde-rij">${rondes.map((x, i) => `<button class="chip small ${i === ronde ? "sel" : ""}" data-r="${i}">${esc(x.naam)}${klaarRondes.has(i) ? " ✓" : ""}</button>`).join("")}</div>
+          <h2 style="margin:12px 0 4px">${esc(d.titel)}</h2>
+          <button class="say" id="lees-tl">🔊 Lees voor</button>
+          ${d.uitleg ? `<p class="soft" style="margin-top:0">${md(d.uitleg)}</p>` : ""}
+          <ol class="tl-lijn">${gelegd.map(it => `<li><span class="tl-jaar">${esc(it.jaar)}</span><span>${md(it.t)}</span></li>`).join("")}
+            ${over.length ? `<li class="tl-leeg"><span class="tl-jaar">?</span><span class="soft">Wat kwam hierna?</span></li>` : ""}</ol>
+          <div class="s-feedback" id="tf" hidden></div>
+          ${over.length ? `<p style="margin:14px 0 6px"><b>Tik op wat het eerst gebeurde.</b> <span class="soft">(${gelegd.length} / ${gelegd.length + over.length})</span></p>
+          <div class="tl-items">${over.map((it, i) => `<div class="tl-item" data-i="${i}"><button class="tl-kies" data-i="${i}">${md(it.t)}</button><button class="say-mini" id="tls-${i}" data-i="${i}" aria-label="Lees voor">🔊</button></div>`).join("")}</div>`
+          : `<div class="reken-eind"><b>🎉 Op volgorde!</b> ${fouten ? `${fouten} keer een tip nodig gehad. Doe de ronde later nog eens.` : "In één keer goed. Sterk!"}
+              <div class="row" style="margin-top:10px">${ronde + 1 < rondes.length ? `<button class="btn" id="tvolg">Volgende ronde →</button>` : ""}<button class="btn ghost" id="topn">↻ Nog een keer</button></div></div>`}
+        </div><div id="na"></div>`;
+      App.sayButton($("#lees-tl", el), () => [d.titel + ". " + (d.uitleg || "").replace(/\*\*/g, ""), "Tik op wat het eerst gebeurde."]);
+      $$("[data-r]", el).forEach(b => b.onclick = () => start(+b.dataset.r));
+      $$(".tl-item .say-mini", el).forEach(b => b.onclick = () => App.speak(over[+b.dataset.i].t));
+      $$(".tl-kies", el).forEach(b => b.onclick = () => kies(+b.dataset.i));
+      if (!over.length) {
+        klaarRondes.add(ronde);
+        const v = $("#tvolg", el); if (v) v.onclick = () => start(ronde + 1);
+        $("#topn", el).onclick = () => start(ronde);
+        if (klaarRondes.size >= d.rondes.length && onKlaar) onKlaar($("#na", el));
+      }
+    }
+    function kies(i) {
+      if (wacht) return;
+      const eerste = over.reduce((m, it) => it.wanneer < m.wanneer ? it : m, over[0]);
+      const it = over[i];
+      if (it === eerste) {
+        wacht = true; $(`.tl-item[data-i="${i}"]`, el).classList.add("goed");
+        setTimeout(() => { gelegd.push(it); over.splice(i, 1); wacht = false; render(); }, 450);
+      } else {
+        fouten++;
+        const b = $(`.tl-item[data-i="${i}"]`, el); b.classList.add("schud"); setTimeout(() => b.classList.remove("schud"), 400);
+        const f = $("#tf", el); f.hidden = false;
+        const tip = "Nog niet. Dit gebeurde later. Er is iets dat eerder kwam.";
+        f.innerHTML = `<b>${tip}</b>${eerste.tip ? `<br>💡 ${md(eerste.tip)}` : ""}`;
+        if (autoLees()) App.speak(tip);
+      }
+    }
+    start(0);
+  }
+
+  /* ================= 8. filmpje: scènes met beeld, tekst en voorlezen ================= */
+  // d = { titel, intro, scenes: [{ beeld (emoji), jaar?, t (met **vet** voor toetswoorden), s? (voorleestekst, anders t zonder sterretjes) }], teken: tag voor 'Ga tekenen' }
+  function filmpje(el, d, onEind) {
+    const S = d.scenes.slice();
+    if (d.teken) S.push({ beeld: "✏️", t: "**Jouw beurt.** Teken één plaatje van wat je onthoudt.", knop: true });
+    el.innerHTML = `
+      <div class="card">
+        <h1>${esc(d.titel)}</h1>
+        ${d.intro ? `<p class="soft">${md(d.intro)}</p>` : ""}
+        <div class="stage scene"><div class="sc-jaar" id="scj"></div><div class="sc-beeld" id="scb"></div></div>
+        <div class="caption" id="caption"></div>
+        <div class="ctrl">
+          <button class="btn" id="play">▶ Afspelen</button>
+          <button class="btn ghost" id="prev" aria-label="Vorige">◀</button>
+          <button class="btn ghost" id="nextS" aria-label="Volgende">▶|</button>
+          <button class="btn ghost" id="snd">🔊 Geluid aan</button>
+          <div class="prog"><i id="progbar"></i></div>
+        </div>
+      </div>`;
+    const spreek = sc => sc.s || sc.t.replace(/\*\*/g, "");
+    let sc = 0, playing = false, timer = null, sound = true;
+    function draw() {
+      const x = S[sc];
+      $("#scb", el).textContent = x.beeld || ""; $("#scj", el).textContent = x.jaar || "";
+      $("#scb", el).classList.remove("in"); void $("#scb", el).offsetWidth; $("#scb", el).classList.add("in");
+      $("#caption", el).innerHTML = md(x.t) + (x.knop ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
+      $("#progbar", el).style.width = ((sc + 1) / S.length * 100) + "%";
+      if (sc === S.length - 1 && onEind) onEind();
+      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet(d.teken); };
+    }
+    function advance() { clearTimeout(timer); if (!playing) return; if (sc >= S.length - 1) { pause(); return; } sc++; run(); }
+    function run() {
+      draw(); App.stopSpeak(); if (!playing) return;
+      if (sound) App.speak(spreek(S[sc]), () => { if (playing) timer = setTimeout(advance, 1100); });
+      else timer = setTimeout(advance, 3000 + S[sc].t.length * 45);
+    }
+    function play() { if (sc >= S.length - 1) sc = 0; playing = true; $("#play", el).textContent = "⏸ Pauze"; run(); }
+    function pause() { playing = false; clearTimeout(timer); App.stopSpeak(); $("#play", el).textContent = sc >= S.length - 1 ? "⟲ Opnieuw" : "▶ Afspelen"; }
+    $("#play", el).onclick = () => playing ? pause() : play();
+    const toon = () => { if (playing) return run(); draw(); App.stopSpeak(); if (sound && autoLees()) App.speak(spreek(S[sc])); };   // met 'alles automatisch voorlezen' ook bij zelf doorklikken
+    $("#nextS", el).onclick = () => { if (sc < S.length - 1) { sc++; toon(); } };
+    $("#prev", el).onclick = () => { if (sc > 0) { sc--; toon(); } };
+    $("#snd", el).onclick = () => { sound = !sound; $("#snd", el).textContent = sound ? "🔊 Geluid aan" : "🔇 Geluid uit"; if (!sound) App.stopSpeak(); };
+    draw();
+    if (sound && autoLees()) App.speak(spreek(S[0]));
+    return () => { playing = false; clearTimeout(timer); };
+  }
+
+  /* ================= 9. plaat: kijk-versie en doe-versie ================= */
+  // d = { titel, icoon, intro, say, blokken: [{ kop, say, html }], noot, teken }
+  // In html staan toetswoorden als <span class="bl">woord</span>. In de doe-versie zijn die verstopt; tik om te checken.
+  function plaat(el, d) {
+    el.innerHTML = `
+      <div class="card">
+        <div class="biz"><div class="biz-ico">${d.icoon || "🗺️"}</div><div><h1>${esc(d.titel)}</h1>${d.intro ? `<p class="soft" style="margin:0">${md(d.intro)}</p>` : ""}</div></div>
+        ${d.say ? `<button class="say" data-say="${esc(d.say)}" style="margin-top:12px">🔊 Lees voor</button>` : ""}
+        <div><div class="switch"><button class="sel" id="m-kijk">👀 Kijk-versie</button><button id="m-doe">✏️ Doe-versie</button></div></div>
+        <p class="soft" id="doe-uitleg" style="display:none">Bij de vraagtekens staat een begrip verstopt. Bedenk het zelf. Zeg het hardop of schrijf het op. Tik dan om te checken.</p>
+      </div>
+      ${d.blokken.map((b, i) => `<div class="card"><h2>${esc(b.kop)}</h2>${b.say ? `<button class="say" id="say-blok-${i}" data-say="${esc(b.say)}">🔊 Lees voor</button>` : ""}${b.html}</div>`).join("")}
+      ${d.noot || d.teken ? `<div class="card">${d.noot ? `<p class="note" style="margin-top:0">${md(d.noot)}</p>` : ""}${d.teken ? `<button class="btn ghost" id="teken-plaat">✏️ Teken het zelf</button>` : ""}</div>` : ""}`;
+    function setMode(doe) {
+      $("#m-kijk", el).classList.toggle("sel", !doe); $("#m-doe", el).classList.toggle("sel", doe);
+      $("#doe-uitleg", el).style.display = doe ? "block" : "none";
+      $$(".trick", el).forEach(t => t.style.display = doe ? "none" : "block");
+      $$(".bl", el).forEach(b => { b.classList.toggle("blank", doe); b.classList.remove("open"); });
+    }
+    $("#m-kijk", el).onclick = () => setMode(false);
+    $("#m-doe", el).onclick = () => setMode(true);
+    el.addEventListener("click", e => { const b = e.target.closest(".blank"); if (b) b.classList.toggle("open"); });
+    const t = $("#teken-plaat", el); if (t) t.onclick = () => App.tekenMet(d.teken);
+    App.bindSay(el);
+  }
+
+  /* ================= 10. overzicht van een hoofdstuk (route, vandaag, toetsdatum) ================= */
+  // cfg = { mod, titel, spreekTitel, IDS, STATIONS, NAMEN, GEHEUGEN, waarom: [html] }
+  function overzicht(el, cfg) {
+    const V = Voortgang(cfg.mod), v = V.get();
+    const dagen = v.toets ? Math.ceil((v.toets - Date.now()) / DAG) : null;
+    const k = V.teDoen("kaarten", cfg.IDS.kaarten, 6).length, q = V.teDoen("vragen", cfg.IDS.vragen, 8).length;
+    const open = cfg.STATIONS.flatMap(s => s.delen).find(d => !v.gedaan[d]);
+    const geh = cfg.GEHEUGEN.slice().sort((a, b) => (v.geheugen[a.id]?.laatst || 0) - (v.geheugen[b.id]?.laatst || 0))[0];
+    const taken = [];
+    if (open) taken.push({ go: open, t: `${cfg.NAMEN[open]}: nieuw stuk leren`, min: 8 });
+    if (k) taken.push({ go: "begrippen", t: `🃏 ${k} begrippen checken`, min: Math.ceil(k * 0.5) });
+    if (Object.keys(v.gedaan).length >= 2) taken.push({ go: "geheugen", t: `🧠 Uit je hoofd tekenen: ${geh.titel}`, min: 5 });
+    if (q && Object.keys(v.gedaan).length >= 2) taken.push({ go: "toets", t: `📝 ${Math.min(q, 8)} toetsvragen`, min: Math.min(q, 8) * 1.5 });
+    const min = Math.round(taken.reduce((a, t) => a + t.min, 0));
+    const pct = Math.round(V.beheersing(cfg.IDS) * 100);
+    el.innerHTML = `
+      <div class="ov-kop card">
+        ${lightstick(V.beheersing(cfg.IDS))}
+        <div style="flex:1;min-width:220px">
+          <h1 style="margin:0 0 6px">${esc(cfg.titel)}</h1>
+          <button class="say" id="lees-ov">🔊 Lees voor</button>
+          <div class="row"><label for="td"><b>📅 Toets op:</b></label><input type="date" id="td" class="date-in" value="${v.toets ? new Date(v.toets).toISOString().slice(0, 10) : ""}">
+            <span class="soft">${dagen == null ? "Vul de datum in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "Vandaag! Succes 💜" : dagen === 1 ? "Morgen!" : `Nog ${dagen} dagen.`}</span></div>
+          <p class="soft" style="margin:8px 0 0;font-size:.85em">Je lightstick laadt op als je begrippen en toetsvragen echt kent, niet als je alleen leest.</p>
+        </div>
+      </div>
+      <div class="card vandaag">
+        <h2>☀️ Vandaag ${taken.length ? `<span class="soft" style="font-weight:400;font-size:.75em">· ongeveer ${min} minuten</span>` : ""}</h2>
+        ${taken.length ? taken.map((t, i) => `<button class="taak" data-go="${t.go}"><span class="nr">${i + 1}</span>${esc(t.t)}<span class="soft">→</span></button>`).join("") : `<p>Alles gedaan voor vandaag 😎 Morgen komt er weer iets terug.</p>`}
+        <p class="soft" style="margin:10px 0 0;font-size:.85em">Elke dag een kwartiertje werkt beter dan één lange avond vlak voor de toets.</p>
+      </div>
+      <div class="section-title">De route door het hoofdstuk</div>
+      <div class="route">${cfg.STATIONS.map((s, i) => `
+        <div class="halte ${s.delen.every(d => v.gedaan[d]) ? "klaar" : ""}">
+          <div class="halte-nr">${s.delen.every(d => v.gedaan[d]) ? "✓" : i + 1}</div>
+          <div><b>${s.par ? s.par + " · " : ""}${s.icoon} ${esc(s.titel)}</b>
+            <div class="row" style="margin-top:6px">${s.delen.map(d => `<button class="chip small ${v.gedaan[d] ? "sel" : ""}" data-go="${d}">${cfg.NAMEN[d]}${v.gedaan[d] ? " ✓" : ""}</button>`).join("")}</div></div>
+        </div>`).join("")}
+        <div class="halte oefen"><div class="halte-nr">🏁</div><div><b>Oefenen voor de toets</b>
+          <div class="row" style="margin-top:6px">${["begrippen", "geheugen", "toets"].map(d => `<button class="chip small" data-go="${d}">${cfg.NAMEN[d]}</button>`).join("")}</div></div></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <label class="row"><input type="checkbox" id="auto" ${store.get("auto-voorlezen", false) ? "checked" : ""}> 🔊 Alles automatisch voorlezen (kaarten, vragen, sorteren)</label>
+      </div>
+      <details class="meet" style="margin-top:10px"><summary>🔬 Waarom werkt het zo? (voor papa)</summary>
+        <ul class="waarom">${(cfg.waarom || []).map(w => `<li>${w}</li>`).join("")}</ul></details>`;
+    // Vast deel apart (krijgt een opname); datum, percentage en taken wisselen en blijven de iPad-stem.
+    const dagZin = dagen == null ? "Vul de datum van je toets in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "De toets is vandaag. Succes!" : dagen === 1 ? "De toets is morgen." : `Nog ${dagen} dagen tot de toets.`;
+    App.sayButton($("#lees-ov", el), () => [cfg.spreekTitel || cfg.titel, dagZin, `Je lightstick is voor ${pct} procent opgeladen.`, taken.length ? "Vandaag, ongeveer " + min + " minuten: " + taken.map(t => t.t).join(". ") + "." : "Alles gedaan voor vandaag."]);
+    $$("[data-go]", el).forEach(b => b.onclick = () => App.go(cfg.mod + "-" + b.dataset.go));
+    $("#td", el).onchange = e => { V.update(x => x.toets = e.target.value ? new Date(e.target.value + "T08:00:00").getTime() : null); App.go(cfg.mod + "-overzicht"); };
+    $("#auto", el).onchange = e => store.set("auto-voorlezen", e.target.checked);
+  }
+
+  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, overzicht, md, euro, shuffle };
 })();

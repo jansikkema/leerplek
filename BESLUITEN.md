@@ -34,7 +34,7 @@ Let op: deze repository is openbaar. Hier staan geen persoonlijke gegevens, cijf
 ## 7. Leervormen als herbruikbare bouwstenen in `js/leren.js`
 **Wat:** chat, sorteren, begrippenkaarten, rekenen met afbouwende voorbeelden, toetstraining, uit je hoofd tekenen, herhaalplanning en de lightstick staan in `js/leren.js`. Een hoofdstuk in `js/modules/` levert alleen inhoud (data). `js/modules/economie-h4.js` is het voorbeeld.
 **Waarom:** een nieuw hoofdstuk kost dan vooral inhoud, geen nieuwe code. Een verbetering aan een vorm werkt meteen in alle hoofdstukken.
-**Nog niet af:** de plaat, het filmpje en het bouwplan zijn nog per hoofdstuk geschreven, en rekenen kent alleen de rekentrap van omzet naar nettowinst. Zie WENSEN.md.
+**Nog niet af:** het bouwplan is nog per hoofdstuk geschreven, en rekenen kent alleen de rekentrap van omzet naar nettowinst. Sinds Geschiedenis H1 (2026-11-08) staan de plaat (kijk- en doe-versie), het filmpje met scènes, de tijdlijn en het overzicht als data-vormen in `leren.js`; H4 gebruikt nog zijn eigen versies (de staafjesfilm blijft eigen code). Zie WENSEN.md.
 
 ## 8. Herhalen gespreid tot aan de toetsdatum
 **Wat:** kaarten en vragen komen terug na 1, 2, 4 en 7 dagen (Leitner-systeem), en alles komt nog minstens één keer terug vóór de toetsdatum. Ze vult de toetsdatum zelf in de app in.

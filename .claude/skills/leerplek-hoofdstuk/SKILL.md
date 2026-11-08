@@ -38,11 +38,12 @@ Kies vanuit de stof, niet vanuit de vorm. Haar voorkeur: plaat en filmpje eerst.
 |---|---|---|
 | Twee kanten, voor- en nadelen, een tegenstelling | **chat** (twee personen) + **sorteren** in 2 bakken | `L.chat`, `L.sorteer` |
 | Iets dat uit onderdelen bestaat (een plan, een opbouw) | **bouwplan** (blokken met tour-vergelijking) + **sorteren** | nu nog in `economie-h4.js` |
-| Een schema of model met vakken (SWOT, kringloop, tabel) | **plaat** met kijk- en doe-versie + **sorteren** | nu nog in `economie-h4.js` |
-| Een verloop in stappen, getallen die veranderen, oorzaak → gevolg | **filmpje** (scènes met voorleestekst) | nu nog in `economie-h4.js` |
+| Een schema of model met vakken (SWOT, kringloop, tabel) | **plaat** met kijk- en doe-versie + **sorteren** | `L.plaat` (blokken met `<span class="bl">`) |
+| Een verloop in stappen, getallen die veranderen, oorzaak → gevolg | **filmpje** (scènes met beeld, jaartal en voorleestekst) | `L.filmpje` (staafjesfilm H4: eigen code) |
+| Gebeurtenissen op volgorde van tijd | **tijdlijn** (rondes, tik wat het eerst kwam) | `L.tijdlijn` |
 | Berekeningen | **rekenen**: kijk mee → samen → zelf | `L.rekenen` (kent nu alleen omzet → nettowinst) |
 
-Altijd erbij, per hoofdstuk: **begrippenkaarten** (`L.kaarten`), **uit je hoofd tekenen** (`L.geheugen`) en **toetstraining** (`L.toets`).
+Overzicht van het hoofdstuk: `L.overzicht` (zie `geschiedenis-h1.js`). Altijd erbij, per hoofdstuk: **begrippenkaarten** (`L.kaarten`), **uit je hoofd tekenen** (`L.geheugen`) en **toetstraining** (`L.toets`).
 
 Heeft een tweede hoofdstuk de plaat, het filmpje, het bouwplan of een ander soort rekenen nodig? Verplaats die vorm dan eerst naar `js/leren.js` (inhoud als data), in plaats van code te kopiëren. Overleg met vader als dat veel werk is.
 

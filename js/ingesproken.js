@@ -107,6 +107,7 @@ self.INGESPROKEN = {
   "c2f1f2a8",
   "c32427e6",
   "c358e2df",
+  "c393c823",
   "c3de98cd",
   "c50138e4",
   "cdeab320",
@@ -147,5 +148,11 @@ self.INGESPROKEN = {
   "fc6e93bd",
   "fdb4a726",
   "fdc0527c"
+ ],
+ "geschiedenis-h1": [
+  "2564eaf9",
+  "5f2faab8",
+  "817de94e",
+  "8768f6a1"
  ]
 };
