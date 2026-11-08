@@ -10,9 +10,9 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 ## Open
 
 ### Video's: proef bij Geschiedenis H1 §1.3
-- Vorm `L.video` gebouwd (2026-11-08). Eerste kandidaat ligt klaar bij §1.3 en wacht op goedkeuring van vader; nog niet gepubliceerd.
+- Vorm `L.video` gebouwd en gepubliceerd (2026-11-08, versie 19). Bij §1.3 de VPRO-video over het begin van de oorlog, goedgekeurd door vader.
 - Meten via "Na afloop (voor papa)": opent ze de video uit zichzelf nog eens, en wat weet ze de volgende dag nog? Werkt het, dan wordt het vast onderdeel van elk nieuw hoofdstuk (staat al in de skill).
-- Werk: klein. Wacht op: keuze van vader.
+- Werk: klein. Wacht op: ervaring op de iPad.
 
 
 ### Begrippen van Geschiedenis H1 nalopen tegen het boek

@@ -2,6 +2,7 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
+  { datum: "2026-11-08", tekst: "Nieuw bij Geschiedenis H1: een video over hoe de oorlog begon. Je vindt hem bij §1.3, vóór het filmpje. Daarna een vraag voor jou." },
   { datum: "2026-11-08", tekst: "Nieuw: Geschiedenis H1, De Eerste Wereldoorlog. Met een tijdlijn, twee filmpjes, een podcast over Weimar en een oorzaak-lab. Start bij het Overzicht." },
   { datum: "2026-11-08", tekst: "De stemmen blijven nu bewaard. Na een update hoeft de app ze niet opnieuw te downloaden." },
   { datum: "2026-11-08", tekst: "Bijna heel H4 praat nu met jouw stem, ook de chat. Sam praat met de stem die jij koos. Een paar zinnen volgen nog.", idee: true },
