@@ -20,6 +20,11 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Nalopen: centralen (of centrale mogendheden), loopgravenoorlog (of stellingenoorlog), Triple Alliantie (of Drievoudig Verbond), dolkstootlegende, neutraliteitspolitiek, en of het boek "aanleiding" en "directe oorzaak" als hetzelfde gebruikt. Staan er begrippen in het boek die nu ontbreken (bijvoorbeeld pan-Slavisme, revanchisme, Spartacusopstand)?
 - Werk: klein. Wacht op: de begrippenlijst of samenvatting uit haar boek (foto).
 
+### Nieuwe voorleesteksten van versie 20 inspreken
+- De opruimronde (versie 20) heeft een paar nieuwe vaste teksten: de voorleesknop op het beginscherm, de vijf paragraafschermen van H1 en de vier van H4, en de titel van het H4-overzicht ("Economie hoofdstuk vier. Een eigen bedrijf."). Die leest nu de iPad-stem.
+- Werkwijze zoals in CLAUDE.md: alle schermen verzamelen (niet alleen de nieuwe, anders raakt de indeling per hoofdstuk in `js/ingesproken.js` kwijt), dan `tools/maak-audio.py`. `tools/teksten.json` in de repository is nog van vóór versie 20. De verzamelaar haalt de schermen nu op via `App.routesVan` en neemt de paragraafschermen dus vanzelf mee.
+- Kan samen met "Geschiedenis H1 inspreken" hieronder. Werk: klein.
+
 ### Geschiedenis H1 inspreken
 - 326 teksten (317 verteller, 9 van Sam). Op 2026-11-08 was de daglimiet al bijna op: nog maar 5 ingesproken. De rest leest de iPad-stem tot de volgende run (geplande taak).
 - Werk: klein, ongeveer 35 verzoeken.
@@ -79,6 +84,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-08 · Chat begon bij het tweede bericht (versie 21).** Het eerste bericht stond er al, maar Afspelen sloeg het over. Nu leest Afspelen eerst het bericht dat er al staat. Zit in `L.chat`, dus geldt voor alle chats.
 - **2026-11-08 · Opgeruimd en logischer (vraag van vader).** Beginscherm met Bezig/Toekomst/Gedaan, filter per vak en "Verder waar je was". Hoofdstuk: Leren (paragrafen als knoppen) en Oefenen apart, elk met eigen kleur. Paragraaf als eigen scherm. In een stap: waar je bent, en vorige/volgende. Terugknop één niveau omhoog. Lijniconen voor de navigatie, emoji in zachte vlakken. Filmpje §1.3 op een kaart van Europa met kampen, pijlen en front; Italië-filmpje met meer beweging. H4 gebruikt nu ook het gedeelde overzicht. Zie besluit 19.
 - **2026-11-08 · Geschiedenis H1 De Eerste Wereldoorlog.** Tijdlijn (vier rondes), plaat 'kruitvat' met twee sorteerrondes, filmpje van Sarajevo tot Versailles, sorteren aanleiding/oorzaak/gevolg, podcast-chat over Weimar, filmpje Italië, plaat Nederland neutraal, oorzaak-lab met vijf sorteerrondes, 35 begrippen, 31 toetsvragen, 6 uit-je-hoofd-platen. Nieuwe vormen in `leren.js`. Voorlezen: WO1 en PSEC worden goed uitgesproken; filmpje leest ook voor bij zelf doorklikken als 'alles automatisch voorlezen' aanstaat.
 - **2026-11-08 · Starten bij slechte wifi.** Hooguit 3 seconden wachten op internet, daarna de bewaarde versie. Foutpagina's en inlogpagina's van wifi worden genegeerd. Getest: oude versie 45 s bij trage wifi en vastgelopen bij inlogpagina of storing; nieuwe versie 3 s en 0,1 s.
