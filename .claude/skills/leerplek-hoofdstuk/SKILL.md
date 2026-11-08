@@ -12,6 +12,8 @@ Van boekmateriaal naar een module in `js/modules/`. Lees eerst `CLAUDE.md`, `BES
 - **Toetswoorden wel letterlijk.** Het begrip (de term) neem je precies over zoals het boek het schrijft, inclusief spelling en lidwoord. Alleen de uitleg is eigen tekst.
 - **Voorbeelden uit haar wereld:** K-pop, fans, merch, photocards, tours, dansen. Alleen in tekst; geen afbeeldingen, logo's of songteksten van artiesten, geen echte namen van leden.
 - **Voorlezen overal:** elk scherm heeft een voorleesknop (`.say` met `data-say`, of `App.sayButton`). Schrijf de voorleestekst voor het oor: korte zinnen die eindigen op een punt (de app leest per zin, met een pauze ertussen). Tekens als €, ×, −, =, §, H4 en haakjes zet `App.spreekbaar` zelf om; controleer bij twijfel met `App.spreekbaar("…")` in de browser.
+- **Voorleestekst die ingesproken kan worden.** Elke vaste voorleestekst krijgt een opname (besluit 17). Zet wisselende stukken (tellers als "er staan 7 kaarten klaar", haar eigen antwoorden, datums) in een **aparte** `speak`-aanroep, los van de vaste tekst. Anders verandert de vingerafdruk steeds en valt de hele zin terug op de robotstem.
+- **Vaste stemmen.** Verteller: Sulafat (standaard). Personen in een chat krijgen `stem: "<Gemini-stem>"` in `personen`. Hergebruik bekende personen met hun stem (Sam = Puck, Mila = verteller). Een nieuw personage? Laat haar blind kiezen uit drie proefstemmen (zie stap 5b).
 - **Korte zinnen.** Eén gedachte per zin. Vetgedrukt (`**...**`) alleen voor toetswoorden.
 - **De app denkt niet voor haar.** Zij geeft de antwoorden; de app maakt materiaal en stelt vragen.
 - **Geen overhoorspel, geen opdracht "leg het uit"** als losse vorm. Overhoren zit in de doe-versie, sorteren, kaarten, uit je hoofd tekenen en de toetstraining (zonder punten of tijd).
@@ -74,10 +76,20 @@ node .claude/skills/leerplek-hoofdstuk/test-ipad.js <module-id> <scratchpad>/sch
 - Speel minstens één keer met de hand door: sorteer een kaart fout en goed, maak een rekenronde af, beantwoord een toetsvraag van elk type.
 - Zet de schermafdrukken in de scratchpad, nooit in de repository.
 
+## Stap 5b · Inspreken (natuurlijke stem)
+Doe dit pas als de teksten definitief zijn: elke tekstwijziging betekent opnieuw inspreken.
+1. Server draaien op poort 8765, dan per scherm parallel verzamelen (sneller), bijvoorbeeld:
+   `echo <module-id>-chat <module-id>-plaat … | tr ' ' '\n' | xargs -P5 -I{} sh -c "node tools/verzamel.js {} > <scratchpad>/v/{}.json"`
+   en samenvoegen tot `tools/teksten.json` (dubbele sleutels eruit). Controleer het aantal per scherm: lijkt een scherm onvolledig (bijv. minder sorteerkaarten dan in de data), voeg dan in `VOORKEUR` in `tools/verzamel.js` de juiste knoppen voor die leervorm toe.
+2. `python3 tools/maak-audio.py`: bundels van 8 teksten, knippen op de pauzes, opschonen, laten controleren. Daglimiet: 100 verzoeken per model per dag; een hoofdstuk kost er ongeveer 25–30. Het script stopt zelf bij de daglimiet; draai het de volgende dag opnieuw, het slaat bestaande opnames over.
+3. Afgekeurde teksten blijven de iPad-stem. Kijk in de uitvoer waarom (vaak een Engels uitgesproken vakterm of een afgebroken woord) en draai ze nog eens.
+4. Test of de schermen opnames afspelen (netwerkverzoeken naar `audio/z/` in Playwright) en dat de chat de juiste stem per persoon gebruikt.
+5. Ruim opnames op die bij geen enkele tekst meer horen (oude vingerafdrukken), zodat de app niet onnodig groot wordt.
+
 ## Stap 6 · Documenten bijwerken en publiceren
 Werk eerst `WENSEN.md` (onder Gedaan) en zo nodig `BESLUITEN.md` bij, zodat ze in dezelfde publicatie meegaan. Daarna:
 
-1. **Test in iPad-formaat zonder fouten.** Verplicht: zonder geslaagde test wordt niets gepubliceerd.
+1. **Test in iPad-formaat zonder fouten.** Verplicht: zonder geslaagde test wordt niets gepubliceerd. Draai ook `sh tools/check.sh` (syntaxcontrole van alle scripts, ook de hulpscripts in `tools/`).
 2. **Privacycontrole:** loop `git diff` na op namen, cijfers, resultaten, boektekst en letterlijke tekst uit de ideeënbus of meting.
 3. Commit op de werktak met een duidelijke Nederlandse boodschap, zonder persoonlijke gegevens. Push de werktak.
 4. **Publiceer direct:** `git fetch origin main && git rebase origin/main && git push origin HEAD:main` (nooit forceren). GitHub Pages zet het binnen ongeveer een minuut live; de iPad krijgt het bij de volgende keer openen.
@@ -91,6 +103,7 @@ Noem in je eindbericht ook de vormkeuze per paragraaf.
 - [ ] Elke paragraaf heeft een leervorm; het hoofdstuk heeft kaarten, uit je hoofd tekenen en toetstraining.
 - [ ] Geen boektekst, geen afbeeldingen van artiesten, geen persoonlijke gegevens.
 - [ ] Elk scherm heeft een voorleesknop.
+- [ ] Vaste voorleesteksten zijn ingesproken en gecontroleerd; wisselende stukken staan los.
 - [ ] Geregistreerd in `index.html` en `sw.js`, `CACHE` verhoogd.
 - [ ] Test in iPad-formaat zonder fouten.
 - [ ] Privacycontrole gedaan, gepubliceerd naar `main`, controlelijst voor de iPad aan vader gestuurd.

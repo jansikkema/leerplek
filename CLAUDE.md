@@ -35,3 +35,4 @@ Zij is de eigenaar: zij bepaalt wat er komt (via de ideeënbus in de app), vader
 - `js/nieuw.js` bevat de regels voor het scherm "Wat is er nieuw"; voeg bij elke zichtbare verandering een regel toe.
 - Elk hoofdstuk is een los bestand in `js/modules/` dat zich aanmeldt met `App.addModule({...})`; voeg het toe in `index.html` en in de lijst `CORE` in `sw.js`, en verhoog dan `CACHE`. Verhoog `CACHE` (sw.js) en `VERSIE` (app.js) bij elke publicatie altijd samen; de versie staat onderaan 'Mijn app'.
 - Geen alert/confirm/prompt: gebruik `App.modal`.
+- Vóór elke publicatie: `sh tools/check.sh` (syntaxis van alle scripts, VERSIE gelijk aan CACHE).

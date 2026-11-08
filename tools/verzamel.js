@@ -28,7 +28,7 @@ const NIET = /tekenen|teken\b|Ga tekenen|wissen|verwijder|back-up|terugzetten|de
   await p.goto(BASIS); await p.waitForTimeout(800);
   let routes = process.argv.slice(2);
   if (!routes.length) {
-    routes = ["start", "mijn-app", "nieuw", "ideeen", "tekeningen"];
+    routes = ["start", "mijn-app", "ideeen", "tekeningen"];   // niet "nieuw": die teksten veranderen bij elke versie
     const mods = await p.evaluate(() => [...document.querySelectorAll("[data-go]")].map(x => x.dataset.go));
     for (const m of new Set(mods)) { await p.goto(BASIS + "#" + m); await p.waitForTimeout(400);
       routes.push(m, ...await p.evaluate(() => [...document.querySelectorAll(".mod-nav [data-go]")].map(x => x.dataset.go))); }

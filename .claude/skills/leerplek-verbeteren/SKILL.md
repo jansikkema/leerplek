@@ -42,6 +42,9 @@ Twijfel, een "niet", een besluit terugdraaien of groot werk? Leg de triage eerst
 - Verandert er iets aan de opslag? Houd oude gegevens leesbaar (geen gegevensverlies na de update) en zorg dat de back-up en het terugzetten blijven werken.
 - Nieuw bestand? Toevoegen aan `index.html` en aan `CORE` in `sw.js`. Verandert er een bestand? **Verhoog altijd `CACHE` in `sw.js`.**
 
+### Voorleestekst gewijzigd?
+Een gewijzigde of nieuwe voorleestekst heeft nog geen opname en klinkt dan met de robotstem. Spreek die teksten in (stap 5b van de skill `leerplek-hoofdstuk`: verzamelen voor alleen de geraakte schermen, dan `python3 tools/maak-audio.py`).
+
 ## Stap 4 · Testen in iPad-formaat
 ```bash
 python3 -m http.server 8123 >/dev/null 2>&1 &
@@ -61,7 +64,7 @@ Voeg bovenaan `js/nieuw.js` één regel toe: `{ datum: "JJJJ-MM-DD", tekst: "…
 - `BESLUITEN.md`: alleen als er iets is besloten dat de volgende keer weer de vraag zou zijn (ook een "niet bouwen" met reden).
 
 ## Stap 7 · Publiceren
-1. **Test in iPad-formaat zonder fouten.** Verplicht: zonder geslaagde test wordt niets gepubliceerd.
+1. **Test in iPad-formaat zonder fouten.** Verplicht: zonder geslaagde test wordt niets gepubliceerd. Draai ook `sh tools/check.sh`.
 2. **Privacycontrole:** loop `git diff` na op namen, cijfers, resultaten, boektekst en letterlijke tekst uit de ideeënbus of meting.
 3. Commit op de werktak met een duidelijke Nederlandse boodschap, zonder persoonlijke gegevens. Push de werktak.
 4. **Publiceer direct:** `git fetch origin main && git rebase origin/main && git push origin HEAD:main` (nooit forceren). GitHub Pages zet het binnen ongeveer een minuut live; de iPad krijgt het bij de volgende keer openen.
