@@ -2,6 +2,7 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
+  { datum: "2026-11-08", tekst: "De chats beginnen bij Afspelen nu bij het eerste bericht. Dat werd eerst overgeslagen." },
   { datum: "2026-11-08", tekst: "Je app is opgeruimd. Op het beginscherm zet je hoofdstukken bij Bezig, Toekomst of Gedaan, en kies je een vak. Met ⋯ verplaats je een hoofdstuk." },
   { datum: "2026-11-08", tekst: "Elke paragraaf heeft nu een eigen plek. Bovenaan zie je waar je bent, onderaan ga je naar de vorige of volgende stap. Leren en Oefenen hebben elk een eigen kleur." },
   { datum: "2026-11-08", tekst: "Het filmpje bij §1.3 speelt nu op een kaart van Europa: landen kiezen een kant, pijlen laten zien wie wie aanvalt. Ook het filmpje over Italië beweegt meer." },

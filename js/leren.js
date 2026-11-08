@@ -91,7 +91,7 @@
     const tweede = vs.find(v => v !== eerste && v.name !== (eerste && eerste.name));
     const stem = { [Object.keys(d.personen)[0]]: { voice: eerste }, [Object.keys(d.personen)[1]]: tweede ? { voice: tweede } : { voice: eerste, pitch: 0.9 } };
     Object.keys(stem).forEach(k => { if (d.personen[k].stem) stem[k].stem = d.personen[k].stem; });   // ingesproken stem per persoon
-    let i = 0, playing = false, sound = true, t = null;
+    let i = 0, playing = false, sound = true, t = null, gehoord = 0;   // gehoord: hoeveel berichten al zijn voorgelezen
     function bubble(m) {
       const p = d.personen[m.van], kant = p.kant || "links";
       const b = document.createElement("div"); b.className = "bubbel " + kant;
@@ -110,13 +110,16 @@
     }
     function einde() { playing = false; clearTimeout(t); $("#cnext", el).hidden = true; $("#cplay", el).textContent = "⟲ Opnieuw"; if (onKlaar) onKlaar($("#na", el)); }
     function stap() {
-      if (!playing) return; const m = voeg(); if (!m) return;
+      if (!playing) return;
+      // Staat er een bericht dat nog niet is voorgelezen (zoals het eerste, dat er bij openen al staat)? Dan eerst dat.
+      const m = gehoord < i ? d.berichten[i - 1] : voeg(); if (!m) return;
+      gehoord = i;
       if (sound) App.speak(m.tekst, () => { if (playing) t = setTimeout(stap, 450); }, stem[m.van]);
       else t = setTimeout(stap, 1400 + m.tekst.length * 40);
     }
-    $("#cnext", el).onclick = () => { playing = false; App.stopSpeak(); const m = voeg(); if (m && (sound && autoLees())) App.speak(m.tekst, null, stem[m.van]); };
+    $("#cnext", el).onclick = () => { playing = false; App.stopSpeak(); const m = voeg(); if (m && (sound && autoLees())) { App.speak(m.tekst, null, stem[m.van]); gehoord = i; } };
     $("#cplay", el).onclick = () => {
-      if (i >= d.berichten.length) { i = 0; $("#chat", el).innerHTML = ""; $("#cnext", el).hidden = false; $("#na", el).innerHTML = ""; }
+      if (i >= d.berichten.length) { i = 0; gehoord = 0; $("#chat", el).innerHTML = ""; $("#cnext", el).hidden = false; $("#na", el).innerHTML = ""; }
       if (playing) { playing = false; App.stopSpeak(); $("#cplay", el).textContent = "▶ Afspelen"; return; }
       playing = true; $("#cplay", el).textContent = "⏸ Pauze"; stap();
     };
