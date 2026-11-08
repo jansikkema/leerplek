@@ -11,7 +11,7 @@ Van boekmateriaal naar een module in `js/modules/`. Lees eerst `CLAUDE.md`, `BES
 - **Geen boektekst.** Foto's van het boek zijn alleen bronmateriaal in deze sessie. Ze komen nooit in de repository. Uitleg, voorbeelden en vragen schrijf je zelf.
 - **Toetswoorden wel letterlijk.** Het begrip (de term) neem je precies over zoals het boek het schrijft, inclusief spelling en lidwoord. Alleen de uitleg is eigen tekst.
 - **Voorbeelden uit haar wereld:** K-pop, fans, merch, photocards, tours, dansen. Alleen in tekst; geen afbeeldingen, logo's of songteksten van artiesten, geen echte namen van leden.
-- **Voorlezen overal:** elk scherm heeft een voorleesknop (`.say` met `data-say`, of `App.sayButton`). Schrijf de voorleestekst voor het oor: getallen voluit ("honderdvijftig"), geen haakjes of afkortingen.
+- **Voorlezen overal:** elk scherm heeft een voorleesknop (`.say` met `data-say`, of `App.sayButton`). Schrijf de voorleestekst voor het oor: korte zinnen die eindigen op een punt (de app leest per zin, met een pauze ertussen). Tekens als €, ×, −, =, §, H4 en haakjes zet `App.spreekbaar` zelf om; controleer bij twijfel met `App.spreekbaar("…")` in de browser.
 - **Korte zinnen.** Eén gedachte per zin. Vetgedrukt (`**...**`) alleen voor toetswoorden.
 - **De app denkt niet voor haar.** Zij geeft de antwoorden; de app maakt materiaal en stelt vragen.
 - **Geen overhoorspel, geen opdracht "leg het uit"** als losse vorm. Overhoren zit in de doe-versie, sorteren, kaarten, uit je hoofd tekenen en de toetstraining (zonder punten of tijd).
@@ -62,7 +62,7 @@ Maak `js/modules/<vak>-h<nummer>.js` (bijvoorbeeld `geschiedenis-h3.js`) naar he
 ## Stap 4 · Registreren
 1. `index.html`: `<script src="js/modules/<bestand>.js"></script>` vóór `<script>App.start();</script>`.
 2. `sw.js`: voeg `"./js/modules/<bestand>.js"` toe aan `CORE` en **verhoog `CACHE`** (bijvoorbeeld `leerplek-v4` → `leerplek-v5`).
-3. Als het scherm "Wat is er nieuw" bestaat: voeg een regel toe ("Nieuw: Geschiedenis H3 …").
+3. `js/nieuw.js`: voeg bovenaan een regel toe, bijvoorbeeld `{ datum: "2026-12-01", tekst: "Nieuw: Geschiedenis H3. Start bij het Overzicht." }`.
 
 ## Stap 5 · Testen in iPad-formaat
 ```bash

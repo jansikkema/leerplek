@@ -53,25 +53,66 @@
   };
 
   /* ---------- voorlezen ---------- */
+  /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
+     en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
   const canSpeak = "speechSynthesis" in window;
+  const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
+  function stemKwaliteit(v) {
+    const id = (v.voiceURI || "") + " " + v.name;
+    if (/eloquence|speech\.synthesis\.voice\./i.test(id) || GRAP.test(v.name)) return 0;
+    let q = /premium/i.test(id) ? 3 : /enhanced|verbeterd/i.test(id) ? 2 : 1;
+    if (/^nl(-|_)NL/i.test(v.lang)) q += 0.5;
+    return q;
+  }
+  function nlVoices() {
+    if (!canSpeak) return [];
+    return speechSynthesis.getVoices().filter(v => /^nl/i.test(v.lang)).sort((a, b) => stemKwaliteit(b) - stemKwaliteit(a));
+  }
   let voice = null;
   function pickVoice() {
     if (!canSpeak) return;
-    const vs = speechSynthesis.getVoices();
-    voice = vs.find(v => /^nl(-|_)NL/i.test(v.lang)) || vs.find(v => /^nl/i.test(v.lang)) || null;
+    const vs = nlVoices(), keuze = store.get("stem", "");
+    voice = vs.find(v => v.voiceURI === keuze) || vs[0] || null;
   }
   if (canSpeak) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
   function stopSpeak() {
     if (canSpeak) speechSynthesis.cancel();
     $$(".say.speaking").forEach(b => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
   }
-  function nlVoices() { if (!canSpeak) return []; return speechSynthesis.getVoices().filter(v => /^nl/i.test(v.lang)); }
+
+  /* Tekst omzetten naar iets wat een stem goed kan uitspreken: geen tekens, bedragen voluit, pauzes op de goede plek. */
+  function spreekbaar(t) {
+    return String(t || "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\*\*/g, "")
+      .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}①②③④⑤]/gu, "")
+      .replace(/([−–-])\s?€\s?(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d{2}))?/g, (m, n, e, c) => `min ${e.replace(/\./g, "")} euro${c && c !== "00" ? " " + c : ""}`)
+      .replace(/€\s?(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d{2}))?/g, (m, e, c) => `${e.replace(/\./g, "")} euro${c && c !== "00" ? " " + c : ""}`)
+      .replace(/\b(\d{1,3})\.(\d{3})\b/g, "$1$2")
+      .replace(/\s[×x]\s/g, " keer ").replace(/\s[−–-]\s/g, " min ").replace(/\s=\s/g, " is ").replace(/\s\+\s/g, " plus ").replace(/\s÷\s/g, " gedeeld door ")
+      .replace(/§\s?(\d+)/g, "paragraaf $1").replace(/\bH(\d+)\b/g, "hoofdstuk $1").replace(/(\d)\s?%/g, "$1 procent")
+      .replace(/\bbijv\./gi, "bijvoorbeeld").replace(/\bo\.a\./gi, "onder andere").replace(/\bd\.w\.z\./gi, "dat wil zeggen")
+      .replace(/\s?\(\s?/g, ", ").replace(/\s?\)/g, ",")
+      .replace(/\s?[·•→|]\s?/g, ". ").replace(/…/g, ".").replace(/[“”"]/g, "")
+      .replace(/([a-zà-ÿ])\/([a-zà-ÿ])/gi, "$1 of $2")
+      .replace(/\s*,\s*([.!?:])/g, "$1").replace(/([.!?])\s*[.,]+/g, "$1").replace(/,\s*,/g, ",")
+      .replace(/\s+/g, " ").trim();
+  }
+  // Per zin voorlezen: dat geeft natuurlijke pauzes en de iPad raakt minder snel de draad kwijt bij lange teksten.
+  function zinnen(t) { return (t.match(/[^.!?:;]+[.!?:;]*/g) || [t]).map(s => s.trim()).filter(s => /\w/.test(s)); }
   function speak(text, onend, opts = {}) {
-    if (!canSpeak || !text) { onend && onend(); return; }
-    const u = new SpeechSynthesisUtterance(text.replace(/\*\*/g, "").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, ""));
-    u.lang = "nl-NL"; const v = opts.voice || voice; if (v) u.voice = v; u.rate = opts.rate || 0.95; u.pitch = opts.pitch || 1;
-    u.onend = u.onerror = () => onend && onend();
-    try { speechSynthesis.speak(u); } catch (e) { onend && onend(); }
+    const delen = canSpeak && text ? zinnen(spreekbaar(text)) : [];
+    if (!delen.length) { onend && onend(); return; }
+    let klaar = false;
+    const einde = () => { if (!klaar) { klaar = true; onend && onend(); } };
+    const v = opts.voice || voice, rate = opts.rate || store.get("tempo", 0.95), pitch = opts.pitch || 1;
+    delen.forEach((zin, i) => {
+      const u = new SpeechSynthesisUtterance(zin);
+      u.lang = v ? v.lang : "nl-NL"; if (v) u.voice = v; u.rate = rate; u.pitch = pitch;
+      u.onerror = einde;
+      if (i === delen.length - 1) u.onend = einde;
+      try { speechSynthesis.speak(u); } catch (e) { einde(); }
+    });
   }
   function sayButton(b, getText) {
     b.onclick = () => {
@@ -184,6 +225,7 @@
     { id: "oceaan", naam: "Oceaan", c: ["#0F2233", "#5EC8F2", "#1F4566"] },
     { id: "zon", naam: "Zon", c: ["#FFF6E8", "#C2620F", "#FFE6C7"] }
   ];
+  const TEMPO = [["🐢 Rustig", 0.85], ["🙂 Normaal", 0.95], ["🐇 Vlot", 1.05]];
   function applyLook() {
     const thema = store.get("thema", "nacht");
     THEMAS.forEach(t => document.body.classList.toggle("theme-" + t.id, t.id === thema));
@@ -268,6 +310,8 @@
           <span class="${n.af < Date.now() - 864e5 ? "laat" : ""}">${new Date(n.af).toLocaleDateString("nl-NL", { weekday: "short", day: "numeric", month: "short" })}</span>
           <b>${esc(n.vak)}</b> · ${esc(n.titel)}</button>`).join("")}</div>`;
       }
+      const nieuw = nieuweRegels();
+      if (nieuw.length) html += `<button class="card nieuw-tip" data-go="nieuw">✨ <b>Nieuw in je app:</b> ${esc(nieuw[0].tekst)}${nieuw.length > 1 ? ` <span class="soft">En nog ${nieuw.length - 1} ${nieuw.length === 2 ? "ding" : "dingen"}. Tik hier.</span>` : ""}</button>`;
       const aantal = (await db.all("notities")).length + (await db.all("tekeningen")).length;
       const laatste = store.get("laatste-backup", 0);
       if (aantal >= 3 && Date.now() - laatste > 7 * 864e5) html += `<button class="card backup-tip" data-go="mijn-app">💾 <b>Tijd voor een back-up.</b> <span class="soft">${laatste ? "Je laatste is van " + new Date(laatste).toLocaleDateString("nl-NL", { day: "numeric", month: "long" }) + "." : "Je hebt er nog geen."} Tik hier.</span></button>`;
@@ -351,6 +395,7 @@
         <h1>💡 Ideeënbus</h1>
         <button class="say" data-say="Dit is jouw ideeënbus. Wat moet er nieuw in de app? Wat is irritant? Wat kan mooier? Schrijf het op, of teken het. Papa en Claude bouwen het.">🔊 Lees voor</button>
         <p>Jij bent de baas van deze app. Wat wil je? Papa en Claude bouwen het.</p>
+        <p class="soft" style="margin-top:-4px">Wat al gebouwd is, zie je bij <a href="#nieuw" style="color:var(--accent)">✨ Wat is er nieuw</a>.</p>
         <div class="row" id="soorten" style="margin-bottom:10px">${SOORTEN.map(([id, e, n]) => `<button class="chip ${id === soort ? "sel" : ""}" data-s="${id}">${e} ${n}</button>`).join("")}</div>
         <textarea id="tekst" placeholder="Typ of spreek je idee in… (spelling maakt niks uit)"></textarea>
         <div class="row" style="margin-top:10px">
@@ -400,7 +445,17 @@
           <div class="sw">${t.c.map(c => `<span style="background:${c}"></span>`).join("")}</div><span class="lbl">${t.naam}</span></button>`).join("")}</div>
         <p><label for="naam">Naam van je app</label></p>
         <input type="text" id="naam" value="${esc(store.get("naam", "leren met BTS"))}">
-        <p class="soft" style="margin-top:16px;font-size:.85em">Iets anders veranderen? Zet het in de <a href="#ideeen" style="color:var(--accent)">ideeënbus</a>.</p>
+        <p class="soft" style="margin-top:16px;font-size:.85em">Iets anders veranderen? Zet het in de <a href="#ideeen" style="color:var(--accent)">ideeënbus</a>. Wat er al veranderd is: <a href="#nieuw" style="color:var(--accent)">✨ Wat is er nieuw</a>.</p>
+      </div>
+      <div class="card">
+        <h2>🔊 Voorlezen</h2>
+        <button class="say" data-say="Voorlezen. Kies de stem die jij het fijnst vindt, en hoe snel hij praat. Tik op Probeer om te luisteren.">🔊 Lees voor</button>
+        <p>Kies de stem die jij het fijnst vindt, en hoe snel hij praat.</p>
+        <div id="stemmen" class="row"></div>
+        <p style="margin:14px 0 6px"><b>Hoe snel?</b></p>
+        <div class="row" id="tempo">${TEMPO.map(([n, v]) => `<button class="chip ${store.get("tempo", 0.95) === v ? "sel" : ""}" data-v="${v}">${n}</button>`).join("")}</div>
+        <div class="row" style="margin-top:14px"><button class="btn" id="probeer">▶ Probeer</button></div>
+        <div id="stemtip"></div>
       </div>
       <div class="card">
         <h2>💾 Back-up</h2>
@@ -430,8 +485,51 @@
       try { const n = await zetTerug(f); busy(false); $("#bok", el).textContent = `✓ ${n} ${n === 1 ? "ding" : "dingen"} teruggezet. Wat al op de iPad stond, is niet overschreven.`; }
       catch (err) { busy(false); await modal(`<h2>Dat lukte niet</h2><p>${esc(err.message)}</p>`, [["Oké", true]]); }
     };
+    function stemmen() {
+      const box = $("#stemmen", el); if (!box) return;
+      if (!canSpeak) { box.innerHTML = `<p class="soft">Voorlezen werkt niet in deze browser.</p>`; return; }
+      const vs = nlVoices().filter(v => stemKwaliteit(v) > 0).slice(0, 8), nu = voice;
+      const label = v => stemKwaliteit(v) >= 3 ? "premium ⭐⭐" : stemKwaliteit(v) >= 2 ? "verbeterd ⭐" : "basis";
+      box.innerHTML = vs.length ? vs.map((v, i) => `<button class="chip ${nu && v.voiceURI === nu.voiceURI ? "sel" : ""}" data-i="${i}">${esc(v.name)} <small style="opacity:.75">${label(v)}${/BE/i.test(v.lang) ? " · Vlaams" : ""}</small></button>`).join("")
+        : `<p class="soft">Nog geen Nederlandse stem gevonden. Zie de tip hieronder.</p>`;
+      $$("[data-i]", box).forEach(b => b.onclick = () => { store.set("stem", vs[+b.dataset.i].voiceURI); pickVoice(); stemmen(); stopSpeak(); speak("Hoi! Zo klink ik. Vind je mij fijn om naar te luisteren?"); });
+      const goed = vs.some(v => stemKwaliteit(v) >= 2);
+      $("#stemtip", el).innerHTML = `<details class="meet" style="margin-top:14px" ${goed ? "" : "open"}><summary>💡 Klinkt het als een robot? Download een betere stem</summary>
+        <ol style="margin:10px 0 0;padding-left:22px;line-height:1.6"><li>Open <b>Instellingen</b> op je iPad.</li><li>Ga naar <b>Toegankelijkheid</b> → <b>Gesproken materiaal</b> → <b>Stemmen</b>.</li>
+        <li>Kies <b>Nederlands</b>. Tik op een stem en download de versie <b>Verbeterd</b> of <b>Premium</b>.</li><li>Sluit deze app helemaal en open hem opnieuw. Kies hier dan de nieuwe stem.</li></ol></details>`;
+    }
+    stemmen();
+    if (canSpeak) { const h = () => stemmen(); speechSynthesis.addEventListener("voiceschanged", h); onLeave(() => speechSynthesis.removeEventListener("voiceschanged", h)); }
+    $$("#tempo .chip", el).forEach(b => b.onclick = () => { store.set("tempo", +b.dataset.v); $$("#tempo .chip", el).forEach(x => x.classList.toggle("sel", x === b)); });
+    $("#probeer", el).onclick = () => { stopSpeak(); speak("Purple Cases verkoopt deze maand 150 hoesjes van €8. De omzet is 150 × €8 = €1.200. Dat is afzet keer verkoopprijs."); };
     $$(".th", el).forEach(b => b.onclick = () => { store.set("thema", b.dataset.t); applyLook(); $$(".th", el).forEach(x => x.classList.toggle("sel", x === b)); });
     $("#naam", el).oninput = e => { store.set("naam", e.target.value || "leren met BTS"); applyLook(); };
+  };
+
+  /* ---------- wat is er nieuw ---------- */
+  // De regels staan in js/nieuw.js (App.nieuw). 'nieuw-gezien' onthoudt de laatste datum die ze heeft gezien.
+  const regels = () => (App.nieuw || []).slice().sort((a, b) => b.datum.localeCompare(a.datum));
+  const nieuweRegels = () => { const g = store.get("nieuw-gezien", ""); return regels().filter(r => r.datum > g); };
+  const datumNL = d => new Date(d + "T12:00:00").toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
+  routes.nieuw = el => {
+    const L = regels(), nieuw = new Set(nieuweRegels());
+    const dagen = [...new Set(L.map(r => r.datum))];
+    el.innerHTML = `
+      <div class="card">
+        <h1>✨ Wat is er nieuw</h1>
+        <button class="say" id="lees-nieuw">🔊 Lees voor</button>
+        <p>Hier zie je wat er in je app is veranderd. Met een ✨ kwam het uit <b>jouw ideeënbus</b>.</p>
+      </div>
+      ${dagen.length ? dagen.map(d => `<div class="card"><h2>${esc(datumNL(d).replace(/^./, c => c.toUpperCase()))}</h2>
+        ${L.filter(r => r.datum === d).map(r => `<div class="idea ${nieuw.has(r) ? "vers" : "gezien"}"><div class="e">${r.idee ? "✨" : "🛠️"}</div>
+          <div class="tx"><span>${esc(r.tekst)}</span>${r.idee ? `<small>Uit jouw ideeënbus</small>` : ""}</div><button class="say-mini" data-t="${esc(r.tekst)}" aria-label="Lees voor">🔊</button></div>`).join("")}</div>`).join("")
+      : `<div class="card"><p class="empty">Nog niks nieuws.</p></div>`}
+      <div class="card"><p style="margin:0">Heb jij een idee? <button class="btn small" data-go="ideeen">💡 Naar de ideeënbus</button></p></div>`;
+    const teLezen = nieuw.size ? [...nieuw] : L.filter(r => r.datum === dagen[0]);
+    sayButton($("#lees-nieuw", el), () => `Wat is er nieuw. ${teLezen.map(r => (r.idee ? "Uit jouw ideeënbus: " : "") + r.tekst).join(" ")}`);
+    $$(".say-mini", el).forEach(b => b.onclick = () => { stopSpeak(); speak(b.dataset.t); });
+    $$("[data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
+    if (dagen.length) store.set("nieuw-gezien", dagen[0]);
   };
 
   /* ---------- meten (per module) ---------- */
@@ -465,7 +563,7 @@
 
   /* ---------- publieke functies ---------- */
   window.App = {
-    $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, bindSay, store, db, modal, meetBlock, go, onLeave,
+    $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, spreekbaar, stemKwaliteit, huidigeStem: () => voice, bindSay, store, db, modal, meetBlock, go, onLeave,
     shareText, shareImage, imageFromFile, busy,
     tekenMet(tag) { pendingTag = tag || ""; go("tekenen"); },
     addRoute(name, fn) { routes[name] = fn; },

@@ -52,8 +52,7 @@ node .claude/skills/leerplek-hoofdstuk/test-ipad.js "" <scratchpad>/schermen
 - Pencil, voorlezen en het deelmenu kun je hier niet echt testen. Zet die controle op de lijst voor vader (iPad).
 
 ## Stap 5 · "Wat is er nieuw"
-Voeg één regel toe aan "Wat is er nieuw": datum + één korte zin, in haar taal ("Je kunt nu …"), met ✨ als het uit haar ideeënbus kwam.
-- Bestaat dat scherm nog niet? Stel voor het eerst te bouwen (zie `WENSEN.md`). Zet de regel tot die tijd in je bericht aan vader.
+Voeg bovenaan `js/nieuw.js` één regel toe: `{ datum: "JJJJ-MM-DD", tekst: "…", idee: true }`. Eén korte zin in haar taal ("Je kunt nu …"). `idee: true` alleen als het uit haar ideeënbus kwam; dan krijgt de regel een ✨. Ze ziet de nieuwe regels als melding op het beginscherm, tot ze het scherm heeft bekeken.
 - Ideeën die gebouwd zijn: vader zet ze in de ideeënbus op ✅ gebouwd.
 
 ## Stap 6 · Documenten bijwerken

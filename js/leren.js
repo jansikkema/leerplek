@@ -85,8 +85,11 @@
         <div class="row" style="margin-top:12px"><button class="btn" id="cnext">Volgende 💬</button><span class="soft" id="cprog"></span></div>
       </div>
       <div id="na"></div>`;
-    const vs = App.nlVoices();
-    const stem = { [Object.keys(d.personen)[0]]: { voice: vs[0], pitch: 1.15 }, [Object.keys(d.personen)[1]]: { voice: vs[1] || vs[0], pitch: vs[1] ? 1 : 0.85 } };
+    // Twee personen: de gekozen stem en, als die er is, een tweede goede stem. Toonhoogte alleen aanpassen als er maar één stem is
+    // (een verschoven toonhoogte klinkt robotachtig).
+    const vs = App.nlVoices().filter(v => App.stemKwaliteit(v) > 0), eerste = App.huidigeStem() || vs[0];
+    const tweede = vs.find(v => v !== eerste && v.name !== (eerste && eerste.name));
+    const stem = { [Object.keys(d.personen)[0]]: { voice: eerste }, [Object.keys(d.personen)[1]]: tweede ? { voice: tweede } : { voice: eerste, pitch: 0.9 } };
     let i = 0, playing = false, sound = App.canSpeak, t = null;
     function bubble(m) {
       const p = d.personen[m.van], kant = p.kant || "links";

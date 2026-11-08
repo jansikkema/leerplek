@@ -207,6 +207,9 @@ label.btn{display:inline-flex;align-items:center;cursor:pointer}
 .soon-rij span{display:inline-block;min-width:110px;color:var(--soft)}
 .soon-rij span.laat{color:var(--min);font-weight:700}
 .backup-tip{display:block;width:100%;text-align:left;border:2px dashed var(--accent);cursor:pointer;font-size:.95em}
+.nieuw-tip{display:block;width:100%;text-align:left;border:2px solid var(--accent);cursor:pointer;font-size:.95em}
+.idea.vers{outline:2px solid var(--accent)}
+.idea.gezien{opacity:.75}
 #busy{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.5);display:grid;place-items:center}
 #busy[hidden]{display:none}
 .busy-box{background:var(--card);border-radius:20px;padding:24px 28px;display:flex;gap:16px;align-items:center}

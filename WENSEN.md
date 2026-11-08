@@ -21,11 +21,21 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Het inzoomprobleem: zoomt Safari niet meer per ongeluk in, en werkt A− / A+ wel?
 - Werk: klein. Kan alleen op de iPad zelf; de Playwright-test in iPad-formaat vervangt dit niet.
 
-### Scherm "Wat is er nieuw"
-- Een scherm (of melding op het beginscherm) dat laat zien wat er is veranderd, met een ✨ bij wat uit haar ideeënbus kwam.
-- Waarom: ze ziet dat haar idee echt gebouwd is. Dat versterkt het eigenaarschap en de kans dat ze de ideeënbus blijft gebruiken.
-- Voorstel: lijst met regels in de code (datum + korte zin), melding op het beginscherm zolang ze die nog niet gezien heeft, en een koppeling met ✅ gebouwd in de ideeënbus.
-- Werk: klein tot middel. **Graag als eerste bouwen:** de skill `leerplek-verbeteren` gaat ervan uit dat dit scherm bestaat.
+### Voorlezen: betere stem downloaden op haar iPad
+- De app kiest nu de beste stem die op de iPad staat. Natuurlijk klinkt het pas met een **verbeterde** of **premium** Nederlandse stem. Die moet je eenmalig downloaden (uitleg staat in 'Mijn app' → Voorlezen).
+- Op de iPad controleren: welke stemmen verschijnen er, en kiest de app de goede? De herkenning van de stemsoort is gebaseerd op de interne naam van de stem en is niet op een echte iPad getest.
+- Werk: klein.
+
+### Meelezen: de zin die wordt voorgelezen oplichten
+- Tijdens voorlezen de zin markeren die op dat moment klinkt. Helpt bij het volgen en verbindt horen met lezen.
+- Lastig omdat de voorleestekst nu vaak los staat van de tekst op het scherm. Eerst doen bij de chat en het filmpje, waar tekst en stem al gelijk lopen.
+- Werk: middel.
+
+### Besluit nodig: opgenomen stemmen voor vaste teksten
+- Teksten die niet veranderen (filmpje, chat, plaat) kunnen vooraf worden ingesproken met een natuurlijke computerstem (bijvoorbeeld ElevenLabs) en als geluidsbestand in de app staan. Dat klinkt veel beter dan elke iPad-stem.
+- Nadelen: kost tegoed bij die dienst; bij elke tekstwijziging opnieuw maken; wisselende teksten (bedragen in 'Zelf rekenen', het Overzicht) blijven de iPad-stem, dus twee soorten stemmen door elkaar; een paar MB extra. Botst niet met besluit 1 (de app zelf gebruikt dan geen AI), maar wel een nieuw besluit.
+- Advies: eerst de verbeterde iPad-stem proberen. Is dat niet genoeg, dan proefstuk met het filmpje van H4.
+- Werk: middel.
 
 ### Later: geplande wekelijkse herinnering (back-up en terugblik)
 - Nu is er al een melding op het beginscherm als de laatste back-up ouder is dan 7 dagen. Die verschijnt alleen als ze de app opent.
@@ -41,5 +51,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-08 · Scherm "Wat is er nieuw".** Regels in `js/nieuw.js`, melding op het beginscherm tot ze het gezien heeft, links vanuit de ideeënbus en 'Mijn app'.
+- **2026-11-08 · Voorlezen klinkt natuurlijker.** Beste stem automatisch (robot- en grapstemmen overgeslagen), zelf stem en tempo kiezen in 'Mijn app', tekens en bedragen omgezet naar gewone woorden, per zin voorlezen, chat met twee echte stemmen in plaats van verschoven toonhoogte.
 - **2026-11-07 · Voorleesknop op elk scherm.** Toegevoegd op Overzicht, het menu van Begrippen, het menu van Uit je hoofd en het startscherm van de Toetstraining (in `leren.js`, dus ook voor volgende hoofdstukken).
 - **2026-11-07 · Privacy.** Gezondheidsinformatie uit een opmerking in `leren.js` gehaald. De rekenronde 'Samen' gebruikt nu een verzonnen bedrijfje met ingekochte photocard-houders, niet meer haar eigen tekening. (Oudere versies staan nog in de geschiedenis van Git.)

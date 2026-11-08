@@ -67,3 +67,7 @@ Let op: deze repository is openbaar. Hier staan geen persoonlijke gegevens, cijf
 ## 15. Direct publiceren, samen controleren op de iPad
 **Wat (2026-11-07):** na een geslaagde test in iPad-formaat en een privacycontrole gaat een wijziging meteen naar `main` en dus naar de iPad. Vader en dochter controleren het daarna samen op haar iPad. Gaat er iets mis, dan wordt de wijziging teruggedraaid (`git revert`) en opnieuw gepubliceerd.
 **Waarom:** een aparte voorbeeldsite en een akkoordstap vooraf kosten meer moeite dan ze opleveren. Echt controleren kan alleen op haar iPad (Pencil, voorlezen, deelmenu), en samen kijken past bij haar rol als eigenaar. De risico's zijn klein: haar gegevens staan op de iPad en worden door een update niet aangeraakt, en terugdraaien kost een minuut. Wijzigingen aan de opslag krijgen daarom extra zorg.
+
+## 16. Voorlezen met de stemmen van de iPad zelf
+**Wat (2026-11-08):** de app gebruikt de Nederlandse stemmen die op de iPad staan. Hij kiest de beste (premium, dan verbeterd, dan basis; robot- en grapstemmen nooit). Zij kan zelf een stem en tempo kiezen. Tekst wordt eerst omgezet naar uitspreekbare woorden en per zin voorgelezen.
+**Waarom:** gratis, werkt zonder internet en er gaat geen tekst naar een externe dienst. De kwaliteit hangt af van welke stem er op de iPad staat, daarom staat in de app uitgelegd hoe je een betere stem downloadt. Opgenomen stemmen voor vaste teksten zijn een open vraag (zie WENSEN.md).
