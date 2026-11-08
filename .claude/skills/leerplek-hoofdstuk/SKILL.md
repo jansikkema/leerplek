@@ -81,7 +81,7 @@ Doe dit pas als de teksten definitief zijn: elke tekstwijziging betekent opnieuw
 1. Server draaien op poort 8765, dan per scherm parallel verzamelen (sneller), bijvoorbeeld:
    `echo <module-id>-chat <module-id>-plaat … | tr ' ' '\n' | xargs -P5 -I{} sh -c "node tools/verzamel.js {} > <scratchpad>/v/{}.json"`
    en samenvoegen tot `tools/teksten.json` (dubbele sleutels eruit). Controleer het aantal per scherm: lijkt een scherm onvolledig (bijv. minder sorteerkaarten dan in de data), voeg dan in `VOORKEUR` in `tools/verzamel.js` de juiste knoppen voor die leervorm toe.
-2. `python3 tools/maak-audio.py`: bundels van 8 teksten, knippen op de pauzes, opschonen, laten controleren. Daglimiet: 100 verzoeken per model per dag; een hoofdstuk kost er ongeveer 25–30. Het script stopt zelf bij de daglimiet; draai het de volgende dag opnieuw, het slaat bestaande opnames over.
+2. `python3 tools/maak-audio.py`: bundels van 12 teksten, knippen op de pauzes, opschonen, laten controleren. Daglimiet: 100 verzoeken per model per dag, het script schakelt zelf door naar het tweede model (samen 200). Een hoofdstuk kost ongeveer 15 verzoeken. Zijn beide op, dan stopt het; draai het de volgende dag opnieuw (bestaande opnames worden overgeslagen). Test niet onnodig met echte verzoeken: proefjes tellen mee voor de limiet.
 3. Afgekeurde teksten blijven de iPad-stem. Kijk in de uitvoer waarom (vaak een Engels uitgesproken vakterm of een afgebroken woord) en draai ze nog eens.
 4. Test of de schermen opnames afspelen (netwerkverzoeken naar `audio/z/` in Playwright) en dat de chat de juiste stem per persoon gebruikt.
 5. Ruim opnames op die bij geen enkele tekst meer horen (oude vingerafdrukken), zodat de app niet onnodig groot wordt.

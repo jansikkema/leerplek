@@ -1,21 +1,28 @@
 # Spreek alle verzamelde teksten in die nog geen geluid hebben (besluit 17).
 #   1. node tools/verzamel.js > tools/teksten.json      (server draaiend in de hoofdmap)
 #   2. python3 tools/maak-audio.py                       (maakt audio/z/<sleutel>.mp3 en js/ingesproken.js)
-# Teksten met dezelfde stem gaan in bundels (max 8 per verzoek): Gemini laat tussen alinea's een lange pauze,
-# daar knippen we. Zo past een heel hoofdstuk ruim in de daglimiet van 100 verzoeken.
-# Per stuk: begin en eind opschonen, en laten controleren of alles gezegd is. Afgekeurd = later los opnieuw.
-# Lukt de controle na 3 pogingen niet, dan komt de tekst niet in de lijst en leest de iPad-stem hem.
+# Daglimiet: 100 verzoeken per model per dag. Daarom:
+#  - bundels: tot 12 teksten met dezelfde stem in één verzoek; Gemini laat tussen alinea's een lange pauze,
+#    daar knippen we. Lukt knippen niet, dan wordt de bundel gehalveerd en opnieuw geprobeerd.
+#  - twee modellen: is de daglimiet van het eerste op, dan gaat het verder met het tweede (klinken gelijk).
+#  - afgekeurde teksten gaan eerst opnieuw in bundels, pas daarna los.
+# Per stuk: begin en eind opschonen, en laten controleren of alles gezegd is.
+# Lukt het niet, dan komt de tekst niet in de lijst en leest de iPad-stem hem.
 # De sleutel voor Gemini zit niet in de repository: de netwerkproxy van de werkomgeving voegt hem toe.
-import json, os, sys, base64, subprocess, tempfile, urllib.request, time, struct, math
+import json, os, sys, base64, subprocess, tempfile, urllib.request, time, struct, math, threading
 from concurrent.futures import ThreadPoolExecutor
 
 HIER = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HIER)
 Z = os.path.join(ROOT, "audio", "z"); os.makedirs(Z, exist_ok=True)
 API = "https://generativelanguage.googleapis.com/v1beta/models/"
-# Licht model: klinkt op het gehoor gelijk aan gemini-3.8-flash-tts (getest 2026-11-08) en is goedkoper.
-TTS, CHECK = os.environ.get("TTS_MODEL", "gemini-3.8-flash-lite-tts"), "gemini-3.8-flash"
+# Eerst het lichte model (goedkoper), dan het gewone; ze klinken op het gehoor gelijk (getest 2026-11-08).
+MODELLEN = os.environ.get("TTS_MODELLEN", "gemini-3.8-flash-lite-tts,gemini-3.8-flash-tts").split(",")
+CHECK = "gemini-3.8-flash"
+model_nu, slot = [0], threading.Lock()
+class DagLimiet(Exception): pass
 DOEL = os.environ.get("DOEL", Z); os.makedirs(DOEL, exist_ok=True)
-BUNDEL, MAXTEKENS = 8, 1000
+BUNDEL, MAXTEKENS = int(os.environ.get("BUNDEL", 12)), 1600
+verzoeken = {}
 
 def post(model, body):
     for poging in range(5):
@@ -24,16 +31,26 @@ def post(model, body):
         try: return json.load(urllib.request.urlopen(req, timeout=180))
         except urllib.error.HTTPError as e:
             tekst = e.read().decode()
-            if e.code == 429 and "per_day" in tekst: raise SystemExit("Daglimiet van " + model + " bereikt; morgen verder.")
+            if e.code == 429 and "per_day" in tekst: raise DagLimiet(model)
             if e.code in (429, 500, 502, 503): time.sleep(10 * (poging + 1)); continue
             raise RuntimeError(f"HTTP {e.code}: {tekst[:300]}")
         except Exception: time.sleep(10 * (poging + 1))
     raise RuntimeError("geen antwoord")
 
 def tts(tekst, stem):
-    r = post(TTS, {"contents": [{"parts": [{"text": tekst}]}], "generationConfig": {"responseModalities": ["AUDIO"],
-            "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": stem}}}}})
-    return base64.b64decode(r["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
+    while True:
+        i = model_nu[0]
+        if i >= len(MODELLEN): raise DagLimiet("alle modellen")
+        try:
+            r = post(MODELLEN[i], {"contents": [{"parts": [{"text": tekst}]}], "generationConfig": {"responseModalities": ["AUDIO"],
+                    "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": stem}}}}})
+            with slot: verzoeken[MODELLEN[i]] = verzoeken.get(MODELLEN[i], 0) + 1
+            return base64.b64decode(r["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
+        except DagLimiet:
+            with slot:
+                if model_nu[0] == i:
+                    model_nu[0] += 1
+                    print("daglimiet van", MODELLEN[i], "bereikt" + (", verder met " + MODELLEN[i + 1] if i + 1 < len(MODELLEN) else ""), flush=True)
 
 def bewaar(pcm, uit):
     with tempfile.NamedTemporaryFile(suffix=".pcm", delete=False) as f: f.write(pcm)
@@ -83,12 +100,17 @@ def controleer(x, tmp):
     return ok, a
 
 def maak_bundel(groep):
-    """Spreek een bundel in en knip; geeft de teksten terug die nog niet gelukt zijn."""
+    """Spreek een bundel in en knip; geeft de teksten terug die nog niet gelukt zijn.
+    Lukt het knippen niet, dan worden beide helften apart geprobeerd."""
     try:
         stukken = knip(tts("\n\n".join(x["tekst"] for x in groep), groep[0]["stem"]), len(groep))
+    except DagLimiet: return groep
     except Exception as e:
-        print("bundel mislukt:", e, flush=True); return groep
-    if stukken is None: print("bundel niet te knippen, los opnieuw", flush=True); return groep
+        print("bundel mislukt:", e, flush=True); stukken = None
+    if stukken is None:
+        if len(groep) == 1: return groep
+        h = len(groep) // 2; print(f"bundel van {len(groep)} niet te knippen, in tweeën", flush=True)
+        return maak_bundel(groep[:h]) + maak_bundel(groep[h:])
     def stuk(paar):   # opschonen en controleren, alle stukken van een bundel tegelijk
         x, pcm = paar; tmp = doel(x) + ".tmp.mp3"
         try:
@@ -103,6 +125,7 @@ def maak_los(x):
         tmp = doel(x) + ".tmp.mp3"
         try:
             inspreken(x["tekst"], x["stem"], tmp); ok, a = controleer(x, tmp)
+        except DagLimiet: return False
         except Exception as e: ok, a = False, str(e)
         if ok: print(x["sleutel"], f"goed (los, poging {poging + 1})", "|", x["tekst"][:60], flush=True); return True
     print(x["sleutel"], "MISLUKT: " + a[:150], "|", x["tekst"][:60], flush=True); return False
@@ -143,8 +166,14 @@ if __name__ == "__main__":
     nog = [x for x in teksten if not os.path.exists(doel(x)) and not os.path.exists(os.path.join(Z, x["sleutel"] + ".mp3"))]
     print(len(nog), "teksten nog in te spreken", flush=True); t0 = time.time()
     with ThreadPoolExecutor(4) as pool: over = [x for r in pool.map(maak_bundel, bundels(nog)) for x in r]
-    print(len(over), "los opnieuw; bundels klaar na", round(time.time() - t0), "s", flush=True)
-    with ThreadPoolExecutor(3) as pool: mislukt = sum(1 for ok in pool.map(maak_los, over) if not ok)
-    print("totaal", round(time.time() - t0), "s")
+    print(len(over), "opnieuw in bundels; eerste ronde klaar na", round(time.time() - t0), "s", flush=True)
+    if over and model_nu[0] < len(MODELLEN):
+        with ThreadPoolExecutor(4) as pool: over = [x for r in pool.map(maak_bundel, bundels(over)) for x in r]
+    print(len(over), "los opnieuw", flush=True)
+    mislukt = 0
+    if model_nu[0] < len(MODELLEN):
+        with ThreadPoolExecutor(3) as pool: mislukt = sum(1 for ok in pool.map(maak_los, over) if not ok)
+    else: mislukt = len(over); print("daglimiet van alle modellen bereikt; draai het script morgen opnieuw", flush=True)
+    print("totaal", round(time.time() - t0), "s; verzoeken:", verzoeken)
     if DOEL == Z: print(lijst(), "ingesproken,", mislukt, "mislukt")
     else: print("proef klaar in", DOEL, ";", mislukt, "mislukt")
