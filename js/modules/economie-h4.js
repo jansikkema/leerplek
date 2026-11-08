@@ -15,7 +15,7 @@
     titel: "💬 Loondienst of eigen baas?",
     intro: "Mila en Sam zijn allebei fan. Sam heeft een bijbaan, Mila wil iets voor zichzelf beginnen. Tik op **Volgende** of op **Afspelen**. Tik op een berichtje om het nog een keer te horen.",
     personen: {
-      sam: { naam: "Sam", emoji: "🎧", kleur: "#5EC8F2", kant: "links" },
+      sam: { naam: "Sam", emoji: "🎧", kleur: "#5EC8F2", kant: "links", stem: "Puck" },   // ingesproken stem (haar keuze)
       mila: { naam: "Mila", emoji: "💜", kleur: "#B79CFF", kant: "rechts" }
     },
     berichten: [

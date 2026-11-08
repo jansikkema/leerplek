@@ -33,7 +33,8 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel.
 
 ### Opgenomen stemmen: verder uitrollen (besluit 17)
-- Filmpje H4: ingesproken. Daarna: chat, plaat, begrippen, toetsvragen van H4, en elk nieuw hoofdstuk.
+- H4 helemaal ingesproken (2026-11-08). Bij elk nieuw hoofdstuk: verzamelen en inspreken (zie CLAUDE.md).
+- Open: teksten die steeds anders zijn (tellers, haar antwoorden) blijven de iPad-stem. Eventueel splitsen in een vast en een wisselend deel.
 - Gratis laag is 10 verzoeken per dag. Voor een heel hoofdstuk: meerdere dagen, of betaald (enkele dollars per hoofdstuk).
 - Werk: middel.
 
