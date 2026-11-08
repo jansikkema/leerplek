@@ -298,9 +298,6 @@
       { t: `De bedrijfskosten blijven <b>€250</b>. Ook als je weinig verkoopt!<br>€200 − €250 = <b>− €50</b>. Dat is <b>verlies</b>. Dit is het <b>risico</b> van een eigen bedrijf.`, s: "De bedrijfskosten blijven tweehonderdvijftig euro. Ook als je weinig verkoopt. Tweehonderd min tweehonderdvijftig is min vijftig euro. Dat is verlies. Dit is het risico van een eigen bedrijf.", bars: V, lab: 5 },
       { t: `✏️ <b>Jouw beurt.</b> Teken één plaatje van wat je onthoudt.<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>`, s: "Jouw beurt. Teken één plaatje van wat je onthoudt.", bars: V, lab: 5 }
     ];
-    // Ingesproken met een natuurlijke stem (audio/economie-h4/). Ontbreekt een bestand, dan leest de iPad-stem voor.
-    const INGESPROKEN = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    S.forEach((x, i) => { if (INGESPROKEN.includes(i + 1)) x.audio = `audio/economie-h4/filmpje-${String(i + 1).padStart(2, "0")}.mp3`; });
     const KEYS = ["omzet", "inkoop", "bruto", "kosten", "netto"];
     let sc = 0, playing = false, timer = null, sound = true;
 
@@ -325,7 +322,7 @@
     function advance() { clearTimeout(timer); if (!playing) return; if (sc >= S.length - 1) { pause(); return; } sc++; run(); }
     function run() {
       draw(); stopSpeak(); if (!playing) return;
-      if (sound && (canSpeak || S[sc].audio)) speak(S[sc].s, () => { if (playing) timer = setTimeout(advance, 1200); }, { audio: S[sc].audio });
+      if (sound) speak(S[sc].s, () => { if (playing) timer = setTimeout(advance, 1200); });
       else timer = setTimeout(advance, S[sc].long ? 9000 : 6500);
     }
     function play() { if (sc >= S.length - 1) sc = 0; playing = true; $("#play", el).textContent = "⏸ Pauze"; run(); }

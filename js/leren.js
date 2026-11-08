@@ -79,7 +79,7 @@
     el.innerHTML = `
       <div class="card">
         <div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">${esc(d.titel)}</h2>
-          <div class="row"><button class="btn small" id="cplay">▶ Afspelen</button><button class="btn ghost small" id="csnd">${App.canSpeak ? "🔊 Geluid aan" : "🔇 Geen geluid"}</button></div></div>
+          <div class="row"><button class="btn small" id="cplay">▶ Afspelen</button><button class="btn ghost small" id="csnd">🔊 Geluid aan</button></div></div>
         ${d.intro ? `<p class="soft">${md(d.intro)}</p>` : ""}
         <div class="chat" id="chat"></div>
         <div class="row" style="margin-top:12px"><button class="btn" id="cnext">Volgende 💬</button><span class="soft" id="cprog"></span></div>
@@ -90,7 +90,8 @@
     const vs = App.nlVoices().filter(v => App.stemKwaliteit(v) > 0), eerste = App.huidigeStem() || vs[0];
     const tweede = vs.find(v => v !== eerste && v.name !== (eerste && eerste.name));
     const stem = { [Object.keys(d.personen)[0]]: { voice: eerste }, [Object.keys(d.personen)[1]]: tweede ? { voice: tweede } : { voice: eerste, pitch: 0.9 } };
-    let i = 0, playing = false, sound = App.canSpeak, t = null;
+    Object.keys(stem).forEach(k => { if (d.personen[k].stem) stem[k].stem = d.personen[k].stem; });   // ingesproken stem per persoon
+    let i = 0, playing = false, sound = true, t = null;
     function bubble(m) {
       const p = d.personen[m.van], kant = p.kant || "links";
       const b = document.createElement("div"); b.className = "bubbel " + kant;
@@ -119,7 +120,7 @@
       if (playing) { playing = false; App.stopSpeak(); $("#cplay", el).textContent = "▶ Afspelen"; return; }
       playing = true; $("#cplay", el).textContent = "⏸ Pauze"; stap();
     };
-    $("#csnd", el).onclick = () => { if (!App.canSpeak) return; sound = !sound; $("#csnd", el).textContent = sound ? "🔊 Geluid aan" : "🔇 Geluid uit"; if (!sound) App.stopSpeak(); };
+    $("#csnd", el).onclick = () => { sound = !sound; $("#csnd", el).textContent = sound ? "🔊 Geluid aan" : "🔇 Geluid uit"; if (!sound) App.stopSpeak(); };
     voeg();
     return () => { playing = false; clearTimeout(t); };
   }

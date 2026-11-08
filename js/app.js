@@ -104,7 +104,19 @@
   }
   // Per zin voorlezen: dat geeft natuurlijke pauzes en de iPad raakt minder snel de draad kwijt bij lange teksten.
   function zinnen(t) { return (t.match(/[^.!?:;]+[.!?:;]*/g) || [t]).map(s => s.trim()).filter(s => /\w/.test(s)); }
+  /* Ingesproken teksten (besluit 17). Sleutel = stem + uitspreekbare tekst; de lijst staat in js/ingesproken.js.
+     Staat een tekst erin, dan speelt de app audio/z/<sleutel>.mp3, anders leest de iPad-stem. */
+  const STANDAARDSTEM = "Sulafat";
+  function sleutel(text, stem) {
+    const s = (stem || STANDAARDSTEM) + "|" + spreekbaar(text); let h = 0x811c9dc5;
+    for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+    return (h >>> 0).toString(16).padStart(8, "0");
+  }
+  const ingesproken = new Set(self.INGESPROKEN || []);
+  const opname = (text, stem) => { const k = sleutel(text, stem); return ingesproken.has(k) ? `audio/z/${k}.mp3` : null; };
   function speak(text, onend, opts = {}) {
+    if (window.__opname && text && opts.audio === undefined) window.__opname.push({ tekst: spreekbaar(text), stem: opts.stem || STANDAARDSTEM, sleutel: sleutel(text, opts.stem) });
+    if (opts.audio === undefined && text) opts = { ...opts, audio: opname(text, opts.stem) };
     if (opts.audio && speler) {   // eerst het ingesproken bestand; lukt dat niet, dan de iPad-stem
       let klaar = false;
       const terug = () => { if (klaar) return; klaar = true; speler.onended = speler.onerror = null; speak(text, onend, { ...opts, audio: null }); };
@@ -129,7 +141,7 @@
   }
   function sayButton(b, getText) {
     b.onclick = () => {
-      if (!canSpeak) { b.textContent = "🔇 Voorlezen werkt hier niet"; return; }
+      if (!canSpeak && !opname(getText())) { b.textContent = "🔇 Voorlezen werkt hier niet"; return; }
       const was = b.classList.contains("speaking"); stopSpeak(); if (was) return;
       b.classList.add("speaking"); b.textContent = "⏹️ Stop";
       speak(getText(), () => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
@@ -586,7 +598,7 @@
 
   /* ---------- publieke functies ---------- */
   window.App = {
-    $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, spreekbaar, stemKwaliteit, huidigeStem: () => voice, bindSay, store, db, modal, meetBlock, go, onLeave,
+    $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, spreekbaar, stemKwaliteit, huidigeStem: () => voice, sleutel, opname, bindSay, store, db, modal, meetBlock, go, onLeave,
     shareText, shareImage, imageFromFile, busy,
     tekenMet(tag) { pendingTag = tag || ""; go("tekenen"); },
     addRoute(name, fn) { routes[name] = fn; },
