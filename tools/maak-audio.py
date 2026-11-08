@@ -20,18 +20,35 @@ MODELLEN = os.environ.get("TTS_MODELLEN", "gemini-3.8-flash-lite-tts,gemini-3.8-
 CHECK = "gemini-3.8-flash"
 model_nu, slot = [0], threading.Lock()
 class DagLimiet(Exception): pass
+# Limieten per spraakmodel (Tier 1, AI Studio → Rate limits): 10 verzoeken per minuut, 10.000 tokens per minuut
+# (25 tokens per seconde geluid), 100 per dag. Ook GEWEIGERDE verzoeken tellen mee voor de dag, dus nooit
+# tegen de minuutlimiet aan botsen: het script wacht zelf. Ruim onder de grens blijven: 8 per minuut.
+PER_MINUUT = int(os.environ.get("PER_MINUUT", 8))
+tijden = {}
+def wacht_beurt(model):
+    """Houd per model hooguit PER_MINUUT verzoeken in de laatste 60 seconden."""
+    while True:
+        with slot:
+            nu = time.time(); t = [x for x in tijden.get(model, []) if nu - x < 60]
+            if len(t) < PER_MINUUT: t.append(nu); tijden[model] = t; return
+            wacht = 60 - (nu - t[0]) + 0.5
+        time.sleep(wacht)
 DOEL = os.environ.get("DOEL", Z); os.makedirs(DOEL, exist_ok=True)
-BUNDEL, MAXTEKENS = int(os.environ.get("BUNDEL", 12)), 1600
+BUNDEL, MAXTEKENS = int(os.environ.get("BUNDEL", 12)), 1600   # 1600 tekens ≈ 2 min geluid ≈ 3.000 tokens: ruim onder 10.000 per minuut
 verzoeken = {}
 
 def post(model, body):
+    spraak = model in MODELLEN
     for poging in range(5):
+        if spraak: wacht_beurt(model)
         req = urllib.request.Request(API + model + ":generateContent", data=json.dumps(body).encode(),
                                      headers={"Content-Type": "application/json", "x-goog-api-key": "dummy"})
         try: return json.load(urllib.request.urlopen(req, timeout=180))
         except urllib.error.HTTPError as e:
             tekst = e.read().decode()
             if e.code == 429 and "per_day" in tekst: raise DagLimiet(model)
+            if e.code == 429 and spraak:   # minuutlimiet toch geraakt: een volle minuut wachten, telt anders weer mee
+                print("minuutlimiet geraakt bij", model, "- even wachten", flush=True); time.sleep(65); continue
             if e.code in (429, 500, 502, 503): time.sleep(10 * (poging + 1)); continue
             raise RuntimeError(f"HTTP {e.code}: {tekst[:300]}")
         except Exception: time.sleep(10 * (poging + 1))
