@@ -496,7 +496,13 @@
       const goed = vs.some(v => stemKwaliteit(v) >= 2);
       $("#stemtip", el).innerHTML = `<details class="meet" style="margin-top:14px" ${goed ? "" : "open"}><summary>💡 Klinkt het als een robot? Download een betere stem</summary>
         <ol style="margin:10px 0 0;padding-left:22px;line-height:1.6"><li>Open <b>Instellingen</b> op je iPad.</li><li>Ga naar <b>Toegankelijkheid</b> → <b>Gesproken materiaal</b> → <b>Stemmen</b>.</li>
-        <li>Kies <b>Nederlands</b>. Tik op een stem en download de versie <b>Verbeterd</b> of <b>Premium</b>, bijvoorbeeld <b>Claire (verbeterd)</b> of <b>Xander (verbeterd)</b>.</li><li>Let op: de <b>Siri</b>-stemmen (Stem 1, Stem 2) werken niet in deze app. Apple laat die alleen door Siri zelf gebruiken.</li><li>Sluit deze app helemaal en open hem opnieuw. Kies hier dan de nieuwe stem.</li></ol></details>`;
+        <li>Kies <b>Nederlands</b>. Tik op een stem en download de versie <b>Verbeterd</b> of <b>Premium</b>, bijvoorbeeld <b>Claire (verbeterd)</b> of <b>Xander (verbeterd)</b>.</li><li>Let op: de <b>Siri</b>-stemmen (Stem 1, Stem 2) werken niet in deze app. Apple laat die alleen door Siri zelf gebruiken.</li><li>Sluit deze app helemaal en open hem opnieuw. Kies hier dan de nieuwe stem.</li></ol></details>
+        <details class="meet" style="margin-top:10px"><summary>🔧 Voor papa: welke stemmen geeft de iPad door?</summary>${stemOverzicht()}</details>`;
+    }
+    function stemOverzicht() {
+      const alle = speechSynthesis.getVoices(), nl = alle.filter(v => /^nl/i.test(v.lang));
+      return `<p class="soft" style="margin:8px 0">${alle.length} stemmen in totaal, ${nl.length} Nederlands.</p>` +
+        (nl.length ? `<ul style="margin:0;padding-left:20px;font-size:.85em;line-height:1.5;word-break:break-all">${nl.map(v => `<li><b>${esc(v.name)}</b> · ${esc(v.lang)} · kwaliteit ${stemKwaliteit(v)}<br><small>${esc(v.voiceURI || "")}${v.localService ? "" : " · niet lokaal"}</small></li>`).join("")}</ul>` : "");
     }
     stemmen();
     if (canSpeak) { const h = () => stemmen(); speechSynthesis.addEventListener("voiceschanged", h); onLeave(() => speechSynthesis.removeEventListener("voiceschanged", h)); }
