@@ -7,7 +7,7 @@
 //   zodat oude en nieuwe bestanden niet door elkaar raken.
 // - Eigen bestanden altijd bij de server nagaan (no-cache), anders geeft de browser tot 10 minuten een oude kopie.
 // - Lettertypes van Google: eerst de bewaarde versie (die veranderen niet).
-const CACHE = "leerplek-v12";
+const CACHE = "leerplek-v13";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
   "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/modules/economie-h4.js",
