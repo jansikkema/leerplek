@@ -8,7 +8,7 @@
 // - Eigen bestanden altijd bij de server nagaan (no-cache), anders geeft de browser tot 10 minuten een oude kopie.
 // - Lettertypes van Google: eerst de bewaarde versie (die veranderen niet).
 importScripts("js/ingesproken.js");   // lijst met ingesproken teksten; die gaan ook mee voor offline
-const CACHE = "leerplek-v14";
+const CACHE = "leerplek-v15";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
   "./js/ingesproken.js", "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/modules/economie-h4.js",

@@ -12,7 +12,7 @@ from concurrent.futures import ThreadPoolExecutor
 HIER = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HIER)
 Z = os.path.join(ROOT, "audio", "z"); os.makedirs(Z, exist_ok=True)
 API = "https://generativelanguage.googleapis.com/v1beta/models/"
-TTS, CHECK = os.environ.get("TTS_MODEL", "gemini-3.8-flash-tts"), "gemini-3.8-flash"
+TTS, CHECK = os.environ.get("TTS_MODEL", "gemini-3.8-flash-lite-tts")   # klinkt gelijk aan flash-tts (getest), goedkoper, "gemini-3.8-flash"
 DOEL = os.environ.get("DOEL", Z); os.makedirs(DOEL, exist_ok=True)
 BUNDEL, MAXTEKENS = 8, 1000
 
@@ -22,8 +22,10 @@ def post(model, body):
                                      headers={"Content-Type": "application/json", "x-goog-api-key": "dummy"})
         try: return json.load(urllib.request.urlopen(req, timeout=180))
         except urllib.error.HTTPError as e:
+            tekst = e.read().decode()
+            if e.code == 429 and "per_day" in tekst: raise SystemExit("Daglimiet van " + model + " bereikt; morgen verder.")
             if e.code in (429, 500, 502, 503): time.sleep(10 * (poging + 1)); continue
-            raise RuntimeError(f"HTTP {e.code}: {e.read().decode()[:300]}")
+            raise RuntimeError(f"HTTP {e.code}: {tekst[:300]}")
         except Exception: time.sleep(10 * (poging + 1))
     raise RuntimeError("geen antwoord")
 
