@@ -7,11 +7,12 @@
 //   zodat oude en nieuwe bestanden niet door elkaar raken.
 // - Eigen bestanden altijd bij de server nagaan (no-cache), anders geeft de browser tot 10 minuten een oude kopie.
 // - Lettertypes van Google: eerst de bewaarde versie (die veranderen niet).
-const CACHE = "leerplek-v11";
+const CACHE = "leerplek-v12";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
   "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/modules/economie-h4.js",
   "./vendor/pdfjs/pdf.min.js", "./vendor/pdfjs/pdf.worker.min.js",
+  ...Array.from({ length: 10 }, (_, i) => `./audio/economie-h4/filmpje-${String(i + 1).padStart(2, "0")}.mp3`),
   "./icons/icon-180.png", "./icons/icon-192.png", "./icons/icon-512.png"
 ];
 const WACHT = 3000;
