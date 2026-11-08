@@ -647,6 +647,46 @@
     App.bindSay(el);
   }
 
+  /* ================= 11. video: eerst kijken, dan zelf iets zeggen (besluit 18) ================= */
+  // d = { id (YouTube), titel (zoals op YouTube, gecontroleerd door tools/check-video.py), kanaal, start?, eind? (seconden),
+  //       intro (waarom kijken, kort), vraag (zij antwoordt zelf, na het kijken) }
+  // Privacy: pas na een tik wordt de speler geladen, via youtube-nocookie.com. Geen miniatuur vooraf, dus tot die tik gaat er niets naar Google.
+  function video(el, mod, d, onKlaar) {
+    const key = `video-${mod}-${d.id}`, eigen = store.get(key, {});
+    const duur = d.start != null || d.eind != null ? ` · ${Math.round(((d.eind || 0) - (d.start || 0)) / 60) || 1} min` : "";
+    el.innerHTML = `
+      <div class="card">
+        <h2>📺 Eerst kijken</h2>
+        <button class="say" id="lees-video">🔊 Lees voor</button>
+        ${d.intro ? `<p>${md(d.intro)}</p>` : ""}
+        <div class="video-vak" id="vv"><button class="btn" id="vplay">▶ Speel de video</button>
+          <p class="soft" style="margin:8px 0 0;font-size:.85em">${esc(d.titel)} · ${esc(d.kanaal)}${duur}</p></div>
+        <p class="soft" style="font-size:.8em;margin:8px 0 0">Video van ${esc(d.kanaal)} op YouTube. Alleen met internet. Ondertiteling aan of uit met de knop CC.</p>
+      </div>
+      <div class="card" id="vna" ${eigen.antwoord ? "" : "hidden"}>
+        <h2>💭 Wat weet je nog?</h2>
+        <button class="say" id="lees-vraag">🔊 Lees voor</button>
+        <p><b>${md(d.vraag)}</b></p>
+        <p class="soft" style="margin:0 0 8px">Zeg het hardop, of schrijf het op (🎤 inspreken mag). Kijken is pas het begin: zelf zeggen laat het blijven hangen.</p>
+        <textarea id="vant" placeholder="Wat ik zag…">${esc(eigen.antwoord || "")}</textarea>
+        <div class="row" style="margin-top:10px"><button class="btn" id="vklaar">✓ Klaar</button><span class="ok" id="vok"></span></div>
+        <div id="na"></div>
+      </div>`;
+    App.sayButton($("#lees-video", el), () => (d.intro ? d.intro.replace(/\*\*/g, "") + " " : "") + "Tik op Speel de video. Daarna komt er een vraag.");
+    App.sayButton($("#lees-vraag", el), () => d.vraag.replace(/\*\*/g, ""));
+    $("#vplay", el).onclick = () => {
+      if (navigator.onLine === false) { $("#vv", el).insertAdjacentHTML("beforeend", `<p class="fout-t">Geen internet. De video werkt alleen online. De rest van de app werkt wel.</p>`); return; }
+      const q = new URLSearchParams({ rel: "0", playsinline: "1", modestbranding: "1", hl: "nl", cc_lang_pref: "nl", autoplay: "1" });
+      if (d.start) q.set("start", d.start); if (d.eind) q.set("end", d.eind);
+      $("#vv", el).innerHTML = `<div class="video-16x9"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(d.id)}?${q}" title="${esc(d.titel)}"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        <div class="row" style="margin-top:10px"><button class="btn ghost" id="vgekeken">Klaar met kijken →</button></div>`;
+      $("#vgekeken", el).onclick = () => { $("#vna", el).hidden = false; $("#vna", el).scrollIntoView({ behavior: "smooth" }); $("#vant", el).focus({ preventScroll: true }); };
+    };
+    $("#vant", el).oninput = e => store.set(key, { ...store.get(key, {}), antwoord: e.target.value });
+    $("#vklaar", el).onclick = () => { store.set(key, { ...store.get(key, {}), antwoord: $("#vant", el).value, klaar: Date.now() }); $("#vok", el).textContent = "✓ Bewaard"; if (onKlaar) onKlaar($("#na", el)); };
+  }
+
   /* ================= 10. overzicht van een hoofdstuk (route, vandaag, toetsdatum) ================= */
   // cfg = { mod, titel, spreekTitel, IDS, STATIONS, NAMEN, GEHEUGEN, waarom: [html] }
   function overzicht(el, cfg) {
@@ -701,5 +741,5 @@
     $("#auto", el).onchange = e => store.set("auto-voorlezen", e.target.checked);
   }
 
-  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, overzicht, md, euro, shuffle };
+  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, overzicht, md, euro, shuffle };
 })();

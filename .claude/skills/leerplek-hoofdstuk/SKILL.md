@@ -43,6 +43,8 @@ Kies vanuit de stof, niet vanuit de vorm. Haar voorkeur: plaat en filmpje eerst.
 | Gebeurtenissen op volgorde van tijd | **tijdlijn** (rondes, tik wat het eerst kwam) | `L.tijdlijn` |
 | Berekeningen | **rekenen**: kijk mee → samen → zelf | `L.rekenen` (kent nu alleen omzet → nettowinst) |
 
+**Video (besluit 18):** per paragraaf hooguit één korte video vóór de leervorm, met `L.video` (`{ id, titel, kanaal, start?, eind? }` + `intro` + `vraag` die zij zelf beantwoordt). Zoek kandidaten met de zoekfunctie van YouTube (`www.youtube.com/results?search_query=…` met `hl=nl`, lees `ytInitialData`), alleen Nederlandstalig (let op automatisch vertaalde titels van Engelse kanalen), en controleer ze met `python3 tools/check-video.py <id> …`. **Leg twee of drie kandidaten per paragraaf voor aan vader (titel, kanaal, lengte, waarom) en publiceer pas na zijn keuze.** Claude kan video's niet bekijken.
+
 Overzicht van het hoofdstuk: `L.overzicht` (zie `geschiedenis-h1.js`). Altijd erbij, per hoofdstuk: **begrippenkaarten** (`L.kaarten`), **uit je hoofd tekenen** (`L.geheugen`) en **toetstraining** (`L.toets`).
 
 Heeft een tweede hoofdstuk de plaat, het filmpje, het bouwplan of een ander soort rekenen nodig? Verplaats die vorm dan eerst naar `js/leren.js` (inhoud als data), in plaats van code te kopiëren. Overleg met vader als dat veel werk is.

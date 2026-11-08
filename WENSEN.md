@@ -9,6 +9,12 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Open
 
+### Video's: proef bij Geschiedenis H1 §1.3
+- Vorm `L.video` gebouwd (2026-11-08). Eerste kandidaat ligt klaar bij §1.3 en wacht op goedkeuring van vader; nog niet gepubliceerd.
+- Meten via "Na afloop (voor papa)": opent ze de video uit zichzelf nog eens, en wat weet ze de volgende dag nog? Werkt het, dan wordt het vast onderdeel van elk nieuw hoofdstuk (staat al in de skill).
+- Werk: klein. Wacht op: keuze van vader.
+
+
 ### Begrippen van Geschiedenis H1 nalopen tegen het boek
 - H1 is gebouwd vanuit de leerdoelen van de docent, zonder het boek. De methode is niet zeker (waarschijnlijk MeMo). De termen zijn de gangbare voor havo 3.
 - Nalopen: centralen (of centrale mogendheden), loopgravenoorlog (of stellingenoorlog), Triple Alliantie (of Drievoudig Verbond), dolkstootlegende, neutraliteitspolitiek, en of het boek "aanleiding" en "directe oorzaak" als hetzelfde gebruikt. Staan er begrippen in het boek die nu ontbreken (bijvoorbeeld pan-Slavisme, revanchisme, Spartacusopstand)?

@@ -153,6 +153,13 @@
     ]
   };
 
+  // Video bij §1.3 (besluit 18): alleen na goedkeuring van vader. Titel exact zoals op YouTube (tools/check-video.py controleert).
+  const VIDEO13 = {
+    video: { id: "m--6MLK3je0", titel: "Het startschot van de grote oorlog (Van het een kwam het ander)", kanaal: "vpro dorst" },
+    intro: "Eén schot in Sarajevo. Een paar weken later is bijna heel Europa in oorlog. Hoe kan dat? Kijk naar de kettingreactie.",
+    vraag: "Hoe ging het van één schot naar een wereldoorlog? Noem de stappen die je zag, in de goede volgorde."
+  };
+
   const SORT_OORZAAK = {
     titel: "🔎 Aanleiding, oorzaak of gevolg?",
     uitleg: "Is het de **aanleiding** van WO1, een **indirecte oorzaak**, of een **gevolg**?",
@@ -478,11 +485,11 @@
   const STATIONS = [
     { par: "", titel: "Op volgorde van tijd", icoon: "🕰️", delen: ["tijdlijn"] },
     { par: "§1.2", titel: "Spanningen in Europa", icoon: "🧨", delen: ["kruitvat", "kampen"] },
-    { par: "§1.3", titel: "De Eerste Wereldoorlog", icoon: "🪖", delen: ["oorlog", "oorzaken"] },
+    { par: "§1.3", titel: "De Eerste Wereldoorlog", icoon: "🪖", delen: ["video", "oorlog", "oorzaken"] },
     { par: "§1.4", titel: "Europa na de oorlog", icoon: "🏛️", delen: ["weimar", "italie", "nederland"] },
     { par: "", titel: "Vaardigheid: oorzaken en gevolgen", icoon: "🔗", delen: ["lab"] }
   ];
-  const NAMEN = { tijdlijn: "🕰️ Tijdlijn", kruitvat: "🧨 Het kruitvat", kampen: "🔀 Sorteren", oorlog: "🎬 Filmpje", oorzaken: "🔀 Oorzaak of gevolg", weimar: "💬 Weimar", italie: "🎬 Italië", nederland: "🇳🇱 Nederland", lab: "🔗 Oorzaak-lab", begrippen: "🃏 Begrippen", geheugen: "🧠 Uit je hoofd", toets: "📝 Toetstraining" };
+  const NAMEN = { tijdlijn: "🕰️ Tijdlijn", kruitvat: "🧨 Het kruitvat", kampen: "🔀 Sorteren", video: "📺 Video", oorlog: "🎬 Filmpje", oorzaken: "🔀 Oorzaak of gevolg", weimar: "💬 Weimar", italie: "🎬 Italië", nederland: "🇳🇱 Nederland", lab: "🔗 Oorzaak-lab", begrippen: "🃏 Begrippen", geheugen: "🧠 Uit je hoofd", toets: "📝 Toetstraining" };
 
   /* ================= ONDERDELEN ================= */
   const volgendeKnop = (na, id, tekst) => {
@@ -515,9 +522,11 @@
     el.innerHTML = `<div id="a"></div><div id="b"></div>`;
     L.sorteer($("#a", el), SORT_KAMP, n => {
       n.innerHTML = `<button class="btn" id="nb">Nu de vier lonten →</button>`;
-      $("#nb", n).onclick = () => { $("#a", el).innerHTML = ""; L.sorteer($("#b", el), SORT_LONT, n2 => { V.klaar("kampen"); volgendeKnop(n2, "oorlog", "Volgende stop: de oorlog zelf."); }); };
+      $("#nb", n).onclick = () => { $("#a", el).innerHTML = ""; L.sorteer($("#b", el), SORT_LONT, n2 => { V.klaar("kampen"); volgendeKnop(n2, "video", "Volgende stop: de oorlog zelf."); }); };
     });
   }
+
+  const video = el => L.video(el, MOD, { ...VIDEO13.video, intro: VIDEO13.intro, vraag: VIDEO13.vraag }, n => { V.klaar("video"); volgendeKnop(n, "oorlog", "Nu het filmpje: hoe ging het verder?"); });
 
   const oorlog = el => { const r = L.filmpje(el, FILM13, () => V.klaar("oorlog")); volgendeKnop(na(el), "oorzaken", "Nu jij: oorzaak of gevolg?"); return r; };
 
@@ -578,7 +587,7 @@
     sub: "Van kruitvat tot Weimar, plus oorzaken en gevolgen.",
     icoon: "🪖",
     thuis: ["overzicht"],
-    meten: ["tijdlijn", "kruitvat", "kampen", "oorlog", "oorzaken", "weimar", "italie", "nederland", "lab"],
+    meten: ["tijdlijn", "kruitvat", "kampen", "video", "oorlog", "oorzaken", "weimar", "italie", "nederland", "lab"],
     status() {
       const v = V.get(), d = v.toets ? Math.ceil((v.toets - Date.now()) / DAG) : null;
       const k = V.teDoen("kaarten", IDS.kaarten, 6).length, q = V.teDoen("vragen", IDS.vragen, 8).length;
@@ -589,6 +598,7 @@
       { id: "tijdlijn", naam: "Tijdlijn", icoon: "🕰️", groep: "Leren", render: tijdlijn },
       { id: "kruitvat", naam: "Kruitvat", icoon: "🧨", groep: "Leren", render: kruitvat },
       { id: "kampen", naam: "Sorteren", icoon: "🔀", groep: "Leren", render: kampen },
+      { id: "video", naam: "Video", icoon: "📺", groep: "Leren", render: video },
       { id: "oorlog", naam: "Filmpje", icoon: "🎬", groep: "Leren", render: oorlog },
       { id: "oorzaken", naam: "Oorzaak of gevolg", icoon: "🔎", groep: "Leren", render: oorzaken },
       { id: "weimar", naam: "Weimar", icoon: "💬", groep: "Leren", render: weimar },
