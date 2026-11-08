@@ -574,32 +574,108 @@
   }
 
   /* ================= 8. filmpje: scènes met beeld, tekst en voorlezen ================= */
-  // d = { titel, intro, scenes: [{ beeld (emoji), jaar?, t (met **vet** voor toetswoorden), s? (voorleestekst, anders t zonder sterretjes) }], teken: tag voor 'Ga tekenen' }
+  // d = { titel, intro, teken (tag voor 'Ga tekenen'), kaart?, scenes: [{ beeld, jaar?, t (met **vet**), s? (voorleestekst), anim?, kaart? }] }
+  // Twee soorten beeld:
+  // - beeld: één of meer emoji, gescheiden door spaties. Ze komen na elkaar binnen en bewegen zacht.
+  //   anim: "mars" (lopen van links naar rechts), "schud" (trillen), "zoom".
+  // - kaart: een spelbord met landen (d.kaart). Per scène: kleur (land → kamp a/b/n), toon, weg, klein (lopen door naar
+  //   volgende scènes), en alleen voor deze scène: focus, pijlen, front, iconen.
+  //   d.kaart = { landen: { id: { naam, x, y, label?: "boven"|"links"|"rechts", verborgen? } }, kampen: { a: { naam, kleur }, b: {…}, n: {…} } }
+  //   pijl = { van, naar, via?: id of [x,y], soort: "oorlog"|"hulp"|"trek"|"geld", label?, lp?: [x,y] (plek van het label), bocht? }
+  //   icoon = { e, at: id of [x,y], naar?: id of [x,y], anim?: "puls"|"val" }
+  const PIJLKLEUR = { oorlog: "#E5534B", hulp: "#4C8DF6", trek: "#F0A23A", geld: "#E8C547" };
+  function kaartBord(K) {
+    return `<svg class="kaart-svg" viewBox="0 0 100 66" role="img" aria-label="Kaart van Europa">
+      <defs><pattern id="kstip" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".35" class="k-stip"/></pattern></defs>
+      <rect x="0" y="0" width="100" height="66" fill="url(#kstip)"/>
+      <g class="k-front"></g>
+      <g class="k-landen">${Object.entries(K.landen).map(([id, l]) => {
+        const regels = l.naam.split("\n"), pos = l.label || "onder";
+        const tx = pos === "links" ? -6.2 : pos === "rechts" ? 6.2 : 0, anchor = pos === "links" ? "end" : pos === "rechts" ? "start" : "middle";
+        const ty = pos === "boven" ? -6.6 - (regels.length - 1) * 3 : pos === "onder" ? 8.4 : 1 - (regels.length - 1) * 1.5;
+        return `<g class="land ${l.verborgen ? "verborgen" : ""}" data-l="${id}" transform="translate(${l.x} ${l.y})"><g class="land-in">
+          <circle r="4.6"/><path class="kruis" d="M-3 -3L3 3M3 -3L-3 3"/>
+          <text x="${tx}" y="${ty}" text-anchor="${anchor}">${regels.map((r, i) => `<tspan x="${tx}" dy="${i ? 3 : 0}">${esc(r)}</tspan>`).join("")}</text></g></g>`; }).join("")}</g>
+      <g class="k-pijlen"></g><g class="k-iconen"></g>
+    </svg>
+    <div class="k-legenda"></div>`;
+  }
+  function kaartStand(d, tot) {   // wat doorloopt: kleur, toon, weg, klein (opgeteld tot en met scène 'tot')
+    const st = { kleur: {}, toon: new Set(), weg: new Set(), klein: new Set() };
+    d.scenes.slice(0, tot + 1).forEach(sc => { const k = sc.kaart; if (!k) return;
+      Object.assign(st.kleur, k.kleur || {}); (k.toon || []).forEach(x => st.toon.add(x));
+      (k.weg || []).forEach(x => st.weg.add(x)); (k.klein || []).forEach(x => st.klein.add(x)); });
+    return st;
+  }
+  function tekenKaart(box, d, i) {
+    const K = d.kaart, k = d.scenes[i].kaart, st = kaartStand(d, i), svg = $("svg", box);
+    const punt = p => Array.isArray(p) ? { x: p[0], y: p[1], r: 0 } : { x: K.landen[p].x, y: K.landen[p].y, r: 5.6 };
+    $$(".land", svg).forEach(g => {
+      const id = g.dataset.l, l = K.landen[id];
+      g.setAttribute("class", `land kamp-${st.kleur[id] || "n0"}${l.verborgen && !st.toon.has(id) ? " verborgen" : ""}${st.weg.has(id) ? " weg" : ""}${st.klein.has(id) ? " klein" : ""}${(k.focus || []).includes(id) ? " focus" : ""}`);
+      const c = (K.kampen[st.kleur[id]] || {}).kleur; $("circle", g).style.fill = c || "";
+    });
+    $(".k-pijlen", svg).innerHTML = (k.pijlen || []).map((p, n) => {
+      const A = punt(p.van), B = punt(p.naar), kleur = PIJLKLEUR[p.soort || "oorlog"];
+      let C;
+      if (p.via) { const V = punt(p.via); C = { x: 2 * V.x - (A.x + B.x) / 2, y: 2 * V.y - (A.y + B.y) / 2 }; }
+      else { const dx = B.x - A.x, dy = B.y - A.y, b = p.bocht ?? 0.18; C = { x: (A.x + B.x) / 2 - dy * b, y: (A.y + B.y) / 2 + dx * b }; }
+      const kort = (P, Q, r) => { const dx = Q.x - P.x, dy = Q.y - P.y, l = Math.hypot(dx, dy) || 1; return { x: P.x + dx / l * r, y: P.y + dy / l * r }; };
+      const s = kort(A, C, A.r), e = kort(B, C, B.r + 1.2), hoek = Math.atan2(e.y - C.y, e.x - C.x) * 180 / Math.PI;
+      const m = { x: .25 * s.x + .5 * C.x + .25 * e.x, y: .25 * s.y + .5 * C.y + .25 * e.y }, vertraging = 0.3 + n * 0.7;
+      return `<g class="pijl ${p.soort || "oorlog"}" style="--kleur:${kleur};--wacht:${vertraging}s">
+        <path pathLength="1" d="M${s.x} ${s.y}Q${C.x} ${C.y} ${e.x} ${e.y}"/>
+        <path class="punt" d="M0 0L-3 -1.8L-3 1.8z" transform="translate(${e.x} ${e.y}) rotate(${hoek})"/>
+        ${p.label ? `<text x="${p.lp ? p.lp[0] : m.x}" y="${p.lp ? p.lp[1] : m.y - 1.6}" text-anchor="middle">${esc(p.label)}</text>` : ""}</g>`;
+    }).join("");
+    $(".k-front", svg).innerHTML = k.front ? `<polyline pathLength="1" points="${k.front.map(p => p.join(",")).join(" ")}"/>` : "";
+    const ic = $(".k-iconen", svg);
+    ic.innerHTML = (k.iconen || []).map((x, n) => { const P = punt(x.at);
+      return `<g class="k-ico ${x.anim || ""}" style="--wacht:${0.2 + n * 0.4}s" data-n="${n}" transform="translate(${P.x} ${P.y})"><g class="k-ico-in"><text text-anchor="middle" y="2.4">${x.e}</text></g></g>`; }).join("");
+    (k.iconen || []).forEach((x, n) => { if (!x.naar) return;
+      const A = punt(x.at), B = punt(x.naar), g = $(`[data-n="${n}"] .k-ico-in`, ic);
+      setTimeout(() => { if (g.isConnected) { g.style.transition = "transform 1.8s ease-in-out"; g.style.transform = `translate(${B.x - A.x}px, ${B.y - A.y}px)`; } }, 900); });
+    const kampen = [...new Set(Object.values(st.kleur))].filter(x => K.kampen[x]);
+    $(".k-legenda", box).innerHTML = kampen.map(x => `<span><i style="background:${K.kampen[x].kleur}"></i>${esc(K.kampen[x].naam)}</span>`).join("");
+  }
+
   function filmpje(el, d, onEind) {
     const S = d.scenes.slice();
-    if (d.teken) S.push({ beeld: "✏️", t: "**Jouw beurt.** Teken één plaatje van wat je onthoudt.", knop: true });
+    if (d.teken) S.push({ beeld: "✏️ 🎨", t: "**Jouw beurt.** Teken één plaatje van wat je onthoudt.", knop: true });
+    const D = { ...d, scenes: S };
     el.innerHTML = `
       <div class="card">
         <h1>${esc(d.titel)}</h1>
         ${d.intro ? `<p class="soft">${md(d.intro)}</p>` : ""}
-        <div class="stage scene"><div class="sc-jaar" id="scj"></div><div class="sc-beeld" id="scb"></div></div>
+        <div class="stage film">
+          <div class="sc-jaar" id="scj"></div>
+          ${d.kaart ? `<div class="sc-kaart" id="sck">${kaartBord(d.kaart)}</div>` : ""}
+          <div class="sc-beeld" id="scb"></div>
+        </div>
         <div class="caption" id="caption"></div>
         <div class="ctrl">
           <button class="btn" id="play">▶ Afspelen</button>
-          <button class="btn ghost" id="prev" aria-label="Vorige">◀</button>
-          <button class="btn ghost" id="nextS" aria-label="Volgende">▶|</button>
+          <button class="btn ghost" id="prev" aria-label="Vorige scène">◀</button>
+          <button class="btn ghost" id="nextS" aria-label="Volgende scène">▶|</button>
           <button class="btn ghost" id="snd">🔊 Geluid aan</button>
-          <div class="prog"><i id="progbar"></i></div>
         </div>
+        <div class="sc-punten" id="scp">${S.map((x, i) => `<button data-sc="${i}" aria-label="Scène ${i + 1}${x.jaar ? ", " + esc(x.jaar) : ""}"></button>`).join("")}</div>
       </div>`;
     const spreek = sc => sc.s || sc.t.replace(/\*\*/g, "");
     let sc = 0, playing = false, timer = null, sound = true;
     function draw() {
-      const x = S[sc];
-      $("#scb", el).textContent = x.beeld || ""; $("#scj", el).textContent = x.jaar || "";
-      $("#scb", el).classList.remove("in"); void $("#scb", el).offsetWidth; $("#scb", el).classList.add("in");
-      $("#caption", el).innerHTML = md(x.t) + (x.knop ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
-      $("#progbar", el).style.width = ((sc + 1) / S.length * 100) + "%";
+      const x = S[sc], stage = $(".stage", el), b = $("#scb", el);
+      const kaart = !!(d.kaart && x.kaart);
+      stage.classList.toggle("met-kaart", kaart);
+      stage.style.setProperty("--tint", x.tint || `hsl(${(sc * 37 + 250) % 360} 45% 50%)`);
+      if (kaart) tekenKaart($("#sck", el), D, sc);
+      const actoren = kaart ? [] : String(x.beeld || "").split(/\s+/).filter(Boolean);
+      b.className = "sc-beeld" + (x.anim ? " anim-" + x.anim : "") + (actoren.length > 1 ? " veel" : "");
+      b.innerHTML = actoren.map((e, i) => `<span class="actor" style="--i:${i};--n:${actoren.length}"><span>${e}</span></span>`).join("");
+      const j = $("#scj", el); j.textContent = x.jaar || ""; j.classList.remove("in"); void j.offsetWidth; if (x.jaar) j.classList.add("in");
+      const c = $("#caption", el); c.classList.remove("in"); void c.offsetWidth; c.classList.add("in");
+      c.innerHTML = md(x.t) + (x.knop ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
+      $$("#scp button", el).forEach((p, i) => { p.classList.toggle("gezien", i < sc); p.classList.toggle("nu", i === sc); });
       if (sc === S.length - 1 && onEind) onEind();
       const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet(d.teken); };
     }
@@ -615,6 +691,7 @@
     const toon = () => { if (playing) return run(); draw(); App.stopSpeak(); if (sound && autoLees()) App.speak(spreek(S[sc])); };   // met 'alles automatisch voorlezen' ook bij zelf doorklikken
     $("#nextS", el).onclick = () => { if (sc < S.length - 1) { sc++; toon(); } };
     $("#prev", el).onclick = () => { if (sc > 0) { sc--; toon(); } };
+    $$("#scp button", el).forEach(p => p.onclick = () => { sc = +p.dataset.sc; toon(); });
     $("#snd", el).onclick = () => { sound = !sound; $("#snd", el).textContent = sound ? "🔊 Geluid aan" : "🔇 Geluid uit"; if (!sound) App.stopSpeak(); };
     draw();
     if (sound && autoLees()) App.speak(spreek(S[0]));
@@ -689,56 +766,66 @@
 
   /* ================= 10. overzicht van een hoofdstuk (route, vandaag, toetsdatum) ================= */
   // cfg = { mod, titel, spreekTitel, IDS, STATIONS, NAMEN, GEHEUGEN, waarom: [html] }
+  // Twee duidelijk verschillende delen: Leren (nieuwe stof, per paragraaf, in de kleur van het vak) en
+  // Oefenen (herhalen tot je het kent, in goud). Een paragraaf is één knop en opent de paragraaf.
   function overzicht(el, cfg) {
-    const V = Voortgang(cfg.mod), v = V.get();
+    const V = Voortgang(cfg.mod), v = V.get(), M = App.module(cfg.mod) || { onderdelen: [], vak: "", icoon: "" };
+    const ik = App.ik, kleur = App.vakKleur(M);
     const dagen = v.toets ? Math.ceil((v.toets - Date.now()) / DAG) : null;
     const k = V.teDoen("kaarten", cfg.IDS.kaarten, 6).length, q = V.teDoen("vragen", cfg.IDS.vragen, 8).length;
     const open = cfg.STATIONS.flatMap(s => s.delen).find(d => !v.gedaan[d]);
     const geh = cfg.GEHEUGEN.slice().sort((a, b) => (v.geheugen[a.id]?.laatst || 0) - (v.geheugen[b.id]?.laatst || 0))[0];
     const taken = [];
-    if (open) taken.push({ go: open, t: `${cfg.NAMEN[open]}: nieuw stuk leren`, min: 8 });
-    if (k) taken.push({ go: "begrippen", t: `🃏 ${k} begrippen checken`, min: Math.ceil(k * 0.5) });
-    if (Object.keys(v.gedaan).length >= 2) taken.push({ go: "geheugen", t: `🧠 Uit je hoofd tekenen: ${geh.titel}`, min: 5 });
-    if (q && Object.keys(v.gedaan).length >= 2) taken.push({ go: "toets", t: `📝 ${Math.min(q, 8)} toetsvragen`, min: Math.min(q, 8) * 1.5 });
+    if (open) taken.push({ go: open, t: `${cfg.NAMEN[open]}: nieuw stuk leren`, min: 8, soort: "leren" });
+    if (k) taken.push({ go: "begrippen", t: `🃏 ${k} begrippen checken`, min: Math.ceil(k * 0.5), soort: "oefen" });
+    if (Object.keys(v.gedaan).length >= 2) taken.push({ go: "geheugen", t: `🧠 Uit je hoofd tekenen: ${geh.titel}`, min: 5, soort: "oefen" });
+    if (q && Object.keys(v.gedaan).length >= 2) taken.push({ go: "toets", t: `📝 ${Math.min(q, 8)} toetsvragen`, min: Math.min(q, 8) * 1.5, soort: "oefen" });
     const min = Math.round(taken.reduce((a, t) => a + t.min, 0));
     const pct = Math.round(V.beheersing(cfg.IDS) * 100);
+    const od = id => M.onderdelen.find(o => o.id === id) || { naam: id, icoon: "" };
+    const oefen = M.onderdelen.filter(o => o.groep === "Oefenen");
+    const g = v.geheugen || {}, gehLaatst = Object.values(g).reduce((a, x) => Math.max(a, x.laatst || 0), 0);
+    const oefenInfo = { begrippen: k ? `${k} klaar om te checken` : "Alles gecheckt 😎", geheugen: gehLaatst ? `Laatst: ${new Date(gehLaatst).toLocaleDateString("nl-NL", { day: "numeric", month: "short" })}` : "Nog niet gedaan", toets: q ? `${Math.min(q, 8)} vragen klaar` : "Alles gedaan 😎" };
     el.innerHTML = `
-      <div class="ov-kop card">
-        ${lightstick(V.beheersing(cfg.IDS))}
-        <div style="flex:1;min-width:220px">
-          <h1 style="margin:0 0 6px">${esc(cfg.titel)}</h1>
-          <button class="say" id="lees-ov">🔊 Lees voor</button>
-          <div class="row"><label for="td"><b>📅 Toets op:</b></label><input type="date" id="td" class="date-in" value="${v.toets ? new Date(v.toets).toISOString().slice(0, 10) : ""}">
-            <span class="soft">${dagen == null ? "Vul de datum in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "Vandaag! Succes 💜" : dagen === 1 ? "Morgen!" : `Nog ${dagen} dagen.`}</span></div>
-          <p class="soft" style="margin:8px 0 0;font-size:.85em">Je lightstick laadt op als je begrippen en toetsvragen echt kent, niet als je alleen leest.</p>
+      <div class="card hfd-kop" style="--vak:${kleur}">
+        <div class="hfd-kop-boven">
+          <div class="hfd-ic groot">${M.icoon}</div>
+          <div style="flex:1;min-width:0"><span class="vak-tag">${esc(M.vak)}</span><h1>${esc(cfg.titel.replace(/^[^·]*·\s*/, ""))}</h1>
+            <button class="say" id="lees-ov">🔊 Lees voor</button></div>
+        </div>
+        <div class="hfd-kop-onder">
+          ${lightstick(V.beheersing(cfg.IDS))}
+          <div style="flex:1;min-width:220px">
+            <div class="row"><label for="td"><b>📅 Toets op:</b></label><input type="date" id="td" class="date-in" value="${v.toets ? new Date(v.toets).toISOString().slice(0, 10) : ""}">
+              <span class="soft">${dagen == null ? "Vul de datum in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "Vandaag! Succes 💜" : dagen === 1 ? "Morgen!" : `Nog ${dagen} dagen.`}</span></div>
+            <p class="soft" style="margin:8px 0 0;font-size:.85em">Je lightstick laadt op als je begrippen en toetsvragen echt kent, niet als je alleen leest.</p>
+          </div>
         </div>
       </div>
       <div class="card vandaag">
-        <h2>☀️ Vandaag ${taken.length ? `<span class="soft" style="font-weight:400;font-size:.75em">· ongeveer ${min} minuten</span>` : ""}</h2>
-        ${taken.length ? taken.map((t, i) => `<button class="taak" data-go="${t.go}"><span class="nr">${i + 1}</span>${esc(t.t)}<span class="soft">→</span></button>`).join("") : `<p>Alles gedaan voor vandaag 😎 Morgen komt er weer iets terug.</p>`}
+        <h2>${ik("vandaag")} Vandaag ${taken.length ? `<span class="soft" style="font-weight:400;font-size:.75em">· ongeveer ${min} minuten</span>` : ""}</h2>
+        ${taken.length ? taken.map((t, i) => `<button class="taak ${t.soort}" data-go="${t.go}"><span class="nr">${i + 1}</span><span class="taak-t">${esc(t.t)}</span>${ik("verder", "chev")}</button>`).join("") : `<p>Alles gedaan voor vandaag 😎 Morgen komt er weer iets terug.</p>`}
         <p class="soft" style="margin:10px 0 0;font-size:.85em">Elke dag een kwartiertje werkt beter dan één lange avond vlak voor de toets.</p>
       </div>
-      <div class="section-title">De route door het hoofdstuk</div>
-      <div class="route">${cfg.STATIONS.map((s, i) => `
-        <div class="halte ${s.delen.every(d => v.gedaan[d]) ? "klaar" : ""}">
-          <div class="halte-nr">${s.delen.every(d => v.gedaan[d]) ? "✓" : i + 1}</div>
-          <div><b>${s.par ? s.par + " · " : ""}${s.icoon} ${esc(s.titel)}</b>
-            <div class="row" style="margin-top:6px">${s.delen.map(d => `<button class="chip small ${v.gedaan[d] ? "sel" : ""}" data-go="${d}">${cfg.NAMEN[d]}${v.gedaan[d] ? " ✓" : ""}</button>`).join("")}</div></div>
-        </div>`).join("")}
-        <div class="halte oefen"><div class="halte-nr">🏁</div><div><b>Oefenen voor de toets</b>
-          <div class="row" style="margin-top:6px">${["begrippen", "geheugen", "toets"].map(d => `<button class="chip small" data-go="${d}">${cfg.NAMEN[d]}</button>`).join("")}</div></div></div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <label class="row"><input type="checkbox" id="auto" ${store.get("auto-voorlezen", false) ? "checked" : ""}> 🔊 Alles automatisch voorlezen (kaarten, vragen, sorteren)</label>
-      </div>
-      <details class="meet" style="margin-top:10px"><summary>🔬 Waarom werkt het zo? (voor papa)</summary>
+      <div class="deel-kop leren" style="--vak:${kleur}">${ik("leren")}<div><h2>Leren</h2><span>Nieuwe stof, paragraaf voor paragraaf.</span></div></div>
+      <div class="par-lijst" style="--vak:${kleur}">${cfg.STATIONS.map((s, i) => {
+        const klaar = s.delen.filter(d => v.gedaan[d]).length, alles = klaar === s.delen.length, bezig = klaar && !alles;
+        return `<button class="par-kaart ${alles ? "klaar" : bezig ? "bezig" : ""} ${s.delen.includes(open) ? "eerstvolgende" : ""}" data-p="${i + 1}">
+          <span class="par-badge">${alles ? ik("check") : esc(s.par || s.icoon)}</span>
+          <span class="par-tekst"><b>${s.par ? esc(s.icoon) + " " : ""}${esc(s.titel)}</b>
+            <span class="par-stappen">${s.delen.map(d => `<span class="${v.gedaan[d] ? "gedaan" : ""}">${od(d).icoon} ${esc(od(d).naam)}</span>`).join("")}</span></span>
+          <span class="par-stand">${klaar}/${s.delen.length}</span>${ik("verder", "chev")}
+        </button>`; }).join("")}</div>
+      <div class="deel-kop oefen">${ik("oefenen")}<div><h2>Oefenen</h2><span>Herhalen tot je het kent. Hiermee laadt je lightstick op.</span></div></div>
+      <div class="oefen-grid">${oefen.map(o => `<button class="oefen-tegel" data-go="${o.id}"><span class="tile-ic">${o.icoon}</span><b>${esc(o.naam)}</b><small>${oefenInfo[o.id] || ""}</small></button>`).join("")}</div>
+      <details class="meet" style="margin-top:22px"><summary>🔬 Waarom werkt het zo? (voor papa)</summary>
         <ul class="waarom">${(cfg.waarom || []).map(w => `<li>${w}</li>`).join("")}</ul></details>`;
     // Vast deel apart (krijgt een opname); datum, percentage en taken wisselen en blijven de iPad-stem.
     const dagZin = dagen == null ? "Vul de datum van je toets in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "De toets is vandaag. Succes!" : dagen === 1 ? "De toets is morgen." : `Nog ${dagen} dagen tot de toets.`;
     App.sayButton($("#lees-ov", el), () => [cfg.spreekTitel || cfg.titel, dagZin, `Je lightstick is voor ${pct} procent opgeladen.`, taken.length ? "Vandaag, ongeveer " + min + " minuten: " + taken.map(t => t.t).join(". ") + "." : "Alles gedaan voor vandaag."]);
     $$("[data-go]", el).forEach(b => b.onclick = () => App.go(cfg.mod + "-" + b.dataset.go));
+    $$("[data-p]", el).forEach(b => b.onclick = () => App.go(cfg.mod + "-p" + b.dataset.p));
     $("#td", el).onchange = e => { V.update(x => x.toets = e.target.value ? new Date(e.target.value + "T08:00:00").getTime() : null); App.go(cfg.mod + "-overzicht"); };
-    $("#auto", el).onchange = e => store.set("auto-voorlezen", e.target.checked);
   }
 
   App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, overzicht, md, euro, shuffle };

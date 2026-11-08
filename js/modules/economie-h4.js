@@ -344,64 +344,20 @@
     $("#vo", na).onclick = () => App.go(MOD + "-overzicht");
   };
 
-  function overzicht(el) {
-    const v = V.get();
-    const dagen = v.toets ? Math.ceil((v.toets - Date.now()) / DAG) : null;
-    const k = V.teDoen("kaarten", IDS.kaarten, 6).length, q = V.teDoen("vragen", IDS.vragen, 8).length;
-    const alleDelen = STATIONS.flatMap(s => s.delen);
-    const open = alleDelen.find(d => !v.gedaan[d]);
-    const geh = GEHEUGEN.slice().sort((a, b) => (v.geheugen[a.id]?.laatst || 0) - (v.geheugen[b.id]?.laatst || 0))[0];
-    const taken = [];
-    if (open) taken.push({ go: open, t: `${NAMEN[open]}: nieuw stuk leren`, min: 8 });
-    if (k) taken.push({ go: "begrippen", t: `🃏 ${k} begrippen checken`, min: Math.ceil(k * 0.5) });
-    if (Object.keys(v.gedaan).length >= 2) taken.push({ go: "geheugen", t: `🧠 Uit je hoofd tekenen: ${geh.titel}`, min: 5 });
-    if (q && Object.keys(v.gedaan).length >= 2) taken.push({ go: "toets", t: `📝 ${Math.min(q, 8)} toetsvragen`, min: Math.min(q, 8) * 1.5 });
-    const min = Math.round(taken.reduce((a, t) => a + t.min, 0));
-    el.innerHTML = `
-      <div class="ov-kop card">
-        ${L.lightstick(V.beheersing(IDS))}
-        <div style="flex:1;min-width:220px">
-          <h1 style="margin:0 0 6px">Economie H4 · Een eigen bedrijf</h1>
-          <button class="say" id="lees-ov">🔊 Lees voor</button>
-          <div class="row"><label for="td"><b>📅 Toets op:</b></label><input type="date" id="td" class="date-in" value="${v.toets ? new Date(v.toets).toISOString().slice(0, 10) : ""}">
-            <span class="soft">${dagen == null ? "Vul de datum in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "Vandaag! Succes 💜" : dagen === 1 ? "Morgen!" : `Nog ${dagen} dagen.`}</span></div>
-          <p class="soft" style="margin:8px 0 0;font-size:.85em">Je lightstick laadt op als je begrippen en toetsvragen echt kent, niet als je alleen leest.</p>
-        </div>
-      </div>
-      <div class="card vandaag">
-        <h2>☀️ Vandaag ${taken.length ? `<span class="soft" style="font-weight:400;font-size:.75em">· ongeveer ${min} minuten</span>` : ""}</h2>
-        ${taken.length ? taken.map((t, i) => `<button class="taak" data-go="${t.go}"><span class="nr">${i + 1}</span>${esc(t.t)}<span class="soft">→</span></button>`).join("") : `<p>Alles gedaan voor vandaag 😎 Morgen komt er weer iets terug.</p>`}
-        <p class="soft" style="margin:10px 0 0;font-size:.85em">Elke dag een kwartiertje werkt beter dan één lange avond vlak voor de toets.</p>
-      </div>
-      <div class="section-title">De route door het hoofdstuk</div>
-      <div class="route">${STATIONS.map((s, i) => `
-        <div class="halte ${s.delen.every(d => v.gedaan[d]) ? "klaar" : ""}">
-          <div class="halte-nr">${s.delen.every(d => v.gedaan[d]) ? "✓" : i + 1}</div>
-          <div><b>${s.par} · ${s.icoon} ${esc(s.titel)}</b>
-            <div class="row" style="margin-top:6px">${s.delen.map(d => `<button class="chip small ${v.gedaan[d] ? "sel" : ""}" data-go="${d}">${NAMEN[d]}${v.gedaan[d] ? " ✓" : ""}</button>`).join("")}</div></div>
-        </div>`).join("")}
-        <div class="halte oefen"><div class="halte-nr">🏁</div><div><b>Oefenen voor de toets</b>
-          <div class="row" style="margin-top:6px">${["begrippen", "geheugen", "toets"].map(d => `<button class="chip small" data-go="${d}">${NAMEN[d]}</button>`).join("")}</div></div></div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <label class="row"><input type="checkbox" id="auto" ${store.get("auto-voorlezen", false) ? "checked" : ""}> 🔊 Alles automatisch voorlezen (kaarten, vragen, sorteren)</label>
-      </div>
-      <details class="meet" style="margin-top:10px"><summary>🔬 Waarom werkt het zo? (voor papa)</summary>
-        <ul class="waarom">
-          <li><b>Ophalen uit je geheugen</b> (sorteren, kaarten, uit je hoofd tekenen, toetsvragen) leert meer dan herlezen. Dat is een van de best onderbouwde leerstrategieën.</li>
-          <li><b>Gespreid herhalen:</b> kaarten en vragen komen terug na 1, 2, 4 en 7 dagen, en altijd nog vóór de toets.</li>
-          <li><b>Door elkaar oefenen</b> in de toetstraining: lastiger, maar je leert kiezen welke aanpak een vraag nodig heeft.</li>
-          <li><b>Uitgewerkte voorbeelden die afbouwen</b> bij rekenen: eerst kijken, dan samen, dan zelf.</li>
-          <li><b>Beeld én woord, korte stukjes, voorlezen:</b> minder leesdruk, meer begrip.</li>
-          <li><b>Zelf maken:</b> eigen woorden en een eigen tekening bij elk begrip.</li>
-          <li><b>Voorbeelden uit haar eigen wereld:</b> stof gekoppeld aan interesses blijkt motiverender en beter te onthouden.</li>
-          <li><b>Toetstaal oefenen:</b> 'noem', 'leg uit', 'bereken' worden gemarkeerd en uitgelegd, zodat de toets geen verrassing is.</li>
-        </ul></details>`;
-    App.sayButton($("#lees-ov", el), () => `Economie hoofdstuk vier. Een eigen bedrijf. ${dagen == null ? "Vul de datum van je toets in, dan plan ik je herhaling." : dagen < 0 ? "De toets is geweest." : dagen === 0 ? "De toets is vandaag. Succes!" : dagen === 1 ? "De toets is morgen." : "Nog " + dagen + " dagen tot de toets."} Je lightstick is voor ${Math.round(V.beheersing(IDS) * 100)} procent opgeladen. ${taken.length ? "Vandaag, ongeveer " + min + " minuten: " + taken.map(t => t.t).join(". ") + "." : "Alles gedaan voor vandaag."}`);
-    $$("[data-go]", el).forEach(b => b.onclick = () => App.go(MOD + "-" + b.dataset.go));
-    $("#td", el).onchange = e => { V.update(x => x.toets = e.target.value ? new Date(e.target.value + "T08:00:00").getTime() : null); App.go(MOD + "-overzicht"); };
-    $("#auto", el).onchange = e => store.set("auto-voorlezen", e.target.checked);
-  }
+  const overzicht = el => L.overzicht(el, {
+    mod: MOD, titel: "Economie H4 · Een eigen bedrijf", spreekTitel: "Economie hoofdstuk vier. Een eigen bedrijf.",
+    IDS, STATIONS, NAMEN, GEHEUGEN,
+    waarom: [
+      "<b>Ophalen uit je geheugen</b> (sorteren, kaarten, uit je hoofd tekenen, toetsvragen) leert meer dan herlezen. Dat is een van de best onderbouwde leerstrategieën.",
+      "<b>Gespreid herhalen:</b> kaarten en vragen komen terug na 1, 2, 4 en 7 dagen, en altijd nog vóór de toets.",
+      "<b>Door elkaar oefenen</b> in de toetstraining: lastiger, maar je leert kiezen welke aanpak een vraag nodig heeft.",
+      "<b>Uitgewerkte voorbeelden die afbouwen</b> bij rekenen: eerst kijken, dan samen, dan zelf.",
+      "<b>Beeld én woord, korte stukjes, voorlezen:</b> minder leesdruk, meer begrip.",
+      "<b>Zelf maken:</b> eigen woorden en een eigen tekening bij elk begrip.",
+      "<b>Voorbeelden uit haar eigen wereld:</b> stof gekoppeld aan interesses blijkt motiverender en beter te onthouden.",
+      "<b>Toetstaal oefenen:</b> 'noem', 'leg uit', 'bereken' worden gemarkeerd en uitgelegd, zodat de toets geen verrassing is."
+    ]
+  });
 
   function chatDeel(el) {
     return L.chat(el, CHAT, na => {
@@ -453,8 +409,8 @@
   const geheugen = el => L.geheugen(el, MOD, GEHEUGEN);
   const toetsDeel = el => L.toets(el, MOD, VRAGEN);
 
-  const plaatDeel = el => { V.klaar("plaat"); const r = plaat(el); const na = document.createElement("div"); el.appendChild(na); volgendeKnop(na, "sorteren", "Bekeken? Test jezelf met sorteren."); return r; };
-  const filmDeel = el => { const r = filmpje(el, () => { V.klaar("filmpje"); }); const na = document.createElement("div"); el.appendChild(na); volgendeKnop(na, "rekenen", "Nu zelf rekenen, stap voor stap."); return r; };
+  const plaatDeel = el => { V.klaar("plaat"); return plaat(el); };
+  const filmDeel = el => filmpje(el, () => { V.klaar("filmpje"); });
 
   App.addModule({
     id: MOD,
@@ -463,6 +419,7 @@
     sub: "Alle vier de paragrafen, met je eigen bedrijfje Purple Cases.",
     icoon: "💼",
     thuis: ["overzicht"],
+    stations: STATIONS,
     meten: ["chat", "bouwplan", "plaat", "sorteren", "filmpje", "rekenen"],
     status() {
       const v = V.get(), d = v.toets ? Math.ceil((v.toets - Date.now()) / DAG) : null;
@@ -470,13 +427,13 @@
       return `${d != null && d >= 0 ? `📅 Toets ${d === 0 ? "vandaag" : d === 1 ? "morgen" : "over " + d + " dagen"} · ` : ""}🔦 ${Math.round(V.beheersing(IDS) * 100)}% opgeladen · vandaag ${k} kaarten, ${Math.min(q, 8)} vragen`;
     },
     onderdelen: [
-      { id: "overzicht", naam: "Overzicht", thuisNaam: "Start hier", icoon: "🗺️", groep: "", render: overzicht },
-      { id: "chat", naam: "Chat", icoon: "💬", groep: "Leren", render: chatDeel },
-      { id: "bouwplan", naam: "Bouwplan", icoon: "🧱", groep: "Leren", render: bouwplan },
-      { id: "plaat", naam: "De plaat", icoon: "🗺️", groep: "Leren", render: plaatDeel },
-      { id: "sorteren", naam: "Sorteren", icoon: "🔀", groep: "Leren", render: sorteren },
-      { id: "filmpje", naam: "Filmpje", icoon: "🎬", groep: "Leren", render: filmDeel },
-      { id: "rekenen", naam: "Zelf rekenen", icoon: "🧮", groep: "Leren", render: rekenen },
+      { id: "overzicht", naam: "Overzicht", icoon: "🗺️", groep: "", render: overzicht },
+      { id: "chat", naam: "Chat", icoon: "💬", groep: "Leren", kort: "Loondienst of eigen baas? Lees mee en sorteer.", render: chatDeel },
+      { id: "bouwplan", naam: "Bouwplan", icoon: "🧱", groep: "Leren", kort: "De vier delen van het ondernemingsplan.", render: bouwplan },
+      { id: "plaat", naam: "De plaat", icoon: "🗺️", groep: "Leren", kort: "SWOT en de 5 P's. Kijk-versie en doe-versie.", render: plaatDeel },
+      { id: "sorteren", naam: "Sorteren", icoon: "🔀", groep: "Leren", kort: "Sterkte of zwakte? Welke P?", render: sorteren },
+      { id: "filmpje", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "Van omzet naar nettowinst, met staafjes.", render: filmDeel },
+      { id: "rekenen", naam: "Zelf rekenen", icoon: "🧮", groep: "Leren", kort: "Kijk mee, samen, dan zelf.", render: rekenen },
       { id: "begrippen", naam: "Begrippen", icoon: "🃏", groep: "Oefenen", render: begrippen },
       { id: "geheugen", naam: "Uit je hoofd", icoon: "🧠", groep: "Oefenen", render: geheugen },
       { id: "toets", naam: "Toetstraining", icoon: "📝", groep: "Oefenen", render: toetsDeel }

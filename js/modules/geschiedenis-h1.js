@@ -137,19 +137,39 @@
     titel: "Van één schot naar een wereldoorlog",
     intro: "Hoe begon de oorlog, hoe verliep hij, en hoe liep hij af? Tik op **Afspelen**.",
     teken: "De Eerste Wereldoorlog",
+    // Spelbord van Europa (geen echte kaart): landen op hun ongeveer goede plek. Zie L.filmpje in leren.js.
+    kaart: {
+      kampen: { a: { naam: "Geallieerden", kleur: "#4C8DF6" }, b: { naam: "Centralen", kleur: "#E5534B" }, n: { naam: "Neutraal", kleur: "#8E8AA8" } },
+      landen: {
+        gb: { naam: "Groot-Brittannië", x: 15, y: 13 },
+        nl: { naam: "Nederland", x: 35, y: 17, label: "boven" },
+        be: { naam: "België", x: 32, y: 27, label: "links" },
+        fr: { naam: "Frankrijk", x: 24, y: 41 },
+        de: { naam: "Duitsland", x: 47, y: 23, label: "boven" },
+        ah: { naam: "Oostenrijk-\nHongarije", x: 60, y: 38, label: "rechts" },
+        rs: { naam: "Servië", x: 63, y: 50 },
+        bu: { naam: "Bulgarije", x: 74, y: 48, label: "rechts" },
+        ot: { naam: "Ottomaanse Rijk", x: 84, y: 55 },
+        it: { naam: "Italië", x: 46, y: 50 },
+        ru: { naam: "Rusland", x: 82, y: 18 },
+        us: { naam: "Verenigde\nStaten", x: 9, y: 50, label: "boven", verborgen: true },
+        pl: { naam: "Polen", x: 64, y: 22, label: "rechts", verborgen: true },
+        cz: { naam: "Tsjecho-\nSlowakije", x: 52, y: 31, label: "links", verborgen: true }
+      }
+    },
     scenes: [
-      { beeld: "⚡", jaar: "28 juni 1914", t: "In Sarajevo schiet een Bosnisch-Servische nationalist de Oostenrijkse kroonprins Frans Ferdinand dood. Dit is de **aanleiding** van de oorlog: de directe oorzaak." },
-      { beeld: "📜", jaar: "juli 1914", t: "Oostenrijk-Hongarije geeft Servië de schuld. Het stuurt een **ultimatum**: strenge eisen, met heel weinig tijd. Servië zegt niet overal ja op. Oostenrijk-Hongarije verklaart Servië de oorlog." },
-      { beeld: "🪖", jaar: "eind juli – begin augustus 1914", t: "Rusland helpt Servië en begint met de **mobilisatie**: het leger maakt zich klaar voor oorlog. Duitsland helpt Oostenrijk-Hongarije. Het verklaart Rusland en Frankrijk de oorlog." },
-      { beeld: "🗺️", jaar: "augustus 1914", t: "Duitsland volgt het **Schlieffenplan**. Eerst Frankrijk snel verslaan, via België. Daarna alle soldaten naar Rusland. Zo wil Duitsland een **tweefrontenoorlog** voorkomen." },
-      { beeld: "💥", jaar: "augustus 1914", t: "Duitsland valt het neutrale België binnen. Daarom doet ook Groot-Brittannië mee. De bondgenootschappen werken als dominostenen. Binnen een week zijn alle grote landen in oorlog." },
-      { beeld: "⚔️", t: "Twee kampen. De **geallieerden**: Frankrijk, Groot-Brittannië en Rusland, later ook Italië en de Verenigde Staten. De **centralen**: Duitsland, Oostenrijk-Hongarije, het Ottomaanse Rijk en Bulgarije." },
-      { beeld: "⛏️", jaar: "september 1914", t: "Bij de Marne houden de Fransen en Britten de Duitsers tegen. Het plan mislukt. Beide legers graven zich in. Het wordt een **loopgravenoorlog**: jarenlang vastzitten, met enorm veel doden." },
-      { beeld: "🏭", t: "Het wordt een **totale oorlog**. Het hele land doet mee. Fabrieken maken wapens. Vrouwen doen het werk van de mannen. Voedsel gaat op de bon. **Propaganda** moet iedereen achter de oorlog krijgen. Ook burgers worden doelwit." },
-      { beeld: "🇺🇸", jaar: "1917 – 1918", t: "In 1917 doen de Verenigde Staten mee, aan de kant van de geallieerden. Rusland krijgt een revolutie en stopt in 1918 met vechten." },
-      { beeld: "🕊️", jaar: "11 november 1918", t: "**Wapenstilstand**. Duitsland kan niet meer. De keizer vlucht naar Nederland. Ongeveer tien miljoen soldaten zijn gesneuveld." },
-      { beeld: "✍️", jaar: "1919", t: "Het **Verdrag van Versailles**. Duitsland krijgt de schuld van de oorlog. Het moet **herstelbetalingen** betalen. Het verliest land en al zijn koloniën. Het mag maar een klein leger hebben." },
-      { beeld: "🗺️", jaar: "na 1918", t: "Gevolgen voor Europa: vier keizerrijken verdwijnen. Er komen nieuwe landen, zoals Polen en Tsjecho-Slowakije. De **Volkenbond** moet nieuwe oorlogen voorkomen. Veel Duitsers voelen zich vernederd." }
+      { beeld: "⚡", jaar: "28 juni 1914", kaart: { focus: ["ah", "rs"], iconen: [{ e: "⚡", at: [59, 46], anim: "puls" }] }, t: "In Sarajevo schiet een Bosnisch-Servische nationalist de Oostenrijkse kroonprins Frans Ferdinand dood. Dit is de **aanleiding** van de oorlog: de directe oorzaak." },
+      { beeld: "📜", jaar: "juli 1914", kaart: { kleur: { ah: "b", rs: "a" }, pijlen: [{ van: "ah", naar: "rs", soort: "oorlog", label: "ultimatum" }], iconen: [{ e: "📜", at: [53, 46] }] }, t: "Oostenrijk-Hongarije geeft Servië de schuld. Het stuurt een **ultimatum**: strenge eisen, met heel weinig tijd. Servië zegt niet overal ja op. Oostenrijk-Hongarije verklaart Servië de oorlog." },
+      { beeld: "🪖", jaar: "eind juli – begin augustus 1914", kaart: { kleur: { ru: "a", de: "b", fr: "a" }, focus: ["ru", "de"], pijlen: [{ van: "ru", naar: "rs", soort: "hulp", label: "helpt" }, { van: "de", naar: "ah", soort: "hulp", bocht: -.2 }, { van: "de", naar: "ru", soort: "oorlog", label: "oorlog" }, { van: "de", naar: "fr", soort: "oorlog", label: "oorlog" }] }, t: "Rusland helpt Servië en begint met de **mobilisatie**: het leger maakt zich klaar voor oorlog. Duitsland helpt Oostenrijk-Hongarije. Het verklaart Rusland en Frankrijk de oorlog." },
+      { beeld: "🗺️", jaar: "augustus 1914", kaart: { focus: ["de"], pijlen: [{ van: "de", naar: "fr", via: [33, 31], soort: "trek", label: "1: Schlieffenplan", lp: [43, 37] }, { van: "de", naar: "ru", soort: "trek", label: "2: daarna", bocht: -.15 }] }, t: "Duitsland volgt het **Schlieffenplan**. Eerst Frankrijk snel verslaan, via België. Daarna alle soldaten naar Rusland. Zo wil Duitsland een **tweefrontenoorlog** voorkomen." },
+      { beeld: "💥", jaar: "augustus 1914", kaart: { kleur: { be: "a", gb: "a" }, focus: ["be", "gb"], pijlen: [{ van: "de", naar: "be", soort: "oorlog", label: "valt binnen" }, { van: "gb", naar: "be", soort: "hulp", label: "doet mee" }], iconen: [{ e: "💥", at: [37, 25], anim: "puls" }] }, t: "Duitsland valt het neutrale België binnen. Daarom doet ook Groot-Brittannië mee. De bondgenootschappen werken als dominostenen. Binnen een week zijn alle grote landen in oorlog." },
+      { beeld: "⚔️", kaart: { kleur: { it: "a", ot: "b", bu: "b", nl: "n" }, focus: ["it", "ot", "bu"] }, t: "Twee kampen. De **geallieerden**: Frankrijk, Groot-Brittannië en Rusland, later ook Italië en de Verenigde Staten. De **centralen**: Duitsland, Oostenrijk-Hongarije, het Ottomaanse Rijk en Bulgarije." },
+      { beeld: "⛏️", jaar: "september 1914", kaart: { front: [[29, 21], [33, 31], [37, 37], [39, 42]], iconen: [{ e: "⛏️", at: [40, 33] }, { e: "🛑", at: [34, 38], anim: "puls" }] }, t: "Bij de Marne houden de Fransen en Britten de Duitsers tegen. Het plan mislukt. Beide legers graven zich in. Het wordt een **loopgravenoorlog**: jarenlang vastzitten, met enorm veel doden." },
+      { beeld: "🏭 👩‍🏭 🍞 📢", t: "Het wordt een **totale oorlog**. Het hele land doet mee. Fabrieken maken wapens. Vrouwen doen het werk van de mannen. Voedsel gaat op de bon. **Propaganda** moet iedereen achter de oorlog krijgen. Ook burgers worden doelwit." },
+      { beeld: "🇺🇸", jaar: "1917 – 1918", kaart: { kleur: { us: "a" }, toon: ["us"], weg: ["ru"], focus: ["us"], front: [[29, 21], [33, 31], [37, 37], [39, 42]], pijlen: [{ van: "us", naar: "fr", soort: "hulp", label: "1917", lp: [19, 54] }], iconen: [{ e: "✋", at: [82, 9] }] }, t: "In 1917 doen de Verenigde Staten mee, aan de kant van de geallieerden. Rusland krijgt een revolutie en stopt in 1918 met vechten." },
+      { beeld: "🕊️", jaar: "11 november 1918", kaart: { iconen: [{ e: "🕊️", at: [36, 36], anim: "puls" }, { e: "👑", at: "de", naar: "nl" }] }, t: "**Wapenstilstand**. Duitsland kan niet meer. De keizer vlucht naar Nederland. Ongeveer tien miljoen soldaten zijn gesneuveld." },
+      { beeld: "✍️", jaar: "1919", kaart: { klein: ["de"], focus: ["de"], pijlen: [{ van: "de", naar: "fr", soort: "geld", label: "herstelbetalingen" }], iconen: [{ e: "✍️", at: [17, 33] }] }, t: "Het **Verdrag van Versailles**. Duitsland krijgt de schuld van de oorlog. Het moet **herstelbetalingen** betalen. Het verliest land en al zijn koloniën. Het mag maar een klein leger hebben." },
+      { beeld: "🗺️", jaar: "na 1918", kaart: { toon: ["pl", "cz"], weg: ["ah", "ot"], focus: ["pl", "cz"], iconen: [{ e: "👑", at: "de", anim: "val" }, { e: "👑", at: "ah", anim: "val" }, { e: "👑", at: "ru", anim: "val" }, { e: "👑", at: "ot", anim: "val" }, { e: "🌐", at: [38, 49], anim: "puls" }] }, t: "Gevolgen voor Europa: vier keizerrijken verdwijnen. Er komen nieuwe landen, zoals Polen en Tsjecho-Slowakije. De **Volkenbond** moet nieuwe oorlogen voorkomen. Veel Duitsers voelen zich vernederd." }
     ]
   };
 
@@ -233,12 +253,12 @@
     intro: "Hoe kwam het **fascisme** op in Italië? Tik op **Afspelen**.",
     teken: "Fascisme in Italië",
     scenes: [
-      { beeld: "🇮🇹", jaar: "1918", t: "Italië stond aan de kant van de winnaars. Maar het kreeg minder land dan beloofd. Veel Italianen voelden zich bedrogen." },
-      { beeld: "🏚️", jaar: "1919 – 1920", t: "Na de oorlog: veel werklozen, hoge prijzen en stakingen. Arbeiders bezetten fabrieken. Rijke Italianen en de middenklasse waren bang voor een communistische revolutie, zoals in Rusland." },
-      { beeld: "👊", t: "Benito Mussolini begon de fascistische partij. Zijn knokploegen, de **zwarthemden**, sloegen stakers en socialisten in elkaar. Hij beloofde orde en een groot, sterk Italië." },
-      { beeld: "🚶", jaar: "1922", t: "De **Mars op Rome**. Duizenden fascisten trokken naar Rome. De koning durfde niets te doen. Hij maakte Mussolini premier." },
-      { beeld: "🔒", jaar: "1925 – 1926", t: "Mussolini maakte van Italië een **dictatuur**. Andere partijen werden verboden: een **eenpartijstaat**. Kranten mochten alleen schrijven wat hij wilde." },
-      { beeld: "📋", t: "Kenmerken van het **fascisme**: extreem nationalisme, één sterke leider, geweld, tegen democratie en tegen communisme. De staat is belangrijker dan het individu." }
+      { beeld: "🇮🇹 🏆 😠", jaar: "1918", t: "Italië stond aan de kant van de winnaars. Maar het kreeg minder land dan beloofd. Veel Italianen voelden zich bedrogen." },
+      { beeld: "🏚️ 🏭 ✊ 💸", jaar: "1919 – 1920", t: "Na de oorlog: veel werklozen, hoge prijzen en stakingen. Arbeiders bezetten fabrieken. Rijke Italianen en de middenklasse waren bang voor een communistische revolutie, zoals in Rusland." },
+      { beeld: "👊 🖤 📣", anim: "schud", t: "Benito Mussolini begon de fascistische partij. Zijn knokploegen, de **zwarthemden**, sloegen stakers en socialisten in elkaar. Hij beloofde orde en een groot, sterk Italië." },
+      { beeld: "🚶 🚶 🚶 🚶", anim: "mars", jaar: "1922", t: "De **Mars op Rome**. Duizenden fascisten trokken naar Rome. De koning durfde niets te doen. Hij maakte Mussolini premier." },
+      { beeld: "🔒 📰 🚫", jaar: "1925 – 1926", t: "Mussolini maakte van Italië een **dictatuur**. Andere partijen werden verboden: een **eenpartijstaat**. Kranten mochten alleen schrijven wat hij wilde." },
+      { beeld: "🚩 👤 👊 🏛️", t: "Kenmerken van het **fascisme**: extreem nationalisme, één sterke leider, geweld, tegen democratie en tegen communisme. De staat is belangrijker dan het individu." }
     ]
   };
 
@@ -516,7 +536,7 @@
 
   const tijdlijn = el => L.tijdlijn(el, TIJDLIJN, n => { V.klaar("tijdlijn"); volgendeKnop(n, "kruitvat", "Volgende stop: Europa rond 1900."); });
 
-  const kruitvat = el => { L.plaat(el, PLAAT12); V.klaar("kruitvat"); volgendeKnop(na(el), "kampen", "Bekeken? Test jezelf met sorteren."); };
+  const kruitvat = el => { L.plaat(el, PLAAT12); V.klaar("kruitvat"); };
 
   function kampen(el) {
     el.innerHTML = `<div id="a"></div><div id="b"></div>`;
@@ -528,7 +548,7 @@
 
   const video = el => L.video(el, MOD, { ...VIDEO13.video, intro: VIDEO13.intro, vraag: VIDEO13.vraag }, n => { V.klaar("video"); volgendeKnop(n, "oorlog", "Nu het filmpje: hoe ging het verder?"); });
 
-  const oorlog = el => { const r = L.filmpje(el, FILM13, () => V.klaar("oorlog")); volgendeKnop(na(el), "oorzaken", "Nu jij: oorzaak of gevolg?"); return r; };
+  const oorlog = el => L.filmpje(el, FILM13, () => V.klaar("oorlog"));
 
   const oorzaken = el => L.sorteer(el, SORT_OORZAAK, n => { V.klaar("oorzaken"); volgendeKnop(n, "weimar", "Volgende stop: Duitsland na de oorlog."); });
 
@@ -540,7 +560,7 @@
     });
   }
 
-  const italie = el => { const r = L.filmpje(el, FILM_ITALIE, () => V.klaar("italie")); volgendeKnop(na(el), "nederland", "Volgende stop: Nederland."); return r; };
+  const italie = el => L.filmpje(el, FILM_ITALIE, () => V.klaar("italie"));
 
   function nederland(el) {
     L.plaat(el, PLAAT_NL);
@@ -587,6 +607,7 @@
     sub: "Van kruitvat tot Weimar, plus oorzaken en gevolgen.",
     icoon: "🪖",
     thuis: ["overzicht"],
+    stations: STATIONS,
     meten: ["tijdlijn", "kruitvat", "kampen", "video", "oorlog", "oorzaken", "weimar", "italie", "nederland", "lab"],
     status() {
       const v = V.get(), d = v.toets ? Math.ceil((v.toets - Date.now()) / DAG) : null;
@@ -594,17 +615,17 @@
       return `${d != null && d >= 0 ? `📅 Toets ${d === 0 ? "vandaag" : d === 1 ? "morgen" : "over " + d + " dagen"} · ` : ""}🔦 ${Math.round(V.beheersing(IDS) * 100)}% opgeladen · vandaag ${k} kaarten, ${Math.min(q, 8)} vragen`;
     },
     onderdelen: [
-      { id: "overzicht", naam: "Overzicht", thuisNaam: "Start hier", icoon: "🗺️", groep: "", render: overzicht },
-      { id: "tijdlijn", naam: "Tijdlijn", icoon: "🕰️", groep: "Leren", render: tijdlijn },
-      { id: "kruitvat", naam: "Kruitvat", icoon: "🧨", groep: "Leren", render: kruitvat },
-      { id: "kampen", naam: "Sorteren", icoon: "🔀", groep: "Leren", render: kampen },
-      { id: "video", naam: "Video", icoon: "📺", groep: "Leren", render: video },
-      { id: "oorlog", naam: "Filmpje", icoon: "🎬", groep: "Leren", render: oorlog },
-      { id: "oorzaken", naam: "Oorzaak of gevolg", icoon: "🔎", groep: "Leren", render: oorzaken },
-      { id: "weimar", naam: "Weimar", icoon: "💬", groep: "Leren", render: weimar },
-      { id: "italie", naam: "Italië", icoon: "🎬", groep: "Leren", render: italie },
-      { id: "nederland", naam: "Nederland", icoon: "🇳🇱", groep: "Leren", render: nederland },
-      { id: "lab", naam: "Oorzaak-lab", icoon: "🔗", groep: "Leren", render: lab },
+      { id: "overzicht", naam: "Overzicht", icoon: "🗺️", groep: "", render: overzicht },
+      { id: "tijdlijn", naam: "Tijdlijn", icoon: "🕰️", groep: "Leren", kort: "Zet de gebeurtenissen op volgorde.", render: tijdlijn },
+      { id: "kruitvat", naam: "Kruitvat", icoon: "🧨", groep: "Leren", kort: "De plaat: vier oorzaken. Kijk-versie en doe-versie.", render: kruitvat },
+      { id: "kampen", naam: "Sorteren", icoon: "🔀", groep: "Leren", kort: "Welk land hoort in welk kamp? Welke lont is het?", render: kampen },
+      { id: "video", naam: "Video", icoon: "📺", groep: "Leren", kort: "Eerst kijken, dan zeg jij wat je weet.", render: video },
+      { id: "oorlog", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "Van één schot naar een wereldoorlog, op de kaart.", render: oorlog },
+      { id: "oorzaken", naam: "Oorzaak of gevolg", icoon: "🔎", groep: "Leren", kort: "Sorteer: aanleiding, oorzaak of gevolg?", render: oorzaken },
+      { id: "weimar", naam: "Weimar", icoon: "💬", groep: "Leren", kort: "Podcast-chat over Duitsland na de oorlog.", render: weimar },
+      { id: "italie", naam: "Italië", icoon: "🎬", groep: "Leren", kort: "Filmpje: hoe Mussolini de macht kreeg.", render: italie },
+      { id: "nederland", naam: "Nederland", icoon: "🇳🇱", groep: "Leren", kort: "Waarom bleef Nederland neutraal?", render: nederland },
+      { id: "lab", naam: "Oorzaak-lab", icoon: "🔗", groep: "Leren", kort: "Vijf soorten oorzaken en gevolgen, vijf rondes.", render: lab },
       { id: "begrippen", naam: "Begrippen", icoon: "🃏", groep: "Oefenen", render: begrippen },
       { id: "geheugen", naam: "Uit je hoofd", icoon: "🧠", groep: "Oefenen", render: geheugen },
       { id: "toets", naam: "Toetstraining", icoon: "📝", groep: "Oefenen", render: toetsDeel }

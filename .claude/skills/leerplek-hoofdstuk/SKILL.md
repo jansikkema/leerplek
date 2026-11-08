@@ -39,7 +39,7 @@ Kies vanuit de stof, niet vanuit de vorm. Haar voorkeur: plaat en filmpje eerst.
 | Twee kanten, voor- en nadelen, een tegenstelling | **chat** (twee personen) + **sorteren** in 2 bakken | `L.chat`, `L.sorteer` |
 | Iets dat uit onderdelen bestaat (een plan, een opbouw) | **bouwplan** (blokken met tour-vergelijking) + **sorteren** | nu nog in `economie-h4.js` |
 | Een schema of model met vakken (SWOT, kringloop, tabel) | **plaat** met kijk- en doe-versie + **sorteren** | `L.plaat` (blokken met `<span class="bl">`) |
-| Een verloop in stappen, getallen die veranderen, oorzaak → gevolg | **filmpje** (scènes met beeld, jaartal en voorleestekst) | `L.filmpje` (staafjesfilm H4: eigen code) |
+| Een verloop in stappen, getallen die veranderen, oorzaak → gevolg | **filmpje** (scènes met jaartal en voorleestekst; beeld = meerdere emoji die bewegen, of een **kaart** als spelbord met landen, kampen, pijlen en een front) | `L.filmpje` (voorbeeld kaart: `FILM13` in `geschiedenis-h1.js`; staafjesfilm H4: eigen code) |
 | Gebeurtenissen op volgorde van tijd | **tijdlijn** (rondes, tik wat het eerst kwam) | `L.tijdlijn` |
 | Berekeningen | **rekenen**: kijk mee → samen → zelf | `L.rekenen` (kent nu alleen omzet → nettowinst) |
 
@@ -61,7 +61,8 @@ Maak `js/modules/<vak>-h<nummer>.js` (bijvoorbeeld `geschiedenis-h3.js`) naar he
   - `keuze`: `{ ..., keuzes: [...], goed: <index>, uitleg }`.
   - Neem minstens één vraag op die het verschil vraagt tussen twee begrippen die op elkaar lijken; daar vallen punten.
 - **GEHEUGEN** (uit-je-hoofd-platen): `{ id, icoon, titel, opdracht, model, check: [...] }`. Eén per kernschema. `model` is een eenvoudige HTML-weergave van wat er op de plaat hoort; `check` zijn de punten die ze daarna zelf afvinkt.
-- **STATIONS** (de route door het hoofdstuk), **NAMEN**, `overzicht` met toetsdatum en lightstick, en `App.addModule({...})` met `id`, `vak`, `titel`, `sub`, `icoon`, `thuis: ["overzicht"]`, `meten` (de leervormen die vader wil laten beoordelen), `status()` en `onderdelen`.
+- **STATIONS** (de paragrafen met hun stappen, in volgorde), **NAMEN**, `overzicht` via `L.overzicht`, en `App.addModule({...})` met `id`, `vak`, `titel` (begint met "H<nummer>"), `sub`, `icoon`, `stations: STATIONS`, `meten` (de leervormen die vader wil laten beoordelen), `status()` en `onderdelen`. Geef elke Leren-stap een `kort` (één zin: wat doe je hier). Oefen-onderdelen krijgen `groep: "Oefenen"`.
+- De schil bouwt de navigatie zelf uit `stations`: overzicht → paragraaf (`#<mod>-p<n>`) → stap, met bovenaan waar je bent en onderaan vorige/volgende. Zet dus geen eigen "Volgende"-knop direct onder een stap; alleen een felicitatie ná het afronden (`volgendeKnop` in de `onKlaar`).
 - Bovenaan het bestand een opmerking: bron (methode en hoofdstuk), "eigen samenvattingen en voorbeelden, geen tekst uit het boek", en de opbouw per paragraaf.
 
 ## Stap 4 · Registreren

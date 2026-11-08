@@ -18,12 +18,11 @@ const [, , alleen, map] = process.argv;
     page.on("console", m => { if (m.type() === "error" && !/fonts\.(googleapis|gstatic)/.test(m.text())) fouten.push(`${stand} console: ${m.text()}`); });
     await page.goto(BASIS + "#start");
     await page.waitForSelector(".tiles");
-    const routes = await page.evaluate(() => [...document.querySelectorAll("[data-go]")].map(b => b.dataset.go));
-    const mods = await page.evaluate(() => [...new Set([...document.querySelectorAll(".tile [data-go]")].map(b => b.dataset.go.split("-").slice(0, -1).join("-")).filter(Boolean))]);
+    if (map) { fs.mkdirSync(map, { recursive: true }); await page.screenshot({ path: `${map}/${stand}-start.png`, fullPage: true }); }
+    const mods = await page.evaluate(() => App.modules.map(m => m.id));
     const doel = alleen ? [alleen] : mods;
     for (const m of doel) {
-      await page.goto(BASIS + "#" + m + "-overzicht").catch(() => {});
-      const delen = await page.evaluate(m => [...document.querySelectorAll(".mod-nav [data-go]")].map(b => b.dataset.go), m);
+      const delen = await page.evaluate(m => App.routesVan(m), m);
       if (!delen.length) fouten.push(`${stand}: module ${m} niet gevonden`);
       for (const r of delen) {
         await page.goto(BASIS + "#" + r); await page.waitForTimeout(250);

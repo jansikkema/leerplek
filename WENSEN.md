@@ -62,6 +62,16 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Voorstellen van Claude (graag beoordelen)
 
+### Na de opruimronde: op de iPad nakijken
+- Werkt ⋯ (verplaatsen) goed met de vinger, en snapt ze Bezig/Toekomst/Gedaan zonder uitleg?
+- Speelt het kaartfilmpje vloeiend op de iPad (pijlen die getekend worden, de kroon die naar Nederland gaat)?
+- Mist ze de knoppenrij bovenaan een hoofdstuk? Zo ja: welke sprong maakte ze ermee?
+- Werk: klein. Wacht op: samen kijken op de iPad.
+
+### Andere filmpjes ook als kaart of met meer beweging
+- Het H4-filmpje (staafjes) beweegt al. Toekomstige hoofdstukken met een verloop in plaats en tijd (aardrijkskunde, geschiedenis) kunnen de kaartvorm gebruiken.
+- Werk: klein per filmpje (alleen data).
+
 ### Leervormen verder herbruikbaar maken
 - De plaat (kijk- en doe-versie), het filmpje en het bouwplan staan nu in `economie-h4.js`. Rekenen in `leren.js` kent alleen de rekentrap omzet → nettowinst.
 - Voorstel: bij het tweede hoofdstuk dat zo'n vorm nodig heeft, die vorm eerst naar `leren.js` verplaatsen (inhoud als data), in plaats van de code te kopiëren.
@@ -69,6 +79,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-08 · Opgeruimd en logischer (vraag van vader).** Beginscherm met Bezig/Toekomst/Gedaan, filter per vak en "Verder waar je was". Hoofdstuk: Leren (paragrafen als knoppen) en Oefenen apart, elk met eigen kleur. Paragraaf als eigen scherm. In een stap: waar je bent, en vorige/volgende. Terugknop één niveau omhoog. Lijniconen voor de navigatie, emoji in zachte vlakken. Filmpje §1.3 op een kaart van Europa met kampen, pijlen en front; Italië-filmpje met meer beweging. H4 gebruikt nu ook het gedeelde overzicht. Zie besluit 19.
 - **2026-11-08 · Geschiedenis H1 De Eerste Wereldoorlog.** Tijdlijn (vier rondes), plaat 'kruitvat' met twee sorteerrondes, filmpje van Sarajevo tot Versailles, sorteren aanleiding/oorzaak/gevolg, podcast-chat over Weimar, filmpje Italië, plaat Nederland neutraal, oorzaak-lab met vijf sorteerrondes, 35 begrippen, 31 toetsvragen, 6 uit-je-hoofd-platen. Nieuwe vormen in `leren.js`. Voorlezen: WO1 en PSEC worden goed uitgesproken; filmpje leest ook voor bij zelf doorklikken als 'alles automatisch voorlezen' aanstaat.
 - **2026-11-08 · Starten bij slechte wifi.** Hooguit 3 seconden wachten op internet, daarna de bewaarde versie. Foutpagina's en inlogpagina's van wifi worden genegeerd. Getest: oude versie 45 s bij trage wifi en vastgelopen bij inlogpagina of storing; nieuwe versie 3 s en 0,1 s.
 - **2026-11-08 · Scherm "Wat is er nieuw".** Regels in `js/nieuw.js`, melding op het beginscherm tot ze het gezien heeft, links vanuit de ideeënbus en 'Mijn app'.

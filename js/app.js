@@ -6,6 +6,26 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+  /* ---------- lijniconen voor de navigatie (eigen tekening, geen externe bibliotheek) ---------- */
+  const IK = {
+    terug: '<path d="M15 18l-6-6 6-6"/>',
+    verder: '<path d="M9 18l6-6-6-6"/>',
+    leren: '<path d="M3 5.5C5.5 4 8.5 4 12 6c3.5-2 6.5-2 9-.5V19c-2.5-1.5-5.5-1.5-9 .5-3.5-2-6.5-2-9-.5z"/><path d="M12 6v13.5"/>',
+    oefenen: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>',
+    vandaag: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>',
+    meer: '<circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/>',
+    ruimte: '<path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    play: '<path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/>',
+    huis: '<path d="M3.5 11L12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/>'
+  };
+  const ik = (naam, cls = "") => `<svg class="ik ${cls}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IK[naam] || ""}</svg>`;
+
+  /* ---------- vakken: elk vak een eigen kleur (herkenbaar op het beginscherm en in een hoofdstuk) ---------- */
+  const VAKKLEUR = { Economie: "#3E9FE0", Geschiedenis: "#E58A3A", Nederlands: "#E0566B", Engels: "#3FB27F", Duits: "#C9A227", Frans: "#5B7CFA",
+    Biologie: "#5DB443", Aardrijkskunde: "#22A99A", Wiskunde: "#8C6CF0", Natuurkunde: "#D35FB7", Scheikunde: "#7C8DA6" };
+  const vakKleur = m => m.kleur || VAKKLEUR[m.vak] || "#9A8CD8";
+
   /* ---------- Safari mag de pagina niet zelf inzoomen (we hebben A− / A+ en zoom in het tekendoek) ---------- */
   ["gesturestart", "gesturechange", "gestureend"].forEach(t => document.addEventListener(t, e => e.preventDefault(), { passive: false }));
 
@@ -55,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 19;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 20;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -291,6 +311,10 @@
   let leave = [];
   let pendingTag = "", pendingEdit = null;
 
+  // Terug gaat één niveau omhoog: stap → paragraaf → hoofdstuk → start.
+  const ouders = { notitie: "notities" };
+  let ouder = "start";
+
   function go(name) { if (location.hash === "#" + name) render(); else location.hash = name; }
   function onLeave(fn) { leave.push(fn); }
 
@@ -302,6 +326,8 @@
     const route = routes[name] || routes.start;
     setTimeout(() => voorladen(name), 1500);
     $("#back").hidden = (route === routes.start);
+    ouder = (routes[name] && ouders[name]) || "start";
+    $("#back").setAttribute("aria-label", ouder === "start" ? "Terug naar start" : "Terug");
     const el = $("#view");
     el.innerHTML = `<div class="view-in"></div>`;
     const inner = el.firstElementChild;
@@ -312,43 +338,93 @@
   }
 
   /* ---------- beginscherm ---------- */
+  // Hoofdstukken staan in drie bakken: Bezig, Toekomst en Gedaan. Zij kan zelf verplaatsen (⋯).
+  // Zonder eigen keuze: Gedaan als de toets een dag geleden is, anders wat het hoofdstuk zelf zegt (standaard Bezig).
+  const FASEN = [["bezig", "Bezig", "📖"], ["toekomst", "Toekomst", "🔜"], ["gedaan", "Gedaan", "✅"]];
+  const voortgangVan = id => Object.assign({ gedaan: {} }, store.get("voortgang-" + id, {}));
+  function faseVan(m) {
+    const eigen = store.get("fase", {})[m.id]; if (eigen) return eigen;
+    const v = voortgangVan(m.id);
+    if (v.toets && v.toets < Date.now() - 864e5) return "gedaan";
+    return m.fase || "bezig";
+  }
+  const leerStappen = m => (m.stations || []).flatMap(s => s.delen);
+  const kortNaam = m => `${m.vak} ${(m.titel.match(/^H\d+\w*/) || [m.titel])[0]}`;   // "Geschiedenis H1"
+  const onderdeel = (m, id) => m.onderdelen.find(o => o.id === id) || { id, naam: id, icoon: "" };
+
+  function hoofdstukKaart(m) {
+    const st = leerStappen(m), v = voortgangVan(m.id), klaar = st.filter(d => v.gedaan[d]).length;
+    const pct = st.length ? Math.round(klaar / st.length * 100) : 0;
+    return `<div class="hfd-kaart" role="button" tabindex="0" style="--vak:${vakKleur(m)}" data-go="${m.id}-overzicht">
+      <div class="hfd-ic">${m.icoon}</div>
+      <div class="hfd-tekst">
+        <span class="vak-tag">${esc(m.vak)}</span>
+        <div class="nm">${esc(m.titel)}</div>
+        ${m.sub ? `<div class="sub">${esc(m.sub)}</div>` : ""}
+        ${st.length ? `<div class="hfd-voortgang"><div class="balk"><i style="width:${pct}%"></i></div><span>${klaar} van ${st.length} stappen</span></div>` : ""}
+        ${m.status ? `<div class="mod-status">${m.status()}</div>` : ""}
+      </div>
+      <button class="meer" data-fase="${m.id}" aria-label="Verplaats ${esc(kortNaam(m))}">${ik("meer")}</button>
+    </div>`;
+  }
+
   routes.start = el => {
     const uur = new Date().getHours();
     const groet = uur < 12 ? "Goedemorgen" : uur < 18 ? "Hoi" : "Goedenavond";
+    const vakken = [...new Set(modules.map(m => m.vak))].sort();
+    let fase = store.get("start-fase", "bezig"), vak = store.get("start-vak", "");
+    if (vak && !vakken.includes(vak)) vak = "";
+    const laatst = store.get("laatst", null), lm = laatst && modules.find(m => m.id === laatst.mod);
     el.innerHTML = `
-      <div class="hello"><h1>${groet}! 💜</h1><p class="soft">Waar heb je zin in?</p></div>
+      <div class="hello"><h1>${groet}! 💜</h1>
+        <button class="say" data-say="Hoi! Hier zie je je hoofdstukken. Kies Bezig, Toekomst of Gedaan. Met de drie puntjes verplaats je een hoofdstuk.">🔊 Lees voor</button></div>
       <div id="melding"></div>
-      <div class="section-title">School</div>
+      ${lm && routes[laatst.route] ? `<button class="verder-kaart" style="--vak:${vakKleur(lm)}" data-go="${esc(laatst.route)}">
+        <span class="hfd-ic klein">${laatst.icoon || lm.icoon}</span>
+        <span class="vk-tekst"><small>Verder waar je was</small><b>${esc(laatst.naam)}</b><span class="soft">${esc(kortNaam(lm))}${laatst.par ? " · " + esc(laatst.par) : ""}</span></span>
+        ${ik("play", "vk-play")}</button>` : ""}
+      <div class="sectie-kop">${ik("leren")}<h2>Mijn hoofdstukken</h2></div>
+      <div class="hfd-filters">
+        <div class="switch" id="fasen" role="tablist">${FASEN.map(([id, n, e]) => `<button role="tab" data-f="${id}">${e} ${n} <span class="tel"></span></button>`).join("")}</div>
+        ${vakken.length > 1 ? `<div class="row" id="vakken"><button class="chip small" data-v="">Alle vakken</button>${vakken.map(v => `<button class="chip small vak-chip" style="--vak:${VAKKLEUR[v] || "#9A8CD8"}" data-v="${esc(v)}">${esc(v)}</button>`).join("")}</div>` : ""}
+      </div>
+      <div class="hfd-lijst" id="hfd"></div>
+      <div class="sectie-kop">${ik("huis")}<h2>Schrift en spullen</h2></div>
       <div class="tiles">
-        <div class="tile big"><div class="ic">📚</div>
-          <div style="flex:1;min-width:220px"><div class="nm">Mijn vakken</div>
+        <div class="tile breed"><span class="tile-ic">📚</span>
+          <div class="tile-tekst"><div class="nm">Mijn vakken</div>
           <div class="sub">Aantekeningen, huiswerk en documenten per vak. Op alles kun je schrijven met je Pencil.</div>
           <div class="parts">
             <button class="btn small" data-go="notities">📂 Openen</button>
-            <label class="btn small">📷 Huiswerk fotograferen<input type="file" accept="image/*" capture="environment" id="snelcam" hidden></label>
+            <label class="btn small ghost">📷 Huiswerk fotograferen<input type="file" accept="image/*" capture="environment" id="snelcam" hidden></label>
           </div></div></div>
-      </div>
-      <div class="section-title">Leren</div>
-      <div class="tiles">
-        ${modules.map(m => `
-          <div class="tile big">
-            <div class="ic">${m.icoon}</div>
-            <div style="flex:1;min-width:220px">
-              <div class="nm">${esc(m.vak)} · ${esc(m.titel)}</div>
-              <div class="sub">${esc(m.sub || "")}</div>
-              ${m.status ? `<div class="mod-status">${m.status()}</div>` : ""}
-              <div class="parts">${m.onderdelen.filter(o => !m.thuis || m.thuis.includes(o.id)).map(o => `<button class="btn small" data-go="${m.id}-${o.id}">${o.icoon} ${esc(o.thuisNaam || o.naam)}</button>`).join("")}</div>
-            </div>
-          </div>`).join("")}
-      </div>
-      <div class="section-title">Maken</div>
-      <div class="tiles">
-        <button class="tile" data-go="tekenen"><div class="ic">✏️</div><div class="nm">Tekenen</div><div class="sub">Met je Pencil, net als in Procreate.</div></button>
-        <button class="tile" data-go="tekeningen"><div class="ic">🖼️</div><div class="nm">Mijn tekeningen</div><div class="sub">Alles wat je hebt gemaakt. Ook foto's toevoegen.</div></button>
-        <button class="tile" data-go="ideeen"><div class="ic">💡</div><div class="nm">Ideeënbus</div><div class="sub">Wat moet er beter of nieuw? Jij bent de baas.</div></button>
-        <button class="tile" data-go="mijn-app"><div class="ic">🎨</div><div class="nm">Mijn app</div><div class="sub">Kleuren, naam en back-up.</div></button>
+        <button class="tile" data-go="tekenen"><span class="tile-ic">✏️</span><span class="tile-tekst"><span class="nm">Tekenen</span><span class="sub">Met je Pencil, net als in Procreate.</span></span></button>
+        <button class="tile" data-go="tekeningen"><span class="tile-ic">🖼️</span><span class="tile-tekst"><span class="nm">Mijn tekeningen</span><span class="sub">Alles wat je hebt gemaakt.</span></span></button>
+        <button class="tile" data-go="ideeen"><span class="tile-ic">💡</span><span class="tile-tekst"><span class="nm">Ideeënbus</span><span class="sub">Wat moet er beter of nieuw? Jij bent de baas.</span></span></button>
+        <button class="tile" data-go="mijn-app"><span class="tile-ic">🎨</span><span class="tile-tekst"><span class="nm">Mijn app</span><span class="sub">Kleuren, voorlezen en back-up.</span></span></button>
       </div>`;
-    $$("[data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
+    function lijst() {
+      const per = id => modules.filter(m => faseVan(m) === id && (!vak || m.vak === vak));
+      $$("#fasen [data-f]", el).forEach(b => { b.classList.toggle("sel", b.dataset.f === fase); b.setAttribute("aria-selected", b.dataset.f === fase); $(".tel", b).textContent = per(b.dataset.f).length; });
+      $$("#vakken [data-v]", el).forEach(b => b.classList.toggle("sel", b.dataset.v === vak));
+      const L = per(fase).sort((a, b) => a.vak.localeCompare(b.vak) || a.titel.localeCompare(b.titel, "nl", { numeric: true }));
+      const leeg = { bezig: "Je bent nu met geen enkel hoofdstuk bezig.", toekomst: "Hier zet je hoofdstukken die nog komen.", gedaan: "Hier komen hoofdstukken waarvan de toets geweest is." }[fase];
+      $("#hfd", el).innerHTML = L.length ? L.map(hoofdstukKaart).join("") : `<div class="leeg-vak">${leeg}<br><span class="soft">Verplaatsen doe je met ${ik("meer")} op een hoofdstuk.</span></div>`;
+      $$("#hfd [data-go]", el).forEach(k => { k.onclick = () => go(k.dataset.go); k.onkeydown = e => { if (e.key === "Enter") go(k.dataset.go); }; });
+      $$("#hfd [data-fase]", el).forEach(b => b.onclick = e => { e.stopPropagation(); verplaats(modules.find(m => m.id === b.dataset.fase)); });
+    }
+    async function verplaats(m) {
+      const nu = faseVan(m), eigen = store.get("fase", {})[m.id];
+      const keuze = await modal(`<h2>${esc(kortNaam(m))}</h2><p>Waar hoort dit hoofdstuk?</p>`,
+        [...FASEN.map(([id, n, e]) => [`${e} ${n}${id === nu ? " ✓" : ""}`, id, id === nu ? "" : "ghost"]), ...(eigen ? [["↺ Automatisch", "auto", "ghost"]] : []), ["Annuleer", null, "ghost"]]);
+      if (!keuze) return;
+      const F = store.get("fase", {}); if (keuze === "auto") delete F[m.id]; else F[m.id] = keuze; store.set("fase", F);
+      lijst();
+    }
+    $$("#fasen [data-f]", el).forEach(b => b.onclick = () => { fase = b.dataset.f; store.set("start-fase", fase); lijst(); });
+    $$("#vakken [data-v]", el).forEach(b => b.onclick = () => { vak = b.dataset.v; store.set("start-vak", vak); lijst(); });
+    lijst();
+    $$(".tiles [data-go], .verder-kaart", el).forEach(b => b.onclick = () => go(b.dataset.go));
     $("#snelcam", el).onchange = e => { const f = e.target.files[0]; e.target.value = ""; if (f && App.huiswerkFoto) App.huiswerkFoto(f); };
     (async () => {
       const m = $("#melding", el); if (!m) return;
@@ -504,6 +580,7 @@
         <p style="margin:14px 0 6px"><b>Hoe snel?</b></p>
         <div class="row" id="tempo">${TEMPO.map(([n, v]) => `<button class="chip ${store.get("tempo", 0.95) === v ? "sel" : ""}" data-v="${v}">${n}</button>`).join("")}</div>
         <div class="row" style="margin-top:14px"><button class="btn" id="probeer">▶ Probeer</button></div>
+        <label class="row vink" style="margin-top:14px"><input type="checkbox" id="auto" ${store.get("auto-voorlezen", false) ? "checked" : ""}> Alles automatisch voorlezen (kaarten, vragen, sorteren, filmpjes)</label>
         <div id="stemtip"></div>
       </div>
       <div class="card">
@@ -560,6 +637,7 @@
     stemmen();
     if (canSpeak) { const h = () => stemmen(); speechSynthesis.addEventListener("voiceschanged", h); onLeave(() => speechSynthesis.removeEventListener("voiceschanged", h)); }
     $$("#tempo .chip", el).forEach(b => b.onclick = () => { store.set("tempo", +b.dataset.v); $$("#tempo .chip", el).forEach(x => x.classList.toggle("sel", x === b)); });
+    $("#auto", el).onchange = e => store.set("auto-voorlezen", e.target.checked);
     $("#probeer", el).onclick = () => { stopSpeak(); speak("Purple Cases verkoopt deze maand 150 hoesjes van €8. De omzet is 150 × €8 = €1.200. Dat is afzet keer verkoopprijs."); };
     $$(".th", el).forEach(b => b.onclick = () => { store.set("thema", b.dataset.t); applyLook(); $$(".th", el).forEach(x => x.classList.toggle("sel", x === b)); });
     $("#naam", el).oninput = e => { store.set("naam", e.target.value || "leren met BTS"); applyLook(); };
@@ -590,6 +668,78 @@
     $$("[data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
     if (dagen.length) store.set("nieuw-gezien", dagen[0]);
   };
+
+  /* ---------- een hoofdstuk: overzicht → paragraaf → stap ---------- */
+  // Een hoofdstuk geeft 'stations' mee: de paragrafen met hun stappen (Leren). Onderdelen met groep "Oefenen"
+  // staan los daarvan (begrippen, uit je hoofd, toetstraining). Daaruit bouwt de schil de navigatie:
+  // - #<mod>-overzicht     het hoofdstuk
+  // - #<mod>-p<n>          paragraaf n: de stappen op een rij, vorige/volgende paragraaf
+  // - #<mod>-<stap>        een stap: bovenaan waar je bent (paragraaf + stappen), onderaan vorige/volgende
+  const parLabel = s => s.par || s.icoon;
+  const parNaam = s => (s.par ? s.par + " " : "") + s.titel;
+  function hoofdstukInfo(m) {
+    const st = m.stations || [];
+    const volgorde = st.flatMap((s, i) => s.delen.map(d => ({ d, i })));
+    const oefen = m.onderdelen.filter(o => o.groep === "Oefenen");
+    return { st, volgorde, oefen };
+  }
+  function stapNav(m, o) {
+    const { st, volgorde, oefen } = hoofdstukInfo(m), v = voortgangVan(m.id);
+    const pos = volgorde.findIndex(x => x.d === o.id);
+    if (pos >= 0) {
+      const i = volgorde[pos].i, s = st[i];
+      const vorige = volgorde[pos - 1], volgende = volgorde[pos + 1];
+      const naamVan = x => { const od = onderdeel(m, x.d); return (x.i !== i ? parLabel(st[x.i]) + " · " : "") + od.naam; };
+      return {
+        ouder: `${m.id}-p${i + 1}`, par: parNaam(s),
+        boven: `<nav class="mod-nav leer" style="--vak:${vakKleur(m)}">
+          <button class="kruimel" data-go="${m.id}-p${i + 1}">${ik("terug")}<span class="par-badge">${esc(parLabel(s))}</span><span>${esc(s.titel)}</span></button>
+          <div class="stappen">${s.delen.map((d, k) => { const od = onderdeel(m, d), klaar = !!v.gedaan[d];
+            return `<button class="stap ${d === o.id ? "nu" : ""} ${klaar ? "klaar" : ""}" data-go="${m.id}-${d}" ${d === o.id ? 'aria-current="step"' : ""}>
+              <span class="stap-n">${klaar && d !== o.id ? ik("check") : k + 1}</span><span class="stap-nm">${od.icoon} ${esc(od.naam)}</span></button>`; }).join("")}</div>
+        </nav>`,
+        onder: `<nav class="stap-nav">
+          ${vorige ? `<button class="btn ghost" data-go="${m.id}-${vorige.d}">${ik("terug")}<span>${esc(naamVan(vorige))}</span></button>` : `<span></span>`}
+          ${volgende ? `<button class="btn volgende-knop" data-go="${m.id}-${volgende.d}"><span><small>${volgende.i !== i ? "Volgende paragraaf" : "Volgende stap"}</small>${esc(naamVan(volgende))}</span>${ik("verder")}</button>`
+            : oefen.length ? `<button class="btn volgende-knop oefen" data-go="${m.id}-${oefen[0].id}"><span><small>Alle stof gehad</small>Nu oefenen</span>${ik("verder")}</button>` : ""}
+        </nav>`
+      };
+    }
+    if (o.groep === "Oefenen") return {
+      ouder: `${m.id}-overzicht`, par: "Oefenen",
+      boven: `<nav class="mod-nav oefen">
+        <button class="kruimel" data-go="${m.id}-overzicht">${ik("terug")}<span>${esc(kortNaam(m))} · Oefenen</span></button>
+        <div class="tabs">${oefen.map(x => `<button class="tab ${x.id === o.id ? "nu" : ""}" data-go="${m.id}-${x.id}" ${x.id === o.id ? 'aria-current="page"' : ""}>${x.icoon} ${esc(x.naam)}</button>`).join("")}</div>
+      </nav>`, onder: ""
+    };
+    return { ouder: o.id === "overzicht" ? "start" : `${m.id}-overzicht`, par: "", boven: "", onder: "" };
+  }
+
+  function paragraaf(m, i, el) {
+    const { st } = hoofdstukInfo(m), s = st[i], v = voortgangVan(m.id);
+    const delen = s.delen.map(d => onderdeel(m, d)), open = delen.find(d => !v.gedaan[d.id]);
+    const klaar = delen.filter(d => v.gedaan[d.id]).length;
+    const vorige = st[i - 1], volgende = st[i + 1];
+    el.innerHTML = `
+      <nav class="mod-nav leer" style="--vak:${vakKleur(m)}"><button class="kruimel" data-go="${m.id}-overzicht">${ik("terug")}<span>${esc(kortNaam(m))} · ${esc(m.titel.replace(/^H\d+\w*\s*/, ""))}</span></button></nav>
+      <div id="mod">
+        <div class="card par-kop" style="--vak:${vakKleur(m)}">
+          <div class="par-badge groot">${esc(parLabel(s))}</div>
+          <div class="par-kop-tekst"><div class="eyebrow">${ik("leren")} Leren · deel ${i + 1} van ${st.length}</div><h1>${esc(s.titel)}</h1>
+            <button class="say" data-say="${esc(`${s.par ? s.par + ". " : ""}${s.titel}. ${delen.length === 1 ? "Eén stap" : delen.length + " stappen"}: ${delen.map(d => d.naam).join(". ")}.`)}">🔊 Lees voor</button></div>
+        </div>
+        <ol class="stap-lijst">${delen.map((d, k) => `<li><button class="stap-rij ${v.gedaan[d.id] ? "klaar" : ""}" data-go="${m.id}-${d.id}">
+          <span class="stap-n">${v.gedaan[d.id] ? ik("check") : k + 1}</span><span class="tile-ic">${d.icoon}</span>
+          <span class="stap-tekst"><b>${esc(d.naam)}</b>${d.kort ? `<small>${esc(d.kort)}</small>` : ""}</span>${ik("verder", "chev")}</button></li>`).join("")}</ol>
+        <div class="row par-start"><button class="btn groot" data-go="${m.id}-${(open || delen[0]).id}">${ik("play")} ${open ? (klaar ? "Verder met" : "Start met") : "Nog eens:"} ${esc((open || delen[0]).naam)}</button>
+          <span class="soft">${klaar} van ${delen.length} gedaan</span></div>
+      </div>
+      <nav class="stap-nav">
+        ${vorige ? `<button class="btn ghost" data-go="${m.id}-p${i}">${ik("terug")}<span>${esc(parNaam(vorige))}</span></button>` : `<button class="btn ghost" data-go="${m.id}-overzicht">${ik("terug")}<span>Overzicht</span></button>`}
+        ${volgende ? `<button class="btn volgende-knop" data-go="${m.id}-p${i + 2}"><span><small>Volgende paragraaf</small>${esc(parNaam(volgende))}</span>${ik("verder")}</button>` : ""}
+      </nav>`;
+    $$("[data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
+  }
 
   /* ---------- meten (per module) ---------- */
   function meetBlock(moduleId, onderdelen) {
@@ -628,23 +778,37 @@
     addRoute(name, fn) { routes[name] = fn; },
     addModule(m) {
       modules.push(m);
+      (m.stations || []).forEach((s, i) => {
+        routes[`${m.id}-p${i + 1}`] = el => { store.set("laatst", { mod: m.id, route: `${m.id}-p${i + 1}`, naam: parNaam(s), icoon: s.icoon }); paragraaf(m, i, el); };
+        ouders[`${m.id}-p${i + 1}`] = `${m.id}-overzicht`;
+      });
       m.onderdelen.forEach(o => {
-        routes[m.id + "-" + o.id] = el => {
-          const groepen = [...new Set(m.onderdelen.map(x => x.groep || ""))];
-          el.innerHTML = `<div class="mod-nav">${groepen.map(g => `<div class="row mod-rij">${g ? `<span class="mod-groep">${esc(g)}</span>` : ""}${m.onderdelen.filter(x => (x.groep || "") === g).map(x =>
-            `<button class="chip ${x.id === o.id ? "sel" : ""}" data-go="${m.id}-${x.id}">${x.icoon} ${esc(x.naam)}</button>`).join("")}</div>`).join("")}</div><div id="mod"></div>`;
-          $$(".mod-nav [data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
+        const naam = m.id + "-" + o.id;
+        ouders[naam] = stapNav(m, o).ouder;
+        routes[naam] = el => {
+          const nav = stapNav(m, o);   // opnieuw: 'klaar' kan veranderd zijn
+          el.innerHTML = `${nav.boven}<div id="mod"></div>${nav.onder}`;
+          $$(".mod-nav [data-go], .stap-nav [data-go]", el).forEach(b => b.onclick = () => go(b.dataset.go));
+          if (o.id !== "overzicht") store.set("laatst", { mod: m.id, route: naam, naam: o.naam, icoon: o.icoon, par: nav.par });
           const r = o.render($("#mod", el), { go, moduleId: m.id });
-          const meet = m.onderdelen.filter(x => !m.meten || m.meten.includes(x.id));
-          if (!m.meten || m.meten.includes(o.id)) el.appendChild(meetBlock(m.id, meet.map(x => [x.id, x.icoon + " " + x.naam])));
+          if (o.id === "overzicht") {   // meten staat alleen op het overzicht, niet onder elke stap
+            const meet = m.onderdelen.filter(x => x.id !== "overzicht" && (!m.meten || m.meten.includes(x.id)));
+            el.appendChild(meetBlock(m.id, meet.map(x => [x.id, x.icoon + " " + x.naam])));
+          }
           bindSay(el);
           return r;
         };
       });
     },
+    module: id => modules.find(m => m.id === id),
+    modules,
+    // Alle schermen van een hoofdstuk (voor de tests en de verzamelaar van voorleesteksten).
+    routesVan(id) { const m = modules.find(x => x.id === id); return m ? [...m.onderdelen.map(o => `${m.id}-${o.id}`), ...(m.stations || []).map((s, i) => `${m.id}-p${i + 1}`)] : []; },
+    vakKleur, kortNaam, ik, faseVan, voortgangVan,
     start() {
       applyLook();
-      $("#back").onclick = () => go("start");
+      $("#back").innerHTML = ik("terug"); $("#space").innerHTML = ik("ruimte");
+      $("#back").onclick = () => go(ouder);
       $("#logo").onclick = () => go("start");
       $("#bigger").onclick = () => { store.set("fs", Math.min(28, store.get("fs", 20) + 2)); applyLook(); };
       $("#smaller").onclick = () => { store.set("fs", Math.max(16, store.get("fs", 20) - 2)); applyLook(); };
