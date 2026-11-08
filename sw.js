@@ -7,13 +7,14 @@
 //   zodat oude en nieuwe bestanden niet door elkaar raken.
 // - Eigen bestanden altijd bij de server nagaan (no-cache), anders geeft de browser tot 10 minuten een oude kopie.
 // - Lettertypes van Google: eerst de bewaarde versie (die veranderen niet).
-importScripts("js/ingesproken.js");   // lijst met ingesproken teksten; die gaan ook mee voor offline
-const CACHE = "leerplek-v16";
+// Opnames (audio/z/) veranderen nooit: een andere tekst krijgt een andere naam. Ze staan in een eigen, blijvende
+// opslag (AUDIO) die bij een nieuwe versie niet wordt gewist. De app laadt ze per hoofdstuk zodra dat wordt geopend.
+const AUDIO = "leerplek-audio";
+const CACHE = "leerplek-v17";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
   "./js/ingesproken.js", "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/modules/economie-h4.js",
   "./vendor/pdfjs/pdf.min.js", "./vendor/pdfjs/pdf.worker.min.js",
-  ...(self.INGESPROKEN || []).map(k => `./audio/z/${k}.mp3`),
   "./icons/icon-180.png", "./icons/icon-192.png", "./icons/icon-512.png"
 ];
 const WACHT = 3000;
@@ -26,7 +27,7 @@ self.addEventListener("install", e => {
 
 self.addEventListener("activate", e => {
   e.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+    caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== AUDIO).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -55,6 +56,11 @@ self.addEventListener("fetch", e => {
 
   if (/^https:\/\/fonts\.(googleapis|gstatic)\.com\//.test(req.url)) {
     e.respondWith(caches.match(req).then(r => r || fetch(req).then(res => goed(req, res) ? bewaar(req, res) : res)));
+    return;
+  }
+
+  if (eigen(req.url) && new URL(req.url).pathname.includes("/audio/z/")) {   // opname: eerst uit de blijvende opslag
+    e.respondWith(caches.open(AUDIO).then(c => c.match(req).then(r => r || fetch(req).then(res => { if (goed(req, res)) c.put(req, res.clone()); return res; }))));
     return;
   }
 

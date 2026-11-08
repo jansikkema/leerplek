@@ -30,7 +30,7 @@ const NIET = /tekenen|teken\b|Ga tekenen|wissen|verwijder|back-up|terugzetten|de
   if (!routes.length) {
     routes = ["start", "mijn-app", "ideeen", "tekeningen"];   // niet "nieuw": die teksten veranderen bij elke versie
     const mods = await p.evaluate(() => [...document.querySelectorAll("[data-go]")].map(x => x.dataset.go));
-    for (const m of new Set(mods)) { await p.goto(BASIS + "#" + m); await p.waitForTimeout(400);
+    for (const m of new Set(mods.filter(m => m !== "nieuw"))) { await p.goto(BASIS + "#" + m); await p.waitForTimeout(400);
       routes.push(m, ...await p.evaluate(() => [...document.querySelectorAll(".mod-nav [data-go]")].map(x => x.dataset.go))); }
     routes = [...new Set(routes)];
   }
@@ -51,13 +51,11 @@ const NIET = /tekenen|teken\b|Ga tekenen|wissen|verwijder|back-up|terugzetten|de
         let k = null;
         for (const sel of voorkeur || []) { k = nieuw.find(x => x.matches(sel) || x.closest(sel)); if (k) break; }
         if (!k) k = nieuw[Math.floor(Math.random() * nieuw.length)]; if (!k) return null;
-        k.setAttribute("data-klik", "1"); return sig(k);
+        const s = sig(k); k.click(); return s;   // direct klikken: Playwright wacht anders tot 1,5 s per knop
       }, { niet: NIET.source, gedaan: [...gedaan], voorkeur: voorkeur && voorkeur[1] });
       if (!knop) break;
       gedaan.add(knop);
-      try { await p.click("[data-klik]", { timeout: 1500 }); } catch (e) {}
-      await p.evaluate(() => document.querySelectorAll("[data-klik]").forEach(x => x.removeAttribute("data-klik")));
-      await p.waitForTimeout(60);
+      await p.waitForTimeout(40);
       if (!(await p.evaluate(() => location.hash)).includes(r)) { await p.goto(BASIS + "#" + r); await p.waitForTimeout(300); }
     }
     for (const o of await p.evaluate(() => window.__opname)) if (!alles.has(o.sleutel)) alles.set(o.sleutel, { ...o, waar: r });

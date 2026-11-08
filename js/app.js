@@ -55,7 +55,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 16;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 17;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -79,6 +79,7 @@
   /* Ingesproken geluid (vooraf gemaakt, zie audio/). Eén vast element: iOS staat afspelen toe zodra het één keer na een tik is gestart. */
   const speler = typeof Audio !== "undefined" ? new Audio() : null;
   function stopSpeak() {
+    beurt++;
     if (speler) { speler.onended = speler.onerror = null; speler.pause(); }
     if (canSpeak) speechSynthesis.cancel();
     $$(".say.speaking").forEach(b => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
@@ -112,9 +113,29 @@
     for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
     return (h >>> 0).toString(16).padStart(8, "0");
   }
-  const ingesproken = new Set(self.INGESPROKEN || []);
+  const PER_DEEL = Array.isArray(self.INGESPROKEN) ? { app: self.INGESPROKEN } : (self.INGESPROKEN || {});   // { "economie-h4": [...], app: [...] }
+  const ingesproken = new Set(Object.values(PER_DEEL).flat());
+  // Opnames van een hoofdstuk vooraf binnenhalen (voor zonder internet) zodra het wordt geopend; één keer per keer openen van de app.
+  const voorgeladen = new Set();
+  function voorladen(name) {
+    if (!("caches" in window)) return;
+    const deel = Object.keys(PER_DEEL).find(d => d !== "app" && (name === d || name.startsWith(d + "-"))) || "app";
+    [deel, "app"].forEach(d => {
+      if (voorgeladen.has(d) || !PER_DEEL[d]) return; voorgeladen.add(d);
+      caches.open("leerplek-audio").then(c => PER_DEEL[d].reduce((p, k) => p.then(() => {
+        const u = `audio/z/${k}.mp3`; return c.match(u).then(r => r || c.add(u)).catch(() => {});
+      }), Promise.resolve())).catch(() => {});
+    });
+  }
   const opname = (text, stem) => { const k = sleutel(text, stem); return ingesproken.has(k) ? `audio/z/${k}.mp3` : null; };
+  let beurt = 0;   // verhoogt bij stoppen, zodat een tekst in delen niet doorloopt na Stop
   function speak(text, onend, opts = {}) {
+    // Tekst in delen (vast deel + wisselend deel): achter elkaar, elk deel met zijn eigen opname.
+    if (Array.isArray(text)) {
+      const delen = text.filter(Boolean), mijn = beurt; let i = 0;
+      const volgende = () => { if (mijn !== beurt) return; if (i >= delen.length) { onend && onend(); return; } speak(delen[i++], volgende, opts); };
+      volgende(); return;
+    }
     if (window.__opname && text && opts.audio === undefined) window.__opname.push({ tekst: spreekbaar(text), stem: opts.stem || STANDAARDSTEM, sleutel: sleutel(text, opts.stem) });
     if (opts.audio === undefined && text) opts = { ...opts, audio: opname(text, opts.stem) };
     if (opts.audio && speler) {   // eerst het ingesproken bestand; lukt dat niet, dan de iPad-stem
@@ -139,12 +160,13 @@
       try { speechSynthesis.speak(u); } catch (e) { einde(); }
     });
   }
-  function sayButton(b, getText) {
+  function sayButton(b, getText, opts = {}) {   // getText mag ook een lijst van delen geven; opts.audio = null: nooit een opname
     b.onclick = () => {
-      if (!canSpeak && !opname(getText())) { b.textContent = "🔇 Voorlezen werkt hier niet"; return; }
+      const t = getText(), eerste = Array.isArray(t) ? t[0] : t;
+      if (!canSpeak && !opname(eerste)) { b.textContent = "🔇 Voorlezen werkt hier niet"; return; }
       const was = b.classList.contains("speaking"); stopSpeak(); if (was) return;
       b.classList.add("speaking"); b.textContent = "⏹️ Stop";
-      speak(getText(), () => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
+      speak(t, () => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; }, opts);
     };
   }
   function bindSay(root) { $$(".say[data-say]", root).forEach(b => sayButton(b, () => b.dataset.say)); }
@@ -277,6 +299,7 @@
     $("#modal").hidden = true;
     const name = (location.hash || "#start").slice(1) || "start";
     const route = routes[name] || routes.start;
+    setTimeout(() => voorladen(name), 1500);
     $("#back").hidden = (route === routes.start);
     const el = $("#view");
     el.innerHTML = `<div class="view-in"></div>`;

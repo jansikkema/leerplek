@@ -38,7 +38,7 @@ def tts(tekst, stem):
 def bewaar(pcm, uit):
     with tempfile.NamedTemporaryFile(suffix=".pcm", delete=False) as f: f.write(pcm)
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "s16le", "-ar", "24000", "-ac", "1", "-i", f.name,
-                    "-af", "loudnorm=I=-16:TP=-1.5", "-ar", "24000", "-b:a", "48k", uit], check=True)
+                    "-af", "loudnorm=I=-16:TP=-1.5", "-ar", "24000", "-b:a", "32k", uit], check=True)
     os.unlink(f.name)
     subprocess.run([sys.executable, os.path.join(HIER, "schoon.py"), uit], check=True, capture_output=True)
 
@@ -89,15 +89,14 @@ def maak_bundel(groep):
     except Exception as e:
         print("bundel mislukt:", e, flush=True); return groep
     if stukken is None: print("bundel niet te knippen, los opnieuw", flush=True); return groep
-    over = []
-    for x, pcm in zip(groep, stukken):
-        tmp = doel(x) + ".tmp.mp3"
+    def stuk(paar):   # opschonen en controleren, alle stukken van een bundel tegelijk
+        x, pcm = paar; tmp = doel(x) + ".tmp.mp3"
         try:
             bewaar(pcm, tmp); ok, a = controleer(x, tmp)
         except Exception as e: ok, a = False, str(e)
         print(x["sleutel"], "goed (bundel)" if ok else "afgekeurd: " + a[:120], "|", x["tekst"][:60], flush=True)
-        if not ok: over.append(x)
-    return over
+        return None if ok else x
+    with ThreadPoolExecutor(len(groep)) as pool: return [x for x in pool.map(stuk, zip(groep, stukken)) if x]
 
 def maak_los(x):
     for poging in range(2):
@@ -119,19 +118,33 @@ def bundels(xs):
     return groepen
 
 def lijst():
+    """Schrijf js/ingesproken.js: per hoofdstuk (module-id) de sleutels, zodat de app ze per hoofdstuk kan voorladen."""
     ks = sorted(f[:-4] for f in os.listdir(Z) if f.endswith(".mp3") and ".tmp" not in f)
+    modules = sorted((f[:-3] for f in os.listdir(os.path.join(ROOT, "js", "modules")) if f.endswith(".js")), key=len, reverse=True)
+    waar = {}
+    try:   # bestaande indeling bewaren voor sleutels die niet (meer) in teksten.json staan
+        oud = open(os.path.join(ROOT, "js", "ingesproken.js")).read(); oud = json.loads(oud[oud.index("INGESPROKEN =") + 13:].strip().rstrip(";"))
+        if isinstance(oud, dict): waar = {k: d for d, l in oud.items() for k in l}
+    except Exception: pass
+    try:
+        for x in json.load(open(os.path.join(HIER, "teksten.json"))):
+            waar[x["sleutel"]] = next((m for m in modules if x["waar"] == m or x["waar"].startswith(m + "-")), "app")
+    except Exception: pass
+    per = {}
+    for k in ks: per.setdefault(waar.get(k, "app"), []).append(k)
     with open(os.path.join(ROOT, "js", "ingesproken.js"), "w") as f:
-        f.write("/* Gemaakt door tools/maak-audio.py – niet met de hand bewerken. Elke sleutel = audio/z/<sleutel>.mp3 */\n")
-        f.write("self.INGESPROKEN = " + json.dumps(ks) + ";\n")
+        f.write("/* Gemaakt door tools/maak-audio.py – niet met de hand bewerken. Per hoofdstuk de sleutels; bestand = audio/z/<sleutel>.mp3 */\n")
+        f.write("self.INGESPROKEN = " + json.dumps(per, indent=1) + ";\n")
     return len(ks)
 
 if __name__ == "__main__":
     teksten = json.load(open(os.path.join(HIER, "teksten.json")))
     if len(sys.argv) > 1: teksten = teksten[:int(sys.argv[1])]
     nog = [x for x in teksten if not os.path.exists(doel(x)) and not os.path.exists(os.path.join(Z, x["sleutel"] + ".mp3"))]
-    print(len(nog), "teksten nog in te spreken", flush=True)
-    with ThreadPoolExecutor(3) as pool: over = [x for r in pool.map(maak_bundel, bundels(nog)) for x in r]
-    print(len(over), "los opnieuw", flush=True)
+    print(len(nog), "teksten nog in te spreken", flush=True); t0 = time.time()
+    with ThreadPoolExecutor(4) as pool: over = [x for r in pool.map(maak_bundel, bundels(nog)) for x in r]
+    print(len(over), "los opnieuw; bundels klaar na", round(time.time() - t0), "s", flush=True)
     with ThreadPoolExecutor(3) as pool: mislukt = sum(1 for ok in pool.map(maak_los, over) if not ok)
+    print("totaal", round(time.time() - t0), "s")
     if DOEL == Z: print(lijst(), "ingesproken,", mislukt, "mislukt")
     else: print("proef klaar in", DOEL, ";", mislukt, "mislukt")

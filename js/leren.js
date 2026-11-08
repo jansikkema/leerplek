@@ -196,7 +196,7 @@
         <div class="kaart-grid">${lijst.map(k => { const e = eigen(k.id), r = V.get().kaarten[k.id];
           return `<button class="kaart-tegel" data-id="${k.id}">${e.thumb ? `<img src="${e.thumb}" alt="">` : `<span class="ic">${k.icoon}</span>`}
             <b>${esc(k.term)}</b><small>${e.woorden ? "✍️ " : ""}${e.thumb ? "🎨 " : ""}${r ? "★".repeat(r.box) + "☆".repeat(4 - r.box) : "nieuw"}</small></button>`; }).join("")}</div>`;
-      App.sayButton($("#lees-menu", el), () => `Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan ${te.length} kaarten klaar om te checken. De begrippen zijn: ${lijst.map(k => k.term).join(", ")}.`);
+      App.sayButton($("#lees-menu", el), () => ["Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter.", `Er staan ${te.length} kaarten klaar om te checken.`, `De begrippen zijn: ${lijst.map(k => k.term).join(", ")}.`]);   // vast en wisselend deel apart: het vaste deel krijgt een opname
       $("#check", el).onclick = check;
       $$(".kaart-tegel", el).forEach(b => b.onclick = () => maak(lijst.find(k => k.id === b.dataset.id)));
     }
@@ -314,7 +314,7 @@
           <div id="eind"></div>
         </div>`;
       $$("[data-r]", el).forEach(b => b.onclick = () => { ronde = +b.dataset.r; render(); });
-      App.sayButton($("#lc", el), () => c.verhaal);
+      App.sayButton($("#lc", el), () => c.verhaal, { audio: null });   // willekeurige som: geen opname
       let s = 0;
       const box = $("#stappen", el);
       function stap(i) {
@@ -329,7 +329,7 @@
         </div>`;
         box.appendChild(d);
         if (gegeven) {
-          if (R.mode === "voorbeeld") App.speak(`${st.naam} is ${st.formule}. ${st.som.replace(/×/g, "keer").replace(/−/g, "min")} is ${euro(st.antwoord)}.`);
+          if (R.mode === "voorbeeld") App.speak(`${st.naam} is ${st.formule}. ${st.som.replace(/×/g, "keer").replace(/−/g, "min")} is ${euro(st.antwoord)}.`, null, { audio: null });
           return volgende(i, true);
         }
         let naam = null, pogingen = 0;
@@ -388,11 +388,11 @@
         return;
       }
       el.innerHTML = `<div class="card"><h2>📝 Toetstraining</h2>
-        <button class="say" data-say="Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen. Er staan ${te.length} vragen klaar.">🔊 Lees voor</button>
+        <button class="say" id="lees-toets">🔊 Lees voor</button>
         <p>Vragen zoals op je toets, <b>door elkaar</b>. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen.</p>
         <p class="soft">Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen.</p>
         <button class="btn" id="go">Start (${te.length} vragen)</button></div>`;
-      App.bindSay(el);
+      App.sayButton($("#lees-toets", el), () => ["Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen.", `Er staan ${te.length} vragen klaar.`]);
       $("#go", el).onclick = () => sessie(shuffle(te));
     }
     function sessie(rij) {
@@ -482,7 +482,7 @@
         <p class="soft">Tip: de bovenste heb je het langst niet gedaan.</p></div>
         <div class="menu-lijst">${sorted.map(p => `<button class="btn ghost geh-kies" data-id="${p.id}"><span style="font-size:1.4em;margin-right:10px">${p.icoon}</span> ${esc(p.titel)}
           <span class="soft" style="margin-left:auto;font-size:.8em">${g[p.id] ? "✓ " + new Date(g[p.id].laatst).toLocaleDateString("nl-NL", { day: "numeric", month: "short" }) : "nog niet"}</span></button>`).join("")}</div>`;
-      App.sayButton($("#lees-geh", el), () => `Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: ${sorted.map(p => p.titel).join(". ")}.`);
+      App.sayButton($("#lees-geh", el), () => ["Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn:", ...sorted.map(p => p.titel + ".")]);   // volgorde wisselt: elke titel apart
       $$(".geh-kies", el).forEach(b => b.onclick = () => teken(prompts.find(p => p.id === b.dataset.id)));
     }
     function teken(p) {

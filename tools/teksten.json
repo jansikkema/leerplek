@@ -1,8 +1,446 @@
 [
  {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 6 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
+  "tekst": "Purple Cases verkoopt deze maand 150 hoesjes van 8 euro. De omzet is 150 keer 8 euro is 1200 euro. Dat is afzet keer verkoopprijs.",
   "stem": "Sulafat",
-  "sleutel": "aa5b8df3",
+  "sleutel": "a8b9d532",
+  "waar": "mijn-app"
+ },
+ {
+  "tekst": "Voorlezen. Kies de stem die jij het fijnst vindt, en hoe snel hij praat. Tik op Probeer om te luisteren.",
+  "stem": "Sulafat",
+  "sleutel": "98a32ef8",
+  "waar": "mijn-app"
+ },
+ {
+  "tekst": "Dit is jouw ideeënbus. Wat moet er nieuw in de app? Wat is irritant? Wat kan mooier? Schrijf het op, of teken het. Papa en Claude bouwen het.",
+  "stem": "Sulafat",
+  "sleutel": "85eb2c93",
+  "waar": "ideeen"
+ },
+ {
+  "tekst": "Economie hoofdstuk vier. Een eigen bedrijf. Vul de datum van je toets in, dan plan ik je herhaling. Je lightstick is voor 0 procent opgeladen. Vandaag, ongeveer 11 minuten: Chat: nieuw stuk leren. 🃏 6 begrippen checken.",
+  "stem": "Sulafat",
+  "sleutel": "a2687140",
+  "waar": "economie-h4-overzicht"
+ },
+ {
+  "tekst": "Leuk! Dus je werkt voor een baas?",
+  "stem": "Sulafat",
+  "sleutel": "2045a92f",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Ja. Ik ben werknemer. De winkel is mijn werkgever. Dat heet werken in loondienst.",
+  "stem": "Puck",
+  "sleutel": "f1e81200",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "En wat krijg je daarvoor?",
+  "stem": "Sulafat",
+  "sleutel": "11878063",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Elke maand een vast loon. Ook als het een keer rustig is in de winkel.",
+  "stem": "Puck",
+  "sleutel": "05716881",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "En als je ziek bent?",
+  "stem": "Sulafat",
+  "sleutel": "72aa7ce4",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Dan betaalt mijn werkgever gewoon door. En ik heb vakantiedagen",
+  "stem": "Puck",
+  "sleutel": "a15d7b3b",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Ik wil liever mijn eigen bedrijfje. Hoesjes maken voor photocards",
+  "stem": "Sulafat",
+  "sleutel": "f35f8a9f",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Dan ben je zelfstandig ondernemer. Je eigen baas!",
+  "stem": "Puck",
+  "sleutel": "c32427e6",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Precies. Ik bepaal zelf wat ik maak en wanneer ik werk. Vrijheid! En als het goed loopt, kan ik veel verdienen: winst.",
+  "stem": "Sulafat",
+  "sleutel": "aabdeb38",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Maar wat als niemand iets koopt?",
+  "stem": "Puck",
+  "sleutel": "16b8101a",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Dan heb ik geen inkomen. Of ik maak verlies. Gaat het heel slecht, dan kan ik failliet gaan. Dat heet het ondernemersrisico.",
+  "stem": "Sulafat",
+  "sleutel": "35ef914c",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Bij mij draagt de werkgever dat risico. Niet ik.",
+  "stem": "Puck",
+  "sleutel": "454767f5",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Klopt. En ik moet zelf een verzekering regelen. Voor als ik ziek word of niet meer kan werken: arbeidsongeschiktheid.",
+  "stem": "Sulafat",
+  "sleutel": "d0c458de",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Dus: loondienst is zekerheid. Eigen baas is vrijheid, maar ook risico",
+  "stem": "Puck",
+  "sleutel": "c393c823",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Vrijheid",
+  "stem": "Sulafat",
+  "sleutel": "4038eefa",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Ja! Maar ik ga het toch proberen. Eerst maak ik een goed plan.",
+  "stem": "Sulafat",
+  "sleutel": "c85581f7",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Dit hoort bij Eigen baas.",
+  "stem": "Sulafat",
+  "sleutel": "af7a04e0",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Elke maand een vast loon",
+  "stem": "Sulafat",
+  "sleutel": "cf908ccb",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Ik heb een bijbaan! Bij de merchwinkel in de stad",
+  "stem": "Puck",
+  "sleutel": "667f0e3c",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Doorbetaald worden als je ziek bent",
+  "stem": "Sulafat",
+  "sleutel": "3e366566",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Risico op faillissement",
+  "stem": "Sulafat",
+  "sleutel": "20e2e08b",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Kans op een hoog inkomen, winst,",
+  "stem": "Sulafat",
+  "sleutel": "7455ffd2",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Geen vast inkomen",
+  "stem": "Sulafat",
+  "sleutel": "8ed6fc81",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Zelf beslissen wat je doet",
+  "stem": "Sulafat",
+  "sleutel": "071d475f",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "De werkgever draagt het risico",
+  "stem": "Sulafat",
+  "sleutel": "635e21d1",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Zelf een verzekering regelen voor arbeidsongeschiktheid",
+  "stem": "Sulafat",
+  "sleutel": "7e4db7ad",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Dit hoort bij Eigen baas. Een ondernemer heeft geen werkgever die doorbetaalt. Die moet dat zelf regelen.",
+  "stem": "Sulafat",
+  "sleutel": "e58ccf82",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Vakantiedagen zijn geregeld",
+  "stem": "Sulafat",
+  "sleutel": "a9dc394f",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "De ondernemer. Wie ben je en wat kun je? Bij een tour: Wie staan er op het podium? Wat kunnen ze? Bij Purple Cases: Ik kan goed tekenen en ik weet wat fans mooi vinden.",
+  "stem": "Sulafat",
+  "sleutel": "b5a13d70",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik heb al eens een kraampje gehad op een fan-meetup.",
+  "stem": "Sulafat",
+  "sleutel": "766d3be3",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Het financieel plan. Is er genoeg geld? Ga je winst maken? Bij een tour: Levert de tour meer op dan hij kost? Bij Purple Cases: Ik reken uit: omzet min inkoopwaarde is brutowinst min bedrijfskosten is nettowinst.",
+  "stem": "Sulafat",
+  "sleutel": "f49e1b32",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Een K-popgroep gaat pas op tour met een goed plan. Een ondernemer begint pas een bedrijf met een goed plan: het ondernemingsplan. Het heet ook wel bedrijfsplan. Het plan dwingt je om vooraf na te denken: is mijn idee haalbaar? Het plan heeft vier delen. Ezelsbruggetje: Wie ben ik? Mag het? Hoe trek ik klanten? Verdien ik er wat aan?",
+  "stem": "Sulafat",
+  "sleutel": "8eb08997",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik heb 200 euro nodig om materiaal te kopen.",
+  "stem": "Sulafat",
+  "sleutel": "bbcdf0c0",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij financieel plan.",
+  "stem": "Sulafat",
+  "sleutel": "d767d7fc",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik maak een SWOT-analyse.",
+  "stem": "Sulafat",
+  "sleutel": "1b069076",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij marketingplan.",
+  "stem": "Sulafat",
+  "sleutel": "e1485d8c",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Voor een kraam op de markt heb ik een vergunning van de gemeente nodig.",
+  "stem": "Sulafat",
+  "sleutel": "f3544289",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij Regels en vergunningen.",
+  "stem": "Sulafat",
+  "sleutel": "b30f6e64",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik schat hoeveel hoesjes ik per maand verkoop.",
+  "stem": "Sulafat",
+  "sleutel": "2ae69743",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij financieel plan. Met de verwachte afzet reken je de omzet uit. Dat is rekenwerk voor het financieel plan.",
+  "stem": "Sulafat",
+  "sleutel": "a9216d3f",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Regels en vergunningen. Welke wetten gelden er? Welke papieren heb je nodig? Bij een tour: Mag het concert in dat stadion? Is er een vergunning van de gemeente? Bij Purple Cases: Ik schrijf me in bij de Kamer van Koophandel. Voor een kraampje op de markt vraag ik een vergunning aan.",
+  "stem": "Sulafat",
+  "sleutel": "206bb453",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik reken uit of ik winst ga maken.",
+  "stem": "Sulafat",
+  "sleutel": "2b613dc8",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik ben creatief en kan goed tekenen.",
+  "stem": "Sulafat",
+  "sleutel": "cfd38f7d",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij ondernemer.",
+  "stem": "Sulafat",
+  "sleutel": "d4728732",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik maak TikTok-filmpjes om klanten te trekken.",
+  "stem": "Sulafat",
+  "sleutel": "3649fa7e",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Het marketingplan. Hoe trek je klanten? Bij een tour: Hoe horen fans van de tour? Wat kost een kaartje? Bij Purple Cases: Mijn SWOT-analyse en mijn 5 P's: prijs 8 euro, TikTok-filmpjes, een webshop.",
+  "stem": "Sulafat",
+  "sleutel": "9cce26e3",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij marketingplan. Klanten trekken is marketing, de P van Promotie.",
+  "stem": "Sulafat",
+  "sleutel": "3ffff8c8",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik schrijf me in bij de Kamer van Koophandel.",
+  "stem": "Sulafat",
+  "sleutel": "5780821b",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Mijn hoesjes kosten 8 euro.",
+  "stem": "Sulafat",
+  "sleutel": "68c44743",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Jouw bedrijfje heet Purple Cases. Stel: jij verkoopt zelfgemaakte photocard-hoesjes aan K-pop-fans. Hoe zorg je dat het lukt? Daarvoor schrijf je een marketingplan. Daarin staan twee dingen: de SWOT-analyse, en de vijf P's.",
+  "stem": "Sulafat",
+  "sleutel": "d9deb727",
+  "waar": "economie-h4-plaat"
+ },
+ {
+  "tekst": "K-pop-dansen wordt steeds populairder.",
+  "stem": "Sulafat",
+  "sleutel": "7a41ec93",
+  "waar": "economie-h4-plaat"
+ },
+ {
+  "tekst": "De zaal in het dorpshuis is klein.",
+  "stem": "Sulafat",
+  "sleutel": "bf87ff28",
+  "waar": "economie-h4-plaat"
+ },
+ {
+  "tekst": "Mijn lessen zijn heel gezellig, leerlingen nemen vriendinnen mee.",
+  "stem": "Sulafat",
+  "sleutel": "4a24a846",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "De huur van zalen gaat omhoog.",
+  "stem": "Sulafat",
+  "sleutel": "077e4561",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Bedreiging.",
+  "stem": "Sulafat",
+  "sleutel": "fc326351",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Ik kan heel goed dansen en uitleggen.",
+  "stem": "Sulafat",
+  "sleutel": "de214110",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Ik heb weinig geld voor reclame.",
+  "stem": "Sulafat",
+  "sleutel": "0ead8894",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Zwakte.",
+  "stem": "Sulafat",
+  "sleutel": "22274dcf",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Kans. Een ontwikkeling in de markt, buiten jou, waar je gebruik van kunt maken.",
+  "stem": "Sulafat",
+  "sleutel": "3d6921f8",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Veel scholen zoeken leuke workshops.",
+  "stem": "Sulafat",
+  "sleutel": "31c739d7",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Kans.",
+  "stem": "Sulafat",
+  "sleutel": "397d7582",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Zwakte. Het gaat over jouw eigen bedrijf, dus intern. En het is een minpunt.",
+  "stem": "Sulafat",
+  "sleutel": "56431275",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Er opent een grote dansschool in de stad.",
+  "stem": "Sulafat",
+  "sleutel": "e04e2e69",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Bedreiging. Een concurrent komt van buiten en is een gevaar.",
+  "stem": "Sulafat",
+  "sleutel": "a1b2c8ce",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Purple Cases verkoopt deze maand honderdvijftig hoesjes. Het aantal dat je verkoopt, heet de afzet.",
+  "stem": "Sulafat",
+  "sleutel": "f68fda20",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter.",
+  "stem": "Sulafat",
+  "sleutel": "ae8da1ad",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Er staan 6 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "641d985e",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
+  "stem": "Sulafat",
+  "sleutel": "6243d1c0",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Het risico dat je als ondernemer verlies maakt of zelfs failliet gaat.",
+  "stem": "Sulafat",
+  "sleutel": "dd12bf80",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Een bedrijf kan zijn rekeningen niet meer betalen en moet stoppen.",
+  "stem": "Sulafat",
+  "sleutel": "66426825",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -18,147 +456,9 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Een plan dat je schrijft vóórdat je een bedrijf start. Ook wel bedrijfsplan. Vier delen: de ondernemer, regels en vergunningen, het marketingplan, het financieel plan.",
-  "stem": "Sulafat",
-  "sleutel": "0a48cd93",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "faillissement",
-  "stem": "Sulafat",
-  "sleutel": "371dd4a9",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Je kunt door ziekte of een ongeluk, een tijd, niet werken. Een ondernemer moet zich hier zelf voor verzekeren.",
-  "stem": "Sulafat",
-  "sleutel": "c358e2df",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "ondernemersrisico",
-  "stem": "Sulafat",
-  "sleutel": "0c624876",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 12 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "7f47e3f6",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "intern / extern",
-  "stem": "Sulafat",
-  "sleutel": "d75e4354",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Het aantal stuks dat je verkoopt.",
-  "stem": "Sulafat",
-  "sleutel": "95de6a03",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "marketingplan",
-  "stem": "Sulafat",
-  "sleutel": "3fc204ee",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "De instrumenten om je product te verkopen: Product, Prijs, Plaats, Promotie, Personeel. Soms 4 P's, zonder Personeel.",
-  "stem": "Sulafat",
-  "sleutel": "4b3d6888",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Je werkt als werknemer voor een werkgever en krijgt elke maand een vast loon.",
-  "stem": "Sulafat",
-  "sleutel": "41a74d55",
-  "waar": "economie-h4-begrippen"
- },
- {
   "tekst": "ondernemingsplan",
   "stem": "Sulafat",
   "sleutel": "dcf9e11d",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Sterkten en zwakten, intern: van jou, en kansen en bedreigingen, extern: van buiten.",
-  "stem": "Sulafat",
-  "sleutel": "156d52a4",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "vergunning",
-  "stem": "Sulafat",
-  "sleutel": "2fc954c8",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 17 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "f09eae1f",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "SWOT-analyse",
-  "stem": "Sulafat",
-  "sleutel": "eaec0a42",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "omzet",
-  "stem": "Sulafat",
-  "sleutel": "12712922",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Het risico dat je als ondernemer verlies maakt of zelfs failliet gaat.",
-  "stem": "Sulafat",
-  "sleutel": "dd12bf80",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "afzet",
-  "stem": "Sulafat",
-  "sleutel": "d2f067af",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "bedrijfskosten",
-  "stem": "Sulafat",
-  "sleutel": "02767a36",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "marketingmix, 5 P's,",
-  "stem": "Sulafat",
-  "sleutel": "79f2d0a6",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Intern is binnen je eigen bedrijf, sterkten, zwakten. Extern is buiten je bedrijf, in de markt, kansen, bedreigingen.",
-  "stem": "Sulafat",
-  "sleutel": "6f22ea7a",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "brutowinst",
-  "stem": "Sulafat",
-  "sleutel": "993e93d0",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "inkoopwaarde van de omzet",
-  "stem": "Sulafat",
-  "sleutel": "f9603ec4",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Wat je echt overhoudt. Nettowinst is brutowinst min bedrijfskosten. Is het negatief? Dan maak je verlies.",
-  "stem": "Sulafat",
-  "sleutel": "2c1769fa",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -168,33 +468,63 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Toestemming, vaak van de gemeente, om iets te mogen doen.",
+  "tekst": "ondernemersrisico",
   "stem": "Sulafat",
-  "sleutel": "b1f92592",
+  "sleutel": "0c624876",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Het totale bedrag dat je binnenkrijgt met verkopen, zonder btw. Omzet is afzet keer verkoopprijs.",
+  "tekst": "Je kunt door ziekte of een ongeluk, een tijd, niet werken. Een ondernemer moet zich hier zelf voor verzekeren.",
   "stem": "Sulafat",
-  "sleutel": "3974e18a",
+  "sleutel": "c358e2df",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Alle andere kosten om je bedrijf te runnen: huur, reclame, energie, verzekeringen.",
+  "tekst": "Er staan 11 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "63a9de31",
+  "sleutel": "80eeedf4",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Wat over is als je de inkoopwaarde van de omzet eraf haalt. Brutowinst is omzet min inkoopwaarde van de omzet. Bruto is er moet nog wat af.",
+  "tekst": "afzet",
   "stem": "Sulafat",
-  "sleutel": "c2f1f2a8",
+  "sleutel": "d2f067af",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "nettowinst",
+  "tekst": "Sterkten en zwakten, intern: van jou, en kansen en bedreigingen, extern: van buiten.",
   "stem": "Sulafat",
-  "sleutel": "4934e414",
+  "sleutel": "156d52a4",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "faillissement",
+  "stem": "Sulafat",
+  "sleutel": "371dd4a9",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "vergunning",
+  "stem": "Sulafat",
+  "sleutel": "2fc954c8",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "De instrumenten om je product te verkopen: Product, Prijs, Plaats, Promotie, Personeel. Soms 4 P's, zonder Personeel.",
+  "stem": "Sulafat",
+  "sleutel": "4b3d6888",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Een plan dat je schrijft vóórdat je een bedrijf start. Ook wel bedrijfsplan. Vier delen: de ondernemer, regels en vergunningen, het marketingplan, het financieel plan.",
+  "stem": "Sulafat",
+  "sleutel": "0a48cd93",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "marketingplan",
+  "stem": "Sulafat",
+  "sleutel": "3fc204ee",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -204,33 +534,123 @@
   "waar": "economie-h4-begrippen"
  },
  {
+  "tekst": "Je werkt als werknemer voor een werkgever en krijgt elke maand een vast loon.",
+  "stem": "Sulafat",
+  "sleutel": "41a74d55",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Intern is binnen je eigen bedrijf, sterkten, zwakten. Extern is buiten je bedrijf, in de markt, kansen, bedreigingen.",
+  "stem": "Sulafat",
+  "sleutel": "6f22ea7a",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Het aantal stuks dat je verkoopt.",
+  "stem": "Sulafat",
+  "sleutel": "95de6a03",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "SWOT-analyse",
+  "stem": "Sulafat",
+  "sleutel": "eaec0a42",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Toestemming, vaak van de gemeente, om iets te mogen doen.",
+  "stem": "Sulafat",
+  "sleutel": "b1f92592",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "intern / extern",
+  "stem": "Sulafat",
+  "sleutel": "d75e4354",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "marketingmix, 5 P's,",
+  "stem": "Sulafat",
+  "sleutel": "79f2d0a6",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "inkoopwaarde van de omzet",
+  "stem": "Sulafat",
+  "sleutel": "f9603ec4",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "brutowinst",
+  "stem": "Sulafat",
+  "sleutel": "993e93d0",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Er staan 9 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "e53658c5",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "bedrijfskosten",
+  "stem": "Sulafat",
+  "sleutel": "02767a36",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Wat je echt overhoudt. Nettowinst is brutowinst min bedrijfskosten. Is het negatief? Dan maak je verlies.",
+  "stem": "Sulafat",
+  "sleutel": "2c1769fa",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Wat over is als je de inkoopwaarde van de omzet eraf haalt. Brutowinst is omzet min inkoopwaarde van de omzet. Bruto is er moet nog wat af.",
+  "stem": "Sulafat",
+  "sleutel": "c2f1f2a8",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "omzet",
+  "stem": "Sulafat",
+  "sleutel": "12712922",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Wat jij zelf hebt betaald voor de producten die je verkocht hebt.",
+  "stem": "Sulafat",
+  "sleutel": "736f06c8",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Alle andere kosten om je bedrijf te runnen: huur, reclame, energie, verzekeringen.",
+  "stem": "Sulafat",
+  "sleutel": "63a9de31",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Het totale bedrag dat je binnenkrijgt met verkopen, zonder btw. Omzet is afzet keer verkoopprijs.",
+  "stem": "Sulafat",
+  "sleutel": "3974e18a",
+  "waar": "economie-h4-begrippen"
+ },
+ {
   "tekst": "Het deel van je plan over hoe je klanten trekt. Met de SWOT-analyse en de marketingmix, de 5 P's.",
   "stem": "Sulafat",
   "sleutel": "45754a17",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 16 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
+  "tekst": "Er staan 8 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "b66208c2",
+  "sleutel": "30ffb000",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Een bedrijf kan zijn rekeningen niet meer betalen en moet stoppen.",
+  "tekst": "nettowinst",
   "stem": "Sulafat",
-  "sleutel": "66426825",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 14 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "a1d126d0",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 13 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "277cb043",
+  "sleutel": "4934e414",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -336,316 +756,238 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Wat jij zelf hebt betaald voor de producten die je verkocht hebt.",
+  "tekst": "Er staan 7 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "736f06c8",
+  "sleutel": "f57ef77b",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 8 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
+  "tekst": "Er staan 4 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "95dedc8d",
+  "sleutel": "172f1604",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 1 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
+  "tekst": "Er staan 0 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "d5a9a3c0",
+  "sleutel": "88240088",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter. Er staan 0 kaarten klaar om te checken. De begrippen zijn: loondienst, zelfstandig ondernemer, ondernemersrisico, faillissement, arbeidsongeschiktheid, ondernemingsplan, vergunning, marketingplan, SWOT-analyse, intern / extern, marketingmix, 5 P's, afzet, omzet, inkoopwaarde van de omzet, brutowinst, bedrijfskosten, nettowinst.",
+  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn:",
   "stem": "Sulafat",
-  "sleutel": "8c6fa835",
-  "waar": "economie-h4-begrippen"
+  "sleutel": "2ffa44d6",
+  "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "Het financieel plan. Is er genoeg geld? Ga je winst maken? Bij een tour: Levert de tour meer op dan hij kost? Bij Purple Cases: Ik reken uit: omzet min inkoopwaarde is brutowinst min bedrijfskosten is nettowinst.",
+  "tekst": "De rekentrap: van omzet naar nettowinst.",
   "stem": "Sulafat",
-  "sleutel": "f49e1b32",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "78bc36eb",
+  "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "Ik maak TikTok-filmpjes om klanten te trekken.",
+  "tekst": "De SWOT met spiegel en raam.",
   "stem": "Sulafat",
-  "sleutel": "3649fa7e",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "3b55e4ac",
+  "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "Het marketingplan. Hoe trek je klanten? Bij een tour: Hoe horen fans van de tour? Wat kost een kaartje? Bij Purple Cases: Mijn SWOT-analyse en mijn 5 P's: prijs 8 euro, TikTok-filmpjes, een webshop.",
+  "tekst": "De 4 delen van het ondernemingsplan.",
   "stem": "Sulafat",
-  "sleutel": "9cce26e3",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "51bb704a",
+  "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "Dit hoort bij marketingplan. Klanten trekken is marketing, de P van Promotie.",
+  "tekst": "De 5 P's.",
   "stem": "Sulafat",
-  "sleutel": "3ffff8c8",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "3c5442c5",
+  "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "Voor een kraam op de markt heb ik een vergunning van de gemeente nodig.",
+  "tekst": "Loondienst of eigen baas.",
   "stem": "Sulafat",
-  "sleutel": "f3544289",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "4fe479b8",
+  "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "Dit hoort bij Regels en vergunningen.",
+  "tekst": "Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen.",
   "stem": "Sulafat",
-  "sleutel": "b30f6e64",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "59f32107",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Een K-popgroep gaat pas op tour met een goed plan. Een ondernemer begint pas een bedrijf met een goed plan: het ondernemingsplan. Het heet ook wel bedrijfsplan. Het plan dwingt je om vooraf na te denken: is mijn idee haalbaar? Het plan heeft vier delen. Ezelsbruggetje: Wie ben ik? Mag het? Hoe trek ik klanten? Verdien ik er wat aan?",
+  "tekst": "Er staan 8 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "8eb08997",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "605ec431",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ik ben creatief en kan goed tekenen.",
+  "tekst": "Noem twee nadelen of risico's van een eigen bedrijf.",
   "stem": "Sulafat",
-  "sleutel": "cfd38f7d",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "b5e9c1a5",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Regels en vergunningen. Welke wetten gelden er? Welke papieren heb je nodig? Bij een tour: Mag het concert in dat stadion? Is er een vergunning van de gemeente? Bij Purple Cases: Ik schrijf me in bij de Kamer van Koophandel. Voor een kraampje op de markt vraag ik een vergunning aan.",
+  "tekst": "Uit welke vier onderdelen bestaat een ondernemingsplan?",
   "stem": "Sulafat",
-  "sleutel": "206bb453",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "ecb51288",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dit hoort bij ondernemer.",
+  "tekst": "Noem twee voordelen van werken in loondienst.",
   "stem": "Sulafat",
-  "sleutel": "d4728732",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "4504aca0",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ik heb 200 euro nodig om materiaal te kopen.",
+  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse?",
   "stem": "Sulafat",
-  "sleutel": "bbcdf0c0",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "8305787f",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "De ondernemer. Wie ben je en wat kun je? Bij een tour: Wie staan er op het podium? Wat kunnen ze? Bij Purple Cases: Ik kan goed tekenen en ik weet wat fans mooi vinden.",
+  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse? A: Sterkte. B: Zwakte. C: Kans. D: Bedreiging",
   "stem": "Sulafat",
-  "sleutel": "b5a13d70",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "435aadda",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dit hoort bij financieel plan.",
+  "tekst": "Waarom schrijft een ondernemer een ondernemingsplan voordat hij begint?",
   "stem": "Sulafat",
-  "sleutel": "d767d7fc",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "111270e2",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Mijn hoesjes kosten 8 euro.",
+  "tekst": "Leg uit wat het ondernemersrisico is.",
   "stem": "Sulafat",
-  "sleutel": "68c44743",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "21cbcaf3",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dit hoort bij marketingplan. De prijs is een van de 5 P's, en die horen in het marketingplan.",
+  "tekst": "Leg uit waarom een zelfstandig ondernemer zelf een verzekering voor arbeidsongeschiktheid regelt.",
   "stem": "Sulafat",
-  "sleutel": "f52560a6",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "8e46e73b",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ik schat hoeveel hoesjes ik per maand verkoop.",
+  "tekst": "In welk deel van het ondernemingsplan staat dat je een vergunning van de gemeente nodig hebt?",
   "stem": "Sulafat",
-  "sleutel": "2ae69743",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "b1376fbe",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dit hoort bij financieel plan. Met de verwachte afzet reken je de omzet uit. Dat is rekenwerk voor het financieel plan.",
+  "tekst": "In welk deel van het ondernemingsplan staat dat je een vergunning van de gemeente nodig hebt? A: De ondernemer. B: Regels en vergunningen. C: Het marketingplan. D: Het financieel plan",
   "stem": "Sulafat",
-  "sleutel": "a9216d3f",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "9c7faec9",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ik schrijf me in bij de Kamer van Koophandel.",
+  "tekst": "Er staan 16 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "5780821b",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "e5e8a6bc",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ik reken uit of ik winst ga maken.",
+  "tekst": "Een ondernemer heeft een omzet van 2000 euro. Hij verkoopt zijn product voor 25 euro per stuk. Bereken de afzet, in stuks.",
   "stem": "Sulafat",
-  "sleutel": "2b613dc8",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "78c07742",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ik heb al eens een kraampje gehad op een fan-meetup.",
+  "tekst": "Een ondernemer verkoopt zijn producten alleen via een webshop. Bij welke P hoort dit?",
   "stem": "Sulafat",
-  "sleutel": "766d3be3",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "bd0ad51b",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Leuk! Dus je werkt voor een baas?",
+  "tekst": "Een ondernemer verkoopt zijn producten alleen via een webshop. Bij welke P hoort dit? A: Product. B: Prijs. C: Plaats. D: Promotie",
   "stem": "Sulafat",
-  "sleutel": "2045a92f",
-  "waar": "economie-h4-chat"
+  "sleutel": "d65af88c",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ja. Ik ben werknemer. De winkel is mijn werkgever. Dat heet werken in loondienst.",
-  "stem": "Puck",
-  "sleutel": "f1e81200",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "En wat krijg je daarvoor?",
+  "tekst": "De brutowinst is 700 euro. De huur is 250 euro, energie kost 80 euro en de verzekering 40 euro. Bereken de nettowinst.",
   "stem": "Sulafat",
-  "sleutel": "11878063",
-  "waar": "economie-h4-chat"
+  "sleutel": "91925ea4",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Elke maand een vast loon. Ook als het een keer rustig is in de winkel.",
-  "stem": "Puck",
-  "sleutel": "05716881",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "En als je ziek bent?",
+  "tekst": "Noem de vijf P's van de marketingmix.",
   "stem": "Sulafat",
-  "sleutel": "72aa7ce4",
-  "waar": "economie-h4-chat"
+  "sleutel": "e2a3d184",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dan betaalt mijn werkgever gewoon door. En ik heb vakantiedagen",
-  "stem": "Puck",
-  "sleutel": "a15d7b3b",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Ik wil liever mijn eigen bedrijfje. Hoesjes maken voor photocards",
+  "tekst": "Leg uit wat het verschil is tussen een sterkte en een kans.",
   "stem": "Sulafat",
-  "sleutel": "f35f8a9f",
-  "waar": "economie-h4-chat"
+  "sleutel": "629b7f1e",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dan ben je zelfstandig ondernemer. Je eigen baas!",
-  "stem": "Puck",
-  "sleutel": "c32427e6",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Precies. Ik bepaal zelf wat ik maak en wanneer ik werk. Vrijheid! En als het goed loopt, kan ik veel verdienen: winst.",
+  "tekst": "De omzet is 1200 euro. De inkoopwaarde van de omzet is 500 euro. Bereken de brutowinst.",
   "stem": "Sulafat",
-  "sleutel": "aabdeb38",
-  "waar": "economie-h4-chat"
+  "sleutel": "34a63671",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Maar wat als niemand iets koopt?",
-  "stem": "Puck",
-  "sleutel": "16b8101a",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Dan heb ik geen inkomen. Of ik maak verlies. Gaat het heel slecht, dan kan ik failliet gaan. Dat heet het ondernemersrisico.",
+  "tekst": "Een bakker verkoopt 400 broden voor 3 euro per stuk. Bereken de omzet.",
   "stem": "Sulafat",
-  "sleutel": "35ef914c",
-  "waar": "economie-h4-chat"
+  "sleutel": "f4f08c8f",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Bij mij draagt de werkgever dat risico. Niet ik.",
-  "stem": "Puck",
-  "sleutel": "454767f5",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Klopt. En ik moet zelf een verzekering regelen. Voor als ik ziek word of niet meer kan werken: arbeidsongeschiktheid.",
+  "tekst": "Welke zin is een zwakte?",
   "stem": "Sulafat",
-  "sleutel": "d0c458de",
-  "waar": "economie-h4-chat"
+  "sleutel": "c3de98cd",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dus: loondienst is zekerheid. Eigen baas is vrijheid, maar ook risico",
-  "stem": "Puck",
-  "sleutel": "c393c823",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Vakantiedagen zijn geregeld",
+  "tekst": "Welke zin is een zwakte? A: Ik heb nog geen ervaring met administratie. B: Er is veel vraag naar duurzame producten. C: Ik kan heel goed programmeren. D: De huur van winkels stijgt.",
   "stem": "Sulafat",
-  "sleutel": "a9dc394f",
-  "waar": "economie-h4-chat"
+  "sleutel": "c50138e4",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Ja! Maar ik ga het toch proberen. Eerst maak ik een goed plan.",
+  "tekst": "Er staan 18 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "c85581f7",
-  "waar": "economie-h4-chat"
+  "sleutel": "55516a9a",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Vrijheid",
+  "tekst": "Is de omzet inclusief of exclusief btw?",
   "stem": "Sulafat",
-  "sleutel": "4038eefa",
-  "waar": "economie-h4-chat"
+  "sleutel": "5ad64f3c",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Dit hoort bij Eigen baas.",
+  "tekst": "Is de omzet inclusief of exclusief btw? A: Inclusief btw. B: Exclusief btw",
   "stem": "Sulafat",
-  "sleutel": "af7a04e0",
-  "waar": "economie-h4-chat"
+  "sleutel": "b5a3efe3",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Risico op faillissement",
+  "tekst": "De brutowinst is 600 euro en de bedrijfskosten zijn 750 euro. Bereken de nettowinst.",
   "stem": "Sulafat",
-  "sleutel": "20e2e08b",
-  "waar": "economie-h4-chat"
+  "sleutel": "77430691",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Doorbetaald worden als je ziek bent",
+  "tekst": "Leg uit wat het verschil is tussen brutowinst en nettowinst.",
   "stem": "Sulafat",
-  "sleutel": "3e366566",
-  "waar": "economie-h4-chat"
+  "sleutel": "35261aa9",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Zelf beslissen wat je doet",
+  "tekst": "Welke kosten horen bij de bedrijfskosten?",
   "stem": "Sulafat",
-  "sleutel": "071d475f",
-  "waar": "economie-h4-chat"
+  "sleutel": "a8e604eb",
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Elke maand een vast loon",
+  "tekst": "Welke kosten horen bij de bedrijfskosten? A: De huur van het pand. B: De inkoop van de verkochte producten. C: De afzet",
   "stem": "Sulafat",
-  "sleutel": "cf908ccb",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Kans op een hoog inkomen, winst,",
-  "stem": "Sulafat",
-  "sleutel": "7455ffd2",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "De werkgever draagt het risico",
-  "stem": "Sulafat",
-  "sleutel": "635e21d1",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Zelf een verzekering regelen voor arbeidsongeschiktheid",
-  "stem": "Sulafat",
-  "sleutel": "7e4db7ad",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Dit hoort bij Eigen baas. Een ondernemer heeft geen werkgever die doorbetaalt. Die moet dat zelf regelen.",
-  "stem": "Sulafat",
-  "sleutel": "e58ccf82",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Geen vast inkomen",
-  "stem": "Sulafat",
-  "sleutel": "8ed6fc81",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Ik heb een bijbaan! Bij de merchwinkel in de stad",
-  "stem": "Puck",
-  "sleutel": "667f0e3c",
-  "waar": "economie-h4-chat"
+  "sleutel": "bcf65644",
+  "waar": "economie-h4-toets"
  },
  {
   "tekst": "Elk hoesje kost acht euro. Honderdvijftig keer acht is twaalfhonderd euro. Dat is je omzet. Omzet is afzet keer verkoopprijs.",
@@ -690,405 +1032,333 @@
   "waar": "economie-h4-filmpje"
  },
  {
-  "tekst": "omzet is afzet keer verkoopprijs. 150 keer 8 euro is 1200 euro.",
+  "tekst": "De bedrijfskosten blijven tweehonderdvijftig euro. Ook als je weinig verkoopt. Tweehonderd min tweehonderdvijftig is min vijftig euro. Dat is verlies. Dit is het risico van een eigen bedrijf.",
   "stem": "Sulafat",
-  "sleutel": "f2a1dd9f",
+  "sleutel": "b211fe43",
   "waar": "economie-h4-filmpje"
  },
  {
-  "tekst": "Purple Cases verkoopt deze maand honderdvijftig hoesjes. Het aantal dat je verkoopt, heet de afzet.",
+  "tekst": "Jouw beurt. Teken één plaatje van wat je onthoudt.",
   "stem": "Sulafat",
-  "sleutel": "f68fda20",
+  "sleutel": "8e41d58b",
   "waar": "economie-h4-filmpje"
  },
  {
-  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: Loondienst of eigen baas. De 4 delen van het ondernemingsplan. De SWOT met spiegel en raam. De 5 P's. De rekentrap: van omzet naar nettowinst.",
+  "tekst": "Dit hoort bij marketingplan. De prijs is een van de 5 P's, en die horen in het marketingplan.",
   "stem": "Sulafat",
-  "sleutel": "bbf3175d",
-  "waar": "economie-h4-geheugen"
+  "sleutel": "f52560a6",
+  "waar": "economie-h4-bouwplan"
  },
  {
-  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: De SWOT met spiegel en raam. De 5 P's. De rekentrap: van omzet naar nettowinst. Loondienst of eigen baas. De 4 delen van het ondernemingsplan.",
+  "tekst": "Er staan 0 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "87206c1b",
-  "waar": "economie-h4-geheugen"
+  "sleutel": "bd1d2269",
+  "waar": "tellers"
  },
  {
-  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: De 5 P's. De rekentrap: van omzet naar nettowinst. De SWOT met spiegel en raam. Loondienst of eigen baas. De 4 delen van het ondernemingsplan.",
+  "tekst": "Er staan 1 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "61b055f9",
-  "waar": "economie-h4-geheugen"
+  "sleutel": "de24ae6d",
+  "waar": "tellers"
  },
  {
-  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: De 5 P's. De rekentrap: van omzet naar nettowinst. De 4 delen van het ondernemingsplan. Loondienst of eigen baas. De SWOT met spiegel en raam.",
+  "tekst": "Er staan 1 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "8711d20d",
-  "waar": "economie-h4-geheugen"
+  "sleutel": "6239a05e",
+  "waar": "tellers"
  },
  {
-  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: De 5 P's. De 4 delen van het ondernemingsplan. Loondienst of eigen baas. De SWOT met spiegel en raam. De rekentrap: van omzet naar nettowinst.",
+  "tekst": "Er staan 2 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "a6a27003",
-  "waar": "economie-h4-geheugen"
+  "sleutel": "a5d1f252",
+  "waar": "tellers"
  },
  {
-  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: De 5 P's. Loondienst of eigen baas. De rekentrap: van omzet naar nettowinst. De 4 delen van het ondernemingsplan. De SWOT met spiegel en raam.",
+  "tekst": "Er staan 2 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "ac7ec959",
-  "waar": "economie-h4-geheugen"
+  "sleutel": "7b7575cf",
+  "waar": "tellers"
  },
  {
-  "tekst": "Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn: De rekentrap: van omzet naar nettowinst. De 4 delen van het ondernemingsplan. Loondienst of eigen baas. De 5 P's. De SWOT met spiegel en raam.",
+  "tekst": "Er staan 3 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "71f5bc5d",
-  "waar": "economie-h4-geheugen"
+  "sleutel": "ac78357f",
+  "waar": "tellers"
  },
  {
-  "tekst": "Economie hoofdstuk vier. Een eigen bedrijf. Vul de datum van je toets in, dan plan ik je herhaling. Je lightstick is voor 0 procent opgeladen. Vandaag, ongeveer 11 minuten: Chat: nieuw stuk leren. 🃏 6 begrippen checken.",
+  "tekst": "Er staan 3 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "a2687140",
-  "waar": "economie-h4-overzicht"
+  "sleutel": "c63cac0c",
+  "waar": "tellers"
  },
  {
-  "tekst": "Jouw bedrijfje heet Purple Cases. Stel: jij verkoopt zelfgemaakte photocard-hoesjes aan K-pop-fans. Hoe zorg je dat het lukt? Daarvoor schrijf je een marketingplan. Daarin staan twee dingen: de SWOT-analyse, en de vijf P's.",
+  "tekst": "Er staan 4 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "d9deb727",
-  "waar": "economie-h4-plaat"
+  "sleutel": "0ccd797d",
+  "waar": "tellers"
  },
  {
-  "tekst": "K-pop-dansen wordt steeds populairder.",
+  "tekst": "Er staan 5 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "7a41ec93",
-  "waar": "economie-h4-plaat"
+  "sleutel": "29c30819",
+  "waar": "tellers"
  },
  {
-  "tekst": "De huur van zalen gaat omhoog.",
+  "tekst": "Er staan 5 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "077e4561",
-  "waar": "economie-h4-plaat"
+  "sleutel": "49bf5b62",
+  "waar": "tellers"
  },
  {
-  "tekst": "Veel scholen zoeken leuke workshops.",
+  "tekst": "Er staan 6 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "31c739d7",
-  "waar": "economie-h4-plaat"
+  "sleutel": "662f8543",
+  "waar": "tellers"
  },
  {
-  "tekst": "Je verkoopt 190 lightstick-hoesjes van 8 euro. Jij betaalt zelf 4 euro per stuk.",
+  "tekst": "Er staan 7 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "3df0dd10",
-  "waar": "economie-h4-rekenen"
+  "sleutel": "0f2d3090",
+  "waar": "tellers"
  },
  {
-  "tekst": "Je verkoopt 140 lightstick-hoesjes van 8 euro. Jij betaalt zelf 3 euro per stuk.",
+  "tekst": "Er staan 9 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "3d68bca8",
-  "waar": "economie-h4-rekenen"
+  "sleutel": "1a4ca3a6",
+  "waar": "tellers"
  },
  {
-  "tekst": "Je verkoopt deze maand 150 photocard-hoesjes van 8 euro. Jij kocht elk hoesje in voor 3 euro.",
+  "tekst": "Er staan 10 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "98de7f1a",
-  "waar": "economie-h4-rekenen"
+  "sleutel": "96aff449",
+  "waar": "tellers"
  },
  {
-  "tekst": "brutowinst is omzet min inkoopwaarde van de omzet. 1200 euro min 450 euro is 750 euro.",
+  "tekst": "Er staan 10 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "4c65954f",
-  "waar": "economie-h4-rekenen"
+  "sleutel": "77711752",
+  "waar": "tellers"
  },
  {
-  "tekst": "Je verkoopt 80 armbandjes van 3 euro. Jij betaalt zelf 1 euro per stuk.",
+  "tekst": "Er staan 11 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "35ae8d4b",
-  "waar": "economie-h4-rekenen"
+  "sleutel": "2dfe41ed",
+  "waar": "tellers"
  },
  {
-  "tekst": "Je koopt photocard-houders in voor 2 euro per stuk. Je verkoopt ze voor 3 euro. Deze maand verkoop je er 100. Je verzekering kost 50 euro.",
+  "tekst": "Er staan 12 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "d0675092",
-  "waar": "economie-h4-rekenen"
+  "sleutel": "51b8522b",
+  "waar": "tellers"
  },
  {
-  "tekst": "Ik heb weinig geld voor reclame.",
+  "tekst": "Er staan 12 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "0ead8894",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "0afe4940",
+  "waar": "tellers"
  },
  {
-  "tekst": "Dit hoort bij Zwakte.",
+  "tekst": "Er staan 13 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "22274dcf",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "18fee28e",
+  "waar": "tellers"
  },
  {
-  "tekst": "Er opent een grote dansschool in de stad.",
+  "tekst": "Er staan 13 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "e04e2e69",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "bd6c9f73",
+  "waar": "tellers"
  },
  {
-  "tekst": "Dit hoort bij Bedreiging. Een concurrent komt van buiten en is een gevaar.",
+  "tekst": "Er staan 14 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "a1b2c8ce",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "42c3c81d",
+  "waar": "tellers"
  },
  {
-  "tekst": "Mijn lessen zijn heel gezellig, leerlingen nemen vriendinnen mee.",
+  "tekst": "Er staan 14 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "4a24a846",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "9016578e",
+  "waar": "tellers"
  },
  {
-  "tekst": "Dit hoort bij Kans.",
+  "tekst": "Er staan 15 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "397d7582",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "aa2d4638",
+  "waar": "tellers"
  },
  {
-  "tekst": "Ik kan heel goed dansen en uitleggen.",
+  "tekst": "Er staan 15 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "de214110",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "ff271959",
+  "waar": "tellers"
  },
  {
-  "tekst": "Dit hoort bij Bedreiging.",
+  "tekst": "Er staan 16 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "fc326351",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "adcf65af",
+  "waar": "tellers"
  },
  {
-  "tekst": "De zaal in het dorpshuis is klein.",
+  "tekst": "Er staan 17 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "bf87ff28",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "6a4a8ac2",
+  "waar": "tellers"
  },
  {
-  "tekst": "Dit hoort bij Zwakte. Het gaat over jouw eigen bedrijf, dus intern. En het is een minpunt.",
+  "tekst": "Er staan 17 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "56431275",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "f31de2ff",
+  "waar": "tellers"
  },
  {
-  "tekst": "Dit hoort bij Kans. Een ontwikkeling in de markt, buiten jou, waar je gebruik van kunt maken.",
+  "tekst": "Er staan 18 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "3d6921f8",
-  "waar": "economie-h4-sorteren"
+  "sleutel": "8bb49661",
+  "waar": "tellers"
  },
  {
-  "tekst": "Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen. Er staan 8 vragen klaar.",
+  "tekst": "Er staan 19 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "854d8a73",
-  "waar": "economie-h4-toets"
+  "sleutel": "c9889a8c",
+  "waar": "tellers"
  },
  {
-  "tekst": "Leg uit waarom een zelfstandig ondernemer zelf een verzekering voor arbeidsongeschiktheid regelt.",
+  "tekst": "Er staan 19 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "8e46e73b",
-  "waar": "economie-h4-toets"
+  "sleutel": "1a8d1f35",
+  "waar": "tellers"
  },
  {
-  "tekst": "Leg uit wat het ondernemersrisico is.",
+  "tekst": "Er staan 20 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "21cbcaf3",
-  "waar": "economie-h4-toets"
+  "sleutel": "80587300",
+  "waar": "tellers"
  },
  {
-  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse?",
+  "tekst": "Er staan 20 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "8305787f",
-  "waar": "economie-h4-toets"
+  "sleutel": "ad797d31",
+  "waar": "tellers"
  },
  {
-  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse? A: Sterkte. B: Zwakte. C: Kans. D: Bedreiging",
+  "tekst": "Er staan 21 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "435aadda",
-  "waar": "economie-h4-toets"
+  "sleutel": "348f1bc5",
+  "waar": "tellers"
  },
  {
-  "tekst": "Waarom schrijft een ondernemer een ondernemingsplan voordat hij begint?",
+  "tekst": "Er staan 21 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "111270e2",
-  "waar": "economie-h4-toets"
+  "sleutel": "67675ca6",
+  "waar": "tellers"
  },
  {
-  "tekst": "In welk deel van het ondernemingsplan staat dat je een vergunning van de gemeente nodig hebt?",
+  "tekst": "Er staan 22 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "b1376fbe",
-  "waar": "economie-h4-toets"
+  "sleutel": "fd44190a",
+  "waar": "tellers"
  },
  {
-  "tekst": "In welk deel van het ondernemingsplan staat dat je een vergunning van de gemeente nodig hebt? A: De ondernemer. B: Regels en vergunningen. C: Het marketingplan. D: Het financieel plan",
+  "tekst": "Er staan 22 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "9c7faec9",
-  "waar": "economie-h4-toets"
+  "sleutel": "17653cd7",
+  "waar": "tellers"
  },
  {
-  "tekst": "Uit welke vier onderdelen bestaat een ondernemingsplan?",
+  "tekst": "Er staan 23 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "ecb51288",
-  "waar": "economie-h4-toets"
+  "sleutel": "fb049d37",
+  "waar": "tellers"
  },
  {
-  "tekst": "Noem twee voordelen van werken in loondienst.",
+  "tekst": "Er staan 23 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "4504aca0",
-  "waar": "economie-h4-toets"
+  "sleutel": "5b317c14",
+  "waar": "tellers"
  },
  {
-  "tekst": "Noem twee nadelen of risico's van een eigen bedrijf.",
+  "tekst": "Er staan 24 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "b5e9c1a5",
-  "waar": "economie-h4-toets"
+  "sleutel": "2805b0dc",
+  "waar": "tellers"
  },
  {
-  "tekst": "Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen. Er staan 15 vragen klaar.",
+  "tekst": "Er staan 24 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "f354f4b7",
-  "waar": "economie-h4-toets"
+  "sleutel": "af261785",
+  "waar": "tellers"
  },
  {
-  "tekst": "Een bakker verkoopt 400 broden voor 3 euro per stuk. Bereken de omzet.",
+  "tekst": "Er staan 25 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "f4f08c8f",
-  "waar": "economie-h4-toets"
+  "sleutel": "cd6684f1",
+  "waar": "tellers"
  },
  {
-  "tekst": "Noem de vijf P's van de marketingmix.",
+  "tekst": "Er staan 25 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "e2a3d184",
-  "waar": "economie-h4-toets"
+  "sleutel": "882a53ea",
+  "waar": "tellers"
  },
  {
-  "tekst": "De brutowinst is 700 euro. De huur is 250 euro, energie kost 80 euro en de verzekering 40 euro. Bereken de nettowinst.",
+  "tekst": "Er staan 26 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "91925ea4",
-  "waar": "economie-h4-toets"
+  "sleutel": "e94df616",
+  "waar": "tellers"
  },
  {
-  "tekst": "Een ondernemer verkoopt zijn producten alleen via een webshop. Bij welke P hoort dit?",
+  "tekst": "Er staan 26 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "bd0ad51b",
-  "waar": "economie-h4-toets"
+  "sleutel": "a1fe63cb",
+  "waar": "tellers"
  },
  {
-  "tekst": "Een ondernemer verkoopt zijn producten alleen via een webshop. Bij welke P hoort dit? A: Product. B: Prijs. C: Plaats. D: Promotie",
+  "tekst": "Er staan 27 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "d65af88c",
-  "waar": "economie-h4-toets"
+  "sleutel": "5b753353",
+  "waar": "tellers"
  },
  {
-  "tekst": "De omzet is 1200 euro. De inkoopwaarde van de omzet is 500 euro. Bereken de brutowinst.",
+  "tekst": "Er staan 27 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "34a63671",
-  "waar": "economie-h4-toets"
+  "sleutel": "9dc067d8",
+  "waar": "tellers"
  },
  {
-  "tekst": "Een ondernemer heeft een omzet van 2000 euro. Hij verkoopt zijn product voor 25 euro per stuk. Bereken de afzet, in stuks.",
+  "tekst": "Er staan 28 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "78c07742",
-  "waar": "economie-h4-toets"
+  "sleutel": "d77cc388",
+  "waar": "tellers"
  },
  {
-  "tekst": "Welke zin is een zwakte?",
+  "tekst": "Er staan 28 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "c3de98cd",
-  "waar": "economie-h4-toets"
+  "sleutel": "0a37db69",
+  "waar": "tellers"
  },
  {
-  "tekst": "Welke zin is een zwakte? A: Ik heb nog geen ervaring met administratie. B: Er is veel vraag naar duurzame producten. C: Ik kan heel goed programmeren. D: De huur van winkels stijgt.",
+  "tekst": "Er staan 29 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "c50138e4",
-  "waar": "economie-h4-toets"
+  "sleutel": "2d7d716d",
+  "waar": "tellers"
  },
  {
-  "tekst": "Leg uit wat het verschil is tussen een sterkte en een kans.",
+  "tekst": "Er staan 29 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "629b7f1e",
-  "waar": "economie-h4-toets"
+  "sleutel": "af54595e",
+  "waar": "tellers"
  },
  {
-  "tekst": "Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen. Er staan 18 vragen klaar.",
+  "tekst": "Er staan 30 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "739e68f0",
-  "waar": "economie-h4-toets"
+  "sleutel": "6c0748c7",
+  "waar": "tellers"
  },
  {
-  "tekst": "Is de omzet inclusief of exclusief btw?",
+  "tekst": "Er staan 30 vragen klaar.",
   "stem": "Sulafat",
-  "sleutel": "5ad64f3c",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Is de omzet inclusief of exclusief btw? A: Inclusief btw. B: Exclusief btw",
-  "stem": "Sulafat",
-  "sleutel": "b5a3efe3",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Welke kosten horen bij de bedrijfskosten?",
-  "stem": "Sulafat",
-  "sleutel": "a8e604eb",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Welke kosten horen bij de bedrijfskosten? A: De huur van het pand. B: De inkoop van de verkochte producten. C: De afzet",
-  "stem": "Sulafat",
-  "sleutel": "bcf65644",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "De brutowinst is 600 euro en de bedrijfskosten zijn 750 euro. Bereken de nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "77430691",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Leg uit wat het verschil is tussen brutowinst en nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "35261aa9",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Toetstraining. Vragen zoals op je toets, door elkaar. Dat voelt lastiger, maar zo leer je kiezen welke aanpak je nodig hebt. Precies wat je op de toets moet doen. Geen punten, geen tijd. Bij elke vraag kun je voorlezen, je kladblok gebruiken en een tip krijgen. Er staan 17 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "f5b60c11",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Dit is jouw ideeënbus. Wat moet er nieuw in de app? Wat is irritant? Wat kan mooier? Schrijf het op, of teken het. Papa en Claude bouwen het.",
-  "stem": "Sulafat",
-  "sleutel": "85eb2c93",
-  "waar": "ideeen"
- },
- {
-  "tekst": "Purple Cases verkoopt deze maand 150 hoesjes van 8 euro. De omzet is 150 keer 8 euro is 1200 euro. Dat is afzet keer verkoopprijs.",
-  "stem": "Sulafat",
-  "sleutel": "a8b9d532",
-  "waar": "mijn-app"
- },
- {
-  "tekst": "Voorlezen. Kies de stem die jij het fijnst vindt, en hoe snel hij praat. Tik op Probeer om te luisteren.",
-  "stem": "Sulafat",
-  "sleutel": "98a32ef8",
-  "waar": "mijn-app"
- },
- {
-  "tekst": "Bij Mijn app staat nu hoe je de iPad zelf met een mooiere stem laat voorlezen.",
-  "stem": "Sulafat",
-  "sleutel": "477aca9f",
-  "waar": "nieuw"
- },
- {
-  "tekst": "Wat is er nieuw. Het gekraak tussen de zinnen in het filmpje is weg. Uit jouw ideeënbus: Het filmpje over omzet en winst praat nu met de stem die jij koos. Veel minder robot! Bij Mijn app staat nu hoe je de iPad zelf met een mooiere stem laat voorlezen. Onderaan Mijn app staat nu het versienummer. En nieuwe versies komen sneller binnen. Bij Mijn app staat nu welke stemmen je kunt downloaden. De Siri-stemmen werken niet in de app, dat bepaalt Apple. Bij slechte wifi start de app nu snel. Ook als de wifi eerst een inlogpagina wil, zoals op school. Nieuw: dit scherm! Hier zie je wat er in je app verandert. Voorlezen klinkt rustiger. De app leest per zin, met pauzes, en zegt bedragen gewoon in euro's. Bij Mijn app kies je zelf een stem en hoe snel die praat. Op elk scherm kun je nu laten voorlezen. Ook bij Begrippen, Uit je hoofd en de Toetstraining.",
-  "stem": "Sulafat",
-  "sleutel": "b8d226fa",
-  "waar": "nieuw"
- },
- {
-  "tekst": "Voorlezen klinkt rustiger. De app leest per zin, met pauzes, en zegt bedragen gewoon in euro's.",
-  "stem": "Sulafat",
-  "sleutel": "026e35e0",
-  "waar": "nieuw"
+  "sleutel": "fbf8b024",
+  "waar": "tellers"
  }
 ]

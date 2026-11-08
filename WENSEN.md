@@ -34,8 +34,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ### Opgenomen stemmen: verder uitrollen (besluit 17)
 - H4: 172 van 182 teksten ingesproken (2026-11-08); de rest volgt via de geplande taak.
-- **Wisselende teksten splitsen** in `js/leren.js`: bijvoorbeeld het begrippenmenu ("er staan 7 kaarten klaar") en de toetstraining-intro. Vast deel apart voorlezen, teller los erachter. Dan krijgt het vaste deel ook de natuurlijke stem. Werk: klein.
-- **Omvang:** ongeveer 10 MB opnames per hoofdstuk. Na een paar vakken wordt dat 50–100 MB op de iPad. Opties: lagere bitrate (32 kbps is voor spraak genoeg, scheelt een derde) en opnames van hoofdstukken waarvan de toets voorbij is niet meer vooraf bewaren voor offline (alleen bij gebruik). Werk: klein. Wacht op: besluit van vader.
+- Gedaan (2026-11-08): wisselende teksten gesplitst, tellers apart; nieuwe opnames op 32 kbps; opnames per hoofdstuk geladen en blijvend bewaard (niet opnieuw downloaden na een update); verzamelaar 40× sneller.
 - **Verzamelaar** (`tools/verzamel.js`) klikt willekeurig rond met voorkeuren per leervorm. Een nieuwe leervorm heeft eigen voorkeursknoppen nodig, anders worden teksten gemist. Werk: klein, per nieuwe vorm.
 - Op de echte iPad controleren: speelt de chat met ▶ Afspelen automatisch door (iOS is streng met automatisch afspelen)?
 
