@@ -76,7 +76,10 @@
     voice = vs.find(v => v.voiceURI === keuze) || vs[0] || null;
   }
   if (canSpeak) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  /* Ingesproken geluid (vooraf gemaakt, zie audio/). Eén vast element: iOS staat afspelen toe zodra het één keer na een tik is gestart. */
+  const speler = typeof Audio !== "undefined" ? new Audio() : null;
   function stopSpeak() {
+    if (speler) { speler.onended = speler.onerror = null; speler.pause(); }
     if (canSpeak) speechSynthesis.cancel();
     $$(".say.speaking").forEach(b => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
   }
@@ -102,6 +105,15 @@
   // Per zin voorlezen: dat geeft natuurlijke pauzes en de iPad raakt minder snel de draad kwijt bij lange teksten.
   function zinnen(t) { return (t.match(/[^.!?:;]+[.!?:;]*/g) || [t]).map(s => s.trim()).filter(s => /\w/.test(s)); }
   function speak(text, onend, opts = {}) {
+    if (opts.audio && speler) {   // eerst het ingesproken bestand; lukt dat niet, dan de iPad-stem
+      let klaar = false;
+      const terug = () => { if (klaar) return; klaar = true; speler.onended = speler.onerror = null; speak(text, onend, { ...opts, audio: null }); };
+      speler.onended = () => { if (!klaar) { klaar = true; speler.onended = speler.onerror = null; onend && onend(); } };
+      speler.onerror = terug;
+      speler.src = opts.audio; speler.playbackRate = (opts.rate || store.get("tempo", 0.95)) / 0.95;
+      const p = speler.play(); if (p && p.catch) p.catch(terug);
+      return;
+    }
     const delen = canSpeak && text ? zinnen(spreekbaar(text)) : [];
     if (!delen.length) { onend && onend(); return; }
     let klaar = false;

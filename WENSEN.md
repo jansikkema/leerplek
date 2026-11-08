@@ -32,10 +32,9 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Lastig omdat de voorleestekst nu vaak los staat van de tekst op het scherm. Eerst doen bij de chat en het filmpje, waar tekst en stem al gelijk lopen.
 - Werk: middel.
 
-### Besluit nodig: opgenomen stemmen voor vaste teksten
-- Teksten die niet veranderen (filmpje, chat, plaat) kunnen vooraf worden ingesproken met een natuurlijke computerstem (bijvoorbeeld ElevenLabs) en als geluidsbestand in de app staan. Dat klinkt veel beter dan elke iPad-stem.
-- Nadelen: kost tegoed bij die dienst; bij elke tekstwijziging opnieuw maken; wisselende teksten (bedragen in 'Zelf rekenen', het Overzicht) blijven de iPad-stem, dus twee soorten stemmen door elkaar; een paar MB extra. Botst niet met besluit 1 (de app zelf gebruikt dan geen AI), maar wel een nieuw besluit.
-- Advies: de verbeterde iPad-stem werkt niet in de app (getest 2026-11-08). Volgende stap: proefstuk met het filmpje van H4.
+### Opgenomen stemmen: verder uitrollen (besluit 17)
+- Filmpje H4: ingesproken. Daarna: chat, plaat, begrippen, toetsvragen van H4, en elk nieuw hoofdstuk.
+- Gratis laag is 10 verzoeken per dag. Voor een heel hoofdstuk: meerdere dagen, of betaald (enkele dollars per hoofdstuk).
 - Werk: middel.
 
 ### Later: geplande wekelijkse herinnering (back-up en terugblik)

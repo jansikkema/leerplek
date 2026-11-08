@@ -71,3 +71,10 @@ Let op: deze repository is openbaar. Hier staan geen persoonlijke gegevens, cijf
 ## 16. Voorlezen met de stemmen van de iPad zelf
 **Wat (2026-11-08):** de app gebruikt de Nederlandse stemmen die op de iPad staan. Hij kiest de beste (premium, dan verbeterd, dan basis; robot- en grapstemmen nooit). Zij kan zelf een stem en tempo kiezen. Tekst wordt eerst omgezet naar uitspreekbare woorden en per zin voorgelezen.
 **Waarom:** gratis, werkt zonder internet en er gaat geen tekst naar een externe dienst. De kwaliteit hangt af van welke stem er op de iPad staat, daarom staat in de app uitgelegd hoe je een betere stem downloadt. Opgenomen stemmen voor vaste teksten zijn een open vraag (zie WENSEN.md).
+**Aanvulling (2026-11-08):** getest op het apparaat: iOS geeft websites en beginscherm-apps alleen de basisstemmen. Verbeterde en Siri-stemmen zijn voor de app onbereikbaar. Zie besluit 17.
+
+## 17. Vaste teksten vooraf ingesproken met Gemini TTS
+**Wat (2026-11-08):** vaste voorleesteksten (eerst het filmpje van H4) worden vooraf ingesproken met Gemini 3.8 Flash TTS, stem Sulafat (haar keuze uit drie, blind beluisterd). De bestanden staan als mp3 in `audio/<module>/`. De app speelt ze af via `App.speak(tekst, klaar, { audio })`; ontbreekt een bestand of lukt afspelen niet, dan leest de iPad-stem dezelfde tekst. Wisselende tekst blijft de iPad-stem.
+**Waarom:** het was haar eigen wens: de basisstem klinkt als een robot, en betere stemmen zijn in een webapp niet te krijgen (besluit 16). Een echte app vraagt een Mac en een betaald ontwikkelaarsaccount; een live voorleesdienst stuurt tekst naar buiten. Vooraf inspreken houdt de app zonder AI (besluit 1): alleen onze eigen lesstof gaat eenmalig naar Google, nooit iets van haar. De sleutel staat alleen in de werkomgeving van Claude, nooit in de repository.
+**Let op:** het model leest aanwijzingen over toon hardop mee; geef alleen de kale tekst. Gratis laag: 3 verzoeken per minuut, 10 per dag.
+
