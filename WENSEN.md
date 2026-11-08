@@ -21,10 +21,11 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Het inzoomprobleem: zoomt Safari niet meer per ongeluk in, en werkt A− / A+ wel?
 - Werk: klein. Kan alleen op de iPad zelf; de Playwright-test in iPad-formaat vervangt dit niet.
 
-### Voorlezen: betere stem downloaden op haar iPad
-- De app kiest nu de beste stem die op de iPad staat. Natuurlijk klinkt het pas met een **verbeterde** of **premium** Nederlandse stem. Die moet je eenmalig downloaden (uitleg staat in 'Mijn app' → Voorlezen).
-- Op de iPad controleren: welke stemmen verschijnen er, en kiest de app de goede? De herkenning van de stemsoort is gebaseerd op de interne naam van de stem en is niet op een echte iPad getest.
-- Werk: klein.
+### Voorlezen: mooiere stem (wens van haar zelf)
+- **Getest op 2026-11-08:** iOS geeft aan websites en beginscherm-apps alleen de basisstemmen door (`compact` Xander, `super-compact` Ellen), ook na het downloaden van de verbeterde stemmen en een herstart. Siri-stemmen zijn nooit beschikbaar voor apps. De app kan hier zelf niets aan doen.
+- Nu: de tip in 'Mijn app' verwijst naar Spreek selectie / Spreek scherm van iOS, die wel de verbeterde stemmen gebruiken.
+- Opties voor in de app: opgenomen stemmen voor vaste teksten (zie hieronder); een echte app via een app-schil (vraagt een betaald Apple-ontwikkelaarsaccount en bouwen op een Mac in de cloud); een online voorleesdienst (botst met besluit 2 en 3, en mogelijk met 1).
+- Werk: zie de opties. Wacht op: besluit van vader.
 
 ### Meelezen: de zin die wordt voorgelezen oplichten
 - Tijdens voorlezen de zin markeren die op dat moment klinkt. Helpt bij het volgen en verbindt horen met lezen.
@@ -34,7 +35,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 ### Besluit nodig: opgenomen stemmen voor vaste teksten
 - Teksten die niet veranderen (filmpje, chat, plaat) kunnen vooraf worden ingesproken met een natuurlijke computerstem (bijvoorbeeld ElevenLabs) en als geluidsbestand in de app staan. Dat klinkt veel beter dan elke iPad-stem.
 - Nadelen: kost tegoed bij die dienst; bij elke tekstwijziging opnieuw maken; wisselende teksten (bedragen in 'Zelf rekenen', het Overzicht) blijven de iPad-stem, dus twee soorten stemmen door elkaar; een paar MB extra. Botst niet met besluit 1 (de app zelf gebruikt dan geen AI), maar wel een nieuw besluit.
-- Advies: eerst de verbeterde iPad-stem proberen. Is dat niet genoeg, dan proefstuk met het filmpje van H4.
+- Advies: de verbeterde iPad-stem werkt niet in de app (getest 2026-11-08). Volgende stap: proefstuk met het filmpje van H4.
 - Werk: middel.
 
 ### Later: geplande wekelijkse herinnering (back-up en terugblik)

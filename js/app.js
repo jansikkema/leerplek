@@ -55,7 +55,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 10;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 11;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -497,9 +497,11 @@
         : `<p class="soft">Nog geen Nederlandse stem gevonden. Zie de tip hieronder.</p>`;
       $$("[data-i]", box).forEach(b => b.onclick = () => { store.set("stem", vs[+b.dataset.i].voiceURI); pickVoice(); stemmen(); stopSpeak(); speak("Hoi! Zo klink ik. Vind je mij fijn om naar te luisteren?"); });
       const goed = vs.some(v => stemKwaliteit(v) >= 2);
-      $("#stemtip", el).innerHTML = `<details class="meet" style="margin-top:14px" ${goed ? "" : "open"}><summary>💡 Klinkt het als een robot? Download een betere stem</summary>
-        <ol style="margin:10px 0 0;padding-left:22px;line-height:1.6"><li>Open <b>Instellingen</b> op je iPad.</li><li>Ga naar <b>Toegankelijkheid</b> → <b>Gesproken materiaal</b> → <b>Stemmen</b>.</li>
-        <li>Kies <b>Nederlands</b>. Tik op een stem en download de versie <b>Verbeterd</b> of <b>Premium</b>, bijvoorbeeld <b>Claire (verbeterd)</b> of <b>Xander (verbeterd)</b>.</li><li>Let op: de <b>Siri</b>-stemmen (Stem 1, Stem 2) werken niet in deze app. Apple laat die alleen door Siri zelf gebruiken.</li><li>Sluit deze app helemaal en open hem opnieuw. Kies hier dan de nieuwe stem.</li></ol></details>
+      $("#stemtip", el).innerHTML = `<details class="meet" style="margin-top:14px"><summary>💡 Wil je een mooiere stem?</summary>
+        <p style="margin:10px 0 6px">Deze app mag van Apple alleen de gewone stemmen gebruiken. De iPad zelf kan wel mooiere stemmen voorlezen. Zo zet je dat aan:</p>
+        <ol style="margin:0;padding-left:22px;line-height:1.6"><li>Open <b>Instellingen</b> → <b>Toegankelijkheid</b> → <b>Gesproken materiaal</b>.</li>
+        <li>Zet <b>Spreek selectie</b> en <b>Spreek scherm</b> aan.</li><li>Tik op <b>Stemmen</b> → <b>Nederlands</b> en kies een stem, bijvoorbeeld <b>Claire (verbeterd)</b>.</li>
+        <li>Selecteer een stukje tekst en tik op <b>Spreek uit</b>. Of veeg met twee vingers van boven naar beneden: dan leest de iPad het hele scherm voor.</li></ol></details>
         <details class="meet" style="margin-top:10px"><summary>🔧 Voor papa: welke stemmen geeft de iPad door?</summary>${stemOverzicht()}</details>`;
     }
     function stemOverzicht() {
