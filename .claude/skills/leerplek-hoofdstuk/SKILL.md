@@ -18,6 +18,9 @@ Van boekmateriaal naar een module in `js/modules/`. Lees eerst `CLAUDE.md`, `BES
 - **De app denkt niet voor haar.** Zij geeft de antwoorden; de app maakt materiaal en stelt vragen.
 - **Geen overhoorspel, geen opdracht "leg het uit"** als losse vorm. Overhoren zit in de doe-versie, sorteren, kaarten, uit je hoofd tekenen en de toetstraining (zonder punten of tijd).
 - **Bij twijfel over een begrip: vraag het vader.** Bijvoorbeeld als het boek een woord anders gebruikt dan gangbaar, als een foto onleesbaar is, of als twee bronnen verschillen. Gok niet.
+- **De opdracht blijft in beeld (besluit 22).** Tekent of oefent ze, dan staat de opdracht erbij, ook op volledig scherm. De vormen in `leren.js` regelen dat zelf (opdrachtstrook in het tekenvlak, vaste vraag bij stap voor stap). Bouw je iets nieuws met een tekenvlak: geef `Studio` een `opdracht` mee, of gebruik `App.tekenMet(tag, { html, zeg })`.
+- **Plusstof herkenbaar (besluit 22).** Stof die in het boek met een plusteken is gemarkeerd, krijgt `plus: true` (bij een scène, soort som, sorteerronde, toetsvraag, begrip of onderdeel). De app zet er dan het gouden label "➕ Plusstof" bij. Zet "Plus:" niet in de tekst zelf.
+- **Formules voor het oor.** Gebruik `L.zeg` (x = "iks", y = "ij", − = "min", (2, 5) = "het punt 2 en 5") via `L.filmZeg` voor filmpjes en `L.metZeg(o, "veld", …)` voor kaarten, sorteerkaarten en toetsvragen. Een punt nooit als "nul, vier" laten voorlezen: dat wordt "nul komma vier".
 - **Geen persoonlijke gegevens** in code of commitberichten: geen naam, cijfers, resultaten, en de toetsdatum niet in de code (die vult zij zelf in de app in).
 
 ## Stap 0 · Invoer controleren
@@ -28,6 +31,7 @@ Nodig: vak, hoofdstuknummer en -titel, het materiaal (foto's of samenvatting), d
 ## Stap 1 · Begrippen en toetswoorden uit het boek halen
 - Maak per paragraaf een lijst: **term (letterlijk uit het boek)** · eigen uitleg in één of twee korte zinnen · eigen voorbeeld uit haar wereld · emoji als icoon.
 - Haal ook de toetstaal eruit: welke soorten vragen stelt het boek (noem, leg uit, bereken, waarom, welke)?
+- Noteer welke stof in het boek met een plusteken (verdieping) is gemarkeerd; die krijgt in de app `plus: true`. Check ook de diagnostische toets: welke opgaven zijn plus?
 - Formules: noteer ze precies in de woorden van het boek (zoals "omzet = afzet × verkoopprijs").
 - Twijfel je over een begrip? Markeer het met ❓ en **vraag het vader voordat je verder bouwt**. Zonder twijfel bouw je door.
 
@@ -44,7 +48,9 @@ Kies vanuit de stof, niet vanuit de vorm. Haar voorkeur: plaat en filmpje eerst.
 | Berekeningen (economie) | **rekenen**: kijk mee → samen → zelf | `L.rekenen` (kent nu alleen omzet → nettowinst) |
 | Sommen met een aanpak in stappen (wiskunde, natuurkunde) | **stappen**: per soort som een generator met steeds nieuwe getallen; zij kiest per stap wat ze doet en vult in | `L.stappen` (voorbeeld: `OEFEN` in `wiskunde-h1.js`; vakjes `[5]`, `[+-6]`, `[<]`, `[*goed|fout]`) |
 
-**Filmpjes in schetsbordstijl (besluit 20):** nieuwe uitlegfilmpjes krijgen de schetsbordstijl: lijn voor lijn getekend, eenvoudige poppetjes, inkt + vakkleur + rood, leestijd bij woorden. Ontwerp de voorleestekst en de tekening samen, per zin. Vorm: `L.schetsbord` (scènes met zinnen; elke zin heeft `t`, eventueel `s` voor de stem, en `teken(b, S)` met de bouwstenen uit `L.schets`). Voorbeeld: `wiskunde-h1.js`. Formules voor de stem voluit schrijven (x = "iks", y = "ij"); punten niet als "nul, vier" maar zo dat er geen "komma" van wordt gemaakt (controle keurt dat af). Voeg in `tools/verzamel.js` bij `VOORKEUR` de stap toe met `["#nextS"]`.
+**Filmpjes in schetsbordstijl (besluit 20):** nieuwe uitlegfilmpjes krijgen de schetsbordstijl: lijn voor lijn getekend, eenvoudige poppetjes, inkt + vakkleur + rood, leestijd bij woorden. Ontwerp de voorleestekst en de tekening samen, per zin. Vorm: `L.schetsbord` (scènes met zinnen; elke zin heeft `t`, eventueel `s` voor de stem, en `teken(b, S)` met de bouwstenen uit `L.schets`). Voorbeeld: `wiskunde-h1.js`. De stemtekst van elke zin komt uit `L.filmZeg` (zie de regel over formules). Een zin met "Jouw beurt" aan het eind geeft "Ga tekenen"; de opdracht gaat dan vanzelf mee naar het tekenscherm. Voeg in `tools/verzamel.js` bij `VOORKEUR` de stap toe met `["#nextS"]`. Voorbeeld: `wiskunde-h1.js` (zes filmpjes, assenstelsel met schaal, weegschaal, tabel, formule in kleuren).
+
+**Sommen oefenen (besluit 21):** `L.stappen` met per soort som een `voorbeeld`, een `samen` en een generator `maak()` die steeds een nieuwe, vergelijkbare som maakt (nooit opgaven uit het boek). Laat de generator de som opbouwen vanuit het antwoord (eerst x kiezen, dan de getallen eromheen), dan komt het altijd mooi uit. Zet `OEFEN` en `VRAGEN` in `_test` van `App.addModule`, dan kan `test-oefenen.js` ze controleren.
 
 **Video (besluit 18):** per paragraaf hooguit één korte video vóór de leervorm, met `L.video` (`{ id, titel, kanaal, start?, eind? }` + `intro` + `vraag` die zij zelf beantwoordt). Zoek kandidaten met de zoekfunctie van YouTube (`www.youtube.com/results?search_query=…` met `hl=nl`, lees `ytInitialData`), alleen Nederlandstalig (let op automatisch vertaalde titels van Engelse kanalen), en controleer ze met `python3 tools/check-video.py <id> …`. **Leg twee of drie kandidaten per paragraaf voor aan vader (titel, kanaal, lengte, waarom) en publiceer pas na zijn keuze.** Claude kan video's niet bekijken.
 
@@ -80,6 +86,8 @@ node .claude/skills/leerplek-hoofdstuk/test-ipad.js <module-id> <scratchpad>/sch
 ```
 - Het script opent elk onderdeel staand en liggend op iPad-formaat en meldt JavaScript-fouten, lege onderdelen en schermen die breder zijn dan de iPad. Bij "LET OP: geen voorleesknop" moet je dat scherm nalopen.
 - Bekijk de schermafdrukken zelf: past alles, is de tekst niet te lang, staat er geen boektekst?
+- Heeft het hoofdstuk sommen of rekenvragen? Draai ook `node .claude/skills/leerplek-hoofdstuk/test-oefenen.js <module-id>`: maakt duizenden sommen, vult elke Samen-ronde in via het scherm en beantwoordt alle toetsvragen.
+- Bekijk de schermafdrukken echt: in deze app vielen eerder lijnen weg (vakkleur niet gezet) en stond een kaart naast in plaats van onder elkaar (klassenaam die al bestond). Kies voor nieuwe CSS-klassen een naam die nog niet in `css/app.css` staat.
 - Speel minstens één keer met de hand door: sorteer een kaart fout en goed, maak een rekenronde af, beantwoord een toetsvraag van elk type.
 - Zet de schermafdrukken in de scratchpad, nooit in de repository.
 
@@ -88,7 +96,10 @@ Doe dit pas als de teksten definitief zijn: elke tekstwijziging betekent opnieuw
 1. Server draaien op poort 8765, dan per scherm parallel verzamelen (sneller), bijvoorbeeld:
    `echo <module-id>-chat <module-id>-plaat … | tr ' ' '\n' | xargs -P5 -I{} sh -c "node tools/verzamel.js {} > <scratchpad>/v/{}.json"`
    en samenvoegen tot `tools/teksten.json` (dubbele sleutels eruit). Controleer het aantal per scherm: lijkt een scherm onvolledig (bijv. minder sorteerkaarten dan in de data), voeg dan in `VOORKEUR` in `tools/verzamel.js` de juiste knoppen voor die leervorm toe.
+   Bij filmpjes tikt de verzamelaar zelf eerst scène 1 aan, zodat de zinnen op volgorde staan.
 2. `python3 tools/maak-audio.py`: bundels van 12 teksten, knippen op de pauzes, opschonen, laten controleren. Daglimiet: 100 verzoeken per model per dag, het script schakelt zelf door naar het tweede model (samen 200). Een hoofdstuk kost ongeveer 15 verzoeken. Zijn beide op, dan stopt het; draai het de volgende dag opnieuw (bestaande opnames worden overgeslagen). Test niet onnodig met echte verzoeken: proefjes tellen mee voor de limiet.
+   **Groot hoofdstuk (200+ teksten) = twee dagen.** Afgekeurde bundels kosten ook verzoeken. Publiceer gewoon (de iPad-stem vult aan) en draai het script de volgende dag nog eens; zet daarvoor een herinnering met `send_later` en meld het aan vader. Een filmpje of chat die maar half gelukt is, haalt het script zelf weer weg, zodat de stem niet per zin wisselt.
+   Losse tikken aan het begin van een opname haalt het script daarna weg met `tools/tik.py` (plofklanken zoals t en k blijven staan).
 3. Bewerk opnames niet achteraf in tempo (geen vertragen of versnellen: geeft vreemde effecten, besluit 17).
 4. Afgekeurde teksten blijven de iPad-stem. Kijk in de uitvoer waarom (vaak een Engels uitgesproken vakterm of een afgebroken woord) en draai ze nog eens.
 5. Test of de schermen opnames afspelen (netwerkverzoeken naar `audio/z/` in Playwright) en dat de chat de juiste stem per persoon gebruikt.
@@ -106,11 +117,17 @@ Werk eerst `WENSEN.md` (onder Gedaan) en zo nodig `BESLUITEN.md` bij, zodat ze i
 
 Noem in je eindbericht ook de vormkeuze per paragraaf.
 
+## Praktisch
+- Lange shellopdrachten met heredocs worden soms geweigerd door een veiligheidscontrole. Zet een script dan eerst als bestand in de scratchpad (Write) en draai het daarna.
+- De testservers: 8123 voor de tests, 8765 voor de verzamelaar. Ze stoppen soms tussendoor; start ze dan opnieuw.
+
 ## Klaar als
 - [ ] Alle toetswoorden staan letterlijk zoals in het boek; twijfelgevallen zijn met vader besproken.
 - [ ] Elke paragraaf heeft een leervorm; het hoofdstuk heeft kaarten, uit je hoofd tekenen en toetstraining.
 - [ ] Geen boektekst, geen afbeeldingen van artiesten, geen persoonlijke gegevens.
 - [ ] Elk scherm heeft een voorleesknop.
+- [ ] Bij tekenen en oefenen is de opdracht zichtbaar; plusstof heeft `plus: true`.
+- [ ] Sommen en toetsvragen: `test-oefenen.js` zonder fouten.
 - [ ] Vaste voorleesteksten zijn ingesproken en gecontroleerd; wisselende stukken staan los.
 - [ ] Geregistreerd in `index.html` en `sw.js`, `CACHE` verhoogd.
 - [ ] Test in iPad-formaat zonder fouten.

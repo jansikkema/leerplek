@@ -22,7 +22,7 @@ const VOORKEUR = {
   kruitvat: [".say"],
   nederland: [".say", "#go", "#sverder", ".say-mini", ".s-bak"],
   lab: [".say", "#sverder", ".say-mini", ".s-bak", "#vr", "[data-lab]"],
-  // schetsbord: zin voor zin vooruit (wiskunde-h1)
+  // schetsbord: zin voor zin vooruit. Nieuw filmpje? Voeg de stap hier toe. (Zin 1 wordt bij het openen apart opgehaald, zie hieronder.)
   film11: ["#nextS"], film12: ["#nextS"], film13: ["#nextS"], film14: ["#nextS"], film15: ["#nextS"], film16: ["#nextS"],
   geheugen: ["#lees-geh"],
   verband11: ["#sverder", ".say-mini", ".s-bak"], teken15: ["#sverder", ".say-mini", ".s-bak"]
@@ -50,6 +50,9 @@ const NIET = /tekenen|teken\b|Ga tekenen|wissen|verwijder|back-up|terugzetten|de
   for (const r of routes) for (let ronde = 0; ronde < 3; ronde++) {
     await p.goto(BASIS + "#" + r); await p.waitForTimeout(500);
     await p.evaluate(() => { window.__opname = []; });
+    // Filmpje of schetsbord: één keer scène 1 aantikken, zodat zin 1 vooraan in de lijst staat. Zinnen die na elkaar
+    // klinken moeten op volgorde in één opname (maak-audio.py bundelt per scherm in deze volgorde).
+    await p.evaluate(() => { const s = document.querySelector('#scp [data-sc="0"]'); if (s) s.click(); });
     const gedaan = new Set(); let stil = 0;
     for (let stap = 0; stap < 800; stap++) {
       const voorkeur = Object.entries(VOORKEUR).find(([k]) => r.endsWith(k));

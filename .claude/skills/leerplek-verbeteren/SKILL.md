@@ -38,6 +38,8 @@ Twijfel, een "niet", een besluit terugdraaien of groot werk? Leg de triage eerst
 
 ## Stap 3 · Bouwen
 - Volg de techniekregels in `CLAUDE.md`: geen buildstap, `App.modal` in plaats van pop-ups, voorleesknop op elk scherm, korte zinnen.
+- Moet ze iets tekenen of oefenen? Dan blijft de opdracht in beeld (besluit 22). Plusstof krijgt `plus: true`.
+- Nieuwe CSS-klasse? Kies een naam die nog niet in `css/app.css` staat (een bestaande naam gaf eerder een kapotte opmaak).
 - Raakt het een leervorm? Verander het in `js/leren.js`, zodat alle hoofdstukken meeprofiteren. Controleer dan ook de andere modules.
 - Verandert er iets aan de opslag? Houd oude gegevens leesbaar (geen gegevensverlies na de update) en zorg dat de back-up en het terugzetten blijven werken.
 - Nieuw bestand? Toevoegen aan `index.html` en aan `CORE` in `sw.js`. Verandert er een bestand? **Verhoog altijd `CACHE` in `sw.js`.**
@@ -51,6 +53,7 @@ python3 -m http.server 8123 >/dev/null 2>&1 &
 node .claude/skills/leerplek-hoofdstuk/test-ipad.js "" <scratchpad>/schermen
 ```
 - Test alle modules (lege module-id), want een wijziging in `leren.js` of `app.js` raakt alles.
+- Raakt het sommen of de toetstraining? Draai ook `node .claude/skills/leerplek-hoofdstuk/test-oefenen.js wiskunde-h1`.
 - Speel de veranderde plek met de hand door en bekijk de schermafdrukken (in de scratchpad, nooit in de repository).
 - Verandert `sw.js`? Draai ook `node .claude/skills/leerplek-hoofdstuk/test-wifi.js` (geen, trage en slechte wifi).
 - Pencil, voorlezen en het deelmenu kun je hier niet echt testen. Zet die controle op de lijst voor vader (iPad).

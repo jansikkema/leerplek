@@ -1133,6 +1133,33 @@
     render();
   }
 
+  /* ================= 14. formules voorlezen (wiskunde, natuurkunde, scheikunde) ================= */
+  // zeg(tekst) geeft wat de stem moet zeggen bij een tekst met formules: x = "iks", y = "ij", − = "min", = "is",
+  // (2, 5) = "het punt 2 en 5" (een komma tussen twee getallen wordt anders "komma" uitgesproken).
+  // metZeg(o, ...velden) zet o.zeg[veld] waar dat nodig is; de vormen gebruiken dat voor de stem (zg).
+  // filmZeg(f) vult bij elke zin van een schetsbord-filmpje de stemtekst s in. Verander je deze regels, dan krijgen
+  // de teksten een nieuwe vingerafdruk en moeten ze opnieuw ingesproken worden.
+  const BREUK = { 2: "half", 3: "derde", 4: "vierde", 5: "vijfde", 6: "zesde", 8: "achtste", 10: "tiende", 12: "twaalfde" };
+  function zeg(t) {
+    return String(t).replace(/\*\*|`/g, "").replace(/[−–]/g, "-")
+      .replace(/\{(-?\d+)\/(\d+)\}/g, "$1/$2")
+      .replace(/getallenpaar \((-?[\d½]+), (-?[\d½]+)\)/g, "getallenpaar $1 en $2")
+      .replace(/\b([A-Z])\((-?[\d½\/]+), (-?[\d½\/]+)\)/g, "$1 met coördinaten $2 en $3")
+      .replace(/(het )?(punt )?\((-?[\d½\/]+), (-?[\d½\/]+)\)/g, "het punt $3 en $4").replace(/punten het punt/g, "punten").replace(/is het punt/g, "is het punt")
+      .replace(/\b1½/g, "anderhalf ").replace(/(\d)½/g, "$1 en een half ").replace(/½/g, "een half ").replace(/⅓/g, "een derde ").replace(/⅔/g, "twee derde ").replace(/¼/g, "een kwart ")
+      .replace(/\b(\d+)\/(\d+)(?!\d)/g, (m, a, b) => a === "1" && b === "2" ? "een half " : `${a} ${BREUK[b] || "gedeeld door " + b} `)
+      .replace(/(\d)\(/g, "$1 keer (")
+      .replace(/(^|[\s(=:,])-\s?/g, "$1min ")
+      .replace(/\s=\s/g, " is ").replace(/\s\+\s/g, " plus ").replace(/\s[·×]\s/g, " keer ")
+      .replace(/\s<\s/g, " is kleiner dan ").replace(/\s>\s/g, " is groter dan ").replace(/\s:\s(?=\d|min)/g, " gedeeld door ")
+      .replace(/(\d)([a-z])\b/g, "$1 $2").replace(/\b([ab])x\b/g, "$1 x")
+      .replace(/\bx-/g, "iks-").replace(/\by-/g, "ij-").replace(/\bx\b/g, "iks").replace(/\by\b/g, "ij").replace(/\brc\b/g, "r c")
+      .replace(/\s+/g, " ").replace(/\s([.,:?!])/g, "$1").trim();
+  }
+  const metZeg = (o, ...velden) => { velden.forEach(v => { if (o[v] == null) return; const z = Array.isArray(o[v]) ? o[v].map(zeg) : zeg(o[v]); if (JSON.stringify(z) !== JSON.stringify(o[v])) (o.zeg = o.zeg || {})[v] = z; }); return o; };
+  const filmZeg = f => { f.scenes.forEach(sc => sc.zinnen.forEach(z => { if (!z.s) z.s = zeg(z.t); })); return f; };
+
+
   /* ================= 10. overzicht van een hoofdstuk (route, vandaag, toetsdatum) ================= */
   // cfg = { mod, titel, spreekTitel, IDS, STATIONS, NAMEN, GEHEUGEN, waarom: [html] }
   // Twee duidelijk verschillende delen: Leren (nieuwe stof, per paragraaf, in de kleur van het vak) en
@@ -1197,6 +1224,6 @@
     $("#td", el).onchange = e => { V.update(x => x.toets = e.target.value ? new Date(e.target.value + "T08:00:00").getTime() : null); App.go(cfg.mod + "-overzicht"); };
   }
 
-  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, schetsbord, stappen, overzicht, md, euro, shuffle, waarde,
+  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, schetsbord, stappen, overzicht, md, euro, shuffle, waarde, zeg, metZeg, filmZeg,
     schets: { Tekenaar, mk, assen, lijnDoor, trap, tabel, formule, stil: schetsStil } };
 })();

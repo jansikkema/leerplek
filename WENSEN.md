@@ -9,18 +9,11 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Open
 
-### Schetsbord bouwen en testen met een nieuw hoofdstuk (besluit 20)
-- **Stand 2026-11-09 (avond):** Wiskunde H1 is helemaal gebouwd met zes schetsbord-filmpjes. Haar reactie op het eerste filmpje: goed. Nog doen: poppetje, gebouw en ketting uit de proef naar `L.schets`, zodat geschiedenis en aardrijkskunde het ook kunnen gebruiken.
-- **Eerder op 2026-11-09:** `L.schetsbord` staat in `js/leren.js` (bouwstenen in `L.schets`: tekenaar, assenstelsel, lijn bij een formule, trapje 'opzij en omhoog', tabel, formule in kleuren). Eerste filmpje: Wiskunde H1 §1.1 (y = ax + b), 25 zinnen, elke zin met een eigen stuk tekening dat tegelijk met de stem start. Ingesproken. **Nu testen met haar:** helpt het? Volgt ze de tekening bij de stem? Is de tekst onder het beeld te veel (de zinnen stapelen op, de huidige licht op)? Meten via 'Na afloop (voor papa)' op het overzicht.
-- Daarna: de rest van Wiskunde H1 (1.2 t/m 1.6, begrippen, toetstraining), en poppetje/gebouw/ketting uit de proef naar `L.schets` zodat geschiedenis het ook kan gebruiken.
-- Stijl is gekozen (proef: `tools/proef/schetsbord.html`). Volgende stap: een vaste vorm `L.schetsbord` in `js/leren.js`, waarbij het hoofdstuk alleen tekeninstructies als data aanlevert. Bouwstenen: poppetje, gebouw, pijl, ketting, kaart, doorsnede met labels, grafiek, rekenstap, zinsdelen.
-- Testen met een **nieuw hoofdstuk**, waarin tekst en tekening samen worden gemaakt. In de proef was de stem eerder klaar dan de tekening, omdat bestaande tekst onder een nieuwe animatie stond.
-- **Gelijk lopen:** de tekening per zin laten meelopen met de ingesproken tekst (elke zin start zijn stuk tekening; een label verschijnt als het woord klinkt). Daarna pas de leestijd van losse labels afstemmen.
-- Tempoknop (Rustig / Heel rustig / Vlot) houden; de standaard is wat zij kiest. Opslag in `lp-tempo`.
-- Nog te beoordelen met haar: kan de volledige tekst onder het beeld weg (korte zin + stem, volledige tekst achter een tik)? Helpt de ketting onderaan? Zijn de poppetjes te stijf?
-- Daarna: proefscènes voor de andere vakken die binnenkort komen (aardrijkskunde, wiskunde, Duits, natuurkunde), bij stof die ze echt leert. Bestaande filmpjes (Italië, kaartfilmpje §1.3, H4) later overzetten.
-- Verzamelaar (`tools/verzamel.js`) heeft voorkeursknoppen voor de nieuwe vorm nodig.
-- Werk: groot (de vorm), daarna klein per filmpje. Wacht op: een nieuw hoofdstuk.
+### Schetsbord: verder uitbouwen (besluit 20)
+- Stand 2026-11-09: `L.schetsbord` werkt en is gebruikt voor zes filmpjes in Wiskunde H1. Tekening en stem lopen per zin gelijk. Haar eerste reactie: goed.
+- Nog doen: poppetje, gebouw, ketting en kaart uit de proef (`tools/proef/schetsbord.html`) naar `L.schets`, zodat geschiedenis en aardrijkskunde ze kunnen gebruiken. Daarna de bestaande filmpjes (Italië, kaartfilmpje §1.3, H4) overzetten.
+- Nog te beoordelen met haar: is de tekst onder het beeld te veel (zinnen stapelen op, de huidige licht op)? Gebruikt ze de tempoknop?
+- Werk: middel (bouwstenen), daarna klein per filmpje.
 
 ### Video's: proef bij Geschiedenis H1 §1.3
 - Vorm `L.video` gebouwd en gepubliceerd (2026-11-08, versie 19). Bij §1.3 de VPRO-video over het begin van de oorlog, goedgekeurd door vader.
@@ -57,7 +50,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel.
 
 ### Opgenomen stemmen: verder uitrollen (besluit 17)
-- Stand 2026-11-09: H4 179/180, Geschiedenis H1 314/315, tellers en appschermen compleet. Twee teksten afgekeurd (de stem slaat een woord over of voegt er een toe); die lezen de iPad-stem. Bij de volgende run nog eens proberen.
+- Stand 2026-11-09: H4 179/180, Geschiedenis H1 314/315, tellers en appschermen compleet. Wiskunde H1: 71 van 232, de rest staat gepland voor 10 november (daglimiet). Twee teksten afgekeurd (de stem slaat een woord over of voegt er een toe); die lezen de iPad-stem. Bij de volgende run nog eens proberen.
 - **Schermen met zinnen na elkaar opnieuw inspreken in één opname per scherm** (filmpjes, chats en kaartfilmpje van H1, chat van H4). Die komen nu nog uit verschillende verzoeken en kunnen per zin net anders klinken. Het filmpje van H4 is al gedaan (2026-11-09). Werk: klein, ongeveer 15 verzoeken.
 - Knippen van bundels gaat nu op de lengte van de teksten (dynamisch programmeren): 270 teksten in ruim 5 minuten met 42 verzoeken (2026-11-09).
 - Gedaan (2026-11-08): wisselende teksten gesplitst, tellers apart; nieuwe opnames op 32 kbps; opnames per hoofdstuk geladen en blijvend bewaard (niet opnieuw downloaden na een update); verzamelaar 40× sneller.

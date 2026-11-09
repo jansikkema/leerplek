@@ -250,6 +250,18 @@ if __name__ == "__main__":
     if model_nu[0] < len(MODELLEN):
         with ThreadPoolExecutor(3) as pool: mislukt = sum(1 for ok in pool.map(maak_los, over) if not ok)
     else: mislukt = len(over); print("daglimiet van alle modellen bereikt; draai het script morgen opnieuw", flush=True)
+    # Schermen waarvan de zinnen direct na elkaar klinken (filmpje, chat): half ingesproken = de stem wisselt per zin.
+    # Dan de opnames van deze run voor dat scherm weer weghalen; de volgende run spreekt het hele scherm in één keer in.
+    HEEL = os.environ.get("HEEL", r"film|oorlog|italie|weimar|chat")
+    import re
+    nieuw_gemaakt = {x["sleutel"] for x in nog if os.path.exists(doel(x))}
+    for waar in sorted({x["waar"] for x in nog if re.search(HEEL, x["waar"])}):
+        scherm = [x for x in teksten if x["waar"] == waar]
+        mist = [x for x in scherm if not os.path.exists(doel(x))]
+        if mist and DOEL == Z:
+            weg = [x for x in scherm if x["sleutel"] in nieuw_gemaakt]
+            for x in weg: os.unlink(doel(x))
+            if weg: print(f"{waar}: {len(mist)} van {len(scherm)} niet gelukt; {len(weg)} nieuwe opnames weer weggehaald (hele scherm de volgende keer opnieuw)", flush=True)
     print("totaal", round(time.time() - t0), "s; verzoeken:", verzoeken)
     if DOEL == Z:   # losse tikken aan het begin weghalen (alleen nieuwe opnames; zie tools/tik.py)
         nieuw = [doel(x) for x in nog if os.path.exists(doel(x))]
