@@ -21,7 +21,9 @@ const VOORKEUR = {
   weimar: ["#cnext", ".bubble", ".say", "#sverder", ".say-mini", ".s-bak"],
   kruitvat: [".say"],
   nederland: [".say", "#go", "#sverder", ".say-mini", ".s-bak"],
-  lab: [".say", "#sverder", ".say-mini", ".s-bak", "#vr", "[data-lab]"]
+  lab: [".say", "#sverder", ".say-mini", ".s-bak", "#vr", "[data-lab]"],
+  // schetsbord: zin voor zin vooruit (wiskunde-h1)
+  film11: ["#nextS"]
 };
 const NIET = /tekenen|teken\b|Ga tekenen|wissen|verwijder|back-up|terugzetten|deel|stuur|instellingen/i;
 

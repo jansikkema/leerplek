@@ -10,6 +10,8 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 ## Open
 
 ### Schetsbord bouwen en testen met een nieuw hoofdstuk (besluit 20)
+- **Stand 2026-11-09:** `L.schetsbord` staat in `js/leren.js` (bouwstenen in `L.schets`: tekenaar, assenstelsel, lijn bij een formule, trapje 'opzij en omhoog', tabel, formule in kleuren). Eerste filmpje: Wiskunde H1 §1.1 (y = ax + b), 25 zinnen, elke zin met een eigen stuk tekening dat tegelijk met de stem start. Ingesproken. **Nu testen met haar:** helpt het? Volgt ze de tekening bij de stem? Is de tekst onder het beeld te veel (de zinnen stapelen op, de huidige licht op)? Meten via 'Na afloop (voor papa)' op het overzicht.
+- Daarna: de rest van Wiskunde H1 (1.2 t/m 1.6, begrippen, toetstraining), en poppetje/gebouw/ketting uit de proef naar `L.schets` zodat geschiedenis het ook kan gebruiken.
 - Stijl is gekozen (proef: `tools/proef/schetsbord.html`). Volgende stap: een vaste vorm `L.schetsbord` in `js/leren.js`, waarbij het hoofdstuk alleen tekeninstructies als data aanlevert. Bouwstenen: poppetje, gebouw, pijl, ketting, kaart, doorsnede met labels, grafiek, rekenstap, zinsdelen.
 - Testen met een **nieuw hoofdstuk**, waarin tekst en tekening samen worden gemaakt. In de proef was de stem eerder klaar dan de tekening, omdat bestaande tekst onder een nieuwe animatie stond.
 - **Gelijk lopen:** de tekening per zin laten meelopen met de ingesproken tekst (elke zin start zijn stuk tekening; een label verschijnt als het woord klinkt). Daarna pas de leestijd van losse labels afstemmen.
@@ -87,6 +89,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-09 · Schetsbord als vaste vorm, proef met Wiskunde H1 §1.1.** Uitlegfilmpje over y = ax + b dat lijn voor lijn ontstaat: tekening en stem lopen per zin gelijk, tempoknop (pauzes en tekenen, niet de stem), eindigt met zelf tekenen. Nog alleen het filmpje; de rest van het hoofdstuk volgt na de test.
 - **2026-11-08 · Chat begon bij het tweede bericht (versie 21).** Het eerste bericht stond er al, maar Afspelen sloeg het over. Nu leest Afspelen eerst het bericht dat er al staat. Zit in `L.chat`, dus geldt voor alle chats.
 - **2026-11-08 · Opgeruimd en logischer (vraag van vader).** Beginscherm met Bezig/Toekomst/Gedaan, filter per vak en "Verder waar je was". Hoofdstuk: Leren (paragrafen als knoppen) en Oefenen apart, elk met eigen kleur. Paragraaf als eigen scherm. In een stap: waar je bent, en vorige/volgende. Terugknop één niveau omhoog. Lijniconen voor de navigatie, emoji in zachte vlakken. Filmpje §1.3 op een kaart van Europa met kampen, pijlen en front; Italië-filmpje met meer beweging. H4 gebruikt nu ook het gedeelde overzicht. Zie besluit 19.
 - **2026-11-08 · Geschiedenis H1 De Eerste Wereldoorlog.** Tijdlijn (vier rondes), plaat 'kruitvat' met twee sorteerrondes, filmpje van Sarajevo tot Versailles, sorteren aanleiding/oorzaak/gevolg, podcast-chat over Weimar, filmpje Italië, plaat Nederland neutraal, oorzaak-lab met vijf sorteerrondes, 35 begrippen, 31 toetsvragen, 6 uit-je-hoofd-platen. Nieuwe vormen in `leren.js`. Voorlezen: WO1 en PSEC worden goed uitgesproken; filmpje leest ook voor bij zelf doorklikken als 'alles automatisch voorlezen' aanstaat.

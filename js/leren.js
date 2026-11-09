@@ -767,6 +767,228 @@
     $("#vklaar", el).onclick = () => { store.set(key, { ...store.get(key, {}), antwoord: $("#vant", el).value, klaar: Date.now() }); $("#vok", el).textContent = "✓ Bewaard"; if (onKlaar) onKlaar($("#na", el)); };
   }
 
+  /* ================= 12. schetsbord: uitlegfilmpje dat lijn voor lijn ontstaat (besluit 20) ================= */
+  // d = { mod, titel, intro, teken (tag voor App.tekenMet), scenes: [{ kop, verder?, zinnen: [{ t, s?, teken(b, S) }] }] }
+  // Elke zin heeft zijn eigen stuk tekening: dat start tegelijk met de stem. De volgende zin wacht tot stem én
+  // tekening klaar zijn, plus een korte pauze (tempo: zij kiest). t = tekst op het scherm (**toetswoord**, `formule`),
+  // s = wat de stem zegt (als dat anders is, bijvoorbeeld bij formules). S = gedeeld kladje per scène (bijv. het
+  // assenstelsel uit zin 1 dat zin 2 gebruikt). verder: true = de tekening van de vorige scène blijft staan.
+  // De tekenaar en de bouwstenen staan in App.Leer.schets, zodat een hoofdstuk alleen tekeninstructies levert.
+  const NS = "http://www.w3.org/2000/svg";
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  let zaad = 1;   // vaste zaadjes: elke keer dezelfde 'handgetekende' lijnen
+  const R = () => { zaad = (zaad + 0x6D2B79F5) | 0; let t = Math.imul(zaad ^ (zaad >>> 15), 1 | zaad); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const J = a => (R() * 2 - 1) * a, f1 = n => n.toFixed(1);
+  function ruwD(pts, amp = 1.4) {
+    let d = "";
+    pts.forEach((p, i) => {
+      const x = p[0] + J(amp * .6), y = p[1] + J(amp * .6);
+      if (i === 0) { d = `M${f1(x)} ${f1(y)}`; return; }
+      const q = pts[i - 1], len = Math.hypot(p[0] - q[0], p[1] - q[1]), a = Math.min(amp * 1.6, len * .05) + .4;
+      d += ` Q${f1((q[0] + p[0]) / 2 + J(a))} ${f1((q[1] + p[1]) / 2 + J(a))} ${f1(x)} ${f1(y)}`;
+    });
+    return d;
+  }
+  function rondD(pts) {
+    let d = `M${f1(pts[0][0])} ${f1(pts[0][1])}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      d += ` C${f1(p1[0] + (p2[0] - p0[0]) / 6)} ${f1(p1[1] + (p2[1] - p0[1]) / 6)} ${f1(p2[0] - (p3[0] - p1[0]) / 6)} ${f1(p2[1] - (p3[1] - p1[1]) / 6)} ${f1(p2[0])} ${f1(p2[1])}`;
+    }
+    return d;
+  }
+  function ovaalPts(cx, cy, rx, ry, ruw = .04) {
+    const n = 22, a0 = R() * 6.28, pts = [];
+    for (let i = 0; i <= n; i++) { const a = a0 + i / n * (Math.PI * 2 + .45), k = 1 + J(ruw); pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]); }
+    return pts;
+  }
+  const KLEUR = { inkt: "var(--ink)", vak: "var(--vak)", rood: "var(--min)", zacht: "var(--soft)", lijn: "var(--line)" };
+  const kl = c => KLEUR[c] || c || KLEUR.inkt;
+  class Tekenaar {   // verzamelt alles wat getekend wordt, met een starttijd en duur
+    constructor(g) { this.g = g; this.items = []; this.t = 0; }
+    in(g, fn) { const oud = this.g; this.g = g; fn(); this.g = oud; }
+    wacht(ms) { this.t += ms; }
+    lijnPaar(dFn, o = {}) {
+      const kleur = kl(o.c), w = o.w || 2.6, els = [];
+      for (const pass of [0, 1]) {
+        const p = mk("path", { d: dFn(), fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, this.g);
+        p.style.stroke = kleur; p.style.strokeWidth = pass ? w * .45 : w; if (pass) p.style.opacity = .55;
+        els.push(p);
+      }
+      const len = els[0].getTotalLength(), dur = Math.max(220, Math.min(1400, len * 1.5 * (o.snel || 1)));
+      els.forEach(el => this.items.push({ soort: "lijn", el, at: this.t, dur, len: el.getTotalLength() + 2 }));
+      this.t += dur * .85;
+      return els;
+    }
+    lijn(pts, o) { return this.lijnPaar(() => ruwD(pts, o && o.amp), o); }
+    ovaal(cx, cy, rx, ry, o = {}) { return this.lijnPaar(() => rondD(ovaalPts(cx, cy, rx, ry, o.ruw)), o); }
+    cirkel(cx, cy, r, o) { return this.ovaal(cx, cy, r, r, o); }
+    rh(x, y, w, h, o) { return this.lijn([[x, y], [x + w, y], [x + w, y + h], [x, y + h], [x, y - 1]], o); }
+    pijl(van, naar, o = {}) {
+      this.lijn([van, naar], o);
+      const a = Math.atan2(naar[1] - van[1], naar[0] - van[0]), k = o.punt || 12;
+      this.lijn([[naar[0] - k * Math.cos(a - .5), naar[1] - k * Math.sin(a - .5)], naar, [naar[0] - k * Math.cos(a + .5), naar[1] - k * Math.sin(a + .5)]], { ...o, snel: .5 });
+    }
+    // tekst: s is een string of een lijst [[stuk, kleur], ...]; leest = extra leestijd (standaard aan)
+    tekst(x, y, s, o = {}) {
+      const t = mk("text", { x, y, "text-anchor": o.anker || "middle", "font-size": o.grootte || 20, "font-weight": o.vet ? 700 : 400 }, this.g);
+      if (o.draai) t.setAttribute("transform", `rotate(${o.draai} ${x} ${y})`);
+      t.style.fill = kl(o.c);
+      (Array.isArray(s) ? s : [[s]]).forEach(([stuk, c]) => { const sp = mk("tspan", {}, t); sp.textContent = stuk; if (c) sp.style.fill = kl(c); });
+      this.items.push({ soort: "fade", el: t, at: this.t, dur: 500 });
+      const woorden = t.textContent.trim().split(/\s+/).length;
+      this.t += o.leest === false ? 250 : 450 + woorden * 220;
+      return t;
+    }
+    stip(x, y, o = {}) { const c = mk("circle", { cx: x, cy: y, r: o.r || 6 }, this.g); c.style.fill = kl(o.c || "vak"); this.items.push({ soort: "fade", el: c, at: this.t, dur: 300 }); this.t += 300; return c; }
+    stil(fn, dur = 600) {   // alles in fn verschijnt in één keer (rooster, getallen langs een as)
+      const g = mk("g", {}, this.g), t0 = this.t, oud = this.items;
+      this.items = []; this.in(g, fn); this.items = oud; this.t = t0;
+      this.items.push({ soort: "fade", el: g, at: t0, dur }); this.t += dur * .7;
+      return g;
+    }
+    doe(fn) { this.items.push({ soort: "fn", at: this.t, fn }); }
+  }
+  /* bouwstenen */
+  function assen(b, o) {   // o = { x, y, w, h, xmin, xmax, ymin, ymax, stap?, getallen?, xnaam?, ynaam? } → P(x, y) geeft het punt op het bord
+    const e = Math.min(o.w / (o.xmax - o.xmin), o.h / (o.ymax - o.ymin)), st = o.stap || 1;
+    const ox = o.x - o.xmin * e, oy = o.y + o.ymax * e;
+    const P = (x, y) => [ox + x * e, oy - y * e];
+    P.e = e; P.o = o;
+    b.stil(() => {
+      for (let x = o.xmin; x <= o.xmax + 1e-9; x += st) { const l = mk("line", { x1: P(x, 0)[0], y1: P(0, o.ymin)[1], x2: P(x, 0)[0], y2: P(0, o.ymax)[1] }, b.g); l.style.stroke = KLEUR.lijn; l.style.strokeWidth = 1.4; }
+      for (let y = o.ymin; y <= o.ymax + 1e-9; y += st) { const l = mk("line", { x1: P(o.xmin, 0)[0], y1: P(0, y)[1], x2: P(o.xmax, 0)[0], y2: P(0, y)[1] }, b.g); l.style.stroke = KLEUR.lijn; l.style.strokeWidth = 1.4; }
+    }, 500);
+    b.pijl([P(o.xmin, 0)[0] - 6, P(0, 0)[1]], [P(o.xmax, 0)[0] + 18, P(0, 0)[1]], { w: 2.4, punt: 10 });
+    b.pijl([P(0, 0)[0], P(0, o.ymin)[1] + 6], [P(0, 0)[0], P(0, o.ymax)[1] - 18], { w: 2.4, punt: 10 });
+    b.stil(() => {
+      const g = o.getallen !== false, fs = o.fs || 15, elk = o.elk || 1;
+      const tx = (x, y, s, a) => { const t = mk("text", { x, y, "text-anchor": a || "middle", "font-size": fs }, b.g); t.style.fill = KLEUR.zacht; t.textContent = s; };
+      if (g) for (let x = o.xmin; x <= o.xmax; x += st) if (x && !(x === o.xmin && x === -1) && Math.round(x / st) % elk === 0) tx(P(x, 0)[0], P(0, 0)[1] + fs + 6, String(x).replace("-", "−"));
+      if (g) for (let y = o.ymin; y <= o.ymax; y += st) if (y && !(y === o.ymin && y === -1) && Math.round(y / st) % elk === 0) tx(P(0, 0)[0] - 8, P(0, y)[1] + fs * .35, String(y).replace("-", "−"), "end");
+      tx(P(0, 0)[0] - 8, P(0, 0)[1] + fs + 6, "O", "end");
+      const n = (x, y, s) => { const t = mk("text", { x, y, "text-anchor": "middle", "font-size": fs + 5, "font-style": "italic", "font-weight": 700 }, b.g); t.style.fill = KLEUR.inkt; t.textContent = s; };
+      n(P(o.xmax, 0)[0] + 24, P(0, 0)[1] + 7, o.xnaam || "x");
+      n(P(0, 0)[0] + 16, P(0, o.ymax)[1] - 22, o.ynaam || "y");
+    }, 500);
+    return P;
+  }
+  function lijnDoor(b, P, a, c, o = {}) {   // de grafiek van y = a·x + c, binnen het assenstelsel
+    const { xmin, xmax, ymin, ymax } = P.o;
+    let x0 = o.van ?? xmin, x1 = o.tot ?? xmax;
+    if (a) { const xa = (ymin - c) / a, xb = (ymax - c) / a; x0 = Math.max(x0, Math.min(xa, xb)); x1 = Math.min(x1, Math.max(xa, xb)); }
+    return b.lijn([P(x0, a * x0 + c), P(x1, a * x1 + c)], { c: o.c || "vak", w: o.w || 3.6, amp: .8 });
+  }
+  function trap(b, P, x, y, dx, dy, o = {}) {   // vanaf (x, y): dx naar rechts, dan dy omhoog (negatief = omlaag), met de getallen erbij
+    const c = o.c || "rood", A = P(x, y), B = P(x + dx, y), C = P(x + dx, y + dy);
+    b.pijl(A, B, { c, w: 2.6, punt: 9 });
+    if (o.getal !== false) b.tekst((A[0] + B[0]) / 2, A[1] + (dy > 0 ? 24 : -10), String(dx).replace("-", "−"), { c, vet: true, grootte: 19, leest: false });
+    b.pijl(B, C, { c, w: 2.6, punt: 9 });
+    if (o.getal !== false) b.tekst(B[0] + 10, (B[1] + C[1]) / 2 + 7, String(dy).replace("-", "−"), { c, vet: true, grootte: 19, anker: "start", leest: false });
+  }
+  function tabel(b, x, y, rijen, o = {}) {   // rijen = [["x", 0, 1, 2], ["y", 3, 5, 7]]; kolommen verschijnen één voor één
+    const kw = o.kolom || 58, rh = o.rij || 40, n = rijen[0].length;
+    b.lijn([[x, y + rh], [x + kw * n, y + rh]], { w: 2.2 });
+    b.lijn([[x + kw, y + 4], [x + kw, y + rh * 2 - 4]], { c: "vak", w: 3 });
+    for (let k = 0; k < n; k++) rijen.forEach((r, i) => b.tekst(x + kw * k + kw / 2, y + rh * i + rh * .68, String(r[k]).replace("-", "−"),
+      { grootte: o.grootte || 21, vet: k === 0, c: k === 0 ? "inkt" : (o.kleur && o.kleur[i]) || "inkt", leest: false }));
+    return { kol: k => x + kw * k + kw / 2, rij: i => y + rh * i + rh / 2, kw, rh };
+  }
+
+  function formule(b, x, y, delen, o = {}) {   // formule in stukken met eigen kleur; geeft het midden van elk stuk (voor labels eronder)
+    const t = b.tekst(x, y, delen, { grootte: 38, vet: true, ...o }), pos = []; let n = 0;
+    delen.forEach(([s]) => { try { pos.push((t.getStartPositionOfChar(n).x + t.getEndPositionOfChar(n + s.length - 1).x) / 2); } catch (e) { pos.push(x); } n += s.length; });
+    return pos;
+  }
+
+  function schetsbord(el, d, onEind) {
+    const M = App.module(d.mod) || {}, kleur = App.vakKleur ? App.vakKleur(M) : "#8C6CF0";
+    const lijst = d.scenes.flatMap((sc, i) => sc.zinnen.map((z, k) => ({ i, k, z })));
+    const TEMPI = [["🐢 Rustig", 1], ["🐌 Heel rustig", 1.4], ["🐇 Vlot", .7]];
+    let tempoNr = +store.get("filmtempo", 0) || 0; if (!TEMPI[tempoNr]) tempoNr = 0;
+    const T = () => TEMPI[tempoNr][1];
+    el.innerHTML = `
+      <div class="card schets" style="--vak:${kleur}">
+        <h1>${esc(d.titel)}</h1>
+        ${d.intro ? `<p class="soft" style="margin-top:0">${md(d.intro)}</p>` : ""}
+        <div class="sb-bord"><div class="sb-kop" id="sbk"></div><svg id="sbs" viewBox="0 0 800 450" role="img" aria-label="Schetsbord: de tekening bij de uitleg"></svg></div>
+        <div class="caption sb-tekst" id="sbt" aria-live="polite"></div>
+        <div class="ctrl">
+          <button class="btn" id="play">▶ Afspelen</button>
+          <button class="btn ghost" id="prev" aria-label="Vorige zin">◀</button>
+          <button class="btn ghost" id="nextS" aria-label="Volgende zin">▶|</button>
+          <button class="btn ghost" id="tempo">${TEMPI[tempoNr][0]}</button>
+          <button class="btn ghost" id="snd">🔊 Geluid aan</button>
+        </div>
+        <div class="sc-punten" id="scp">${d.scenes.map((sc, i) => `<button data-sc="${i}" aria-label="Deel ${i + 1}: ${esc(sc.kop || "")}"></button>`).join("")}</div>
+        <p class="soft" style="font-size:.8em;margin:10px 0 0">Tik op een streepje om naar dat deel te gaan. Het tempo verandert de pauzes en het tekenen, niet de stem.</p>
+      </div>`;
+    const svg = $("#sbs", el), stage = mk("g", {}, svg);
+    const spreek = z => z.s || z.t.replace(/\*\*|`/g, "");
+    const opmaak = t => md(t).replace(/`(.+?)`/g, '<span class="sb-f">$1</span>');
+    let nu = -1, playing = false, sound = true, lopend = [], timers = [], beurt = 0;
+    function stopAnim() { lopend.forEach(a => a.cancel()); lopend = []; timers.forEach(clearTimeout); timers = []; }
+    function speel(items, direct, tempo) {
+      let eind = 0;
+      for (const it of items) {
+        const at = it.at * tempo, dur = (it.dur || 0) * tempo;
+        if (it.soort === "fn") { if (!direct) timers.push(setTimeout(it.fn, at)); continue; }
+        eind = Math.max(eind, at + dur);
+        if (direct) continue;
+        if (it.soort === "lijn") { it.el.style.strokeDasharray = it.len; lopend.push(it.el.animate([{ strokeDashoffset: it.len }, { strokeDashoffset: 0 }], { duration: dur, delay: at, fill: "both", easing: "ease-in-out" })); }
+        else lopend.push(it.el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: dur, delay: at, fill: "both" }));
+      }
+      return eind;
+    }
+    function scèneDirect(i, S) {   // een eerdere scène in één keer (voor verder: true)
+      if (d.scenes[i].verder && i > 0) scèneDirect(i - 1, S);
+      d.scenes[i].zinnen.forEach((z, k) => { zaad = 100 + i * 37 + k * 11; const b = new Tekenaar(stage); z.teken && z.teken(b, S); speel(b.items, true, 1); });
+    }
+    function toon(n) {   // laat zin n zien: eerdere zinnen van de scène direct, deze zin getekend; geeft de duur van de tekening
+      stopAnim(); nu = n; const { i, k } = lijst[n], sc = d.scenes[i], S = {};
+      stage.innerHTML = "";
+      if (sc.verder && i > 0) scèneDirect(i - 1, S);
+      for (let j = 0; j < k; j++) { zaad = 100 + i * 37 + j * 11; const b = new Tekenaar(stage); sc.zinnen[j].teken && sc.zinnen[j].teken(b, S); speel(b.items, true, 1); }
+      zaad = 100 + i * 37 + k * 11;
+      const b = new Tekenaar(stage); sc.zinnen[k].teken && sc.zinnen[k].teken(b, S);
+      const duur = speel(b.items, false, T());
+      $("#sbk", el).textContent = sc.kop || ""; $("#sbk", el).hidden = !sc.kop;
+      $("#sbt", el).innerHTML = sc.zinnen.slice(0, k + 1).map((z, j) => `<span class="sb-zin ${j === k ? "nu" : ""}">${opmaak(z.t)}</span>`).join(" ")
+        + (n === lijst.length - 1 && d.teken ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
+      $$("#scp button", el).forEach((p, j) => { p.classList.toggle("gezien", j < i); p.classList.toggle("nu", j === i); });
+      $("#prev", el).disabled = n === 0; $("#nextS", el).disabled = n === lijst.length - 1;
+      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet(d.teken); };
+      if (n === lijst.length - 1 && onEind) onEind();
+      return duur;
+    }
+    function run(n) {   // afspelen vanaf zin n: tekening en stem tegelijk; verder als allebei klaar zijn
+      const mijn = ++beurt; App.stopSpeak();
+      const duur = toon(n), z = lijst[n].z;
+      let spraak = false, beeld = false;
+      const verder = () => {
+        if (mijn !== beurt || !playing || !spraak || !beeld) return;
+        if (n >= lijst.length - 1) { pause(); return; }
+        const nieuwDeel = lijst[n + 1].i !== lijst[n].i;
+        timers.push(setTimeout(() => { if (mijn === beurt && playing) run(n + 1); }, (nieuwDeel ? 1600 : 650) * T()));
+      };
+      timers.push(setTimeout(() => { beeld = true; verder(); }, duur));
+      if (sound) App.speak(spreek(z), () => { spraak = true; verder(); });
+      else timers.push(setTimeout(() => { spraak = true; verder(); }, (900 + z.t.split(/\s+/).length * 380) * T()));
+    }
+    function play() { playing = true; $("#play", el).textContent = "⏸ Pauze"; run(nu < 0 || nu >= lijst.length - 1 ? 0 : nu); }
+    function pause() { playing = false; beurt++; timers.forEach(clearTimeout); timers = []; App.stopSpeak(); $("#play", el).textContent = nu >= lijst.length - 1 ? "⟲ Opnieuw" : "▶ Afspelen"; }
+    function ga(n) { if (playing) return run(n); beurt++; App.stopSpeak(); toon(n); if (sound && autoLees()) App.speak(spreek(lijst[n].z)); }
+    $("#play", el).onclick = () => playing ? pause() : play();
+    $("#nextS", el).onclick = () => { if (nu < lijst.length - 1) ga(nu + 1); };
+    $("#prev", el).onclick = () => { if (nu > 0) ga(nu - 1); };
+    $$("#scp button", el).forEach(p => p.onclick = () => ga(lijst.findIndex(x => x.i === +p.dataset.sc)));
+    $("#snd", el).onclick = () => { sound = !sound; $("#snd", el).textContent = sound ? "🔊 Geluid aan" : "🔇 Geluid uit"; if (!sound) App.stopSpeak(); };
+    $("#tempo", el).onclick = () => { tempoNr = (tempoNr + 1) % TEMPI.length; store.set("filmtempo", tempoNr); $("#tempo", el).textContent = TEMPI[tempoNr][0]; };
+    const start = () => { if (!el.isConnected) return; toon(0); if (sound && autoLees()) App.speak(spreek(lijst[0].z)); };
+    document.fonts && document.fonts.ready ? document.fonts.ready.then(start) : start();
+    return () => { playing = false; beurt++; stopAnim(); };
+  }
+
   /* ================= 10. overzicht van een hoofdstuk (route, vandaag, toetsdatum) ================= */
   // cfg = { mod, titel, spreekTitel, IDS, STATIONS, NAMEN, GEHEUGEN, waarom: [html] }
   // Twee duidelijk verschillende delen: Leren (nieuwe stof, per paragraaf, in de kleur van het vak) en
@@ -819,8 +1041,8 @@
             <span class="par-stappen">${s.delen.map(d => `<span class="${v.gedaan[d] ? "gedaan" : ""}">${od(d).icoon} ${esc(od(d).naam)}</span>`).join("")}</span></span>
           <span class="par-stand">${klaar}/${s.delen.length}</span>${ik("verder", "chev")}
         </button>`; }).join("")}</div>
-      <div class="deel-kop oefen">${ik("oefenen")}<div><h2>Oefenen</h2><span>Herhalen tot je het kent. Hiermee laadt je lightstick op.</span></div></div>
-      <div class="oefen-grid">${oefen.map(o => `<button class="oefen-tegel" data-go="${o.id}"><span class="tile-ic">${o.icoon}</span><b>${esc(o.naam)}</b><small>${oefenInfo[o.id] || ""}</small></button>`).join("")}</div>
+      ${oefen.length ? `<div class="deel-kop oefen">${ik("oefenen")}<div><h2>Oefenen</h2><span>Herhalen tot je het kent. Hiermee laadt je lightstick op.</span></div></div>
+      <div class="oefen-grid">${oefen.map(o => `<button class="oefen-tegel" data-go="${o.id}"><span class="tile-ic">${o.icoon}</span><b>${esc(o.naam)}</b><small>${oefenInfo[o.id] || ""}</small></button>`).join("")}</div>` : ""}
       <details class="meet" style="margin-top:22px"><summary>🔬 Waarom werkt het zo? (voor papa)</summary>
         <ul class="waarom">${(cfg.waarom || []).map(w => `<li>${w}</li>`).join("")}</ul></details>`;
     // Vast deel apart (krijgt een opname); datum, percentage en taken wisselen en blijven de iPad-stem.
@@ -831,5 +1053,6 @@
     $("#td", el).onchange = e => { V.update(x => x.toets = e.target.value ? new Date(e.target.value + "T08:00:00").getTime() : null); App.go(cfg.mod + "-overzicht"); };
   }
 
-  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, overzicht, md, euro, shuffle };
+  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, schetsbord, overzicht, md, euro, shuffle,
+    schets: { Tekenaar, mk, assen, lijnDoor, trap, tabel, formule } };
 })();

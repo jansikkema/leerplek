@@ -573,3 +573,12 @@ body{ --oefen:var(--gold); --leren:var(--accent); }
   .hfd-kaart{padding-right:52px}
 }
 .sc-beeld.anim-mars .actor:first-child{font-size:min(4.4em,11vw)}
+
+/* schetsbord (besluit 20): uitlegfilmpje dat lijn voor lijn ontstaat */
+.sb-bord{position:relative;background:var(--card2);border-radius:18px;padding:6px}
+.sb-bord svg{width:100%;height:auto;max-height:54vh;display:block}
+.sb-bord svg text{font-family:"Atkinson Hyperlegible",Verdana,sans-serif}
+.sb-kop{display:inline-block;margin:6px 0 0 8px;background:var(--vak);color:#fff;font-weight:700;border-radius:999px;padding:2px 14px;font-size:.85em}
+.sb-zin{color:var(--soft);transition:color .4s} .sb-zin.nu{color:var(--ink)}
+.sb-f{font-weight:700;white-space:nowrap;color:var(--accent)}
+.schets .ctrl .btn:disabled{opacity:.4}

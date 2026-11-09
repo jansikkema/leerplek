@@ -3196,5 +3196,167 @@
   "stem": "Sulafat",
   "sleutel": "fbf8b024",
   "waar": "tellers"
+ },
+ {
+  "tekst": "Je spaart photocards. Je hebt er al drie.",
+  "stem": "Sulafat",
+  "sleutel": "fd6ce1d6",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Elke week koop je er twee bij.",
+  "stem": "Sulafat",
+  "sleutel": "f8dbf543",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Hoeveel heb je na een paar weken? Maak een tabel.",
+  "stem": "Sulafat",
+  "sleutel": "45204c3d",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Elke week komen er twee bij. Dat schrijf je als formule: ij is twee iks plus drie.",
+  "stem": "Sulafat",
+  "sleutel": "7a21f291",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Zo'n formule heet een lineaire formule.",
+  "stem": "Sulafat",
+  "sleutel": "f4d4d12c",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Teken een assenstelsel. Horizontaal de iks-as, verticaal de ij-as.",
+  "stem": "Sulafat",
+  "sleutel": "2d0a6a96",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Twee punten zijn genoeg. Neem uit de tabel het punt nul, drie en het punt drie, negen.",
+  "stem": "Sulafat",
+  "sleutel": "a2136435",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Trek een rechte lijn door de twee punten. De grafiek van een lineaire formule is altijd een lijn.",
+  "stem": "Sulafat",
+  "sleutel": "ea3d3944",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Kijk waar de lijn de ij-as snijdt: bij drie. Daar begon je mee.",
+  "stem": "Sulafat",
+  "sleutel": "290e2d6a",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Ga vanaf dat punt één naar rechts. Dan moet je twee omhoog om weer op de lijn te komen.",
+  "stem": "Sulafat",
+  "sleutel": "2f7c1ede",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Dat getal twee heet de richtingscoëfficiënt, kort: r c. Hoe groter de r c, hoe steiler de lijn.",
+  "stem": "Sulafat",
+  "sleutel": "90bfedad",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Dat werkt bij elke formule ij is a iks plus b. Het getal a is de r c. Het getal b is waar de lijn de ij-as snijdt.",
+  "stem": "Sulafat",
+  "sleutel": "4bd68c85",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Neem nu de formule ij is min twee iks plus vier. Begin op de ij-as, in het punt nul, vier.",
+  "stem": "Sulafat",
+  "sleutel": "0282c564",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "De r c is min twee. Dus één naar rechts, en twee omlaag. En nog een keer.",
+  "stem": "Sulafat",
+  "sleutel": "028be15c",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Trek de lijn. Is de r c negatief, dan gaat de lijn omlaag.",
+  "stem": "Sulafat",
+  "sleutel": "d698dca1",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Is a gelijk aan nul? Dan staat er ij is b. Bijvoorbeeld ij is drie.",
+  "stem": "Sulafat",
+  "sleutel": "31cded64",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Je krijgt een horizontale lijn. Dit heet het constante verband.",
+  "stem": "Sulafat",
+  "sleutel": "268b4e92",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Is b gelijk aan nul? Dan staat er ij is a iks. Bijvoorbeeld ij is twee iks.",
+  "stem": "Sulafat",
+  "sleutel": "1a337de9",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Die lijn gaat door de oorsprong, het punt nul, nul. Dit heet het recht evenredig verband.",
+  "stem": "Sulafat",
+  "sleutel": "c5cad5ea",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Andersom kan ook. Je ziet een lijn en je zoekt de formule.",
+  "stem": "Sulafat",
+  "sleutel": "e1fc4209",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Stap één: waar snijdt de lijn de ij-as? Bij één. Dus b is één.",
+  "stem": "Sulafat",
+  "sleutel": "23a779a7",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Stap twee: zoek een punt waar de lijn precies door een hoek van een hokje gaat. Hier is dat twee naar rechts en één omhoog.",
+  "stem": "Sulafat",
+  "sleutel": "bc9d13c3",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Stap drie: a is omhoog gedeeld door opzij. Dat is één gedeeld door twee. Dus a is een half.",
+  "stem": "Sulafat",
+  "sleutel": "62c9cb21",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Dus de formule is: ij is een half iks plus één.",
+  "stem": "Sulafat",
+  "sleutel": "cef56365",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Jouw beurt. Teken zelf de grafiek van ij is drie iks min twee. Begin met een tabel met twee punten.",
+  "stem": "Sulafat",
+  "sleutel": "70e14a9c",
+  "waar": "wiskunde-h1-film11"
+ },
+ {
+  "tekst": "Wiskunde hoofdstuk één. Lineaire problemen.",
+  "stem": "Sulafat",
+  "sleutel": "62515579",
+  "waar": "wiskunde-h1-overzicht"
+ },
+ {
+  "tekst": "paragraaf 1.1. De formule y is ax plus b. Eén stap: Filmpje.",
+  "stem": "Sulafat",
+  "sleutel": "84e8b21e",
+  "waar": "wiskunde-h1-p1"
  }
 ]
