@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 26;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 27;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -98,9 +98,35 @@
   if (canSpeak) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
   /* Ingesproken geluid (vooraf gemaakt, zie audio/). Eén vast element: iOS staat afspelen toe zodra het één keer na een tik is gestart. */
   const speler = typeof Audio !== "undefined" ? new Audio() : null;
+  /* Liever via Web Audio: één geluidskanaal dat blijft openstaan. Met het Audio-element gaat het geluid van de iPad bij
+     elk fragment aan en uit, en dat geeft tussen fragmenten een tikje. Het kanaal gaat open bij de eerste tik op het
+     scherm (iOS-regel). Tot dan, of als het niet lukt, speelt het Audio-element zoals voorheen. */
+  let kanaal = null, bron = null;
+  const buffers = new Map();
+  function kanaalOpen() {
+    try {
+      const C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
+      if (!kanaal) {
+        try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}   // ook geluid als de iPad op stil staat, net als het Audio-element
+        kanaal = new C();
+      }
+      if (kanaal.state !== "running") kanaal.resume().catch(() => {});
+      return kanaal;
+    } catch (e) { return null; }
+  }
+  ["touchend", "pointerdown", "keydown"].forEach(t => document.addEventListener(t, kanaalOpen, { passive: true }));
+  function buffer(url) {
+    if (buffers.has(url)) return buffers.get(url);
+    const p = fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+      .then(a => new Promise((ok, mis) => kanaal.decodeAudioData(a, ok, mis)));
+    buffers.set(url, p); p.catch(() => buffers.delete(url));
+    if (buffers.size > 80) buffers.delete(buffers.keys().next().value);
+    return p;
+  }
   function stopSpeak() {
     beurt++;
     if (speler) { speler.onended = speler.onerror = null; speler.pause(); }
+    if (bron) { try { bron.onended = null; bron.stop(); } catch (e) {} bron = null; }
     if (canSpeak) speechSynthesis.cancel();
     $$(".say.speaking").forEach(b => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
   }
@@ -137,7 +163,7 @@
   const PER_DEEL = Array.isArray(self.INGESPROKEN) ? { app: self.INGESPROKEN } : (self.INGESPROKEN || {});   // { "economie-h4": [...], app: [...] }
   const ingesproken = new Set(Object.values(PER_DEEL).flat());
   // Opnames van een hoofdstuk vooraf binnenhalen (voor zonder internet) zodra het wordt geopend; één keer per keer openen van de app.
-  const AUDIOCACHE = "leerplek-audio-4";   // gelijk houden met AUDIO in sw.js
+  const AUDIOCACHE = "leerplek-audio-5";   // gelijk houden met AUDIO in sw.js
   const voorgeladen = new Set();
   function voorladen(name) {
     if (!("caches" in window)) return;
@@ -160,6 +186,17 @@
     }
     if (window.__opname && text && opts.audio === undefined) window.__opname.push({ tekst: spreekbaar(text), stem: opts.stem || STANDAARDSTEM, sleutel: sleutel(text, opts.stem) });
     if (opts.audio === undefined && text) opts = { ...opts, audio: opname(text, opts.stem) };
+    const snelheid = (opts.rate || store.get("tempo", 0.95)) / 0.95;
+    if (opts.audio && kanaal && kanaal.state === "running" && Math.abs(snelheid - 1) < 0.01) {   // via het open kanaal (geen tik)
+      const mijn = beurt;
+      buffer(opts.audio).then(buf => {
+        if (mijn !== beurt) return;
+        const s = kanaal.createBufferSource(); s.buffer = buf; s.connect(kanaal.destination);
+        s.onended = () => { if (bron === s) bron = null; if (mijn === beurt) onend && onend(); };
+        bron = s; s.start();
+      }).catch(() => { if (mijn === beurt) speak(text, onend, { ...opts, audio: null }); });
+      return;
+    }
     if (opts.audio && speler) {   // eerst het ingesproken bestand; lukt dat niet, dan de iPad-stem
       let klaar = false;
       const terug = () => { if (klaar) return; klaar = true; speler.onended = speler.onerror = null; speak(text, onend, { ...opts, audio: null }); };

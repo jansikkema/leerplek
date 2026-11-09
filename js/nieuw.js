@@ -2,6 +2,7 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
+  { datum: "2026-11-09", tekst: "Geen tikje meer tussen de zinnen als de stem voorleest." },
   { datum: "2026-11-09", tekst: "Nieuw: Wiskunde H1, Lineaire problemen. Eerst één filmpje om te proberen: hoe de grafiek van y = ax + b ontstaat. Aan het eind teken jij." },
   { datum: "2026-11-09", tekst: "De stemmen klinken weer zoals ze ingesproken zijn, zonder vertraging." },
   { datum: "2026-11-09", tekst: "In het filmpje Hoeveel verdien je écht? klinkt nu overal dezelfde stem." },

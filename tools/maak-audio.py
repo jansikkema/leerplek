@@ -251,6 +251,8 @@ if __name__ == "__main__":
         with ThreadPoolExecutor(3) as pool: mislukt = sum(1 for ok in pool.map(maak_los, over) if not ok)
     else: mislukt = len(over); print("daglimiet van alle modellen bereikt; draai het script morgen opnieuw", flush=True)
     print("totaal", round(time.time() - t0), "s; verzoeken:", verzoeken)
-    if DOEL == Z:
+    if DOEL == Z:   # losse tikken aan het begin weghalen (alleen nieuwe opnames; zie tools/tik.py)
+        nieuw = [doel(x) for x in nog if os.path.exists(doel(x))]
+        if nieuw: subprocess.run([sys.executable, os.path.join(HIER, "tik.py"), "--fix", *nieuw])
         print(lijst(), "ingesproken,", mislukt, "mislukt")
     else: print("proef klaar in", DOEL, ";", mislukt, "mislukt")
