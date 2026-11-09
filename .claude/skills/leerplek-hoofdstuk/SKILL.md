@@ -41,7 +41,8 @@ Kies vanuit de stof, niet vanuit de vorm. Haar voorkeur: plaat en filmpje eerst.
 | Een schema of model met vakken (SWOT, kringloop, tabel) | **plaat** met kijk- en doe-versie + **sorteren** | `L.plaat` (blokken met `<span class="bl">`) |
 | Een verloop in stappen, getallen die veranderen, oorzaak → gevolg | **filmpje** (scènes met jaartal en voorleestekst; beeld = meerdere emoji die bewegen, of een **kaart** als spelbord met landen, kampen, pijlen en een front) | `L.filmpje` (voorbeeld kaart: `FILM13` in `geschiedenis-h1.js`; staafjesfilm H4: eigen code) |
 | Gebeurtenissen op volgorde van tijd | **tijdlijn** (rondes, tik wat het eerst kwam) | `L.tijdlijn` |
-| Berekeningen | **rekenen**: kijk mee → samen → zelf | `L.rekenen` (kent nu alleen omzet → nettowinst) |
+| Berekeningen (economie) | **rekenen**: kijk mee → samen → zelf | `L.rekenen` (kent nu alleen omzet → nettowinst) |
+| Sommen met een aanpak in stappen (wiskunde, natuurkunde) | **stappen**: per soort som een generator met steeds nieuwe getallen; zij kiest per stap wat ze doet en vult in | `L.stappen` (voorbeeld: `OEFEN` in `wiskunde-h1.js`; vakjes `[5]`, `[+-6]`, `[<]`, `[*goed|fout]`) |
 
 **Filmpjes in schetsbordstijl (besluit 20):** nieuwe uitlegfilmpjes krijgen de schetsbordstijl: lijn voor lijn getekend, eenvoudige poppetjes, inkt + vakkleur + rood, leestijd bij woorden. Ontwerp de voorleestekst en de tekening samen, per zin. Vorm: `L.schetsbord` (scènes met zinnen; elke zin heeft `t`, eventueel `s` voor de stem, en `teken(b, S)` met de bouwstenen uit `L.schets`). Voorbeeld: `wiskunde-h1.js`. Formules voor de stem voluit schrijven (x = "iks", y = "ij"); punten niet als "nul, vier" maar zo dat er geen "komma" van wordt gemaakt (controle keurt dat af). Voeg in `tools/verzamel.js` bij `VOORKEUR` de stap toe met `["#nextS"]`.
 

@@ -13,6 +13,7 @@
   const md = t => esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const autoLees = () => store.get("auto-voorlezen", false);
+  const zg = (o, veld) => (o.zeg && o.zeg[veld]) || o[veld];   // wat de stem zegt, als dat anders is dan de tekst (formules)
 
   /* ================= voortgang en herhaalplanning ================= */
   function Voortgang(mod) {
@@ -145,8 +146,8 @@
             ${d.bakken.map(b => `<button class="s-bak" data-b="${b.id}"><span class="ic">${b.icoon}</span><b>${esc(b.naam)}</b>${b.sub ? `<small>${esc(b.sub)}</small>` : ""}<span class="tel">${"●".repeat(telling[b.id])}</span></button>`).join("")}
           </div>
         </div>`;
-      $(".say-mini", el).onclick = () => App.speak(k.t);
-      if (autoLees()) App.speak(k.t);
+      $(".say-mini", el).onclick = () => App.speak(zg(k, "t"));
+      if (autoLees()) App.speak(zg(k, "t"));
       $$(".s-bak", el).forEach(b => b.onclick = () => kies(b.dataset.b, k));
     }
     async function kies(bak, k) {
@@ -162,7 +163,7 @@
         $(`[data-b="${k.bak}"]`, el).classList.add("hint");
         const f = $("#sf", el); f.hidden = false;
         f.innerHTML = `<b>Bijna!</b> Dit hoort bij <b>${juist.icoon} ${esc(juist.naam)}</b>.${k.uitleg ? " " + md(k.uitleg) : ""}<br><button class="btn small" id="sverder" style="margin-top:8px">Oké, verder →</button>`;
-        if (autoLees()) App.speak(`Dit hoort bij ${juist.naam}. ${k.uitleg || ""}`);
+        if (autoLees()) App.speak(`Dit hoort bij ${juist.naam}. ${zg(k, "uitleg") || ""}`);
         wacht = true;
         $("#sverder", el).onclick = () => { stapel.push(stapel.shift()); wacht = false; render(); };
       }
@@ -199,7 +200,7 @@
         <div class="kaart-grid">${lijst.map(k => { const e = eigen(k.id), r = V.get().kaarten[k.id];
           return `<button class="kaart-tegel" data-id="${k.id}">${e.thumb ? `<img src="${e.thumb}" alt="">` : `<span class="ic">${k.icoon}</span>`}
             <b>${esc(k.term)}</b><small>${e.woorden ? "✍️ " : ""}${e.thumb ? "🎨 " : ""}${r ? "★".repeat(r.box) + "☆".repeat(4 - r.box) : "nieuw"}</small></button>`; }).join("")}</div>`;
-      App.sayButton($("#lees-menu", el), () => ["Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter.", `Er staan ${te.length} kaarten klaar om te checken.`, `De begrippen zijn: ${lijst.map(k => k.term).join(", ")}.`]);   // vast en wisselend deel apart: het vaste deel krijgt een opname
+      App.sayButton($("#lees-menu", el), () => ["Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter.", `Er staan ${te.length} kaarten klaar om te checken.`, `De begrippen zijn: ${lijst.map(k => zg(k, "term")).join(", ")}.`]);   // vast en wisselend deel apart: het vaste deel krijgt een opname
       $("#check", el).onclick = check;
       $$(".kaart-tegel", el).forEach(b => b.onclick = () => maak(lijst.find(k => k.id === b.dataset.id)));
     }
@@ -220,7 +221,7 @@
           <div id="tek">${e.thumb ? `<img src="${e.thumb}" class="km-thumb" alt=""><br>` : ""}<button class="btn ghost small" id="teken">✏️ ${e.thumb ? "Aanpassen" : "Tekenen"}</button></div>
           <div class="row" style="margin-top:16px"><button class="btn" id="bewaar">💾 Bewaar kaart</button><span class="ok" id="ok"></span></div>
         </div>`;
-      App.sayButton($("#lees", el), () => `${k.term}. ${k.uitleg} ${k.voorbeeld ? "Voorbeeld: " + k.voorbeeld : ""}`);
+      App.sayButton($("#lees", el), () => `${zg(k, "term")}. ${zg(k, "uitleg")} ${k.voorbeeld ? "Voorbeeld: " + zg(k, "voorbeeld") : ""}`);
       $("#terug", el).onclick = menu;
       $("#woorden", el).oninput = ev => { store.set(eigenKey(k.id), { ...eigen(k.id), woorden: ev.target.value }); };
       $("#teken", el).onclick = () => {
@@ -250,8 +251,8 @@
             </div></div>
             <div class="row" style="justify-content:center;margin-top:12px"><button class="say" id="lees">🔊 Lees voor</button><button class="btn" id="draai">🔄 Draai om</button></div>
           </div>`;
-        App.sayButton($("#lees", el), () => omgekeerd ? k.uitleg : k.term);
-        if (autoLees()) App.speak(omgekeerd ? k.uitleg : k.term);
+        App.sayButton($("#lees", el), () => omgekeerd ? zg(k, "uitleg") : zg(k, "term"));
+        if (autoLees()) App.speak(omgekeerd ? zg(k, "uitleg") : zg(k, "term"));
         $("#stop", el).onclick = menu;
         $("#draai", el).onclick = () => {
           $("#flip", el).innerHTML = `<div class="flip-achter">
@@ -371,7 +372,7 @@
   }
 
   /* ================= 5. toetstraining (door elkaar, in toetstaal) ================= */
-  const TOETSWOORDEN = /\b(Noem|Leg uit|Bereken|Geef|Waarom|Verklaar|Wat is|Wat betekent|Welke|Hoe heet|één|twee|drie|vier|vijf|niet)\b/g;
+  const TOETSWOORDEN = /\b(Noem|Leg uit|Bereken|Geef|Waarom|Verklaar|Wat is|Wat betekent|Welke|Hoe heet|Los op|Teken|Onderzoek|Controleer|Licht toe|Stel|één|twee|drie|vier|vijf|niet)\b/g;
   const TIPS = {
     noem: "<b>Noem</b> = alleen opschrijven, uitleg is niet nodig. Let op het <b>aantal</b> dat ze vragen!",
     uitleg: "<b>Leg uit</b> = zeg wat het is <b>én</b> waarom. Gebruik <i>want</i>, <i>omdat</i> of <i>dus</i>.",
@@ -410,16 +411,18 @@
             <div class="row" style="justify-content:space-between"><span class="soft">Vraag ${totaal - rij.length + 1} van ${totaal} · ${esc(q.par || "")}</span><button class="btn ghost small" id="stop">Stoppen</button></div>
             <div class="vraag">${vraagHtml}</div>
             <div class="row"><button class="say" id="lees" style="margin:0">🔊 Lees voor</button><button class="btn ghost small" id="tip">💡 Hoe pak ik dit aan?</button></div>
-            <div class="tipbox" id="tipbox" hidden>${TIPS[q.type] || ""}</div>
+            <div class="tipbox" id="tipbox" hidden>${q.tip || TIPS[q.type] || ""}</div>
+            ${q.beeld ? `<div class="opg-beeld" id="tbeeld"></div>` : ""}
             <div id="antw" style="margin-top:12px"></div>
             <div id="kb" style="margin-top:12px"></div>
             <div id="fb"></div>
           </div>`;
-        App.sayButton($("#lees", el), () => q.vraag + (q.keuzes ? ". " + q.keuzes.map((k, i) => "ABCD"[i] + ": " + k).join(". ") : ""));
-        if (autoLees()) App.speak(q.vraag);
+        App.sayButton($("#lees", el), () => zg(q, "vraag") + (q.keuzes ? ". " + (zg(q, "keuzes") || q.keuzes).map((k, i) => "ABCD"[i] + ": " + k).join(". ") : ""));
+        if (autoLees()) App.speak(zg(q, "vraag"));
         $("#tip", el).onclick = () => { $("#tipbox", el).hidden = !$("#tipbox", el).hidden; };
         $("#stop", el).onclick = start;
         kb = kladblok($("#kb", el));
+        if (q.beeld) schetsStil($("#tbeeld", el), q.beeld, q.beeldMaat);
         const A = $("#antw", el), F = $("#fb", el);
         const oordeel = (auto) => {
           F.insertAdjacentHTML("beforeend", auto ? `<div class="row" style="margin-top:12px"><button class="btn" id="vd">Volgende →</button></div>` :
@@ -428,13 +431,16 @@
           if (auto) $("#vd", el).onclick = () => verder(auto); else $$("[data-o]", el).forEach(b => b.onclick = () => verder(b.dataset.o));
         };
         if (q.type === "reken") {
-          A.innerHTML = `<div class="row"><input inputmode="decimal" class="ant groot-in" placeholder="€ jouw antwoord"><button class="btn" id="chk">Check ✓</button></div>`;
+          // q.velden = ["x", "y"]: meerdere vakjes (antwoord is dan een lijst). q.euro === false: gewone getallen, ook breuken.
+          const velden = q.velden || [null], ants = [].concat(q.antwoord), geld = q.euro !== false;
+          A.innerHTML = `<div class="row">${velden.map((v, i) => `${v ? `<span class="veld-n">${esc(v)} =</span>` : ""}<input inputmode="${geld ? "decimal" : "text"}" autocomplete="off" autocapitalize="off" class="ant groot-in" data-i="${i}" placeholder="${geld ? "€ jouw antwoord" : "jouw antwoord"}">`).join("")}<button class="btn" id="chk">Check ✓</button></div>`;
+          const toon = q.toon || (geld ? euro(q.antwoord) : ants.join(" en "));
           let p = 0;
           $("#chk", el).onclick = () => {
-            const v = getal($(".ant", el).value);
-            if (Math.abs(v - q.antwoord) < 0.01) { $("#chk", el).remove(); F.innerHTML = `<div class="model goed">✓ Goed! ${md(q.uitwerking)}</div>`; oordeel(p === 0 ? "ken" : "bijna"); }
+            const ok = ants.every((a, i) => { const s = $(`.ant[data-i="${i}"]`, el).value; return Math.abs((geld ? getal(s) : waarde(s)) - a) < 0.01; });
+            if (ok) { $("#chk", el).remove(); F.innerHTML = `<div class="model goed">✓ Goed! ${md(q.uitwerking)}</div>`; oordeel(p === 0 ? "ken" : "bijna"); }
             else if (++p === 1) F.innerHTML = `<div class="model">Nog niet. 💡 ${md(q.hint || "Kijk nog eens naar de formule.")}</div>`;
-            else { $("#chk", el).remove(); F.innerHTML = `<div class="model">Het antwoord is <b>${euro(q.antwoord)}</b>.<br>${md(q.uitwerking)}</div>`; oordeel("nee"); }
+            else { $("#chk", el).remove(); F.innerHTML = `<div class="model">Het antwoord is <b>${md(toon)}</b>.<br>${md(q.uitwerking)}</div>`; oordeel("nee"); }
           };
         } else if (q.type === "keuze") {
           A.innerHTML = `<div class="keuzes">${q.keuzes.map((k, i) => `<button class="keuze" data-i="${i}"><b>${"ABCD"[i]}</b> ${md(k)}</button>`).join("")}</div>`;
@@ -850,22 +856,27 @@
     doe(fn) { this.items.push({ soort: "fn", at: this.t, fn }); }
   }
   /* bouwstenen */
-  function assen(b, o) {   // o = { x, y, w, h, xmin, xmax, ymin, ymax, stap?, getallen?, xnaam?, ynaam? } → P(x, y) geeft het punt op het bord
-    const e = Math.min(o.w / (o.xmax - o.xmin), o.h / (o.ymax - o.ymin)), st = o.stap || 1;
-    const ox = o.x - o.xmin * e, oy = o.y + o.ymax * e;
-    const P = (x, y) => [ox + x * e, oy - y * e];
-    P.e = e; P.o = o;
+  function assen(b, o) {   // o = { x, y, w, h, xmin, xmax, ymin, ymax, stap? (of sx/sy per as), vrij? (eigen schaal per as), elk?/elkx/elky, getallen?, xnaam?, ynaam? } → P(x, y) = punt op het bord
+    const sx = o.sx || o.stap || 1, sy = o.sy || o.stap || 1;
+    let ex = o.w / (o.xmax - o.xmin), ey = o.h / (o.ymax - o.ymin);
+    if (!o.vrij) ex = ey = Math.min(ex, ey);
+    const ox = o.x - o.xmin * ex, oy = o.y + o.ymax * ey;
+    const P = (x, y) => [ox + x * ex, oy - y * ey];
+    P.e = ex; P.o = o;
+    const reeks = (van, tot, st) => { const r = []; for (let i = 0; van + i * st <= tot + 1e-9; i++) r.push(+(van + i * st).toFixed(6)); return r; };
+    const XS = reeks(o.xmin, o.xmax, sx), YS = reeks(o.ymin, o.ymax, sy);
     b.stil(() => {
-      for (let x = o.xmin; x <= o.xmax + 1e-9; x += st) { const l = mk("line", { x1: P(x, 0)[0], y1: P(0, o.ymin)[1], x2: P(x, 0)[0], y2: P(0, o.ymax)[1] }, b.g); l.style.stroke = KLEUR.lijn; l.style.strokeWidth = 1.4; }
-      for (let y = o.ymin; y <= o.ymax + 1e-9; y += st) { const l = mk("line", { x1: P(o.xmin, 0)[0], y1: P(0, y)[1], x2: P(o.xmax, 0)[0], y2: P(0, y)[1] }, b.g); l.style.stroke = KLEUR.lijn; l.style.strokeWidth = 1.4; }
+      XS.forEach(x => { const l = mk("line", { x1: P(x, 0)[0], y1: P(0, o.ymin)[1], x2: P(x, 0)[0], y2: P(0, o.ymax)[1] }, b.g); l.style.stroke = KLEUR.lijn; l.style.strokeWidth = 1.4; });
+      YS.forEach(y => { const l = mk("line", { x1: P(o.xmin, 0)[0], y1: P(0, y)[1], x2: P(o.xmax, 0)[0], y2: P(0, y)[1] }, b.g); l.style.stroke = KLEUR.lijn; l.style.strokeWidth = 1.4; });
     }, 500);
     b.pijl([P(o.xmin, 0)[0] - 6, P(0, 0)[1]], [P(o.xmax, 0)[0] + 18, P(0, 0)[1]], { w: 2.4, punt: 10 });
     b.pijl([P(0, 0)[0], P(0, o.ymin)[1] + 6], [P(0, 0)[0], P(0, o.ymax)[1] - 18], { w: 2.4, punt: 10 });
     b.stil(() => {
-      const g = o.getallen !== false, fs = o.fs || 15, elk = o.elk || 1;
+      const g = o.getallen !== false, fs = o.fs || 15, ekx = o.elkx || o.elk || 1, eky = o.elky || o.elk || 1;
       const tx = (x, y, s, a) => { const t = mk("text", { x, y, "text-anchor": a || "middle", "font-size": fs }, b.g); t.style.fill = KLEUR.zacht; t.textContent = s; };
-      if (g) for (let x = o.xmin; x <= o.xmax; x += st) if (x && !(x === o.xmin && x === -1) && Math.round(x / st) % elk === 0) tx(P(x, 0)[0], P(0, 0)[1] + fs + 6, String(x).replace("-", "−"));
-      if (g) for (let y = o.ymin; y <= o.ymax; y += st) if (y && !(y === o.ymin && y === -1) && Math.round(y / st) % elk === 0) tx(P(0, 0)[0] - 8, P(0, y)[1] + fs * .35, String(y).replace("-", "−"), "end");
+      const tk = v => String(v).replace("-", "−");
+      if (g) XS.forEach((x, i) => { if (x && !(x === o.xmin && x === -sx) && Math.round((x - o.xmin) / sx) % ekx === 0) tx(P(x, 0)[0], P(0, 0)[1] + fs + 6, tk(x)); });
+      if (g) YS.forEach((y, i) => { if (y && !(y === o.ymin && y === -sy) && Math.round((y - o.ymin) / sy) % eky === 0) tx(P(0, 0)[0] - 8, P(0, y)[1] + fs * .35, tk(y), "end"); });
       tx(P(0, 0)[0] - 8, P(0, 0)[1] + fs + 6, "O", "end");
       const n = (x, y, s) => { const t = mk("text", { x, y, "text-anchor": "middle", "font-size": fs + 5, "font-style": "italic", "font-weight": 700 }, b.g); t.style.fill = KLEUR.inkt; t.textContent = s; };
       n(P(o.xmax, 0)[0] + 24, P(0, 0)[1] + 7, o.xnaam || "x");
@@ -989,6 +1000,138 @@
     return () => { playing = false; beurt++; stopAnim(); };
   }
 
+  /* ================= 13. stappen: oefenen met een werkschema, voorbeeld → samen → zelf (wiskunde) ================= */
+  // Uitgewerkte voorbeelden die afbouwen (worked examples / fading). Per stap kiest zij eerst WAT ze doet (een stap uit
+  // het werkschema) en vult dan de getallen in. Zo oefent ze de aanpak én het rekenen.
+  // cfg = { titel, intro, schema?: { titel, stappen: [tekst] }, voorbeeld: opgave, samen: opgave, maak: () => opgave }
+  // opgave = { vraag, beeld?: b => tekenen (met L.schets), stappen: [{ wat, regel, hint? }], slot? }
+  // regel: gewone tekst met [getal] = invulvakje (ook -3, 1/2, 2,5), [<] of [>] = kies het teken, {a/b} = breuk.
+  // In 'samen' staat de eerste helft van de stappen er al; in 'zelf' doet zij alles, met steeds een nieuwe som.
+  function waarde(s) {   // "−3", "1/2", "-3/4", "1½", "½", "2 1/2", "2,5" → getal
+    s = String(s == null ? "" : s).trim().replace(/[−–]/g, "-").replace(/\s+/g, " ").replace(",", ".");
+    let m;
+    if ((m = s.match(/^(-?)(\d*)\s?½$/))) return (m[1] ? -1 : 1) * ((+m[2] || 0) + .5);
+    if ((m = s.match(/^(-?)(\d+) (\d+)\/(\d+)$/))) return (m[1] ? -1 : 1) * (+m[2] + m[3] / m[4]);
+    if ((m = s.match(/^(-?\d*\.?\d+)\/(-?\d*\.?\d+)$/))) return m[1] / m[2];
+    return s === "" ? NaN : Number(s);
+  }
+  // wiskOpmaak: op tekst die al veilig is (geëscapet); wiskTekst: op ruwe tekst
+  const wiskOpmaak = s => s.replace(/(^|[\s(=+·:,])-(?=[\dA-Za-z(])/g, "$1−").replace(/\{(−?-?\d+)\/(\d+)\}/g, '<span class="breuk"><sup>$1</sup><sub>$2</sub></span>');
+  const wiskTekst = s => wiskOpmaak(esc(s));
+  function schetsStil(host, teken, o = {}) {   // een vaste tekening (zonder animatie) bij een opgave
+    const svg = mk("svg", { viewBox: `0 0 ${o.w || 800} ${o.h || 450}`, role: "img", "aria-label": o.label || "Figuur bij de opgave" });
+    host.appendChild(svg);
+    const M = (App.modules || []).find(m => location.hash.slice(1).startsWith(m.id));   // vakkleur van het hoofdstuk (voor 'vak' in de tekening)
+    if (M && App.vakKleur) svg.style.setProperty("--vak", App.vakKleur(M));
+    zaad = o.zaad || 7; const b = new Tekenaar(mk("g", {}, svg)); teken(b);
+    return svg;
+  }
+  // Soorten vakjes in een regel: [5] getal · [+-6] term met teken (toont "− 6"; zij typt -6) · [<] of [>] teken kiezen ·
+  // [*op l|niet op l] kiezen (het goede antwoord heeft een *).
+  function vakje(v) {
+    if (v === "<" || v === ">") return { soort: "kies", opties: ["<", ">"], goed: v };
+    if (v.includes("|")) { const o = v.split("|"); return { soort: "kies", opties: o.map(x => x.replace(/^\*/, "")), goed: (o.find(x => x.startsWith("*")) || o[0]).replace(/^\*/, "") }; }
+    if (/^\+/.test(v)) return { soort: "term", w: v.slice(1) };
+    return { soort: "getal", w: v };
+  }
+  const toonGetal = v => { const m = String(v).match(/^(-?)(\d+)\/(\d+)$/); return m ? (m[1] ? "−" : "") + `{${m[2]}/${m[3]}}` : String(v).replace(/^-/, "−"); };
+  const toonVakje = v => v.soort === "kies" ? v.goed : v.soort === "term" ? (waarde(v.w) < 0 ? "− " : "+ ") + toonGetal(String(v.w).replace(/^-/, "")) : toonGetal(v.w);
+  function stappen(el, cfg, onKlaar) {
+    const SOORTEN = cfg.soorten || [cfg];
+    let sn = 0; const rondeVan = SOORTEN.map(() => 0);
+    const rondes = [
+      { mode: "voorbeeld", titel: "1 · Kijk mee", sub: "Ik doe het voor. Lees mee en tik op ‘Volgende stap’." },
+      { mode: "samen", titel: "2 · Samen", sub: "De eerste stappen staan er al. Jij doet de rest." },
+      { mode: "zelf", titel: "3 · Zelf", sub: "Nu helemaal zelf. Elke keer een nieuwe som." }
+    ];
+    const fmt = t => md(t).replace(/`(.+?)`/g, (m, f) => `<span class="sb-f">${wiskOpmaak(f)}</span>`);
+    function render() {
+      const C = SOORTEN[sn], ronde = rondeVan[sn], R = rondes[ronde];
+      const q = R.mode === "voorbeeld" ? C.voorbeeld : R.mode === "samen" ? C.samen : C.maak();
+      const n = q.stappen.length, gegevenTot = R.mode === "voorbeeld" ? n : R.mode === "samen" ? Math.max(1, Math.floor(n / 2)) : 0;
+      const wats = C.schema ? C.schema.stappen : [...new Set(q.stappen.map(x => x.wat))];
+      el.innerHTML = `
+        <div class="card reken wstappen">
+          <h2 style="margin-top:0">${esc(cfg.titel)}</h2>
+          ${cfg.intro ? `<p class="soft" style="margin-top:0">${md(cfg.intro)}</p>` : ""}
+          ${SOORTEN.length > 1 ? `<div class="row soort-rij">${SOORTEN.map((x, i) => `<button class="chip ${i === sn ? "sel" : ""}" data-s="${i}">${esc(x.naam)}</button>`).join("")}</div>` : ""}
+          <div class="row ronde-rij">${rondes.map((r, i) => `<button class="chip small ${i === ronde ? "sel" : ""}" data-r="${i}">${r.titel}</button>`).join("")}</div>
+          <p class="soft" style="margin:8px 0 12px">${R.sub}</p>
+          ${C.schema ? `<details class="schema" ${R.mode !== "zelf" ? "open" : ""}><summary>📋 ${esc(C.schema.titel)}</summary><ol>${C.schema.stappen.map(x => `<li>${md(x)}</li>`).join("")}</ol></details>` : ""}
+          <div class="casus"><div class="opg">${fmt(q.vraag)}</div><button class="say-mini" id="lq">🔊</button></div>
+          ${q.beeld ? `<div class="opg-beeld" id="ob"></div>` : ""}
+          <div id="stappen"></div>
+          <div id="eind"></div>
+        </div>`;
+      $$("[data-s]", el).forEach(b => b.onclick = () => { sn = +b.dataset.s; render(); });
+      $$("[data-r]", el).forEach(b => b.onclick = () => { rondeVan[sn] = +b.dataset.r; render(); });
+      App.sayButton($("#lq", el), () => q.zeg || q.vraag.replace(/\*\*|`/g, ""), { audio: null });   // sommen wisselen: iPad-stem
+      if (q.beeld) schetsStil($("#ob", el), q.beeld, q.beeldMaat);
+      const box = $("#stappen", el), goed = [];
+      function stap(i) {
+        const st = q.stappen[i], gegeven = i < gegevenTot;
+        const opties = !gegeven && wats.length >= 3 ? shuffle([st.wat, ...shuffle(wats.filter(w => w !== st.wat)).slice(0, 2)]) : null;
+        const vakjes = [];
+        const regel = st.regel.split(/(\[[^\]]+\])/).map(stuk => {
+          const m = stuk.match(/^\[(.+)\]$/);
+          if (!m) return wiskTekst(stuk);
+          const v = vakje(m[1]), k = vakjes.push(v) - 1;
+          if (gegeven) return `<b class="ingevuld">${wiskTekst(toonVakje(v))}</b>`;
+          if (v.soort === "kies") return `<span class="teken-kies" data-b="${k}">${v.opties.map(o => `<button class="chip small" data-t="${esc(o)}">${esc(o)}</button>`).join("")}</span>`;
+          return `<input class="ant vak-in" data-b="${k}" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Invullen" placeholder="${v.soort === "term" ? "±" : ""}">`;
+        }).join("");
+        const d = document.createElement("div"); d.className = "trede";
+        d.innerHTML = `<div class="trede-n">${i + 1}</div><div class="trede-in">
+          ${opties ? `<div class="naam-kies"><span class="soft">Wat doe je nu?</span> ${opties.map(o => `<button class="chip small" data-n="${esc(o)}">${md(o)}</button>`).join("")}</div>` : `<div class="wat">${md(st.wat)}</div>`}
+          <div class="som wisk">${regel}</div>
+          ${gegeven ? "" : `<div class="row"><button class="btn small chk">Check ✓</button><span class="fb"></span></div>`}
+        </div>`;
+        box.appendChild(d);
+        if (gegeven) {
+          if (R.mode === "voorbeeld") App.speak(st.zeg || st.wat, null, { audio: null });
+          return volgende(i, true);
+        }
+        let naam = opties ? null : st.wat, pogingen = 0;
+        const keuze = {};
+        $$("[data-n]", d).forEach(b => b.onclick = () => { naam = b.dataset.n; $$("[data-n]", d).forEach(x => x.classList.toggle("sel", x === b)); });
+        $$(".teken-kies", d).forEach(t => $$("[data-t]", t).forEach(b => b.onclick = () => { keuze[t.dataset.b] = b.dataset.t; $$("[data-t]", t).forEach(x => x.classList.toggle("sel", x === b)); }));
+        $$(".vak-in", d).forEach(inp => inp.onkeydown = e => { if (e.key === "Enter") $(".chk", d).click(); });
+        $(".chk", d).onclick = () => {
+          const fb = $(".fb", d);
+          const ok = vakjes.map((v, k) => v.soort === "kies" ? keuze[k] === v.goed : Math.abs(waarde($(`.vak-in[data-b="${k}"]`, d).value) - waarde(v.w)) < 1e-6);
+          const okN = naam === st.wat, allesB = ok.every(Boolean);
+          $$(".vak-in", d).forEach(inp => inp.classList.toggle("fout", !ok[+inp.dataset.b] && inp.value !== ""));
+          if (allesB && okN) {
+            fb.innerHTML = `<span class="goed-t">✓ Goed!</span>`;
+            $(".chk", d).remove(); $$(".vak-in", d).forEach(x => x.disabled = true); $$("[data-n],[data-t]", d).forEach(b => b.disabled = true);
+            return volgende(i, pogingen === 0);
+          }
+          pogingen++;
+          const wat = !naam ? "Kies eerst wat je doet." : !okN && !allesB ? "De stap en de getallen kloppen nog niet." : !okN ? "De getallen kloppen! De stap nog niet." : "De stap klopt! De getallen nog niet.";
+          const juist = st.regel.replace(/\[([^\]]+)\]/g, (m, x) => toonVakje(vakje(x)));
+          fb.innerHTML = `<span class="fout-t">${wat}</span>` + (pogingen === 1 ? (st.hint ? `<br>💡 ${fmt(st.hint)}` : "")
+            : `<br>Zo moet het: <b>${md(st.wat)}</b><br><b class="wisk">${wiskTekst(juist)}</b><br>Vul het in, dan ga je door.`);
+        };
+      }
+      function volgende(i, inEens) {
+        goed.push(inEens);
+        if (i + 1 < n) {
+          if (R.mode === "voorbeeld") { const b = document.createElement("button"); b.className = "btn small"; b.textContent = "Volgende stap →"; b.style.margin = "6px 0 10px 54px"; box.appendChild(b); b.onclick = () => { b.remove(); stap(i + 1); }; }
+          else stap(i + 1);
+          return;
+        }
+        const zelfGoed = goed.slice(gegevenTot).filter(Boolean).length, zelfTotaal = n - gegevenTot;
+        $("#eind", el).innerHTML = `<div class="reken-eind">${q.slot ? fmt(q.slot) + "<br>" : ""}
+          ${R.mode === "voorbeeld" ? "Zo gaat het. Nu samen." : zelfGoed === zelfTotaal ? "🎉 Alles in één keer goed!" : `🎉 Klaar. ${zelfGoed} van de ${zelfTotaal} stappen in één keer goed. De rest heb je nu ook gezien.`}
+          <div class="row" style="margin-top:10px">${ronde < 2 ? `<button class="btn" id="vd">Volgende ronde →</button>` : `<button class="btn" id="vd">🎲 Nog een som</button>`}</div></div>`;
+        if (ronde === 2 && onKlaar) onKlaar();
+        $("#vd", el).onclick = () => { if (rondeVan[sn] < 2) rondeVan[sn]++; render(); el.scrollIntoView({ behavior: "smooth" }); };
+      }
+      stap(0);
+    }
+    render();
+  }
+
   /* ================= 10. overzicht van een hoofdstuk (route, vandaag, toetsdatum) ================= */
   // cfg = { mod, titel, spreekTitel, IDS, STATIONS, NAMEN, GEHEUGEN, waarom: [html] }
   // Twee duidelijk verschillende delen: Leren (nieuwe stof, per paragraaf, in de kleur van het vak) en
@@ -1053,6 +1196,6 @@
     $("#td", el).onchange = e => { V.update(x => x.toets = e.target.value ? new Date(e.target.value + "T08:00:00").getTime() : null); App.go(cfg.mod + "-overzicht"); };
   }
 
-  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, schetsbord, overzicht, md, euro, shuffle,
-    schets: { Tekenaar, mk, assen, lijnDoor, trap, tabel, formule } };
+  App.Leer = { Voortgang, lightstick, chat, sorteer, kaarten, rekenen, toets, geheugen, kladblok, tijdlijn, filmpje, plaat, video, schetsbord, stappen, overzicht, md, euro, shuffle, waarde,
+    schets: { Tekenaar, mk, assen, lijnDoor, trap, tabel, formule, stil: schetsStil } };
 })();

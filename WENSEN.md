@@ -10,7 +10,8 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 ## Open
 
 ### Schetsbord bouwen en testen met een nieuw hoofdstuk (besluit 20)
-- **Stand 2026-11-09:** `L.schetsbord` staat in `js/leren.js` (bouwstenen in `L.schets`: tekenaar, assenstelsel, lijn bij een formule, trapje 'opzij en omhoog', tabel, formule in kleuren). Eerste filmpje: Wiskunde H1 §1.1 (y = ax + b), 25 zinnen, elke zin met een eigen stuk tekening dat tegelijk met de stem start. Ingesproken. **Nu testen met haar:** helpt het? Volgt ze de tekening bij de stem? Is de tekst onder het beeld te veel (de zinnen stapelen op, de huidige licht op)? Meten via 'Na afloop (voor papa)' op het overzicht.
+- **Stand 2026-11-09 (avond):** Wiskunde H1 is helemaal gebouwd met zes schetsbord-filmpjes. Haar reactie op het eerste filmpje: goed. Nog doen: poppetje, gebouw en ketting uit de proef naar `L.schets`, zodat geschiedenis en aardrijkskunde het ook kunnen gebruiken.
+- **Eerder op 2026-11-09:** `L.schetsbord` staat in `js/leren.js` (bouwstenen in `L.schets`: tekenaar, assenstelsel, lijn bij een formule, trapje 'opzij en omhoog', tabel, formule in kleuren). Eerste filmpje: Wiskunde H1 §1.1 (y = ax + b), 25 zinnen, elke zin met een eigen stuk tekening dat tegelijk met de stem start. Ingesproken. **Nu testen met haar:** helpt het? Volgt ze de tekening bij de stem? Is de tekst onder het beeld te veel (de zinnen stapelen op, de huidige licht op)? Meten via 'Na afloop (voor papa)' op het overzicht.
 - Daarna: de rest van Wiskunde H1 (1.2 t/m 1.6, begrippen, toetstraining), en poppetje/gebouw/ketting uit de proef naar `L.schets` zodat geschiedenis het ook kan gebruiken.
 - Stijl is gekozen (proef: `tools/proef/schetsbord.html`). Volgende stap: een vaste vorm `L.schetsbord` in `js/leren.js`, waarbij het hoofdstuk alleen tekeninstructies als data aanlevert. Bouwstenen: poppetje, gebouw, pijl, ketting, kaart, doorsnede met labels, grafiek, rekenstap, zinsdelen.
 - Testen met een **nieuw hoofdstuk**, waarin tekst en tekening samen worden gemaakt. In de proef was de stem eerder klaar dan de tekening, omdat bestaande tekst onder een nieuwe animatie stond.
@@ -71,6 +72,12 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Voorstellen van Claude (graag beoordelen)
 
+### Wiskunde H1: nakijken met haar
+- Werkt het typen op de iPad in de vakjes (min-teken, breuk met /)? Zo niet: een eigen toetsenblokje met cijfers, − en /.
+- Is 'Wat doe je nu?' bij elke stap helpend of hinderlijk? Eventueel alleen bij Samen.
+- Meten via 'Na afloop (voor papa)': welke vorm helpt het meest, filmpje of stap voor stap?
+- Werk: klein. Wacht op: samen kijken op de iPad.
+
 ### Na de opruimronde: op de iPad nakijken
 - Werkt ⋯ (verplaatsen) goed met de vinger, en snapt ze Bezig/Toekomst/Gedaan zonder uitleg?
 - Speelt het kaartfilmpje vloeiend op de iPad (pijlen die getekend worden, de kroon die naar Nederland gaat)?
@@ -89,6 +96,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-09 · Wiskunde H1 Lineaire problemen, compleet (versie 28).** Zes schetsbord-filmpjes (§1.1 t/m §1.6), oefenen stap voor stap met nieuwe vorm `L.stappen` (15 soorten sommen, kijk mee → samen → zelf, steeds nieuwe getallen), sorteren 'welk verband?' en 'klapt het teken om?', 19 begrippen, 6 uit-je-hoofd-platen, 36 toetsvragen in de stijl van de diagnostische toets (met figuren en vakjes voor x en y). Zie besluit 21. Getest: 6.000 gegenereerde sommen zonder fout, alle Samen-rondes en alle toetsvragen via het scherm doorlopen.
 - **2026-11-09 · Tikje tussen fragmenten weg (versie 27).** Ingesproken geluid speelt nu via één open geluidskanaal (Web Audio) in plaats van het Audio-element, dat het geluid van de iPad per fragment aan- en uitzette. Tot de eerste tik op het scherm, of als de iPad het kanaal niet opent, speelt het Audio-element zoals voorheen. Daarnaast 15 opnames met een losse tik aan het begin opgeschoond (`tools/tik.py`, draait voortaan automatisch na `maak-audio.py`; plofklanken als t en k blijven staan). Op de iPad nog nalopen: geen tik meer, en klinkt het ook als de iPad op stil staat?
 - **2026-11-09 · Schetsbord als vaste vorm, proef met Wiskunde H1 §1.1.** Uitlegfilmpje over y = ax + b dat lijn voor lijn ontstaat: tekening en stem lopen per zin gelijk, tempoknop (pauzes en tekenen, niet de stem), eindigt met zelf tekenen. Nog alleen het filmpje; de rest van het hoofdstuk volgt na de test.
 - **2026-11-08 · Chat begon bij het tweede bericht (versie 21).** Het eerste bericht stond er al, maar Afspelen sloeg het over. Nu leest Afspelen eerst het bericht dat er al staat. Zit in `L.chat`, dus geldt voor alle chats.

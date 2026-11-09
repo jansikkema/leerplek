@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 27;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 28;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -764,7 +764,7 @@
         <div class="card par-kop" style="--vak:${vakKleur(m)}">
           <div class="par-badge groot">${esc(parLabel(s))}</div>
           <div class="par-kop-tekst"><div class="eyebrow">${ik("leren")} Leren · deel ${i + 1} van ${st.length}</div><h1>${esc(s.titel)}</h1>
-            <button class="say" data-say="${esc(`${s.par ? s.par + ". " : ""}${s.titel}. ${delen.length === 1 ? "Eén stap" : delen.length + " stappen"}: ${delen.map(d => d.naam).join(". ")}.`)}">🔊 Lees voor</button></div>
+            <button class="say" data-say="${esc(`${s.par ? s.par + ". " : ""}${s.spreek || s.titel}. ${delen.length === 1 ? "Eén stap" : delen.length + " stappen"}: ${delen.map(d => d.naam).join(". ")}.`)}">🔊 Lees voor</button></div>
         </div>
         <ol class="stap-lijst">${delen.map((d, k) => `<li><button class="stap-rij ${v.gedaan[d.id] ? "klaar" : ""}" data-go="${m.id}-${d.id}">
           <span class="stap-n">${v.gedaan[d.id] ? ik("check") : k + 1}</span><span class="tile-ic">${d.icoon}</span>

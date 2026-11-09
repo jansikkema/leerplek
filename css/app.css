@@ -582,3 +582,25 @@ body{ --oefen:var(--gold); --leren:var(--accent); }
 .sb-zin{color:var(--soft);transition:color .4s} .sb-zin.nu{color:var(--ink)}
 .sb-f{font-weight:700;white-space:nowrap;color:var(--accent)}
 .schets .ctrl .btn:disabled{opacity:.4}
+
+/* stappen: oefenen met een werkschema (wiskunde) */
+.wstappen .opg{flex:1;font-size:1.1em}
+.opg-beeld{background:var(--card2);border-radius:14px;padding:4px;margin:10px 0}
+.opg-beeld svg{width:100%;height:auto;max-height:42vh;display:block}
+.opg-beeld svg text{font-family:"Atkinson Hyperlegible",Verdana,sans-serif}
+.schema{background:var(--card2);border-radius:14px;padding:8px 14px;margin:0 0 12px}
+.schema summary{cursor:pointer;font-weight:700;min-height:40px;display:flex;align-items:center}
+.schema ol{margin:6px 0 4px;padding-left:1.4em}
+.wat{font-weight:700;margin-bottom:4px}
+.som.wisk{font-size:1.25em;display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:6px 0}
+.vak-in{width:4.2em;min-height:46px;font:inherit;text-align:center;color:var(--ink);background:var(--bg);border:2px solid var(--accent);border-radius:12px;padding:4px 6px}
+.vak-in.fout{border-color:var(--min)}
+.vak-in:disabled{border-color:var(--line);opacity:1}
+.ingevuld{color:var(--accent)}
+.teken-kies{display:inline-flex;gap:4px}
+.teken-kies .chip{min-width:46px;font-size:1.1em}
+.breuk{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.05;font-size:.85em;margin:0 2px}
+.breuk sup{border-bottom:2px solid currentColor;padding:0 2px;font-size:1em;vertical-align:baseline}
+.breuk sub{font-size:1em;vertical-align:baseline}
+.veld-n{font-weight:700;margin-left:6px}
+.soort-rij{margin-bottom:8px}

@@ -23,7 +23,9 @@ const VOORKEUR = {
   nederland: [".say", "#go", "#sverder", ".say-mini", ".s-bak"],
   lab: [".say", "#sverder", ".say-mini", ".s-bak", "#vr", "[data-lab]"],
   // schetsbord: zin voor zin vooruit (wiskunde-h1)
-  film11: ["#nextS"]
+  film11: ["#nextS"], film12: ["#nextS"], film13: ["#nextS"], film14: ["#nextS"], film15: ["#nextS"], film16: ["#nextS"],
+  geheugen: ["#lees-geh"],
+  verband11: ["#sverder", ".say-mini", ".s-bak"], teken15: ["#sverder", ".say-mini", ".s-bak"]
 };
 const NIET = /tekenen|teken\b|Ga tekenen|wissen|verwijder|back-up|terugzetten|deel|stuur|instellingen/i;
 
