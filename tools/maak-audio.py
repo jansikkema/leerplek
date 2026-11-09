@@ -252,6 +252,5 @@ if __name__ == "__main__":
     else: mislukt = len(over); print("daglimiet van alle modellen bereikt; draai het script morgen opnieuw", flush=True)
     print("totaal", round(time.time() - t0), "s; verzoeken:", verzoeken)
     if DOEL == Z:
-        import runpy; runpy.run_path(os.path.join(HIER, "tempo.py"), run_name="lib")["alles"]()   # rustig tempo
         print(lijst(), "ingesproken,", mislukt, "mislukt")
     else: print("proef klaar in", DOEL, ";", mislukt, "mislukt")
