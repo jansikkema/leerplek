@@ -30,16 +30,6 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Nalopen: centralen (of centrale mogendheden), loopgravenoorlog (of stellingenoorlog), Triple Alliantie (of Drievoudig Verbond), dolkstootlegende, neutraliteitspolitiek, en of het boek "aanleiding" en "directe oorzaak" als hetzelfde gebruikt. Staan er begrippen in het boek die nu ontbreken (bijvoorbeeld pan-Slavisme, revanchisme, Spartacusopstand)?
 - Werk: klein. Wacht op: de begrippenlijst of samenvatting uit haar boek (foto).
 
-### Nieuwe voorleesteksten van versie 20 inspreken
-- De opruimronde (versie 20) heeft een paar nieuwe vaste teksten: de voorleesknop op het beginscherm, de vijf paragraafschermen van H1 en de vier van H4, en de titel van het H4-overzicht ("Economie hoofdstuk vier. Een eigen bedrijf."). Die leest nu de iPad-stem.
-- Werkwijze zoals in CLAUDE.md: alle schermen verzamelen (niet alleen de nieuwe, anders raakt de indeling per hoofdstuk in `js/ingesproken.js` kwijt), dan `tools/maak-audio.py`. `tools/teksten.json` in de repository is nog van vóór versie 20. De verzamelaar haalt de schermen nu op via `App.routesVan` en neemt de paragraafschermen dus vanzelf mee.
-- Kan samen met "Geschiedenis H1 inspreken" hieronder. Werk: klein.
-
-### Geschiedenis H1 inspreken
-- 326 teksten (317 verteller, 9 van Sam). Op 2026-11-08 was de daglimiet al bijna op: nog maar 5 ingesproken. De rest leest de iPad-stem tot de volgende run (geplande taak).
-- Werk: klein, ongeveer 35 verzoeken.
-
-
 ### Begrippen van H4 nalopen tegen het boek
 - **4 of 5 P's?** De app gebruikt er vijf (met Personeel) en meldt dat het er soms vier zijn. Check welke het boek en de docent gebruiken. Bij vier: Personeel weghalen uit plaat, sorteren, kaarten, toetsvraag en uit-je-hoofd-plaat.
 - **"Inkoopwaarde" bij zelfgemaakte producten.** Wie zelf maakt, heeft eerder kosten van grondstoffen of een kostprijs dan een inkoopwaarde. De rekenronde 'Samen' gebruikt nu een ingekocht product, maar het bedrijfje Purple Cases heet "zelfgemaakt" en rekent wel met inkoop. Check hoe het boek dit noemt, en pas zo nodig de plaat, het filmpje en de rekenvoorbeelden aan.
@@ -64,7 +54,8 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel.
 
 ### Opgenomen stemmen: verder uitrollen (besluit 17)
-- H4: 172 van 182 teksten ingesproken (2026-11-08); de rest volgt via de geplande taak.
+- Stand 2026-11-09: H4 179/180, Geschiedenis H1 314/315, tellers en appschermen compleet. Twee teksten afgekeurd (de stem slaat een woord over of voegt er een toe); die lezen de iPad-stem. Bij de volgende run nog eens proberen.
+- Knippen van bundels gaat nu op de lengte van de teksten (dynamisch programmeren): 270 teksten in ruim 5 minuten met 42 verzoeken (2026-11-09).
 - Gedaan (2026-11-08): wisselende teksten gesplitst, tellers apart; nieuwe opnames op 32 kbps; opnames per hoofdstuk geladen en blijvend bewaard (niet opnieuw downloaden na een update); verzamelaar 40× sneller.
 - **Verzamelaar** (`tools/verzamel.js`) klikt willekeurig rond met voorkeuren per leervorm. Een nieuwe leervorm heeft eigen voorkeursknoppen nodig, anders worden teksten gemist. Werk: klein, per nieuwe vorm.
 - Op de echte iPad controleren: speelt de chat met ▶ Afspelen automatisch door (iOS is streng met automatisch afspelen)?

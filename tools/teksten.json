@@ -1,14 +1,20 @@
 [
  {
-  "tekst": "Purple Cases verkoopt deze maand 150 hoesjes van 8 euro. De omzet is 150 keer 8 euro is 1200 euro. Dat is afzet keer verkoopprijs.",
+  "tekst": "Hoi! Hier zie je je hoofdstukken. Kies Bezig, Toekomst of Gedaan. Met de drie puntjes verplaats je een hoofdstuk.",
   "stem": "Sulafat",
-  "sleutel": "a8b9d532",
-  "waar": "mijn-app"
+  "sleutel": "bc320b57",
+  "waar": "start"
  },
  {
   "tekst": "Voorlezen. Kies de stem die jij het fijnst vindt, en hoe snel hij praat. Tik op Probeer om te luisteren.",
   "stem": "Sulafat",
   "sleutel": "98a32ef8",
+  "waar": "mijn-app"
+ },
+ {
+  "tekst": "Purple Cases verkoopt deze maand 150 hoesjes van 8 euro. De omzet is 150 keer 8 euro is 1200 euro. Dat is afzet keer verkoopprijs.",
+  "stem": "Sulafat",
+  "sleutel": "a8b9d532",
   "waar": "mijn-app"
  },
  {
@@ -18,9 +24,27 @@
   "waar": "ideeen"
  },
  {
-  "tekst": "Economie hoofdstuk vier. Een eigen bedrijf. Vul de datum van je toets in, dan plan ik je herhaling. Je lightstick is voor 0 procent opgeladen. Vandaag, ongeveer 11 minuten: Chat: nieuw stuk leren. 🃏 6 begrippen checken.",
+  "tekst": "Economie hoofdstuk vier. Een eigen bedrijf.",
   "stem": "Sulafat",
-  "sleutel": "a2687140",
+  "sleutel": "e31455c9",
+  "waar": "economie-h4-overzicht"
+ },
+ {
+  "tekst": "Vul de datum van je toets in, dan plan ik je herhaling.",
+  "stem": "Sulafat",
+  "sleutel": "4fad5797",
+  "waar": "economie-h4-overzicht"
+ },
+ {
+  "tekst": "Je lightstick is voor 0 procent opgeladen.",
+  "stem": "Sulafat",
+  "sleutel": "1b7168c4",
+  "waar": "economie-h4-overzicht"
+ },
+ {
+  "tekst": "Vandaag, ongeveer 11 minuten: Chat: nieuw stuk leren. 🃏 6 begrippen checken.",
+  "stem": "Sulafat",
+  "sleutel": "847e268b",
   "waar": "economie-h4-overzicht"
  },
  {
@@ -108,9 +132,9 @@
   "waar": "economie-h4-chat"
  },
  {
-  "tekst": "Vrijheid",
+  "tekst": "Zelf beslissen wat je doet",
   "stem": "Sulafat",
-  "sleutel": "4038eefa",
+  "sleutel": "071d475f",
   "waar": "economie-h4-chat"
  },
  {
@@ -126,6 +150,18 @@
   "waar": "economie-h4-chat"
  },
  {
+  "tekst": "Risico op faillissement",
+  "stem": "Sulafat",
+  "sleutel": "20e2e08b",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Geen vast inkomen",
+  "stem": "Sulafat",
+  "sleutel": "8ed6fc81",
+  "waar": "economie-h4-chat"
+ },
+ {
   "tekst": "Elke maand een vast loon",
   "stem": "Sulafat",
   "sleutel": "cf908ccb",
@@ -138,51 +174,9 @@
   "waar": "economie-h4-chat"
  },
  {
-  "tekst": "Doorbetaald worden als je ziek bent",
+  "tekst": "Vrijheid",
   "stem": "Sulafat",
-  "sleutel": "3e366566",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Risico op faillissement",
-  "stem": "Sulafat",
-  "sleutel": "20e2e08b",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Kans op een hoog inkomen, winst,",
-  "stem": "Sulafat",
-  "sleutel": "7455ffd2",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Geen vast inkomen",
-  "stem": "Sulafat",
-  "sleutel": "8ed6fc81",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Zelf beslissen wat je doet",
-  "stem": "Sulafat",
-  "sleutel": "071d475f",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "De werkgever draagt het risico",
-  "stem": "Sulafat",
-  "sleutel": "635e21d1",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Zelf een verzekering regelen voor arbeidsongeschiktheid",
-  "stem": "Sulafat",
-  "sleutel": "7e4db7ad",
-  "waar": "economie-h4-chat"
- },
- {
-  "tekst": "Dit hoort bij Eigen baas. Een ondernemer heeft geen werkgever die doorbetaalt. Die moet dat zelf regelen.",
-  "stem": "Sulafat",
-  "sleutel": "e58ccf82",
+  "sleutel": "4038eefa",
   "waar": "economie-h4-chat"
  },
  {
@@ -192,10 +186,28 @@
   "waar": "economie-h4-chat"
  },
  {
-  "tekst": "De ondernemer. Wie ben je en wat kun je? Bij een tour: Wie staan er op het podium? Wat kunnen ze? Bij Purple Cases: Ik kan goed tekenen en ik weet wat fans mooi vinden.",
+  "tekst": "De werkgever draagt het risico",
   "stem": "Sulafat",
-  "sleutel": "b5a13d70",
-  "waar": "economie-h4-bouwplan"
+  "sleutel": "635e21d1",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Doorbetaald worden als je ziek bent",
+  "stem": "Sulafat",
+  "sleutel": "3e366566",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Kans op een hoog inkomen, winst,",
+  "stem": "Sulafat",
+  "sleutel": "7455ffd2",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Zelf een verzekering regelen voor arbeidsongeschiktheid",
+  "stem": "Sulafat",
+  "sleutel": "7e4db7ad",
+  "waar": "economie-h4-chat"
  },
  {
   "tekst": "Ik heb al eens een kraampje gehad op een fan-meetup.",
@@ -204,75 +216,15 @@
   "waar": "economie-h4-bouwplan"
  },
  {
-  "tekst": "Het financieel plan. Is er genoeg geld? Ga je winst maken? Bij een tour: Levert de tour meer op dan hij kost? Bij Purple Cases: Ik reken uit: omzet min inkoopwaarde is brutowinst min bedrijfskosten is nettowinst.",
+  "tekst": "Het marketingplan. Hoe trek je klanten? Bij een tour: Hoe horen fans van de tour? Wat kost een kaartje? Bij Purple Cases: Mijn SWOT-analyse en mijn 5 P's: prijs 8 euro, TikTok-filmpjes, een webshop.",
   "stem": "Sulafat",
-  "sleutel": "f49e1b32",
+  "sleutel": "9cce26e3",
   "waar": "economie-h4-bouwplan"
  },
  {
-  "tekst": "Een K-popgroep gaat pas op tour met een goed plan. Een ondernemer begint pas een bedrijf met een goed plan: het ondernemingsplan. Het heet ook wel bedrijfsplan. Het plan dwingt je om vooraf na te denken: is mijn idee haalbaar? Het plan heeft vier delen. Ezelsbruggetje: Wie ben ik? Mag het? Hoe trek ik klanten? Verdien ik er wat aan?",
+  "tekst": "Dit hoort bij ondernemer. Je ervaring zegt iets over jou als ondernemer.",
   "stem": "Sulafat",
-  "sleutel": "8eb08997",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Ik heb 200 euro nodig om materiaal te kopen.",
-  "stem": "Sulafat",
-  "sleutel": "bbcdf0c0",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Dit hoort bij financieel plan.",
-  "stem": "Sulafat",
-  "sleutel": "d767d7fc",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Ik maak een SWOT-analyse.",
-  "stem": "Sulafat",
-  "sleutel": "1b069076",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Dit hoort bij marketingplan.",
-  "stem": "Sulafat",
-  "sleutel": "e1485d8c",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Voor een kraam op de markt heb ik een vergunning van de gemeente nodig.",
-  "stem": "Sulafat",
-  "sleutel": "f3544289",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Dit hoort bij Regels en vergunningen.",
-  "stem": "Sulafat",
-  "sleutel": "b30f6e64",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Ik schat hoeveel hoesjes ik per maand verkoop.",
-  "stem": "Sulafat",
-  "sleutel": "2ae69743",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Dit hoort bij financieel plan. Met de verwachte afzet reken je de omzet uit. Dat is rekenwerk voor het financieel plan.",
-  "stem": "Sulafat",
-  "sleutel": "a9216d3f",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Regels en vergunningen. Welke wetten gelden er? Welke papieren heb je nodig? Bij een tour: Mag het concert in dat stadion? Is er een vergunning van de gemeente? Bij Purple Cases: Ik schrijf me in bij de Kamer van Koophandel. Voor een kraampje op de markt vraag ik een vergunning aan.",
-  "stem": "Sulafat",
-  "sleutel": "206bb453",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Ik reken uit of ik winst ga maken.",
-  "stem": "Sulafat",
-  "sleutel": "2b613dc8",
+  "sleutel": "436b7711",
   "waar": "economie-h4-bouwplan"
  },
  {
@@ -288,21 +240,57 @@
   "waar": "economie-h4-bouwplan"
  },
  {
-  "tekst": "Ik maak TikTok-filmpjes om klanten te trekken.",
+  "tekst": "Ik maak een SWOT-analyse.",
   "stem": "Sulafat",
-  "sleutel": "3649fa7e",
+  "sleutel": "1b069076",
   "waar": "economie-h4-bouwplan"
  },
  {
-  "tekst": "Het marketingplan. Hoe trek je klanten? Bij een tour: Hoe horen fans van de tour? Wat kost een kaartje? Bij Purple Cases: Mijn SWOT-analyse en mijn 5 P's: prijs 8 euro, TikTok-filmpjes, een webshop.",
+  "tekst": "Een K-popgroep gaat pas op tour met een goed plan. Een ondernemer begint pas een bedrijf met een goed plan: het ondernemingsplan. Het heet ook wel bedrijfsplan. Het plan dwingt je om vooraf na te denken: is mijn idee haalbaar? Het plan heeft vier delen. Ezelsbruggetje: Wie ben ik? Mag het? Hoe trek ik klanten? Verdien ik er wat aan?",
   "stem": "Sulafat",
-  "sleutel": "9cce26e3",
+  "sleutel": "8eb08997",
   "waar": "economie-h4-bouwplan"
  },
  {
-  "tekst": "Dit hoort bij marketingplan. Klanten trekken is marketing, de P van Promotie.",
+  "tekst": "Dit hoort bij marketingplan.",
   "stem": "Sulafat",
-  "sleutel": "3ffff8c8",
+  "sleutel": "e1485d8c",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "De ondernemer. Wie ben je en wat kun je? Bij een tour: Wie staan er op het podium? Wat kunnen ze? Bij Purple Cases: Ik kan goed tekenen en ik weet wat fans mooi vinden.",
+  "stem": "Sulafat",
+  "sleutel": "b5a13d70",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik reken uit of ik winst ga maken.",
+  "stem": "Sulafat",
+  "sleutel": "2b613dc8",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij financieel plan.",
+  "stem": "Sulafat",
+  "sleutel": "d767d7fc",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Regels en vergunningen. Welke wetten gelden er? Welke papieren heb je nodig? Bij een tour: Mag het concert in dat stadion? Is er een vergunning van de gemeente? Bij Purple Cases: Ik schrijf me in bij de Kamer van Koophandel. Voor een kraampje op de markt vraag ik een vergunning aan.",
+  "stem": "Sulafat",
+  "sleutel": "206bb453",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Voor een kraam op de markt heb ik een vergunning van de gemeente nodig.",
+  "stem": "Sulafat",
+  "sleutel": "f3544289",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij Regels en vergunningen.",
+  "stem": "Sulafat",
+  "sleutel": "b30f6e64",
   "waar": "economie-h4-bouwplan"
  },
  {
@@ -312,9 +300,45 @@
   "waar": "economie-h4-bouwplan"
  },
  {
+  "tekst": "Het financieel plan. Is er genoeg geld? Ga je winst maken? Bij een tour: Levert de tour meer op dan hij kost? Bij Purple Cases: Ik reken uit: omzet min inkoopwaarde is brutowinst min bedrijfskosten is nettowinst.",
+  "stem": "Sulafat",
+  "sleutel": "f49e1b32",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik schat hoeveel hoesjes ik per maand verkoop.",
+  "stem": "Sulafat",
+  "sleutel": "2ae69743",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij financieel plan. Met de verwachte afzet reken je de omzet uit. Dat is rekenwerk voor het financieel plan.",
+  "stem": "Sulafat",
+  "sleutel": "a9216d3f",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
   "tekst": "Mijn hoesjes kosten 8 euro.",
   "stem": "Sulafat",
   "sleutel": "68c44743",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik maak TikTok-filmpjes om klanten te trekken.",
+  "stem": "Sulafat",
+  "sleutel": "3649fa7e",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Dit hoort bij marketingplan. Klanten trekken is marketing, de P van Promotie.",
+  "stem": "Sulafat",
+  "sleutel": "3ffff8c8",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Ik heb 200 euro nodig om materiaal te kopen.",
+  "stem": "Sulafat",
+  "sleutel": "bbcdf0c0",
   "waar": "economie-h4-bouwplan"
  },
  {
@@ -322,60 +346,6 @@
   "stem": "Sulafat",
   "sleutel": "d9deb727",
   "waar": "economie-h4-plaat"
- },
- {
-  "tekst": "K-pop-dansen wordt steeds populairder.",
-  "stem": "Sulafat",
-  "sleutel": "7a41ec93",
-  "waar": "economie-h4-plaat"
- },
- {
-  "tekst": "De zaal in het dorpshuis is klein.",
-  "stem": "Sulafat",
-  "sleutel": "bf87ff28",
-  "waar": "economie-h4-plaat"
- },
- {
-  "tekst": "Mijn lessen zijn heel gezellig, leerlingen nemen vriendinnen mee.",
-  "stem": "Sulafat",
-  "sleutel": "4a24a846",
-  "waar": "economie-h4-sorteren"
- },
- {
-  "tekst": "De huur van zalen gaat omhoog.",
-  "stem": "Sulafat",
-  "sleutel": "077e4561",
-  "waar": "economie-h4-sorteren"
- },
- {
-  "tekst": "Dit hoort bij Bedreiging.",
-  "stem": "Sulafat",
-  "sleutel": "fc326351",
-  "waar": "economie-h4-sorteren"
- },
- {
-  "tekst": "Ik kan heel goed dansen en uitleggen.",
-  "stem": "Sulafat",
-  "sleutel": "de214110",
-  "waar": "economie-h4-sorteren"
- },
- {
-  "tekst": "Ik heb weinig geld voor reclame.",
-  "stem": "Sulafat",
-  "sleutel": "0ead8894",
-  "waar": "economie-h4-sorteren"
- },
- {
-  "tekst": "Dit hoort bij Zwakte.",
-  "stem": "Sulafat",
-  "sleutel": "22274dcf",
-  "waar": "economie-h4-sorteren"
- },
- {
-  "tekst": "Dit hoort bij Kans. Een ontwikkeling in de markt, buiten jou, waar je gebruik van kunt maken.",
-  "stem": "Sulafat",
-  "sleutel": "3d6921f8",
-  "waar": "economie-h4-sorteren"
  },
  {
   "tekst": "Veel scholen zoeken leuke workshops.",
@@ -390,9 +360,9 @@
   "waar": "economie-h4-sorteren"
  },
  {
-  "tekst": "Dit hoort bij Zwakte. Het gaat over jouw eigen bedrijf, dus intern. En het is een minpunt.",
+  "tekst": "Ik kan heel goed dansen en uitleggen.",
   "stem": "Sulafat",
-  "sleutel": "56431275",
+  "sleutel": "de214110",
   "waar": "economie-h4-sorteren"
  },
  {
@@ -408,9 +378,117 @@
   "waar": "economie-h4-sorteren"
  },
  {
+  "tekst": "De huur van zalen gaat omhoog.",
+  "stem": "Sulafat",
+  "sleutel": "077e4561",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Bedreiging.",
+  "stem": "Sulafat",
+  "sleutel": "fc326351",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "K-pop-dansen wordt steeds populairder.",
+  "stem": "Sulafat",
+  "sleutel": "7a41ec93",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Kans. Een ontwikkeling in de markt, buiten jou, waar je gebruik van kunt maken.",
+  "stem": "Sulafat",
+  "sleutel": "3d6921f8",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "De zaal in het dorpshuis is klein.",
+  "stem": "Sulafat",
+  "sleutel": "bf87ff28",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Zwakte. Het gaat over jouw eigen bedrijf, dus intern. En het is een minpunt.",
+  "stem": "Sulafat",
+  "sleutel": "56431275",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Ik heb weinig geld voor reclame.",
+  "stem": "Sulafat",
+  "sleutel": "0ead8894",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Dit hoort bij Zwakte.",
+  "stem": "Sulafat",
+  "sleutel": "22274dcf",
+  "waar": "economie-h4-sorteren"
+ },
+ {
+  "tekst": "Mijn lessen zijn heel gezellig, leerlingen nemen vriendinnen mee.",
+  "stem": "Sulafat",
+  "sleutel": "4a24a846",
+  "waar": "economie-h4-sorteren"
+ },
+ {
   "tekst": "Purple Cases verkoopt deze maand honderdvijftig hoesjes. Het aantal dat je verkoopt, heet de afzet.",
   "stem": "Sulafat",
   "sleutel": "f68fda20",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Elk hoesje kost acht euro. Honderdvijftig keer acht is twaalfhonderd euro. Dat is je omzet. Omzet is afzet keer verkoopprijs.",
+  "stem": "Sulafat",
+  "sleutel": "cdeab320",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Nu de andere kosten. Webshop veertig euro. Reclame honderdtien. Verzekering vijfentwintig. Verzendmateriaal vijfenzeventig. Samen tweehonderdvijftig euro. Dat zijn de bedrijfskosten.",
+  "stem": "Sulafat",
+  "sleutel": "fc6e93bd",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Zevenhonderdvijftig min tweehonderdvijftig is vijfhonderd euro. Dat is je nettowinst. Netto is wat je net overhoudt. Echt voor jou.",
+  "stem": "Sulafat",
+  "sleutel": "e1ce48e7",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Nog één keer de trap. Eén: omzet is afzet keer verkoopprijs. Twee: brutowinst is omzet min inkoopwaarde van de omzet. Drie: nettowinst is brutowinst min bedrijfskosten.",
+  "stem": "Sulafat",
+  "sleutel": "f5d12851",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Maar wat als je er deze maand maar veertig verkoopt? Omzet driehonderdtwintig euro. Min inkoop honderdtwintig. Brutowinst tweehonderd euro.",
+  "stem": "Sulafat",
+  "sleutel": "ec1f591c",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "De bedrijfskosten blijven tweehonderdvijftig euro. Ook als je weinig verkoopt. Tweehonderd min tweehonderdvijftig is min vijftig euro. Dat is verlies. Dit is het risico van een eigen bedrijf.",
+  "stem": "Sulafat",
+  "sleutel": "b211fe43",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Maar jij moest de spullen zelf inkopen. Drie euro per hoesje. Honderdvijftig keer drie is vierhonderdvijftig euro. Dat heet de inkoopwaarde van de omzet.",
+  "stem": "Sulafat",
+  "sleutel": "7ec19f83",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Wat over is: twaalfhonderd min vierhonderdvijftig is zevenhonderdvijftig euro. Dat is je brutowinst. Bruto betekent: er moet nog wat af.",
+  "stem": "Sulafat",
+  "sleutel": "7b2e4beb",
+  "waar": "economie-h4-filmpje"
+ },
+ {
+  "tekst": "Jouw beurt. Teken één plaatje van wat je onthoudt.",
+  "stem": "Sulafat",
+  "sleutel": "8e41d58b",
   "waar": "economie-h4-filmpje"
  },
  {
@@ -432,15 +510,33 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Het risico dat je als ondernemer verlies maakt of zelfs failliet gaat.",
+  "tekst": "zelfstandig ondernemer",
   "stem": "Sulafat",
-  "sleutel": "dd12bf80",
+  "sleutel": "76765fb3",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Een bedrijf kan zijn rekeningen niet meer betalen en moet stoppen.",
+  "tekst": "ondernemersrisico",
   "stem": "Sulafat",
-  "sleutel": "66426825",
+  "sleutel": "0c624876",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "faillissement",
+  "stem": "Sulafat",
+  "sleutel": "371dd4a9",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Je kunt door ziekte of een ongeluk, een tijd, niet werken. Een ondernemer moet zich hier zelf voor verzekeren.",
+  "stem": "Sulafat",
+  "sleutel": "c358e2df",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Een plan dat je schrijft vóórdat je een bedrijf start. Ook wel bedrijfsplan. Vier delen: de ondernemer, regels en vergunningen, het marketingplan, het financieel plan.",
+  "stem": "Sulafat",
+  "sleutel": "0a48cd93",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -456,9 +552,21 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "ondernemingsplan",
+  "tekst": "Je werkt als werknemer voor een werkgever en krijgt elke maand een vast loon.",
   "stem": "Sulafat",
-  "sleutel": "dcf9e11d",
+  "sleutel": "41a74d55",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Het risico dat je als ondernemer verlies maakt of zelfs failliet gaat.",
+  "stem": "Sulafat",
+  "sleutel": "dd12bf80",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Een bedrijf kan zijn rekeningen niet meer betalen en moet stoppen.",
+  "stem": "Sulafat",
+  "sleutel": "66426825",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -468,123 +576,9 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "ondernemersrisico",
+  "tekst": "ondernemingsplan",
   "stem": "Sulafat",
-  "sleutel": "0c624876",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Je kunt door ziekte of een ongeluk, een tijd, niet werken. Een ondernemer moet zich hier zelf voor verzekeren.",
-  "stem": "Sulafat",
-  "sleutel": "c358e2df",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Er staan 11 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "80eeedf4",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "afzet",
-  "stem": "Sulafat",
-  "sleutel": "d2f067af",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Sterkten en zwakten, intern: van jou, en kansen en bedreigingen, extern: van buiten.",
-  "stem": "Sulafat",
-  "sleutel": "156d52a4",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "faillissement",
-  "stem": "Sulafat",
-  "sleutel": "371dd4a9",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "vergunning",
-  "stem": "Sulafat",
-  "sleutel": "2fc954c8",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "De instrumenten om je product te verkopen: Product, Prijs, Plaats, Promotie, Personeel. Soms 4 P's, zonder Personeel.",
-  "stem": "Sulafat",
-  "sleutel": "4b3d6888",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Een plan dat je schrijft vóórdat je een bedrijf start. Ook wel bedrijfsplan. Vier delen: de ondernemer, regels en vergunningen, het marketingplan, het financieel plan.",
-  "stem": "Sulafat",
-  "sleutel": "0a48cd93",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "marketingplan",
-  "stem": "Sulafat",
-  "sleutel": "3fc204ee",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "zelfstandig ondernemer",
-  "stem": "Sulafat",
-  "sleutel": "76765fb3",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Je werkt als werknemer voor een werkgever en krijgt elke maand een vast loon.",
-  "stem": "Sulafat",
-  "sleutel": "41a74d55",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Intern is binnen je eigen bedrijf, sterkten, zwakten. Extern is buiten je bedrijf, in de markt, kansen, bedreigingen.",
-  "stem": "Sulafat",
-  "sleutel": "6f22ea7a",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Het aantal stuks dat je verkoopt.",
-  "stem": "Sulafat",
-  "sleutel": "95de6a03",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "SWOT-analyse",
-  "stem": "Sulafat",
-  "sleutel": "eaec0a42",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Toestemming, vaak van de gemeente, om iets te mogen doen.",
-  "stem": "Sulafat",
-  "sleutel": "b1f92592",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "intern / extern",
-  "stem": "Sulafat",
-  "sleutel": "d75e4354",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "marketingmix, 5 P's,",
-  "stem": "Sulafat",
-  "sleutel": "79f2d0a6",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "inkoopwaarde van de omzet",
-  "stem": "Sulafat",
-  "sleutel": "f9603ec4",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "brutowinst",
-  "stem": "Sulafat",
-  "sleutel": "993e93d0",
+  "sleutel": "dcf9e11d",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -594,21 +588,81 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "bedrijfskosten",
+  "tekst": "vergunning",
   "stem": "Sulafat",
-  "sleutel": "02767a36",
+  "sleutel": "2fc954c8",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Wat je echt overhoudt. Nettowinst is brutowinst min bedrijfskosten. Is het negatief? Dan maak je verlies.",
+  "tekst": "afzet",
   "stem": "Sulafat",
-  "sleutel": "2c1769fa",
+  "sleutel": "d2f067af",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Intern is binnen je eigen bedrijf, sterkten, zwakten. Extern is buiten je bedrijf, in de markt, kansen, bedreigingen.",
+  "stem": "Sulafat",
+  "sleutel": "6f22ea7a",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "De instrumenten om je product te verkopen: Product, Prijs, Plaats, Promotie, Personeel. Soms 4 P's, zonder Personeel.",
+  "stem": "Sulafat",
+  "sleutel": "4b3d6888",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Sterkten en zwakten, intern: van jou, en kansen en bedreigingen, extern: van buiten.",
+  "stem": "Sulafat",
+  "sleutel": "156d52a4",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "marketingplan",
+  "stem": "Sulafat",
+  "sleutel": "3fc204ee",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Er staan 14 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "42c3c81d",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "marketingmix, 5 P's,",
+  "stem": "Sulafat",
+  "sleutel": "79f2d0a6",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Alle andere kosten om je bedrijf te runnen: huur, reclame, energie, verzekeringen.",
+  "stem": "Sulafat",
+  "sleutel": "63a9de31",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "SWOT-analyse",
+  "stem": "Sulafat",
+  "sleutel": "eaec0a42",
   "waar": "economie-h4-begrippen"
  },
  {
   "tekst": "Wat over is als je de inkoopwaarde van de omzet eraf haalt. Brutowinst is omzet min inkoopwaarde van de omzet. Bruto is er moet nog wat af.",
   "stem": "Sulafat",
   "sleutel": "c2f1f2a8",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Toestemming, vaak van de gemeente, om iets te mogen doen.",
+  "stem": "Sulafat",
+  "sleutel": "b1f92592",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "nettowinst",
+  "stem": "Sulafat",
+  "sleutel": "4934e414",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -624,15 +678,21 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Alle andere kosten om je bedrijf te runnen: huur, reclame, energie, verzekeringen.",
+  "tekst": "bedrijfskosten",
   "stem": "Sulafat",
-  "sleutel": "63a9de31",
+  "sleutel": "02767a36",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Het totale bedrag dat je binnenkrijgt met verkopen, zonder btw. Omzet is afzet keer verkoopprijs.",
+  "tekst": "intern / extern",
   "stem": "Sulafat",
-  "sleutel": "3974e18a",
+  "sleutel": "d75e4354",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "Wat je echt overhoudt. Nettowinst is brutowinst min bedrijfskosten. Is het negatief? Dan maak je verlies.",
+  "stem": "Sulafat",
+  "sleutel": "2c1769fa",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -642,15 +702,21 @@
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "Er staan 8 kaarten klaar om te checken.",
+  "tekst": "Het totale bedrag dat je binnenkrijgt met verkopen, zonder btw. Omzet is afzet keer verkoopprijs.",
   "stem": "Sulafat",
-  "sleutel": "30ffb000",
+  "sleutel": "3974e18a",
   "waar": "economie-h4-begrippen"
  },
  {
-  "tekst": "nettowinst",
+  "tekst": "Er staan 13 kaarten klaar om te checken.",
   "stem": "Sulafat",
-  "sleutel": "4934e414",
+  "sleutel": "18fee28e",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "brutowinst",
+  "stem": "Sulafat",
+  "sleutel": "993e93d0",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -756,21 +822,21 @@
   "waar": "economie-h4-begrippen"
  },
  {
+  "tekst": "Het aantal stuks dat je verkoopt.",
+  "stem": "Sulafat",
+  "sleutel": "95de6a03",
+  "waar": "economie-h4-begrippen"
+ },
+ {
+  "tekst": "inkoopwaarde van de omzet",
+  "stem": "Sulafat",
+  "sleutel": "f9603ec4",
+  "waar": "economie-h4-begrippen"
+ },
+ {
   "tekst": "Er staan 7 kaarten klaar om te checken.",
   "stem": "Sulafat",
   "sleutel": "f57ef77b",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Er staan 4 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "172f1604",
-  "waar": "economie-h4-begrippen"
- },
- {
-  "tekst": "Er staan 0 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "88240088",
   "waar": "economie-h4-begrippen"
  },
  {
@@ -780,15 +846,9 @@
   "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "De rekentrap: van omzet naar nettowinst.",
+  "tekst": "Loondienst of eigen baas.",
   "stem": "Sulafat",
-  "sleutel": "78bc36eb",
-  "waar": "economie-h4-geheugen"
- },
- {
-  "tekst": "De SWOT met spiegel en raam.",
-  "stem": "Sulafat",
-  "sleutel": "3b55e4ac",
+  "sleutel": "4fe479b8",
   "waar": "economie-h4-geheugen"
  },
  {
@@ -798,15 +858,21 @@
   "waar": "economie-h4-geheugen"
  },
  {
+  "tekst": "De SWOT met spiegel en raam.",
+  "stem": "Sulafat",
+  "sleutel": "3b55e4ac",
+  "waar": "economie-h4-geheugen"
+ },
+ {
   "tekst": "De 5 P's.",
   "stem": "Sulafat",
   "sleutel": "3c5442c5",
   "waar": "economie-h4-geheugen"
  },
  {
-  "tekst": "Loondienst of eigen baas.",
+  "tekst": "De rekentrap: van omzet naar nettowinst.",
   "stem": "Sulafat",
-  "sleutel": "4fe479b8",
+  "sleutel": "78bc36eb",
   "waar": "economie-h4-geheugen"
  },
  {
@@ -822,51 +888,15 @@
   "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Noem twee nadelen of risico's van een eigen bedrijf.",
-  "stem": "Sulafat",
-  "sleutel": "b5e9c1a5",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Uit welke vier onderdelen bestaat een ondernemingsplan?",
-  "stem": "Sulafat",
-  "sleutel": "ecb51288",
-  "waar": "economie-h4-toets"
- },
- {
   "tekst": "Noem twee voordelen van werken in loondienst.",
   "stem": "Sulafat",
   "sleutel": "4504aca0",
   "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse?",
-  "stem": "Sulafat",
-  "sleutel": "8305787f",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse? A: Sterkte. B: Zwakte. C: Kans. D: Bedreiging",
-  "stem": "Sulafat",
-  "sleutel": "435aadda",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Waarom schrijft een ondernemer een ondernemingsplan voordat hij begint?",
-  "stem": "Sulafat",
-  "sleutel": "111270e2",
-  "waar": "economie-h4-toets"
- },
- {
   "tekst": "Leg uit wat het ondernemersrisico is.",
   "stem": "Sulafat",
   "sleutel": "21cbcaf3",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Leg uit waarom een zelfstandig ondernemer zelf een verzekering voor arbeidsongeschiktheid regelt.",
-  "stem": "Sulafat",
-  "sleutel": "8e46e73b",
   "waar": "economie-h4-toets"
  },
  {
@@ -882,15 +912,45 @@
   "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Er staan 16 vragen klaar.",
+  "tekst": "Leg uit waarom een zelfstandig ondernemer zelf een verzekering voor arbeidsongeschiktheid regelt.",
   "stem": "Sulafat",
-  "sleutel": "e5e8a6bc",
+  "sleutel": "8e46e73b",
   "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Een ondernemer heeft een omzet van 2000 euro. Hij verkoopt zijn product voor 25 euro per stuk. Bereken de afzet, in stuks.",
+  "tekst": "Waarom schrijft een ondernemer een ondernemingsplan voordat hij begint?",
   "stem": "Sulafat",
-  "sleutel": "78c07742",
+  "sleutel": "111270e2",
+  "waar": "economie-h4-toets"
+ },
+ {
+  "tekst": "Noem twee nadelen of risico's van een eigen bedrijf.",
+  "stem": "Sulafat",
+  "sleutel": "b5e9c1a5",
+  "waar": "economie-h4-toets"
+ },
+ {
+  "tekst": "Uit welke vier onderdelen bestaat een ondernemingsplan?",
+  "stem": "Sulafat",
+  "sleutel": "ecb51288",
+  "waar": "economie-h4-toets"
+ },
+ {
+  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse?",
+  "stem": "Sulafat",
+  "sleutel": "8305787f",
+  "waar": "economie-h4-toets"
+ },
+ {
+  "tekst": "Een ondernemer schrijft: Er opent binnenkort een grote concurrent in de buurt. Wat is dit in de SWOT-analyse? A: Sterkte. B: Zwakte. C: Kans. D: Bedreiging",
+  "stem": "Sulafat",
+  "sleutel": "435aadda",
+  "waar": "economie-h4-toets"
+ },
+ {
+  "tekst": "Er staan 15 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "ff271959",
   "waar": "economie-h4-toets"
  },
  {
@@ -903,18 +963,6 @@
   "tekst": "Een ondernemer verkoopt zijn producten alleen via een webshop. Bij welke P hoort dit? A: Product. B: Prijs. C: Plaats. D: Promotie",
   "stem": "Sulafat",
   "sleutel": "d65af88c",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "De brutowinst is 700 euro. De huur is 250 euro, energie kost 80 euro en de verzekering 40 euro. Bereken de nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "91925ea4",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Noem de vijf P's van de marketingmix.",
-  "stem": "Sulafat",
-  "sleutel": "e2a3d184",
   "waar": "economie-h4-toets"
  },
  {
@@ -936,6 +984,12 @@
   "waar": "economie-h4-toets"
  },
  {
+  "tekst": "Een ondernemer heeft een omzet van 2000 euro. Hij verkoopt zijn product voor 25 euro per stuk. Bereken de afzet, in stuks.",
+  "stem": "Sulafat",
+  "sleutel": "78c07742",
+  "waar": "economie-h4-toets"
+ },
+ {
   "tekst": "Welke zin is een zwakte?",
   "stem": "Sulafat",
   "sleutel": "c3de98cd",
@@ -948,9 +1002,27 @@
   "waar": "economie-h4-toets"
  },
  {
+  "tekst": "De brutowinst is 700 euro. De huur is 250 euro, energie kost 80 euro en de verzekering 40 euro. Bereken de nettowinst.",
+  "stem": "Sulafat",
+  "sleutel": "91925ea4",
+  "waar": "economie-h4-toets"
+ },
+ {
+  "tekst": "Noem de vijf P's van de marketingmix.",
+  "stem": "Sulafat",
+  "sleutel": "e2a3d184",
+  "waar": "economie-h4-toets"
+ },
+ {
   "tekst": "Er staan 18 vragen klaar.",
   "stem": "Sulafat",
   "sleutel": "55516a9a",
+  "waar": "economie-h4-toets"
+ },
+ {
+  "tekst": "Leg uit wat het verschil is tussen brutowinst en nettowinst.",
+  "stem": "Sulafat",
+  "sleutel": "35261aa9",
   "waar": "economie-h4-toets"
  },
  {
@@ -966,18 +1038,6 @@
   "waar": "economie-h4-toets"
  },
  {
-  "tekst": "De brutowinst is 600 euro en de bedrijfskosten zijn 750 euro. Bereken de nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "77430691",
-  "waar": "economie-h4-toets"
- },
- {
-  "tekst": "Leg uit wat het verschil is tussen brutowinst en nettowinst.",
-  "stem": "Sulafat",
-  "sleutel": "35261aa9",
-  "waar": "economie-h4-toets"
- },
- {
   "tekst": "Welke kosten horen bij de bedrijfskosten?",
   "stem": "Sulafat",
   "sleutel": "a8e604eb",
@@ -990,1222 +1050,184 @@
   "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Elk hoesje kost acht euro. Honderdvijftig keer acht is twaalfhonderd euro. Dat is je omzet. Omzet is afzet keer verkoopprijs.",
+  "tekst": "De brutowinst is 600 euro en de bedrijfskosten zijn 750 euro. Bereken de nettowinst.",
   "stem": "Sulafat",
-  "sleutel": "cdeab320",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Maar jij moest de spullen zelf inkopen. Drie euro per hoesje. Honderdvijftig keer drie is vierhonderdvijftig euro. Dat heet de inkoopwaarde van de omzet.",
-  "stem": "Sulafat",
-  "sleutel": "7ec19f83",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Wat over is: twaalfhonderd min vierhonderdvijftig is zevenhonderdvijftig euro. Dat is je brutowinst. Bruto betekent: er moet nog wat af.",
-  "stem": "Sulafat",
-  "sleutel": "7b2e4beb",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Nu de andere kosten. Webshop veertig euro. Reclame honderdtien. Verzekering vijfentwintig. Verzendmateriaal vijfenzeventig. Samen tweehonderdvijftig euro. Dat zijn de bedrijfskosten.",
-  "stem": "Sulafat",
-  "sleutel": "fc6e93bd",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Zevenhonderdvijftig min tweehonderdvijftig is vijfhonderd euro. Dat is je nettowinst. Netto is wat je net overhoudt. Echt voor jou.",
-  "stem": "Sulafat",
-  "sleutel": "e1ce48e7",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Nog één keer de trap. Eén: omzet is afzet keer verkoopprijs. Twee: brutowinst is omzet min inkoopwaarde van de omzet. Drie: nettowinst is brutowinst min bedrijfskosten.",
-  "stem": "Sulafat",
-  "sleutel": "f5d12851",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Maar wat als je er deze maand maar veertig verkoopt? Omzet driehonderdtwintig euro. Min inkoop honderdtwintig. Brutowinst tweehonderd euro.",
-  "stem": "Sulafat",
-  "sleutel": "ec1f591c",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "De bedrijfskosten blijven tweehonderdvijftig euro. Ook als je weinig verkoopt. Tweehonderd min tweehonderdvijftig is min vijftig euro. Dat is verlies. Dit is het risico van een eigen bedrijf.",
-  "stem": "Sulafat",
-  "sleutel": "b211fe43",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Jouw beurt. Teken één plaatje van wat je onthoudt.",
-  "stem": "Sulafat",
-  "sleutel": "8e41d58b",
-  "waar": "economie-h4-filmpje"
- },
- {
-  "tekst": "Dit hoort bij marketingplan. De prijs is een van de 5 P's, en die horen in het marketingplan.",
-  "stem": "Sulafat",
-  "sleutel": "f52560a6",
-  "waar": "economie-h4-bouwplan"
- },
- {
-  "tekst": "Er staan 0 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "bd1d2269",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 1 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "de24ae6d",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 1 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "6239a05e",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 2 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "a5d1f252",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 2 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "7b7575cf",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 3 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "ac78357f",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 3 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "c63cac0c",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 4 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "0ccd797d",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 5 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "29c30819",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 5 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "49bf5b62",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 6 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "662f8543",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 7 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "0f2d3090",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 9 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "1a4ca3a6",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 10 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "96aff449",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 10 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "77711752",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 11 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "2dfe41ed",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 12 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "51b8522b",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 12 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "0afe4940",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 13 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "18fee28e",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 13 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "bd6c9f73",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 14 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "42c3c81d",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 14 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "9016578e",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 15 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "aa2d4638",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 15 vragen klaar.",
-  "stem": "Sulafat",
-  "sleutel": "ff271959",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 16 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "adcf65af",
-  "waar": "tellers"
- },
- {
-  "tekst": "Er staan 17 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "6a4a8ac2",
-  "waar": "tellers"
+  "sleutel": "77430691",
+  "waar": "economie-h4-toets"
  },
  {
   "tekst": "Er staan 17 vragen klaar.",
   "stem": "Sulafat",
   "sleutel": "f31de2ff",
-  "waar": "tellers"
+  "waar": "economie-h4-toets"
  },
  {
-  "tekst": "Er staan 18 kaarten klaar om te checken.",
+  "tekst": "paragraaf 1. Loondienst of eigen baas? Eén stap: Chat.",
   "stem": "Sulafat",
-  "sleutel": "8bb49661",
-  "waar": "tellers"
+  "sleutel": "e7e36ffd",
+  "waar": "economie-h4-p1"
  },
  {
-  "tekst": "Er staan 19 kaarten klaar om te checken.",
+  "tekst": "paragraaf 2. Het ondernemingsplan. Eén stap: Bouwplan.",
   "stem": "Sulafat",
-  "sleutel": "c9889a8c",
-  "waar": "tellers"
+  "sleutel": "dd0370f7",
+  "waar": "economie-h4-p2"
  },
  {
-  "tekst": "Er staan 19 vragen klaar.",
+  "tekst": "paragraaf 3. Het marketingplan. 2 stappen: De plaat. Sorteren.",
   "stem": "Sulafat",
-  "sleutel": "1a8d1f35",
-  "waar": "tellers"
+  "sleutel": "571be169",
+  "waar": "economie-h4-p3"
  },
  {
-  "tekst": "Er staan 20 kaarten klaar om te checken.",
+  "tekst": "paragraaf 4. Het financieel plan. 2 stappen: Filmpje. Zelf rekenen.",
   "stem": "Sulafat",
-  "sleutel": "80587300",
-  "waar": "tellers"
+  "sleutel": "7d98928d",
+  "waar": "economie-h4-p4"
  },
  {
-  "tekst": "Er staan 20 vragen klaar.",
+  "tekst": "Geschiedenis hoofdstuk één. De Eerste Wereldoorlog.",
   "stem": "Sulafat",
-  "sleutel": "ad797d31",
-  "waar": "tellers"
+  "sleutel": "2f8b2c07",
+  "waar": "geschiedenis-h1-overzicht"
  },
  {
-  "tekst": "Er staan 21 kaarten klaar om te checken.",
+  "tekst": "Vandaag, ongeveer 11 minuten: Tijdlijn: nieuw stuk leren. 🃏 6 begrippen checken.",
   "stem": "Sulafat",
-  "sleutel": "348f1bc5",
-  "waar": "tellers"
+  "sleutel": "fcea014f",
+  "waar": "geschiedenis-h1-overzicht"
  },
  {
-  "tekst": "Er staan 21 vragen klaar.",
+  "tekst": "Op volgorde van tijd. Drie rondes: vóór, tijdens en na de oorlog. Daarna nog een ronde met alles door elkaar.",
   "stem": "Sulafat",
-  "sleutel": "67675ca6",
-  "waar": "tellers"
+  "sleutel": "9ae2cae3",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 22 kaarten klaar om te checken.",
+  "tekst": "Tik op wat het eerst gebeurde.",
   "stem": "Sulafat",
-  "sleutel": "fd44190a",
-  "waar": "tellers"
+  "sleutel": "c5433cdb",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 22 vragen klaar.",
+  "tekst": "Duitsland, Oostenrijk-Hongarije en Italië sluiten de Triple Alliantie.",
   "stem": "Sulafat",
-  "sleutel": "17653cd7",
-  "waar": "tellers"
+  "sleutel": "970401d0",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 23 kaarten klaar om te checken.",
+  "tekst": "Duitsland begint met een grote oorlogsvloot. De wapenwedloop met Groot-Brittannië begint.",
   "stem": "Sulafat",
-  "sleutel": "fb049d37",
-  "waar": "tellers"
+  "sleutel": "9d41cafd",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 23 vragen klaar.",
+  "tekst": "Duitsland wordt één land: het Duitse Keizerrijk. Frankrijk verliest Elzas-Lotharingen.",
   "stem": "Sulafat",
-  "sleutel": "5b317c14",
-  "waar": "tellers"
+  "sleutel": "20ee29c2",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 24 kaarten klaar om te checken.",
+  "tekst": "Oostenrijk-Hongarije neemt Bosnië in. Servië is woedend.",
   "stem": "Sulafat",
-  "sleutel": "2805b0dc",
-  "waar": "tellers"
+  "sleutel": "0e8a09e3",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 24 vragen klaar.",
+  "tekst": "Frankrijk, Rusland en Groot-Brittannië vormen de Triple Entente.",
   "stem": "Sulafat",
-  "sleutel": "af261785",
-  "waar": "tellers"
+  "sleutel": "53045a1c",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 25 kaarten klaar om te checken.",
+  "tekst": "Oorlogen op de Balkan. Het Ottomaanse Rijk verliest bijna al zijn land in Europa.",
   "stem": "Sulafat",
-  "sleutel": "cd6684f1",
-  "waar": "tellers"
+  "sleutel": "8dbd5237",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 25 vragen klaar.",
+  "tekst": "Nog niet. Dit gebeurde later. Er is iets dat eerder kwam.",
   "stem": "Sulafat",
-  "sleutel": "882a53ea",
-  "waar": "tellers"
+  "sleutel": "585f8727",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 26 kaarten klaar om te checken.",
+  "tekst": "Het Verdrag van Versailles. Duitsland wordt de Republiek van Weimar.",
   "stem": "Sulafat",
-  "sleutel": "e94df616",
-  "waar": "tellers"
+  "sleutel": "e191ead2",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 26 vragen klaar.",
+  "tekst": "Hyperinflatie in Duitsland. Het geld wordt waardeloos.",
   "stem": "Sulafat",
-  "sleutel": "a1fe63cb",
-  "waar": "tellers"
+  "sleutel": "4699d11c",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 27 kaarten klaar om te checken.",
+  "tekst": "Mars op Rome. Mussolini wordt premier van Italië.",
   "stem": "Sulafat",
-  "sleutel": "5b753353",
-  "waar": "tellers"
+  "sleutel": "b1f3ecc0",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 27 vragen klaar.",
+  "tekst": "Mussolini maakt van Italië een dictatuur.",
   "stem": "Sulafat",
-  "sleutel": "9dc067d8",
-  "waar": "tellers"
+  "sleutel": "20231a2e",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 28 kaarten klaar om te checken.",
+  "tekst": "De Volkenbond begint. Hij moet nieuwe oorlogen voorkomen.",
   "stem": "Sulafat",
-  "sleutel": "d77cc388",
-  "waar": "tellers"
+  "sleutel": "54a777e9",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 28 vragen klaar.",
+  "tekst": "De slagen bij Verdun en aan de Somme. Honderdduizenden doden, bijna geen winst.",
   "stem": "Sulafat",
-  "sleutel": "0a37db69",
-  "waar": "tellers"
+  "sleutel": "04206052",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 29 kaarten klaar om te checken.",
+  "tekst": "Slag aan de Marne. Het Duitse plan mislukt. De loopgravenoorlog begint.",
   "stem": "Sulafat",
-  "sleutel": "2d7d716d",
-  "waar": "tellers"
+  "sleutel": "4b801fa8",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 29 vragen klaar.",
+  "tekst": "De Verenigde Staten doen mee, aan de kant van de geallieerden.",
   "stem": "Sulafat",
-  "sleutel": "af54595e",
-  "waar": "tellers"
+  "sleutel": "7b643d09",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 30 kaarten klaar om te checken.",
+  "tekst": "Aanslag in Sarajevo: kroonprins Frans Ferdinand wordt doodgeschoten.",
   "stem": "Sulafat",
-  "sleutel": "6c0748c7",
-  "waar": "tellers"
+  "sleutel": "c46cb422",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Er staan 30 vragen klaar.",
+  "tekst": "Rusland stopt met de oorlog, na een revolutie.",
   "stem": "Sulafat",
-  "sleutel": "fbf8b024",
-  "waar": "tellers"
+  "sleutel": "81f34b2b",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "De begrippen zijn: nationalisme, imperialisme, militarisme, wapenwedloop, bondgenootschap, Triple Alliantie, Triple Entente, aanleiding, indirecte oorzaak, ultimatum, mobilisatie, Schlieffenplan, tweefrontenoorlog, loopgravenoorlog, geallieerden, centralen, totale oorlog, propaganda, wapenstilstand, Verdrag van Versailles, herstelbetalingen, Volkenbond, Republiek van Weimar, dolkstootlegende, hyperinflatie, fascisme, Mars op Rome, dictatuur, eenpartijstaat, neutraliteitspolitiek, bedoeld en onbedoeld gevolg, direct en indirect gevolg, korte en lange termijn, politiek-bestuurlijk, sociaal, economisch, cultureel.",
+  "tekst": "Duitsland valt België binnen. Groot-Brittannië doet mee aan de oorlog.",
   "stem": "Sulafat",
-  "sleutel": "ca3a754a",
-  "waar": "geschiedenis-h1-begrippen"
+  "sleutel": "a4ea140a",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "bondgenootschap",
+  "tekst": "Oostenrijk-Hongarije verklaart Servië de oorlog.",
   "stem": "Sulafat",
-  "sleutel": "6adc1491",
-  "waar": "geschiedenis-h1-begrippen"
+  "sleutel": "8101e59e",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
-  "tekst": "Triple Alliantie",
+  "tekst": "Wapenstilstand. De Duitse keizer vlucht naar Nederland.",
   "stem": "Sulafat",
-  "sleutel": "2fca9f82",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "militarisme",
-  "stem": "Sulafat",
-  "sleutel": "39133773",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "wapenwedloop",
-  "stem": "Sulafat",
-  "sleutel": "0342db3c",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "imperialisme",
-  "stem": "Sulafat",
-  "sleutel": "394b3b68",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "nationalisme",
-  "stem": "Sulafat",
-  "sleutel": "d58ba483",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "ultimatum",
-  "stem": "Sulafat",
-  "sleutel": "8f71cbfb",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "indirecte oorzaak",
-  "stem": "Sulafat",
-  "sleutel": "4ecc97c5",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Het leger klaarmaken voor oorlog: alle soldaten worden opgeroepen.",
-  "stem": "Sulafat",
-  "sleutel": "49efb7fd",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Triple Entente",
-  "stem": "Sulafat",
-  "sleutel": "af945c0e",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Duits plan: eerst snel Frankrijk verslaan via België, daarna alle soldaten naar Rusland.",
-  "stem": "Sulafat",
-  "sleutel": "0d4fb358",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Het leger is heel belangrijk in een land. Generaals hebben veel macht en oorlog wordt gezien als iets goeds.",
-  "stem": "Sulafat",
-  "sleutel": "d54653bb",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "aanleiding",
-  "stem": "Sulafat",
-  "sleutel": "393f480d",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Het kamp van Duitsland, Oostenrijk-Hongarije, het Ottomaanse Rijk en Bulgarije. Ze lagen midden in Europa. Heet ook centrale mogendheden.",
-  "stem": "Sulafat",
-  "sleutel": "63885587",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een laatste eis met een tijdslimiet. Doe je het niet, dan volgt er iets ergs, zoals oorlog.",
-  "stem": "Sulafat",
-  "sleutel": "beb42713",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Je voelt je sterk verbonden met je eigen land of volk. Je vindt dat elk volk een eigen staat moet hebben.",
-  "stem": "Sulafat",
-  "sleutel": "a85ebb3b",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "tweefrontenoorlog",
-  "stem": "Sulafat",
-  "sleutel": "504dd4fa",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "propaganda",
-  "stem": "Sulafat",
-  "sleutel": "385d89b2",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "De directe oorzaak: de gebeurtenis waardoor iets op dat moment begint. De laatste druppel.",
-  "stem": "Sulafat",
-  "sleutel": "1af37645",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Het kamp van Frankrijk, Groot-Brittannië en Rusland, later ook Italië en de Verenigde Staten.",
-  "stem": "Sulafat",
-  "sleutel": "e441e30d",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een land probeert macht te krijgen over gebieden buiten het eigen land, zoals koloniën.",
-  "stem": "Sulafat",
-  "sleutel": "04660875",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Bondgenootschap van Duitsland, Oostenrijk-Hongarije en Italië, 1882.",
-  "stem": "Sulafat",
-  "sleutel": "0a78536a",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "totale oorlog",
-  "stem": "Sulafat",
-  "sleutel": "d5f06fd0",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "loopgravenoorlog",
-  "stem": "Sulafat",
-  "sleutel": "cda2f2ee",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "dolkstootlegende",
-  "stem": "Sulafat",
-  "sleutel": "eb20fe76",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "centralen",
-  "stem": "Sulafat",
-  "sleutel": "89c28d73",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Republiek van Weimar",
-  "stem": "Sulafat",
-  "sleutel": "61ec7f50",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een afspraak tussen landen om elkaar te helpen als een van hen wordt aangevallen.",
-  "stem": "Sulafat",
-  "sleutel": "372be9cf",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Afspraak om te stoppen met vechten. Nog geen vrede.",
-  "stem": "Sulafat",
-  "sleutel": "4c7b17b2",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Bondgenootschap van Frankrijk, Rusland en Groot-Brittannië, 1907.",
-  "stem": "Sulafat",
-  "sleutel": "95afc6a5",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een oorzaak die al lang speelde en de spanning opbouwde. Hij vulde de emmer.",
-  "stem": "Sulafat",
-  "sleutel": "2abcbb2e",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "geallieerden",
-  "stem": "Sulafat",
-  "sleutel": "918924ae",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "mobilisatie",
-  "stem": "Sulafat",
-  "sleutel": "4370ff61",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Volkenbond",
-  "stem": "Sulafat",
-  "sleutel": "6ac67ff7",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "herstelbetalingen",
-  "stem": "Sulafat",
-  "sleutel": "e9ceeca9",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Het vredesverdrag met Duitsland, 1919. Duitsland kreeg de schuld, moest betalen, verloor land en koloniën en mocht maar een klein leger hebben.",
-  "stem": "Sulafat",
-  "sleutel": "35e8c956",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "neutraliteitspolitiek",
-  "stem": "Sulafat",
-  "sleutel": "6509b6f1",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Het verzonnen verhaal dat het Duitse leger niet verslagen was, maar in de rug gestoken door politici thuis.",
-  "stem": "Sulafat",
-  "sleutel": "bc484e36",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Landen proberen elkaar te overtreffen met steeds meer en betere wapens.",
-  "stem": "Sulafat",
-  "sleutel": "26e089e2",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Eenzijdige informatie om mensen te laten denken en doen wat de regering wil.",
-  "stem": "Sulafat",
-  "sleutel": "fbf8b1ac",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een oorlog waarin de legers zich ingraven in lange greppels. Het front ligt jarenlang bijna stil. Heet ook stellingenoorlog.",
-  "stem": "Sulafat",
-  "sleutel": "5e33f168",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Schlieffenplan",
-  "stem": "Sulafat",
-  "sleutel": "7827ef37",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Geld dat Duitsland moest betalen voor de schade van de oorlog.",
-  "stem": "Sulafat",
-  "sleutel": "2e3ed11e",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "In 1922 trokken duizenden fascisten naar Rome. De koning maakte Mussolini daarna premier.",
-  "stem": "Sulafat",
-  "sleutel": "b43fa98d",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een land waar maar één politieke partij is toegestaan.",
-  "stem": "Sulafat",
-  "sleutel": "b654a829",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Eén persoon of één partij heeft alle macht. Er is geen vrijheid van meningsuiting.",
-  "stem": "Sulafat",
-  "sleutel": "e990fda0",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "hyperinflatie",
-  "stem": "Sulafat",
-  "sleutel": "b4a387a9",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "fascisme",
-  "stem": "Sulafat",
-  "sleutel": "6db587b6",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Geen kant kiezen in conflicten en geen bondgenootschappen sluiten.",
-  "stem": "Sulafat",
-  "sleutel": "15e88b87",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Organisatie van landen, vanaf 1920, die samen nieuwe oorlogen moest voorkomen.",
-  "stem": "Sulafat",
-  "sleutel": "7d1f9906",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "eenpartijstaat",
-  "stem": "Sulafat",
-  "sleutel": "f715876a",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "wapenstilstand",
-  "stem": "Sulafat",
-  "sleutel": "572f4720",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Verdrag van Versailles",
-  "stem": "Sulafat",
-  "sleutel": "156e6b25",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "dictatuur",
-  "stem": "Sulafat",
-  "sleutel": "a1086012",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Prijzen stijgen extreem snel. Het geld wordt bijna waardeloos.",
-  "stem": "Sulafat",
-  "sleutel": "72119669",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Extreem nationalistisch idee: één sterke leider, geweld, tegen democratie en communisme. De staat is belangrijker dan het individu.",
-  "stem": "Sulafat",
-  "sleutel": "850e1ff6",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Er staan 33 kaarten klaar om te checken.",
-  "stem": "Sulafat",
-  "sleutel": "1cfe88d0",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "bedoeld en onbedoeld gevolg",
-  "stem": "Sulafat",
-  "sleutel": "0590c561",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Vier soorten oorzaken en gevolgen. Politiek-bestuurlijk: macht en regering. Sociaal: hoe mensen samenleven. Economisch: geld en werk. Cultureel: ideeën en kunst.",
-  "stem": "Sulafat",
-  "sleutel": "77f2aebe",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "direct en indirect gevolg",
-  "stem": "Sulafat",
-  "sleutel": "7a2eadd5",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "korte en lange termijn",
-  "stem": "Sulafat",
-  "sleutel": "3f183677",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "nationalisme. Je voelt je sterk verbonden met je eigen land of volk. Je vindt dat elk volk een eigen staat moet hebben. Voorbeeld: Serviërs wilden alle Zuid-Slaven in één eigen land.",
-  "stem": "Sulafat",
-  "sleutel": "03e3cfa5",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "imperialisme. Een land probeert macht te krijgen over gebieden buiten het eigen land, zoals koloniën. Voorbeeld: Duitsland wilde ook koloniën in Afrika, net als Groot-Brittannië en Frankrijk.",
-  "stem": "Sulafat",
-  "sleutel": "57322a84",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "militarisme. Het leger is heel belangrijk in een land. Generaals hebben veel macht en oorlog wordt gezien als iets goeds. Voorbeeld: Rond 1900 waren soldaten in uniform populair en hadden generaals veel invloed.",
-  "stem": "Sulafat",
-  "sleutel": "a8fa36ae",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "wapenwedloop. Landen proberen elkaar te overtreffen met steeds meer en betere wapens. Voorbeeld: Duitsland en Groot-Brittannië bouwden om het hardst oorlogsschepen.",
-  "stem": "Sulafat",
-  "sleutel": "74139934",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "bondgenootschap. Een afspraak tussen landen om elkaar te helpen als een van hen wordt aangevallen. Voorbeeld: De Triple Alliantie en de Triple Entente.",
-  "stem": "Sulafat",
-  "sleutel": "debd9026",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Triple Alliantie. Bondgenootschap van Duitsland, Oostenrijk-Hongarije en Italië, 1882. Voorbeeld: Ezelsbrug: Entente is een Frans woord, dus Frankrijk zit in de Entente. Duitsland zit in het andere kamp.",
-  "stem": "Sulafat",
-  "sleutel": "0b543dfb",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Triple Entente. Bondgenootschap van Frankrijk, Rusland en Groot-Brittannië, 1907. Voorbeeld: Entente is Frans voor 'goede verstandhouding'. Frankrijk zit erin.",
-  "stem": "Sulafat",
-  "sleutel": "1e01ee3f",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "aanleiding. De directe oorzaak: de gebeurtenis waardoor iets op dat moment begint. De laatste druppel. Voorbeeld: De moord op Frans Ferdinand in Sarajevo, 28 juni 1914.",
-  "stem": "Sulafat",
-  "sleutel": "5c555b18",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "indirecte oorzaak. Een oorzaak die al lang speelde en de spanning opbouwde. Hij vulde de emmer. Voorbeeld: Nationalisme, imperialisme, militarisme en de bondgenootschappen.",
-  "stem": "Sulafat",
-  "sleutel": "7ad0ba90",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "ultimatum. Een laatste eis met een tijdslimiet. Doe je het niet, dan volgt er iets ergs, zoals oorlog. Voorbeeld: Oostenrijk-Hongarije stuurde Servië in juli 1914 een ultimatum.",
-  "stem": "Sulafat",
-  "sleutel": "b3b8a3a7",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "mobilisatie. Het leger klaarmaken voor oorlog: alle soldaten worden opgeroepen. Voorbeeld: Rusland mobiliseerde eind juli 1914. Ook neutraal Nederland mobiliseerde.",
-  "stem": "Sulafat",
-  "sleutel": "844889e1",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Schlieffenplan. Duits plan: eerst snel Frankrijk verslaan via België, daarna alle soldaten naar Rusland. Voorbeeld: Het mislukte bij de Marne in september 1914.",
-  "stem": "Sulafat",
-  "sleutel": "49b3fb23",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "tweefrontenoorlog. Een oorlog aan twee kanten tegelijk. Voorbeeld: Duitsland vocht in het westen tegen Frankrijk en Groot-Brittannië, en in het oosten tegen Rusland.",
-  "stem": "Sulafat",
-  "sleutel": "79c372a0",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "loopgravenoorlog. Een oorlog waarin de legers zich ingraven in lange greppels. Het front ligt jarenlang bijna stil. Heet ook stellingenoorlog. Voorbeeld: Het westfront van eind 1914 tot 1918.",
-  "stem": "Sulafat",
-  "sleutel": "19851f54",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "geallieerden. Het kamp van Frankrijk, Groot-Brittannië en Rusland, later ook Italië en de Verenigde Staten. Voorbeeld: De winnaars van de Eerste Wereldoorlog.",
-  "stem": "Sulafat",
-  "sleutel": "58db2b45",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "centralen. Het kamp van Duitsland, Oostenrijk-Hongarije, het Ottomaanse Rijk en Bulgarije. Ze lagen midden in Europa. Heet ook centrale mogendheden. Voorbeeld: De verliezers van de Eerste Wereldoorlog.",
-  "stem": "Sulafat",
-  "sleutel": "91dfc798",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "totale oorlog. Een oorlog waarin de hele samenleving meedoet: leger, economie en burgers. Ook burgers worden doelwit. Voorbeeld: Fabrieken maakten wapens, vrouwen werkten in fabrieken, eten ging op de bon.",
-  "stem": "Sulafat",
-  "sleutel": "f47611aa",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "propaganda. Eenzijdige informatie om mensen te laten denken en doen wat de regering wil. Voorbeeld: Posters die jongens opriepen om soldaat te worden.",
-  "stem": "Sulafat",
-  "sleutel": "03774083",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "wapenstilstand. Afspraak om te stoppen met vechten. Nog geen vrede. Voorbeeld: 11 november 1918.",
-  "stem": "Sulafat",
-  "sleutel": "c1564520",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Verdrag van Versailles. Het vredesverdrag met Duitsland, 1919. Duitsland kreeg de schuld, moest betalen, verloor land en koloniën en mocht maar een klein leger hebben. Voorbeeld: Veel Duitsers noemden het een vernedering.",
-  "stem": "Sulafat",
-  "sleutel": "f346a64b",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "herstelbetalingen. Geld dat Duitsland moest betalen voor de schade van de oorlog. Voorbeeld: Vooral aan Frankrijk en België.",
-  "stem": "Sulafat",
-  "sleutel": "1dbcf71c",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Volkenbond. Organisatie van landen, vanaf 1920, die samen nieuwe oorlogen moest voorkomen. Voorbeeld: Een voorloper van de Verenigde Naties.",
-  "stem": "Sulafat",
-  "sleutel": "bd722dfb",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Republiek van Weimar. De democratische republiek in Duitsland van 1919 tot 1933. Genoemd naar de stad waar de grondwet werd gemaakt. Voorbeeld: Had politieke én economische problemen.",
-  "stem": "Sulafat",
-  "sleutel": "3d18a90d",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "dolkstootlegende. Het verzonnen verhaal dat het Duitse leger niet verslagen was, maar in de rug gestoken door politici thuis. Voorbeeld: Het maakte de nieuwe republiek zwak.",
-  "stem": "Sulafat",
-  "sleutel": "f294522f",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "hyperinflatie. Prijzen stijgen extreem snel. Het geld wordt bijna waardeloos. Voorbeeld: Duitsland 1923: een brood kostte miljarden marken.",
-  "stem": "Sulafat",
-  "sleutel": "c1a778ea",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "fascisme. Extreem nationalistisch idee: één sterke leider, geweld, tegen democratie en communisme. De staat is belangrijker dan het individu. Voorbeeld: Italië onder Mussolini.",
-  "stem": "Sulafat",
-  "sleutel": "40739246",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Mars op Rome. In 1922 trokken duizenden fascisten naar Rome. De koning maakte Mussolini daarna premier. Voorbeeld: De aanleiding voor de machtsovername van Mussolini.",
-  "stem": "Sulafat",
-  "sleutel": "bbcaa119",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "dictatuur. Eén persoon of één partij heeft alle macht. Er is geen vrijheid van meningsuiting. Voorbeeld: Italië vanaf 1925.",
-  "stem": "Sulafat",
-  "sleutel": "d4264fb2",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "eenpartijstaat. Een land waar maar één politieke partij is toegestaan. Voorbeeld: In Italië mocht na 1926 alleen de fascistische partij bestaan.",
-  "stem": "Sulafat",
-  "sleutel": "c22e9192",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "neutraliteitspolitiek. Geen kant kiezen in conflicten en geen bondgenootschappen sluiten. Voorbeeld: Nederland: klein leger, veel handel, koloniën beschermen.",
-  "stem": "Sulafat",
-  "sleutel": "185790af",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "bedoeld en onbedoeld gevolg. Bedoeld: wat iemand wilde bereiken. Onbedoeld: had niemand gepland. Voorbeeld: Versailles: Duitsland zwak, bedoeld, woede in Duitsland, onbedoeld.",
-  "stem": "Sulafat",
-  "sleutel": "ddc1ca0d",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "direct en indirect gevolg. Direct: komt meteen uit de gebeurtenis. Indirect: via een tussenstap, een gevolg van een gevolg. Voorbeeld: Versailles. herstelbetalingen, direct. hyperinflatie, indirect.",
-  "stem": "Sulafat",
-  "sleutel": "6bcd5b65",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "korte en lange termijn. Korte termijn: meteen of binnen een paar jaar. Lange termijn: pas veel later. Voorbeeld: Miljoenen doden, kort. Woede over Versailles helpt Hitler aan de macht, lang.",
-  "stem": "Sulafat",
-  "sleutel": "17ce90e2",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "politiek-bestuurlijk, sociaal, economisch, cultureel",
-  "stem": "Sulafat",
-  "sleutel": "1640853c",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een oorlog aan twee kanten tegelijk.",
-  "stem": "Sulafat",
-  "sleutel": "9f90c3be",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "De democratische republiek in Duitsland van 1919 tot 1933. Genoemd naar de stad waar de grondwet werd gemaakt.",
-  "stem": "Sulafat",
-  "sleutel": "62063791",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Een oorlog waarin de hele samenleving meedoet: leger, economie en burgers. Ook burgers worden doelwit.",
-  "stem": "Sulafat",
-  "sleutel": "1605710b",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Bedoeld: wat iemand wilde bereiken. Onbedoeld: had niemand gepland.",
-  "stem": "Sulafat",
-  "sleutel": "645abef2",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Korte termijn: meteen of binnen een paar jaar. Lange termijn: pas veel later.",
-  "stem": "Sulafat",
-  "sleutel": "05284086",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Mars op Rome",
-  "stem": "Sulafat",
-  "sleutel": "2394eef6",
-  "waar": "geschiedenis-h1-begrippen"
- },
- {
-  "tekst": "Het kruitvat met vier lonten.",
-  "stem": "Sulafat",
-  "sleutel": "6f1d62ca",
-  "waar": "geschiedenis-h1-geheugen"
- },
- {
-  "tekst": "De kettingreactie van 1914.",
-  "stem": "Sulafat",
-  "sleutel": "74f471a3",
-  "waar": "geschiedenis-h1-geheugen"
- },
- {
-  "tekst": "Het Verdrag van Versailles.",
-  "stem": "Sulafat",
-  "sleutel": "5386b3c0",
-  "waar": "geschiedenis-h1-geheugen"
- },
- {
-  "tekst": "De problemen van Weimar.",
-  "stem": "Sulafat",
-  "sleutel": "a7c7ad44",
-  "waar": "geschiedenis-h1-geheugen"
- },
- {
-  "tekst": "Soorten oorzaken en gevolgen.",
-  "stem": "Sulafat",
-  "sleutel": "1cb83c86",
-  "waar": "geschiedenis-h1-geheugen"
- },
- {
-  "tekst": "De twee kampen.",
-  "stem": "Sulafat",
-  "sleutel": "bfa90af7",
-  "waar": "geschiedenis-h1-geheugen"
- },
- {
-  "tekst": "Na de oorlog: veel werklozen, hoge prijzen en stakingen. Arbeiders bezetten fabrieken. Rijke Italianen en de middenklasse waren bang voor een communistische revolutie, zoals in Rusland.",
-  "stem": "Sulafat",
-  "sleutel": "61601295",
-  "waar": "geschiedenis-h1-italie"
- },
- {
-  "tekst": "Benito Mussolini begon de fascistische partij. Zijn knokploegen, de zwarthemden, sloegen stakers en socialisten in elkaar. Hij beloofde orde en een groot, sterk Italië.",
-  "stem": "Sulafat",
-  "sleutel": "f8e942a6",
-  "waar": "geschiedenis-h1-italie"
- },
- {
-  "tekst": "De Mars op Rome. Duizenden fascisten trokken naar Rome. De koning durfde niets te doen. Hij maakte Mussolini premier.",
-  "stem": "Sulafat",
-  "sleutel": "7f6db3ec",
-  "waar": "geschiedenis-h1-italie"
- },
- {
-  "tekst": "Mussolini maakte van Italië een dictatuur. Andere partijen werden verboden: een eenpartijstaat. Kranten mochten alleen schrijven wat hij wilde.",
-  "stem": "Sulafat",
-  "sleutel": "71ee179e",
-  "waar": "geschiedenis-h1-italie"
- },
- {
-  "tekst": "Kenmerken van het fascisme: extreem nationalisme, één sterke leider, geweld, tegen democratie en tegen communisme. De staat is belangrijker dan het individu.",
-  "stem": "Sulafat",
-  "sleutel": "ed061a84",
-  "waar": "geschiedenis-h1-italie"
- },
- {
-  "tekst": "Italië stond aan de kant van de winnaars. Maar het kreeg minder land dan beloofd. Veel Italianen voelden zich bedrogen.",
-  "stem": "Sulafat",
-  "sleutel": "ce3e5e7d",
-  "waar": "geschiedenis-h1-italie"
- },
- {
-  "tekst": "Groot-Brittannië",
-  "stem": "Sulafat",
-  "sleutel": "4b31c3ed",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Dit hoort bij Triple Entente.",
-  "stem": "Sulafat",
-  "sleutel": "84f2a45c",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Voelt zich de beschermer van de Slavische volken.",
-  "stem": "Sulafat",
-  "sleutel": "110ae76b",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Dit hoort bij Triple Entente. Dat is Rusland.",
-  "stem": "Sulafat",
-  "sleutel": "b0ba47ee",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Oostenrijk-Hongarije",
-  "stem": "Sulafat",
-  "sleutel": "bf9187d3",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Wil Elzas-Lotharingen terug.",
-  "stem": "Sulafat",
-  "sleutel": "c5bf00ef",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Dit hoort bij Triple Entente. Dat is Frankrijk, en Frankrijk zat in de Triple Entente.",
-  "stem": "Sulafat",
-  "sleutel": "a9f727dc",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Neemt in 1908 Bosnië in.",
-  "stem": "Sulafat",
-  "sleutel": "d5179348",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Frankrijk",
-  "stem": "Sulafat",
-  "sleutel": "bc20b33b",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Rusland",
-  "stem": "Sulafat",
-  "sleutel": "ed3eca8e",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Bouwt een vloot om de Britten bij te houden.",
-  "stem": "Sulafat",
-  "sleutel": "201ed1d6",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Duitsland",
-  "stem": "Sulafat",
-  "sleutel": "75770003",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Italië",
-  "stem": "Sulafat",
-  "sleutel": "bfd2778f",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Duitsland wil ook koloniën in Afrika.",
-  "stem": "Sulafat",
-  "sleutel": "01747332",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Dit hoort bij Imperialisme.",
-  "stem": "Sulafat",
-  "sleutel": "0aa0b3c6",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Het leger is trots en populair. Jongens moeten in dienst.",
-  "stem": "Sulafat",
-  "sleutel": "b5122f98",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Dit hoort bij Militarisme.",
-  "stem": "Sulafat",
-  "sleutel": "90853a83",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Duitsland belooft Oostenrijk-Hongarije te helpen, wat er ook gebeurt.",
-  "stem": "Sulafat",
-  "sleutel": "bec4e533",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Dit hoort bij Bondgenootschappen.",
-  "stem": "Sulafat",
-  "sleutel": "db7f36b2",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Veel mensen vinden hun eigen land beter dan andere landen.",
-  "stem": "Sulafat",
-  "sleutel": "c61a9e59",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Duitsland en Groot-Brittannië bouwen om het hardst oorlogsschepen.",
-  "stem": "Sulafat",
-  "sleutel": "b36e465c",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Dit hoort bij Militarisme. Dat is een wapenwedloop, en die hoort bij militarisme.",
-  "stem": "Sulafat",
-  "sleutel": "23c321af",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Frankrijk en Rusland spreken af elkaar te helpen tegen Duitsland.",
-  "stem": "Sulafat",
-  "sleutel": "38ba6f4c",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Serviërs willen alle Zuid-Slaven in één eigen land.",
-  "stem": "Sulafat",
-  "sleutel": "7a6d0fb3",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Landen strijden om grondstoffen en markten buiten Europa.",
-  "stem": "Sulafat",
-  "sleutel": "3025330d",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Generaals hebben veel macht en maken plannen voor een snelle oorlog.",
-  "stem": "Sulafat",
-  "sleutel": "531b48f6",
-  "waar": "geschiedenis-h1-kampen"
- },
- {
-  "tekst": "Frankrijk wil uit trots Elzas-Lotharingen terug.",
-  "stem": "Sulafat",
-  "sleutel": "c63d4cb5",
-  "waar": "geschiedenis-h1-kampen"
+  "sleutel": "047d0198",
+  "waar": "geschiedenis-h1-tijdlijn"
  },
  {
   "tekst": "Europa rond 1900: een kruitvat. Het lijkt rustig. Maar onder de oppervlakte zit veel spanning. Eén vonk is genoeg voor een ontploffing.",
@@ -2238,370 +1260,184 @@
   "waar": "geschiedenis-h1-kruitvat"
  },
  {
-  "tekst": "Oorzaken en gevolgen. Op de toets moet je oorzaken en gevolgen kunnen indelen. Vijf keer een verschil. Eerst een voorbeeld uit de fanwereld, dan uit de Eerste Wereldoorlog.",
+  "tekst": "Voelt zich de beschermer van de Slavische volken.",
   "stem": "Sulafat",
-  "sleutel": "4047aff1",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "110ae76b",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Aanleiding of indirecte oorzaak. De aanleiding is de directe oorzaak: de laatste druppel waardoor de emmer overloopt. Een indirecte oorzaak speelde al veel langer: die vulde de emmer. Fanwereld: al weken irritatie in de groepsapp. Dat is een indirecte oorzaak. Dan één gemeen bericht, en de ruzie ontploft. Dat is de aanleiding. De Eerste Wereldoorlog: de moord in Sarajevo is de aanleiding. Nationalisme, imperialisme, militarisme en de bondgenootschappen zijn indirecte oorzaken.",
+  "tekst": "Dit hoort bij Triple Entente. Dat is Rusland.",
   "stem": "Sulafat",
-  "sleutel": "79ce4c9f",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "b0ba47ee",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Bedoeld of onbedoeld gevolg. Een bedoeld gevolg is wat iemand wilde bereiken. Een onbedoeld gevolg had niemand gepland. Fanwereld: een groep stopt willekeurige photocards in albums. Bedoeld: fans kopen meer albums. Onbedoeld: stapels ongeopende albums bij het oud papier. De Eerste Wereldoorlog: met het Verdrag van Versailles wilden de winnaars Duitsland zwak maken. Dat was bedoeld. Maar veel Duitsers werden woedend, en gingen extreme partijen steunen. Dat was onbedoeld.",
+  "tekst": "Bouwt een vloot om de Britten bij te houden.",
   "stem": "Sulafat",
-  "sleutel": "28746f97",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "201ed1d6",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Direct of indirect gevolg. Een direct gevolg komt meteen uit de gebeurtenis zelf. Een indirect gevolg komt via een tussenstap: het is een gevolg van een gevolg. Fanwereld: het concert is uitverkocht. Direct gevolg: de zaal zit vol. Indirect gevolg: alle hotels in de stad zitten vol. De Eerste Wereldoorlog: het Verdrag van Versailles. Direct gevolg: Duitsland moet herstelbetalingen betalen. Indirect gevolg: de hyperinflatie van 1923.",
+  "tekst": "Neemt in 1908 Bosnië in.",
   "stem": "Sulafat",
-  "sleutel": "07ecb80d",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "d5179348",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Korte of lange termijn. Een gevolg op korte termijn komt meteen, of binnen een paar jaar. Een gevolg op lange termijn komt pas veel later, na tien jaar of meer. Fanwereld: een groep wint een prijs. Korte termijn: de volgende dag trending. Lange termijn: tien jaar later nog steeds wereldberoemd. De Eerste Wereldoorlog: korte termijn: miljoenen doden, keizerrijken vallen. Lange termijn: de woede over Versailles helpt Hitler later aan de macht.",
+  "tekst": "Frankrijk",
   "stem": "Sulafat",
-  "sleutel": "2c71c909",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "bc20b33b",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Vier soorten oorzaken en gevolgen. Politiek-bestuurlijk: over macht, regeringen, wetten, grenzen, oorlog en vrede. Sociaal: over hoe mensen samenleven. Groepen, rijk en arm, de rol van vrouwen. Economisch: over geld, werk, handel en fabrieken. Cultureel: over ideeën, kunst, geloof en hoe mensen denken. Ezelsbrug: P S E C. Plan Snel Een Comeback.",
+  "tekst": "Dit hoort bij Triple Entente.",
   "stem": "Sulafat",
-  "sleutel": "0922a97d",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "84f2a45c",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Mussolini wordt premier. De Mars op Rome.",
+  "tekst": "Groot-Brittannië",
   "stem": "Sulafat",
-  "sleutel": "075787fa",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "4b31c3ed",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Bondgenootschappen: vijanden durven niet aan te vallen.",
+  "tekst": "Wil Elzas-Lotharingen terug.",
   "stem": "Sulafat",
-  "sleutel": "f787e966",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "c5bf00ef",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "de Eerste Wereldoorlog begint. Het nationalisme op de Balkan.",
+  "tekst": "Dit hoort bij Triple Entente. Dat is Frankrijk, en Frankrijk zat in de Triple Entente.",
   "stem": "Sulafat",
-  "sleutel": "d8e17db4",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "a9f727dc",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Hyperinflatie: mensen verliezen hun vertrouwen in de democratie.",
+  "tekst": "Italië",
   "stem": "Sulafat",
-  "sleutel": "a349dba4",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "bfd2778f",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Dit hoort bij Indirect gevolg.",
+  "tekst": "Duitsland",
   "stem": "Sulafat",
-  "sleutel": "88dd8b41",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "75770003",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Verdrag van Versailles: hyperinflatie in 1923.",
+  "tekst": "Rusland",
   "stem": "Sulafat",
-  "sleutel": "c006065d",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "ed3eca8e",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Dit hoort bij Indirect gevolg. Eerst de herstelbetalingen, toen geld bijdrukken, toen de hyperinflatie.",
+  "tekst": "Oostenrijk-Hongarije",
   "stem": "Sulafat",
-  "sleutel": "2f762e55",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "bf9187d3",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Duitsland valt België binnen: Nederland krijgt minder voedsel en eten gaat op de bon.",
+  "tekst": "Frankrijk wil uit trots Elzas-Lotharingen terug.",
   "stem": "Sulafat",
-  "sleutel": "4e7cfe6a",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "c63d4cb5",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Schlieffenplan: Groot-Brittannië verklaart Duitsland de oorlog.",
+  "tekst": "Duitsland belooft Oostenrijk-Hongarije te helpen, wat er ook gebeurt.",
   "stem": "Sulafat",
-  "sleutel": "2042ddf2",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "bec4e533",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Dit hoort bij Indirect gevolg. De oorlog om Nederland heen maakte de handel en de aanvoer van voedsel moeilijk. Dat is een gevolg via tussenstappen.",
+  "tekst": "Dit hoort bij Bondgenootschappen.",
   "stem": "Sulafat",
-  "sleutel": "4703ec4c",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "db7f36b2",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Moord in Sarajevo: Oostenrijk-Hongarije stuurt Servië een ultimatum.",
+  "tekst": "Het leger is trots en populair. Jongens moeten in dienst.",
   "stem": "Sulafat",
-  "sleutel": "07698d49",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "b5122f98",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Vier keizerrijken vallen uit elkaar.",
+  "tekst": "Dit hoort bij Militarisme.",
   "stem": "Sulafat",
-  "sleutel": "5be1007e",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "90853a83",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Duitsland valt België binnen: Belgen vluchten naar Nederland.",
+  "tekst": "Generaals hebben veel macht en maken plannen voor een snelle oorlog.",
   "stem": "Sulafat",
-  "sleutel": "457e60bf",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "531b48f6",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Er komen nieuwe grenzen en nieuwe landen.",
+  "tekst": "Duitsland en Groot-Brittannië bouwen om het hardst oorlogsschepen.",
   "stem": "Sulafat",
-  "sleutel": "ea03713c",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "b36e465c",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Dit hoort bij Politiek-bestuurlijk.",
+  "tekst": "Dit hoort bij Militarisme. Dat is een wapenwedloop, en die hoort bij militarisme.",
   "stem": "Sulafat",
-  "sleutel": "2b705731",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "23c321af",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "De hyperinflatie in Duitsland.",
+  "tekst": "Duitsland wil ook koloniën in Afrika.",
   "stem": "Sulafat",
-  "sleutel": "6dbd8bd1",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "01747332",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Dit hoort bij Economisch.",
+  "tekst": "Dit hoort bij Imperialisme.",
   "stem": "Sulafat",
-  "sleutel": "2252ac1d",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "0aa0b3c6",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Duitsland wordt een republiek.",
+  "tekst": "Veel mensen vinden hun eigen land beter dan andere landen.",
   "stem": "Sulafat",
-  "sleutel": "170342ea",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "c61a9e59",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "De Duitse keizer vlucht naar Nederland.",
+  "tekst": "Serviërs willen alle Zuid-Slaven in één eigen land.",
   "stem": "Sulafat",
-  "sleutel": "05bcfd0f",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "7a6d0fb3",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Veel gezinnen moeten verder zonder vader.",
+  "tekst": "Landen strijden om grondstoffen en markten buiten Europa.",
   "stem": "Sulafat",
-  "sleutel": "684bb77d",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "3025330d",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Vier keizerrijken verdwijnen.",
+  "tekst": "Frankrijk en Rusland spreken af elkaar te helpen tegen Duitsland.",
   "stem": "Sulafat",
-  "sleutel": "18da4df4",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "38ba6f4c",
+  "waar": "geschiedenis-h1-kampen"
  },
  {
-  "tekst": "Mussolini wordt premier. Italianen voelen zich bedrogen na de oorlog.",
+  "tekst": "Eén schot in Sarajevo. Een paar weken later is bijna heel Europa in oorlog. Hoe kan dat? Kijk naar de kettingreactie. Tik op Speel de video. Daarna komt er een vraag.",
   "stem": "Sulafat",
-  "sleutel": "23afaab0",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "838113a0",
+  "waar": "geschiedenis-h1-video"
  },
  {
-  "tekst": "Dit hoort bij Indirecte oorzaak.",
+  "tekst": "In Sarajevo schiet een Bosnisch-Servische nationalist de Oostenrijkse kroonprins Frans Ferdinand dood. Dit is de aanleiding van de oorlog: de directe oorzaak.",
   "stem": "Sulafat",
-  "sleutel": "2638ec0d",
-  "waar": "geschiedenis-h1-lab"
+  "sleutel": "e7ce8ee0",
+  "waar": "geschiedenis-h1-video"
  },
  {
-  "tekst": "Groot-Brittannië doet mee. Duitsland valt België binnen.",
+  "tekst": "Hoe ging het van één schot naar een wereldoorlog? Noem de stappen die je zag, in de goede volgorde.",
   "stem": "Sulafat",
-  "sleutel": "6ee832a5",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Moord in Sarajevo: Rusland mobiliseert zijn leger.",
-  "stem": "Sulafat",
-  "sleutel": "2cf5b9b6",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Dit hoort bij Indirect gevolg. Rusland reageerde op de oorlog tegen Servië. Dat is een tussenstap.",
-  "stem": "Sulafat",
-  "sleutel": "6443eaa4",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Verdrag van Versailles: veel Duitsers zijn woedend en vernederd.",
-  "stem": "Sulafat",
-  "sleutel": "af643219",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "In 1939 begint de Tweede Wereldoorlog.",
-  "stem": "Sulafat",
-  "sleutel": "3398456f",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Dit hoort bij Lange termijn.",
-  "stem": "Sulafat",
-  "sleutel": "2bf549bb",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Ongeveer tien miljoen soldaten zijn gesneuveld.",
-  "stem": "Sulafat",
-  "sleutel": "16627487",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "de Eerste Wereldoorlog begint. De wapenwedloop.",
-  "stem": "Sulafat",
-  "sleutel": "65f7b866",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Mussolini wordt premier. De angst voor een communistische revolutie.",
-  "stem": "Sulafat",
-  "sleutel": "089ff5e0",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Geld bijdrukken: hyperinflatie, spaargeld wordt waardeloos.",
-  "stem": "Sulafat",
-  "sleutel": "36fef8fe",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Dit hoort bij Onbedoeld.",
-  "stem": "Sulafat",
-  "sleutel": "1902ee89",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Verdrag van Versailles: Duitsland is te zwak voor een nieuwe oorlog.",
-  "stem": "Sulafat",
-  "sleutel": "d2288362",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "de Eerste Wereldoorlog begint. De moord op Frans Ferdinand.",
-  "stem": "Sulafat",
-  "sleutel": "55f7262a",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Vrouwen krijgen een andere rol: ze werken buitenshuis.",
-  "stem": "Sulafat",
-  "sleutel": "6198f9b9",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Gewonde soldaten komen thuis en vinden geen werk.",
-  "stem": "Sulafat",
-  "sleutel": "c6505dae",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Duitsland moet herstelbetalingen betalen.",
-  "stem": "Sulafat",
-  "sleutel": "1856b469",
-  "waar": "geschiedenis-h1-lab"
- },
- {
-  "tekst": "Waarom bleef Nederland neutraal? Nederland koos geen kant, en sloot geen bondgenootschap. Dat heet een neutraliteitspolitiek.",
-  "stem": "Sulafat",
-  "sleutel": "f7047a50",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Drie redenen. Eén: Nederland was een klein land met een klein leger. Het kon de grote landen niet aan. Twee: handel. Nederland verdiende veel aan handel met Duitsland en met Groot-Brittannië. Een oorlog met een van de twee kost die handel. Drie: de koloniën. Nederland had Nederlands-Indië, ver weg. Dat kon het zelf niet verdedigen. Neutraal blijven was de beste bescherming.",
-  "stem": "Sulafat",
-  "sleutel": "07fd08a2",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Neutraal, maar wel last van de oorlog. In 1914 riep Nederland toch alle soldaten op, voor het geval dat. Dat is de mobilisatie. Uit België vluchtten honderdduizenden mensen naar Nederland. Er kwam minder voedsel binnen. Eten ging op de bon.",
-  "stem": "Sulafat",
-  "sleutel": "bec91ac7",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Koos geen kant in de oorlog.",
-  "stem": "Sulafat",
-  "sleutel": "5654a92e",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Dit hoort bij Nederland.",
-  "stem": "Sulafat",
-  "sleutel": "d048b456",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Een eenpartijstaat met één sterke leider.",
-  "stem": "Sulafat",
-  "sleutel": "1811e9bd",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Dit hoort bij Italië.",
-  "stem": "Sulafat",
-  "sleutel": "56e3a13f",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "De Mars op Rome.",
-  "stem": "Sulafat",
-  "sleutel": "55325945",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Moest herstelbetalingen betalen.",
-  "stem": "Sulafat",
-  "sleutel": "192d540a",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Voelde zich bedrogen: kreeg minder land dan beloofd.",
-  "stem": "Sulafat",
-  "sleutel": "396f6f8e",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Zwarthemden slaan stakers in elkaar.",
-  "stem": "Sulafat",
-  "sleutel": "76f3fbdb",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Hyperinflatie: een brood kost miljarden.",
-  "stem": "Sulafat",
-  "sleutel": "6d9e7414",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Ving honderdduizenden Belgische vluchtelingen op.",
-  "stem": "Sulafat",
-  "sleutel": "bd0b9c32",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Wilde zijn kolonie in Azië beschermen.",
-  "stem": "Sulafat",
-  "sleutel": "b27e0c70",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "Dit hoort bij Nederland. Nederlands-Indië. Dat was een van de redenen voor de neutraliteitspolitiek.",
-  "stem": "Sulafat",
-  "sleutel": "f921f1da",
-  "waar": "geschiedenis-h1-nederland"
- },
- {
-  "tekst": "De dolkstootlegende.",
-  "stem": "Sulafat",
-  "sleutel": "9fcc5305",
-  "waar": "geschiedenis-h1-nederland"
+  "sleutel": "9447db79",
+  "waar": "geschiedenis-h1-video"
  },
  {
   "tekst": "Oostenrijk-Hongarije geeft Servië de schuld. Het stuurt een ultimatum: strenge eisen, met heel weinig tijd. Servië zegt niet overal ja op. Oostenrijk-Hongarije verklaart Servië de oorlog.",
@@ -2670,51 +1506,15 @@
   "waar": "geschiedenis-h1-oorlog"
  },
  {
-  "tekst": "In Sarajevo schiet een Bosnisch-Servische nationalist de Oostenrijkse kroonprins Frans Ferdinand dood. Dit is de aanleiding van de oorlog: de directe oorzaak.",
-  "stem": "Sulafat",
-  "sleutel": "e7ce8ee0",
-  "waar": "geschiedenis-h1-oorlog"
- },
- {
-  "tekst": "De wapenwedloop tussen Duitsland en Groot-Brittannië.",
-  "stem": "Sulafat",
-  "sleutel": "feb4274c",
-  "waar": "geschiedenis-h1-oorlog"
- },
- {
-  "tekst": "De Volkenbond wordt opgericht.",
-  "stem": "Sulafat",
-  "sleutel": "c13bba4b",
-  "waar": "geschiedenis-h1-oorlog"
- },
- {
   "tekst": "Het nationalisme op de Balkan.",
   "stem": "Sulafat",
   "sleutel": "703850bd",
-  "waar": "geschiedenis-h1-oorlog"
- },
- {
-  "tekst": "Oostenrijk-Hongarije valt uit elkaar.",
-  "stem": "Sulafat",
-  "sleutel": "eb83cd16",
-  "waar": "geschiedenis-h1-oorlog"
- },
- {
-  "tekst": "De strijd om koloniën.",
-  "stem": "Sulafat",
-  "sleutel": "09574f0b",
-  "waar": "geschiedenis-h1-oorlog"
- },
- {
-  "tekst": "Dit hoort bij Gevolg.",
-  "stem": "Sulafat",
-  "sleutel": "4e492df9",
   "waar": "geschiedenis-h1-oorzaken"
  },
  {
-  "tekst": "Het schot van 28 juni 1914.",
+  "tekst": "Dit hoort bij Indirecte oorzaak.",
   "stem": "Sulafat",
-  "sleutel": "cfc0ac39",
+  "sleutel": "2638ec0d",
   "waar": "geschiedenis-h1-oorzaken"
  },
  {
@@ -2730,9 +1530,45 @@
   "waar": "geschiedenis-h1-oorzaken"
  },
  {
-  "tekst": "De moord op Frans Ferdinand in Sarajevo.",
+  "tekst": "Duitsland moet herstelbetalingen betalen.",
   "stem": "Sulafat",
-  "sleutel": "9a54503d",
+  "sleutel": "1856b469",
+  "waar": "geschiedenis-h1-oorzaken"
+ },
+ {
+  "tekst": "Dit hoort bij Gevolg.",
+  "stem": "Sulafat",
+  "sleutel": "4e492df9",
+  "waar": "geschiedenis-h1-oorzaken"
+ },
+ {
+  "tekst": "Oostenrijk-Hongarije valt uit elkaar.",
+  "stem": "Sulafat",
+  "sleutel": "eb83cd16",
+  "waar": "geschiedenis-h1-oorzaken"
+ },
+ {
+  "tekst": "Het schot van 28 juni 1914.",
+  "stem": "Sulafat",
+  "sleutel": "cfc0ac39",
+  "waar": "geschiedenis-h1-oorzaken"
+ },
+ {
+  "tekst": "De wapenwedloop tussen Duitsland en Groot-Brittannië.",
+  "stem": "Sulafat",
+  "sleutel": "feb4274c",
+  "waar": "geschiedenis-h1-oorzaken"
+ },
+ {
+  "tekst": "De Volkenbond wordt opgericht.",
+  "stem": "Sulafat",
+  "sleutel": "c13bba4b",
+  "waar": "geschiedenis-h1-oorzaken"
+ },
+ {
+  "tekst": "De strijd om koloniën.",
+  "stem": "Sulafat",
+  "sleutel": "09574f0b",
   "waar": "geschiedenis-h1-oorzaken"
  },
  {
@@ -2742,394 +1578,10 @@
   "waar": "geschiedenis-h1-oorzaken"
  },
  {
-  "tekst": "Geschiedenis hoofdstuk één. De Eerste Wereldoorlog.",
+  "tekst": "De moord op Frans Ferdinand in Sarajevo.",
   "stem": "Sulafat",
-  "sleutel": "2f8b2c07",
-  "waar": "geschiedenis-h1-overzicht"
- },
- {
-  "tekst": "Vul de datum van je toets in, dan plan ik je herhaling.",
-  "stem": "Sulafat",
-  "sleutel": "4fad5797",
-  "waar": "geschiedenis-h1-overzicht"
- },
- {
-  "tekst": "Op volgorde van tijd. Drie rondes: vóór, tijdens en na de oorlog. Daarna nog een ronde met alles door elkaar.",
-  "stem": "Sulafat",
-  "sleutel": "9ae2cae3",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Tik op wat het eerst gebeurde.",
-  "stem": "Sulafat",
-  "sleutel": "c5433cdb",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Oorlogen op de Balkan. Het Ottomaanse Rijk verliest bijna al zijn land in Europa.",
-  "stem": "Sulafat",
-  "sleutel": "8dbd5237",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Duitsland, Oostenrijk-Hongarije en Italië sluiten de Triple Alliantie.",
-  "stem": "Sulafat",
-  "sleutel": "970401d0",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Oostenrijk-Hongarije neemt Bosnië in. Servië is woedend.",
-  "stem": "Sulafat",
-  "sleutel": "0e8a09e3",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Duitsland begint met een grote oorlogsvloot. De wapenwedloop met Groot-Brittannië begint.",
-  "stem": "Sulafat",
-  "sleutel": "9d41cafd",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Duitsland wordt één land: het Duitse Keizerrijk. Frankrijk verliest Elzas-Lotharingen.",
-  "stem": "Sulafat",
-  "sleutel": "20ee29c2",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Frankrijk, Rusland en Groot-Brittannië vormen de Triple Entente.",
-  "stem": "Sulafat",
-  "sleutel": "53045a1c",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Nog niet. Dit gebeurde later. Er is iets dat eerder kwam.",
-  "stem": "Sulafat",
-  "sleutel": "585f8727",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "De Verenigde Staten doen mee, aan de kant van de geallieerden.",
-  "stem": "Sulafat",
-  "sleutel": "7b643d09",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Oostenrijk-Hongarije verklaart Servië de oorlog.",
-  "stem": "Sulafat",
-  "sleutel": "8101e59e",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Aanslag in Sarajevo: kroonprins Frans Ferdinand wordt doodgeschoten.",
-  "stem": "Sulafat",
-  "sleutel": "c46cb422",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Slag aan de Marne. Het Duitse plan mislukt. De loopgravenoorlog begint.",
-  "stem": "Sulafat",
-  "sleutel": "4b801fa8",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "De slagen bij Verdun en aan de Somme. Honderdduizenden doden, bijna geen winst.",
-  "stem": "Sulafat",
-  "sleutel": "04206052",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Rusland stopt met de oorlog, na een revolutie.",
-  "stem": "Sulafat",
-  "sleutel": "81f34b2b",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Duitsland valt België binnen. Groot-Brittannië doet mee aan de oorlog.",
-  "stem": "Sulafat",
-  "sleutel": "a4ea140a",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Wapenstilstand. De Duitse keizer vlucht naar Nederland.",
-  "stem": "Sulafat",
-  "sleutel": "047d0198",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Mars op Rome. Mussolini wordt premier van Italië.",
-  "stem": "Sulafat",
-  "sleutel": "b1f3ecc0",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Mussolini maakt van Italië een dictatuur.",
-  "stem": "Sulafat",
-  "sleutel": "20231a2e",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "De Volkenbond begint. Hij moet nieuwe oorlogen voorkomen.",
-  "stem": "Sulafat",
-  "sleutel": "54a777e9",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Het Verdrag van Versailles. Duitsland wordt de Republiek van Weimar.",
-  "stem": "Sulafat",
-  "sleutel": "e191ead2",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Hyperinflatie in Duitsland. Het geld wordt waardeloos.",
-  "stem": "Sulafat",
-  "sleutel": "4699d11c",
-  "waar": "geschiedenis-h1-tijdlijn"
- },
- {
-  "tekst": "Welke volgorde klopt?",
-  "stem": "Sulafat",
-  "sleutel": "e9ef2794",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Welke volgorde klopt? A: Triple Alliantie. moord in Sarajevo. Verdrag van Versailles. Mars op Rome. B: Moord in Sarajevo. Triple Alliantie. Mars op Rome. Verdrag van Versailles. C: Triple Alliantie. Verdrag van Versailles. moord in Sarajevo. Mars op Rome. D: Mars op Rome. Triple Alliantie. moord in Sarajevo. Verdrag van Versailles",
-  "stem": "Sulafat",
-  "sleutel": "4c422abe",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg het verband uit tussen nationalisme en de situatie op de Balkan rond 1900.",
-  "stem": "Sulafat",
-  "sleutel": "06cc08e2",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Noem de drie landen van de Triple Alliantie en de drie landen van de Triple Entente.",
-  "stem": "Sulafat",
-  "sleutel": "d37f7f23",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit waarom Frankrijk rond 1900 vijandig was tegenover Duitsland.",
-  "stem": "Sulafat",
-  "sleutel": "1b7a3a2b",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Zet in de goede volgorde: hyperinflatie in Duitsland, wapenstilstand, Triple Entente, Duitsland valt België binnen.",
-  "stem": "Sulafat",
-  "sleutel": "b9535610",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit waarom de bondgenootschappen de kans op een grote oorlog groter maakten.",
-  "stem": "Sulafat",
-  "sleutel": "63cc13b8",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Duitsland en Groot-Brittannië bouwen steeds meer oorlogsschepen. Welk begrip past hierbij?",
-  "stem": "Sulafat",
-  "sleutel": "ea5d60b0",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Duitsland en Groot-Brittannië bouwen steeds meer oorlogsschepen. Welk begrip past hierbij? A: wapenwedloop. B: imperialisme. C: nationalisme. D: bondgenootschap",
-  "stem": "Sulafat",
-  "sleutel": "0f0fe750",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit waarom er rond 1900 een systeem van bondgenootschappen in Europa was.",
-  "stem": "Sulafat",
-  "sleutel": "14404854",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit wat het verschil is tussen de aanleiding en een indirecte oorzaak van de Eerste Wereldoorlog. Geef van beide een voorbeeld.",
-  "stem": "Sulafat",
-  "sleutel": "e5167abc",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Noem drie indirecte oorzaken van de Eerste Wereldoorlog.",
-  "stem": "Sulafat",
-  "sleutel": "b5e5baa9",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit dat de Eerste Wereldoorlog een totale oorlog was. Geef twee voorbeelden.",
-  "stem": "Sulafat",
-  "sleutel": "a740f0a5",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Wat is een tweefrontenoorlog?",
-  "stem": "Sulafat",
-  "sleutel": "ec10399d",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Wat is een tweefrontenoorlog? A: Een oorlog tussen twee landen. B: Een oorlog aan twee kanten tegelijk. C: Een oorlog in twee loopgraven. D: Een oorlog die twee keer begint",
-  "stem": "Sulafat",
-  "sleutel": "920a0129",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit waarom de oorlog in het westen een loopgravenoorlog werd.",
-  "stem": "Sulafat",
-  "sleutel": "190f1acc",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Noem drie regels uit het Verdrag van Versailles voor Duitsland.",
-  "stem": "Sulafat",
-  "sleutel": "cc6ec123",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit waarom Duitsland met het Schlieffenplan door België trok.",
-  "stem": "Sulafat",
-  "sleutel": "147c5573",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Europese landen strijden om koloniën en grondstoffen in Afrika. Welk begrip past hierbij?",
-  "stem": "Sulafat",
-  "sleutel": "14dfec88",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Europese landen strijden om koloniën en grondstoffen in Afrika. Welk begrip past hierbij? A: militarisme. B: imperialisme. C: nationalisme. D: neutraliteitspolitiek",
-  "stem": "Sulafat",
-  "sleutel": "651ff9ef",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Welke landen hoorden bij de centralen?",
-  "stem": "Sulafat",
-  "sleutel": "347a41c9",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Welke landen hoorden bij de centralen? A: Frankrijk en Rusland. B: Duitsland en Oostenrijk-Hongarije. C: Groot-Brittannië en de Verenigde Staten. D: Italië en Frankrijk",
-  "stem": "Sulafat",
-  "sleutel": "5f974efb",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Beschrijf hoe in Italië het fascisme opkwam.",
-  "stem": "Sulafat",
-  "sleutel": "4710ad5d",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit waarom Nederland begin twintigste eeuw een neutraliteitspolitiek voerde. Geef twee redenen.",
-  "stem": "Sulafat",
-  "sleutel": "2d1fd75c",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit waarom de Republiek van Weimar grote politieke problemen had. Noem er twee.",
-  "stem": "Sulafat",
-  "sleutel": "fe70633d",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit hoe de hyperinflatie van 1923 ontstond.",
-  "stem": "Sulafat",
-  "sleutel": "5dd5a32b",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Noem drie kenmerken van het fascisme.",
-  "stem": "Sulafat",
-  "sleutel": "1def15c3",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Noem twee gevolgen van de Eerste Wereldoorlog voor Europa.",
-  "stem": "Sulafat",
-  "sleutel": "fe09a6fb",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit wat de dolkstootlegende is en waarom die slecht was voor de republiek.",
-  "stem": "Sulafat",
-  "sleutel": "14696aa3",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Vier keizerrijken verdwijnen na de Eerste Wereldoorlog. Wat voor soort gevolg is dat?",
-  "stem": "Sulafat",
-  "sleutel": "dbafe37a",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Vier keizerrijken verdwijnen na de Eerste Wereldoorlog. Wat voor soort gevolg is dat? A: politiek-bestuurlijk. B: sociaal. C: economisch. D: cultureel",
-  "stem": "Sulafat",
-  "sleutel": "eb37caf9",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "De winnaars wilden Duitsland zwak maken. Maar veel Duitsers werden er woedend door. Wat is die woede?",
-  "stem": "Sulafat",
-  "sleutel": "b91cd470",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "De winnaars wilden Duitsland zwak maken. Maar veel Duitsers werden er woedend door. Wat is die woede? A: Een bedoeld gevolg. B: Een onbedoeld gevolg. C: Een indirecte oorzaak. D: Een gevolg op korte termijn",
-  "stem": "Sulafat",
-  "sleutel": "fb8b3e16",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Wat gebeurde er bij de Mars op Rome, 1922?",
-  "stem": "Sulafat",
-  "sleutel": "4634252f",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Wat gebeurde er bij de Mars op Rome, 1922? A: Italiaanse soldaten vielen Oostenrijk aan. B: Fascisten trokken naar Rome en Mussolini werd premier. C: De koning van Italië vluchtte naar Nederland. D: Italië trad toe tot de Triple Entente",
-  "stem": "Sulafat",
-  "sleutel": "c44b821c",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit wat het verschil is tussen een gevolg op korte en op lange termijn. Geef bij de Eerste Wereldoorlog van allebei een voorbeeld.",
-  "stem": "Sulafat",
-  "sleutel": "f9033365",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Leg uit wat het verschil is tussen een direct en een indirect gevolg.",
-  "stem": "Sulafat",
-  "sleutel": "260ef8de",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Na de oorlog maakten kunstenaars veel sombere schilderijen. Wat voor soort gevolg is dat?",
-  "stem": "Sulafat",
-  "sleutel": "5a14c19d",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Na de oorlog maakten kunstenaars veel sombere schilderijen. Wat voor soort gevolg is dat? A: politiek-bestuurlijk. B: sociaal. C: economisch. D: cultureel",
-  "stem": "Sulafat",
-  "sleutel": "d5ec6050",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Door het Verdrag van Versailles moest Duitsland herstelbetalingen betalen. Daardoor kwam er later hyperinflatie. Wat is de hyperinflatie voor gevolg van het verdrag?",
-  "stem": "Sulafat",
-  "sleutel": "35a670eb",
-  "waar": "geschiedenis-h1-toets"
- },
- {
-  "tekst": "Door het Verdrag van Versailles moest Duitsland herstelbetalingen betalen. Daardoor kwam er later hyperinflatie. Wat is de hyperinflatie voor gevolg van het verdrag? A: Een direct gevolg. B: Een indirect gevolg. C: Een bedoeld gevolg. D: De aanleiding",
-  "stem": "Sulafat",
-  "sleutel": "cb4b7f62",
-  "waar": "geschiedenis-h1-toets"
+  "sleutel": "9a54503d",
+  "waar": "geschiedenis-h1-oorzaken"
  },
  {
   "tekst": "Die vluchtte naar Nederland. Duitsland werd een republiek: de Republiek van Weimar.",
@@ -3246,9 +1698,9 @@
   "waar": "geschiedenis-h1-weimar"
  },
  {
-  "tekst": "Regeringen vallen steeds.",
+  "tekst": "De hyperinflatie van 1923.",
   "stem": "Sulafat",
-  "sleutel": "ac99367d",
+  "sleutel": "2aed237c",
   "waar": "geschiedenis-h1-weimar"
  },
  {
@@ -3258,51 +1710,15 @@
   "waar": "geschiedenis-h1-weimar"
  },
  {
-  "tekst": "Onze podcast gaat over Duitsland na 1918. Wat gebeurde er met de keizer?",
-  "stem": "Puck",
-  "sleutel": "959d501d",
-  "waar": "geschiedenis-h1-weimar"
- },
- {
-  "tekst": "Heel veel partijen, geen meerderheid.",
-  "stem": "Sulafat",
-  "sleutel": "4332bfc5",
-  "waar": "geschiedenis-h1-weimar"
- },
- {
-  "tekst": "Spaargeld wordt waardeloos.",
-  "stem": "Sulafat",
-  "sleutel": "a3609b1b",
-  "waar": "geschiedenis-h1-weimar"
- },
- {
   "tekst": "Dit hoort bij Economisch probleem.",
   "stem": "Sulafat",
   "sleutel": "1d348d51",
   "waar": "geschiedenis-h1-weimar"
  },
  {
-  "tekst": "Rechtse nationalisten willen een sterke leider.",
+  "tekst": "Spaargeld wordt waardeloos.",
   "stem": "Sulafat",
-  "sleutel": "3a2b4bb6",
-  "waar": "geschiedenis-h1-weimar"
- },
- {
-  "tekst": "Communisten willen een revolutie.",
-  "stem": "Sulafat",
-  "sleutel": "184ab92b",
-  "waar": "geschiedenis-h1-weimar"
- },
- {
-  "tekst": "De hyperinflatie van 1923.",
-  "stem": "Sulafat",
-  "sleutel": "2aed237c",
-  "waar": "geschiedenis-h1-weimar"
- },
- {
-  "tekst": "De herstelbetalingen.",
-  "stem": "Sulafat",
-  "sleutel": "aee6f3d6",
+  "sleutel": "a3609b1b",
   "waar": "geschiedenis-h1-weimar"
  },
  {
@@ -3318,15 +1734,1467 @@
   "waar": "geschiedenis-h1-weimar"
  },
  {
-  "tekst": "Eén schot in Sarajevo. Een paar weken later is bijna heel Europa in oorlog. Hoe kan dat? Kijk naar de kettingreactie. Tik op Speel de video. Daarna komt er een vraag.",
+  "tekst": "Rechtse nationalisten willen een sterke leider.",
   "stem": "Sulafat",
-  "sleutel": "838113a0",
-  "waar": "geschiedenis-h1-video"
+  "sleutel": "3a2b4bb6",
+  "waar": "geschiedenis-h1-weimar"
  },
  {
-  "tekst": "Hoe ging het van één schot naar een wereldoorlog? Noem de stappen die je zag, in de goede volgorde.",
+  "tekst": "Onze podcast gaat over Duitsland na 1918. Wat gebeurde er met de keizer?",
+  "stem": "Puck",
+  "sleutel": "959d501d",
+  "waar": "geschiedenis-h1-weimar"
+ },
+ {
+  "tekst": "De herstelbetalingen.",
   "stem": "Sulafat",
-  "sleutel": "9447db79",
-  "waar": "geschiedenis-h1-video"
+  "sleutel": "aee6f3d6",
+  "waar": "geschiedenis-h1-weimar"
+ },
+ {
+  "tekst": "Regeringen vallen steeds.",
+  "stem": "Sulafat",
+  "sleutel": "ac99367d",
+  "waar": "geschiedenis-h1-weimar"
+ },
+ {
+  "tekst": "Heel veel partijen, geen meerderheid.",
+  "stem": "Sulafat",
+  "sleutel": "4332bfc5",
+  "waar": "geschiedenis-h1-weimar"
+ },
+ {
+  "tekst": "De dolkstootlegende.",
+  "stem": "Sulafat",
+  "sleutel": "9fcc5305",
+  "waar": "geschiedenis-h1-weimar"
+ },
+ {
+  "tekst": "Na de oorlog: veel werklozen, hoge prijzen en stakingen. Arbeiders bezetten fabrieken. Rijke Italianen en de middenklasse waren bang voor een communistische revolutie, zoals in Rusland.",
+  "stem": "Sulafat",
+  "sleutel": "61601295",
+  "waar": "geschiedenis-h1-italie"
+ },
+ {
+  "tekst": "Benito Mussolini begon de fascistische partij. Zijn knokploegen, de zwarthemden, sloegen stakers en socialisten in elkaar. Hij beloofde orde en een groot, sterk Italië.",
+  "stem": "Sulafat",
+  "sleutel": "f8e942a6",
+  "waar": "geschiedenis-h1-italie"
+ },
+ {
+  "tekst": "De Mars op Rome. Duizenden fascisten trokken naar Rome. De koning durfde niets te doen. Hij maakte Mussolini premier.",
+  "stem": "Sulafat",
+  "sleutel": "7f6db3ec",
+  "waar": "geschiedenis-h1-italie"
+ },
+ {
+  "tekst": "Mussolini maakte van Italië een dictatuur. Andere partijen werden verboden: een eenpartijstaat. Kranten mochten alleen schrijven wat hij wilde.",
+  "stem": "Sulafat",
+  "sleutel": "71ee179e",
+  "waar": "geschiedenis-h1-italie"
+ },
+ {
+  "tekst": "Kenmerken van het fascisme: extreem nationalisme, één sterke leider, geweld, tegen democratie en tegen communisme. De staat is belangrijker dan het individu.",
+  "stem": "Sulafat",
+  "sleutel": "ed061a84",
+  "waar": "geschiedenis-h1-italie"
+ },
+ {
+  "tekst": "Italië stond aan de kant van de winnaars. Maar het kreeg minder land dan beloofd. Veel Italianen voelden zich bedrogen.",
+  "stem": "Sulafat",
+  "sleutel": "ce3e5e7d",
+  "waar": "geschiedenis-h1-italie"
+ },
+ {
+  "tekst": "Waarom bleef Nederland neutraal? Nederland koos geen kant, en sloot geen bondgenootschap. Dat heet een neutraliteitspolitiek.",
+  "stem": "Sulafat",
+  "sleutel": "f7047a50",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Drie redenen. Eén: Nederland was een klein land met een klein leger. Het kon de grote landen niet aan. Twee: handel. Nederland verdiende veel aan handel met Duitsland en met Groot-Brittannië. Een oorlog met een van de twee kost die handel. Drie: de koloniën. Nederland had Nederlands-Indië, ver weg. Dat kon het zelf niet verdedigen. Neutraal blijven was de beste bescherming.",
+  "stem": "Sulafat",
+  "sleutel": "07fd08a2",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Neutraal, maar wel last van de oorlog. In 1914 riep Nederland toch alle soldaten op, voor het geval dat. Dat is de mobilisatie. Uit België vluchtten honderdduizenden mensen naar Nederland. Er kwam minder voedsel binnen. Eten ging op de bon.",
+  "stem": "Sulafat",
+  "sleutel": "bec91ac7",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Hyperinflatie: een brood kost miljarden.",
+  "stem": "Sulafat",
+  "sleutel": "6d9e7414",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Moest herstelbetalingen betalen.",
+  "stem": "Sulafat",
+  "sleutel": "192d540a",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "De Mars op Rome.",
+  "stem": "Sulafat",
+  "sleutel": "55325945",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Dit hoort bij Italië.",
+  "stem": "Sulafat",
+  "sleutel": "56e3a13f",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Een eenpartijstaat met één sterke leider.",
+  "stem": "Sulafat",
+  "sleutel": "1811e9bd",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Ving honderdduizenden Belgische vluchtelingen op.",
+  "stem": "Sulafat",
+  "sleutel": "bd0b9c32",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Dit hoort bij Nederland.",
+  "stem": "Sulafat",
+  "sleutel": "d048b456",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Voelde zich bedrogen: kreeg minder land dan beloofd.",
+  "stem": "Sulafat",
+  "sleutel": "396f6f8e",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Wilde zijn kolonie in Azië beschermen.",
+  "stem": "Sulafat",
+  "sleutel": "b27e0c70",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Dit hoort bij Nederland. Nederlands-Indië. Dat was een van de redenen voor de neutraliteitspolitiek.",
+  "stem": "Sulafat",
+  "sleutel": "f921f1da",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Zwarthemden slaan stakers in elkaar.",
+  "stem": "Sulafat",
+  "sleutel": "76f3fbdb",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Koos geen kant in de oorlog.",
+  "stem": "Sulafat",
+  "sleutel": "5654a92e",
+  "waar": "geschiedenis-h1-nederland"
+ },
+ {
+  "tekst": "Oorzaken en gevolgen. Op de toets moet je oorzaken en gevolgen kunnen indelen. Vijf keer een verschil. Eerst een voorbeeld uit de fanwereld, dan uit de Eerste Wereldoorlog.",
+  "stem": "Sulafat",
+  "sleutel": "4047aff1",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Aanleiding of indirecte oorzaak. De aanleiding is de directe oorzaak: de laatste druppel waardoor de emmer overloopt. Een indirecte oorzaak speelde al veel langer: die vulde de emmer. Fanwereld: al weken irritatie in de groepsapp. Dat is een indirecte oorzaak. Dan één gemeen bericht, en de ruzie ontploft. Dat is de aanleiding. De Eerste Wereldoorlog: de moord in Sarajevo is de aanleiding. Nationalisme, imperialisme, militarisme en de bondgenootschappen zijn indirecte oorzaken.",
+  "stem": "Sulafat",
+  "sleutel": "79ce4c9f",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Bedoeld of onbedoeld gevolg. Een bedoeld gevolg is wat iemand wilde bereiken. Een onbedoeld gevolg had niemand gepland. Fanwereld: een groep stopt willekeurige photocards in albums. Bedoeld: fans kopen meer albums. Onbedoeld: stapels ongeopende albums bij het oud papier. De Eerste Wereldoorlog: met het Verdrag van Versailles wilden de winnaars Duitsland zwak maken. Dat was bedoeld. Maar veel Duitsers werden woedend, en gingen extreme partijen steunen. Dat was onbedoeld.",
+  "stem": "Sulafat",
+  "sleutel": "28746f97",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Direct of indirect gevolg. Een direct gevolg komt meteen uit de gebeurtenis zelf. Een indirect gevolg komt via een tussenstap: het is een gevolg van een gevolg. Fanwereld: het concert is uitverkocht. Direct gevolg: de zaal zit vol. Indirect gevolg: alle hotels in de stad zitten vol. De Eerste Wereldoorlog: het Verdrag van Versailles. Direct gevolg: Duitsland moet herstelbetalingen betalen. Indirect gevolg: de hyperinflatie van 1923.",
+  "stem": "Sulafat",
+  "sleutel": "07ecb80d",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Korte of lange termijn. Een gevolg op korte termijn komt meteen, of binnen een paar jaar. Een gevolg op lange termijn komt pas veel later, na tien jaar of meer. Fanwereld: een groep wint een prijs. Korte termijn: de volgende dag trending. Lange termijn: tien jaar later nog steeds wereldberoemd. De Eerste Wereldoorlog: korte termijn: miljoenen doden, keizerrijken vallen. Lange termijn: de woede over Versailles helpt Hitler later aan de macht.",
+  "stem": "Sulafat",
+  "sleutel": "2c71c909",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Vier soorten oorzaken en gevolgen. Politiek-bestuurlijk: over macht, regeringen, wetten, grenzen, oorlog en vrede. Sociaal: over hoe mensen samenleven. Groepen, rijk en arm, de rol van vrouwen. Economisch: over geld, werk, handel en fabrieken. Cultureel: over ideeën, kunst, geloof en hoe mensen denken. Ezelsbrug: P S E C. Plan Snel Een Comeback.",
+  "stem": "Sulafat",
+  "sleutel": "0922a97d",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Groot-Brittannië doet mee. Duitsland valt België binnen.",
+  "stem": "Sulafat",
+  "sleutel": "6ee832a5",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Verdrag van Versailles: veel Duitsers zijn woedend en vernederd.",
+  "stem": "Sulafat",
+  "sleutel": "af643219",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Dit hoort bij Onbedoeld.",
+  "stem": "Sulafat",
+  "sleutel": "1902ee89",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Schlieffenplan: het Duitse leger trekt snel door België.",
+  "stem": "Sulafat",
+  "sleutel": "389665ef",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Hyperinflatie: mensen verliezen hun vertrouwen in de democratie.",
+  "stem": "Sulafat",
+  "sleutel": "a349dba4",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Mussolini wordt premier. Italianen voelen zich bedrogen na de oorlog.",
+  "stem": "Sulafat",
+  "sleutel": "23afaab0",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Dit hoort bij Indirect gevolg.",
+  "stem": "Sulafat",
+  "sleutel": "88dd8b41",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Hyperinflatie: spaargeld wordt waardeloos.",
+  "stem": "Sulafat",
+  "sleutel": "03dc5003",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Ruzie over de nieuwe grenzen van Polen speelt twintig jaar later opnieuw.",
+  "stem": "Sulafat",
+  "sleutel": "bc608466",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Verdrag van Versailles: Duitsland is te zwak voor een nieuwe oorlog.",
+  "stem": "Sulafat",
+  "sleutel": "d2288362",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Dit hoort bij Lange termijn.",
+  "stem": "Sulafat",
+  "sleutel": "2bf549bb",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Gewonde soldaten komen thuis en vinden geen werk.",
+  "stem": "Sulafat",
+  "sleutel": "c6505dae",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Vier keizerrijken verdwijnen.",
+  "stem": "Sulafat",
+  "sleutel": "18da4df4",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Duitsland valt België binnen: Nederland krijgt minder voedsel en eten gaat op de bon.",
+  "stem": "Sulafat",
+  "sleutel": "4e7cfe6a",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Dit hoort bij Politiek-bestuurlijk.",
+  "stem": "Sulafat",
+  "sleutel": "2b705731",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Duitsland wordt een republiek.",
+  "stem": "Sulafat",
+  "sleutel": "170342ea",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Europese landen hebben grote schulden bij de Verenigde Staten.",
+  "stem": "Sulafat",
+  "sleutel": "b9574f94",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Dit hoort bij Economisch.",
+  "stem": "Sulafat",
+  "sleutel": "2252ac1d",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "De hyperinflatie in Duitsland.",
+  "stem": "Sulafat",
+  "sleutel": "6dbd8bd1",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "De woede over Versailles helpt Hitler in 1933 aan de macht.",
+  "stem": "Sulafat",
+  "sleutel": "e02ddd4c",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Vrouwen krijgen een andere rol: ze werken buitenshuis.",
+  "stem": "Sulafat",
+  "sleutel": "6198f9b9",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "de Eerste Wereldoorlog begint. De wapenwedloop.",
+  "stem": "Sulafat",
+  "sleutel": "65f7b866",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Schlieffenplan: Groot-Brittannië verklaart Duitsland de oorlog.",
+  "stem": "Sulafat",
+  "sleutel": "2042ddf2",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Dit hoort bij Onbedoeld. Duitsland hoopte dat de Britten erbuiten zouden blijven.",
+  "stem": "Sulafat",
+  "sleutel": "631e7d77",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Bondgenootschappen: een ruzie op de Balkan wordt een wereldoorlog.",
+  "stem": "Sulafat",
+  "sleutel": "bcaeeef5",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Mussolini wordt premier. De Mars op Rome.",
+  "stem": "Sulafat",
+  "sleutel": "075787fa",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Bondgenootschappen: vijanden durven niet aan te vallen.",
+  "stem": "Sulafat",
+  "sleutel": "f787e966",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Moord in Sarajevo: Oostenrijk-Hongarije stuurt Servië een ultimatum.",
+  "stem": "Sulafat",
+  "sleutel": "07698d49",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Veel gezinnen moeten verder zonder vader.",
+  "stem": "Sulafat",
+  "sleutel": "684bb77d",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Ongeveer tien miljoen soldaten zijn gesneuveld.",
+  "stem": "Sulafat",
+  "sleutel": "16627487",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Geld bijdrukken: hyperinflatie, spaargeld wordt waardeloos.",
+  "stem": "Sulafat",
+  "sleutel": "36fef8fe",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Geld bijdrukken: de regering kan haar rekeningen betalen.",
+  "stem": "Sulafat",
+  "sleutel": "d571a3a1",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Na de Volkenbond komen in 1945 de Verenigde Naties.",
+  "stem": "Sulafat",
+  "sleutel": "f5051bb9",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "In 1939 begint de Tweede Wereldoorlog.",
+  "stem": "Sulafat",
+  "sleutel": "3398456f",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Mensen geloven minder in vooruitgang en techniek.",
+  "stem": "Sulafat",
+  "sleutel": "c9788410",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "De Duitse keizer vlucht naar Nederland.",
+  "stem": "Sulafat",
+  "sleutel": "05bcfd0f",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "Dit hoort bij Cultureel.",
+  "stem": "Sulafat",
+  "sleutel": "9ddc4010",
+  "waar": "geschiedenis-h1-lab"
+ },
+ {
+  "tekst": "De begrippen zijn: nationalisme, imperialisme, militarisme, wapenwedloop, bondgenootschap, Triple Alliantie, Triple Entente, aanleiding, indirecte oorzaak, ultimatum, mobilisatie, Schlieffenplan, tweefrontenoorlog, loopgravenoorlog, geallieerden, centralen, totale oorlog, propaganda, wapenstilstand, Verdrag van Versailles, herstelbetalingen, Volkenbond, Republiek van Weimar, dolkstootlegende, hyperinflatie, fascisme, Mars op Rome, dictatuur, eenpartijstaat, neutraliteitspolitiek, bedoeld en onbedoeld gevolg, direct en indirect gevolg, korte en lange termijn, politiek-bestuurlijk, sociaal, economisch, cultureel.",
+  "stem": "Sulafat",
+  "sleutel": "ca3a754a",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Landen proberen elkaar te overtreffen met steeds meer en betere wapens.",
+  "stem": "Sulafat",
+  "sleutel": "26e089e2",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een land probeert macht te krijgen over gebieden buiten het eigen land, zoals koloniën.",
+  "stem": "Sulafat",
+  "sleutel": "04660875",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Triple Alliantie",
+  "stem": "Sulafat",
+  "sleutel": "2fca9f82",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Je voelt je sterk verbonden met je eigen land of volk. Je vindt dat elk volk een eigen staat moet hebben.",
+  "stem": "Sulafat",
+  "sleutel": "a85ebb3b",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "bondgenootschap",
+  "stem": "Sulafat",
+  "sleutel": "6adc1491",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Het leger is heel belangrijk in een land. Generaals hebben veel macht en oorlog wordt gezien als iets goeds.",
+  "stem": "Sulafat",
+  "sleutel": "d54653bb",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 12 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "51b8522b",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "mobilisatie",
+  "stem": "Sulafat",
+  "sleutel": "4370ff61",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "De directe oorzaak: de gebeurtenis waardoor iets op dat moment begint. De laatste druppel.",
+  "stem": "Sulafat",
+  "sleutel": "1af37645",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een oorzaak die al lang speelde en de spanning opbouwde. Hij vulde de emmer.",
+  "stem": "Sulafat",
+  "sleutel": "2abcbb2e",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "militarisme",
+  "stem": "Sulafat",
+  "sleutel": "39133773",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "imperialisme",
+  "stem": "Sulafat",
+  "sleutel": "394b3b68",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een laatste eis met een tijdslimiet. Doe je het niet, dan volgt er iets ergs, zoals oorlog.",
+  "stem": "Sulafat",
+  "sleutel": "beb42713",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Duits plan: eerst snel Frankrijk verslaan via België, daarna alle soldaten naar Rusland.",
+  "stem": "Sulafat",
+  "sleutel": "0d4fb358",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "wapenwedloop",
+  "stem": "Sulafat",
+  "sleutel": "0342db3c",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Triple Entente",
+  "stem": "Sulafat",
+  "sleutel": "af945c0e",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Het leger klaarmaken voor oorlog: alle soldaten worden opgeroepen.",
+  "stem": "Sulafat",
+  "sleutel": "49efb7fd",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Bondgenootschap van Duitsland, Oostenrijk-Hongarije en Italië, 1882.",
+  "stem": "Sulafat",
+  "sleutel": "0a78536a",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "nationalisme",
+  "stem": "Sulafat",
+  "sleutel": "d58ba483",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "ultimatum",
+  "stem": "Sulafat",
+  "sleutel": "8f71cbfb",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een afspraak tussen landen om elkaar te helpen als een van hen wordt aangevallen.",
+  "stem": "Sulafat",
+  "sleutel": "372be9cf",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Schlieffenplan",
+  "stem": "Sulafat",
+  "sleutel": "7827ef37",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 17 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "6a4a8ac2",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Het kamp van Duitsland, Oostenrijk-Hongarije, het Ottomaanse Rijk en Bulgarije. Ze lagen midden in Europa. Heet ook centrale mogendheden.",
+  "stem": "Sulafat",
+  "sleutel": "63885587",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "propaganda",
+  "stem": "Sulafat",
+  "sleutel": "385d89b2",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "tweefrontenoorlog",
+  "stem": "Sulafat",
+  "sleutel": "504dd4fa",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een oorlog waarin de hele samenleving meedoet: leger, economie en burgers. Ook burgers worden doelwit.",
+  "stem": "Sulafat",
+  "sleutel": "1605710b",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "aanleiding",
+  "stem": "Sulafat",
+  "sleutel": "393f480d",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Het kamp van Frankrijk, Groot-Brittannië en Rusland, later ook Italië en de Verenigde Staten.",
+  "stem": "Sulafat",
+  "sleutel": "e441e30d",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een oorlog waarin de legers zich ingraven in lange greppels. Het front ligt jarenlang bijna stil. Heet ook stellingenoorlog.",
+  "stem": "Sulafat",
+  "sleutel": "5e33f168",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 23 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "fb049d37",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "loopgravenoorlog",
+  "stem": "Sulafat",
+  "sleutel": "cda2f2ee",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een oorlog aan twee kanten tegelijk.",
+  "stem": "Sulafat",
+  "sleutel": "9f90c3be",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "geallieerden",
+  "stem": "Sulafat",
+  "sleutel": "918924ae",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "wapenstilstand",
+  "stem": "Sulafat",
+  "sleutel": "572f4720",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Het vredesverdrag met Duitsland, 1919. Duitsland kreeg de schuld, moest betalen, verloor land en koloniën en mocht maar een klein leger hebben.",
+  "stem": "Sulafat",
+  "sleutel": "35e8c956",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "dolkstootlegende",
+  "stem": "Sulafat",
+  "sleutel": "eb20fe76",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "herstelbetalingen",
+  "stem": "Sulafat",
+  "sleutel": "e9ceeca9",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Bondgenootschap van Frankrijk, Rusland en Groot-Brittannië, 1907.",
+  "stem": "Sulafat",
+  "sleutel": "95afc6a5",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "indirecte oorzaak",
+  "stem": "Sulafat",
+  "sleutel": "4ecc97c5",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Eenzijdige informatie om mensen te laten denken en doen wat de regering wil.",
+  "stem": "Sulafat",
+  "sleutel": "fbf8b1ac",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Organisatie van landen, vanaf 1920, die samen nieuwe oorlogen moest voorkomen.",
+  "stem": "Sulafat",
+  "sleutel": "7d1f9906",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Republiek van Weimar",
+  "stem": "Sulafat",
+  "sleutel": "61ec7f50",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 29 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "2d7d716d",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Mars op Rome",
+  "stem": "Sulafat",
+  "sleutel": "2394eef6",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Extreem nationalistisch idee: één sterke leider, geweld, tegen democratie en communisme. De staat is belangrijker dan het individu.",
+  "stem": "Sulafat",
+  "sleutel": "850e1ff6",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Eén persoon of één partij heeft alle macht. Er is geen vrijheid van meningsuiting.",
+  "stem": "Sulafat",
+  "sleutel": "e990fda0",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Prijzen stijgen extreem snel. Het geld wordt bijna waardeloos.",
+  "stem": "Sulafat",
+  "sleutel": "72119669",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "neutraliteitspolitiek",
+  "stem": "Sulafat",
+  "sleutel": "6509b6f1",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Volkenbond",
+  "stem": "Sulafat",
+  "sleutel": "6ac67ff7",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Een land waar maar één politieke partij is toegestaan.",
+  "stem": "Sulafat",
+  "sleutel": "b654a829",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Het verzonnen verhaal dat het Duitse leger niet verslagen was, maar in de rug gestoken door politici thuis.",
+  "stem": "Sulafat",
+  "sleutel": "bc484e36",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Geld dat Duitsland moest betalen voor de schade van de oorlog.",
+  "stem": "Sulafat",
+  "sleutel": "2e3ed11e",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Verdrag van Versailles",
+  "stem": "Sulafat",
+  "sleutel": "156e6b25",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 33 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "1cfe88d0",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "De democratische republiek in Duitsland van 1919 tot 1933. Genoemd naar de stad waar de grondwet werd gemaakt.",
+  "stem": "Sulafat",
+  "sleutel": "62063791",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "totale oorlog",
+  "stem": "Sulafat",
+  "sleutel": "d5f06fd0",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "bedoeld en onbedoeld gevolg",
+  "stem": "Sulafat",
+  "sleutel": "0590c561",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "In 1922 trokken duizenden fascisten naar Rome. De koning maakte Mussolini daarna premier.",
+  "stem": "Sulafat",
+  "sleutel": "b43fa98d",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "eenpartijstaat",
+  "stem": "Sulafat",
+  "sleutel": "f715876a",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Vier soorten oorzaken en gevolgen. Politiek-bestuurlijk: macht en regering. Sociaal: hoe mensen samenleven. Economisch: geld en werk. Cultureel: ideeën en kunst.",
+  "stem": "Sulafat",
+  "sleutel": "77f2aebe",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "direct en indirect gevolg",
+  "stem": "Sulafat",
+  "sleutel": "7a2eadd5",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "centralen",
+  "stem": "Sulafat",
+  "sleutel": "89c28d73",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "dictatuur",
+  "stem": "Sulafat",
+  "sleutel": "a1086012",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "korte en lange termijn",
+  "stem": "Sulafat",
+  "sleutel": "3f183677",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Bedoeld: wat iemand wilde bereiken. Onbedoeld: had niemand gepland.",
+  "stem": "Sulafat",
+  "sleutel": "645abef2",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "politiek-bestuurlijk, sociaal, economisch, cultureel",
+  "stem": "Sulafat",
+  "sleutel": "1640853c",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Korte termijn: meteen of binnen een paar jaar. Lange termijn: pas veel later.",
+  "stem": "Sulafat",
+  "sleutel": "05284086",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 32 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "e340fb55",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "hyperinflatie",
+  "stem": "Sulafat",
+  "sleutel": "b4a387a9",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Afspraak om te stoppen met vechten. Nog geen vrede.",
+  "stem": "Sulafat",
+  "sleutel": "4c7b17b2",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "fascisme",
+  "stem": "Sulafat",
+  "sleutel": "6db587b6",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Direct: komt meteen uit de gebeurtenis. Indirect: via een tussenstap, een gevolg van een gevolg.",
+  "stem": "Sulafat",
+  "sleutel": "ecebdfa8",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 30 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "6c0748c7",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Geen kant kiezen in conflicten en geen bondgenootschappen sluiten.",
+  "stem": "Sulafat",
+  "sleutel": "15e88b87",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 28 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "d77cc388",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 27 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "5b753353",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 26 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "e94df616",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "Er staan 24 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "2805b0dc",
+  "waar": "geschiedenis-h1-begrippen"
+ },
+ {
+  "tekst": "De twee kampen.",
+  "stem": "Sulafat",
+  "sleutel": "bfa90af7",
+  "waar": "geschiedenis-h1-geheugen"
+ },
+ {
+  "tekst": "De problemen van Weimar.",
+  "stem": "Sulafat",
+  "sleutel": "a7c7ad44",
+  "waar": "geschiedenis-h1-geheugen"
+ },
+ {
+  "tekst": "Soorten oorzaken en gevolgen.",
+  "stem": "Sulafat",
+  "sleutel": "1cb83c86",
+  "waar": "geschiedenis-h1-geheugen"
+ },
+ {
+  "tekst": "Het Verdrag van Versailles.",
+  "stem": "Sulafat",
+  "sleutel": "5386b3c0",
+  "waar": "geschiedenis-h1-geheugen"
+ },
+ {
+  "tekst": "Het kruitvat met vier lonten.",
+  "stem": "Sulafat",
+  "sleutel": "6f1d62ca",
+  "waar": "geschiedenis-h1-geheugen"
+ },
+ {
+  "tekst": "De kettingreactie van 1914.",
+  "stem": "Sulafat",
+  "sleutel": "74f471a3",
+  "waar": "geschiedenis-h1-geheugen"
+ },
+ {
+  "tekst": "Leg het verband uit tussen nationalisme en de situatie op de Balkan rond 1900.",
+  "stem": "Sulafat",
+  "sleutel": "06cc08e2",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit waarom er rond 1900 een systeem van bondgenootschappen in Europa was.",
+  "stem": "Sulafat",
+  "sleutel": "14404854",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Welke volgorde klopt?",
+  "stem": "Sulafat",
+  "sleutel": "e9ef2794",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Welke volgorde klopt? A: Triple Alliantie. moord in Sarajevo. Verdrag van Versailles. Mars op Rome. B: Moord in Sarajevo. Triple Alliantie. Mars op Rome. Verdrag van Versailles. C: Triple Alliantie. Verdrag van Versailles. moord in Sarajevo. Mars op Rome. D: Mars op Rome. Triple Alliantie. moord in Sarajevo. Verdrag van Versailles",
+  "stem": "Sulafat",
+  "sleutel": "4c422abe",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Noem de drie landen van de Triple Alliantie en de drie landen van de Triple Entente.",
+  "stem": "Sulafat",
+  "sleutel": "d37f7f23",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Zet in de goede volgorde: hyperinflatie in Duitsland, wapenstilstand, Triple Entente, Duitsland valt België binnen.",
+  "stem": "Sulafat",
+  "sleutel": "b9535610",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit waarom de bondgenootschappen de kans op een grote oorlog groter maakten.",
+  "stem": "Sulafat",
+  "sleutel": "63cc13b8",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit waarom Frankrijk rond 1900 vijandig was tegenover Duitsland.",
+  "stem": "Sulafat",
+  "sleutel": "1b7a3a2b",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Duitsland en Groot-Brittannië bouwen steeds meer oorlogsschepen. Welk begrip past hierbij?",
+  "stem": "Sulafat",
+  "sleutel": "ea5d60b0",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Duitsland en Groot-Brittannië bouwen steeds meer oorlogsschepen. Welk begrip past hierbij? A: wapenwedloop. B: imperialisme. C: nationalisme. D: bondgenootschap",
+  "stem": "Sulafat",
+  "sleutel": "0f0fe750",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Er staan 14 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "9016578e",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Europese landen strijden om koloniën en grondstoffen in Afrika. Welk begrip past hierbij?",
+  "stem": "Sulafat",
+  "sleutel": "14dfec88",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Europese landen strijden om koloniën en grondstoffen in Afrika. Welk begrip past hierbij? A: militarisme. B: imperialisme. C: nationalisme. D: neutraliteitspolitiek",
+  "stem": "Sulafat",
+  "sleutel": "651ff9ef",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit waarom de oorlog in het westen een loopgravenoorlog werd.",
+  "stem": "Sulafat",
+  "sleutel": "190f1acc",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit waarom Duitsland met het Schlieffenplan door België trok.",
+  "stem": "Sulafat",
+  "sleutel": "147c5573",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit dat de Eerste Wereldoorlog een totale oorlog was. Geef twee voorbeelden.",
+  "stem": "Sulafat",
+  "sleutel": "a740f0a5",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Noem drie regels uit het Verdrag van Versailles voor Duitsland.",
+  "stem": "Sulafat",
+  "sleutel": "cc6ec123",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit wat het verschil is tussen de aanleiding en een indirecte oorzaak van de Eerste Wereldoorlog. Geef van beide een voorbeeld.",
+  "stem": "Sulafat",
+  "sleutel": "e5167abc",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Wat is een tweefrontenoorlog?",
+  "stem": "Sulafat",
+  "sleutel": "ec10399d",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Wat is een tweefrontenoorlog? A: Een oorlog tussen twee landen. B: Een oorlog aan twee kanten tegelijk. C: Een oorlog in twee loopgraven. D: Een oorlog die twee keer begint",
+  "stem": "Sulafat",
+  "sleutel": "920a0129",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Noem drie indirecte oorzaken van de Eerste Wereldoorlog.",
+  "stem": "Sulafat",
+  "sleutel": "b5e5baa9",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Er staan 22 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "17653cd7",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit waarom de Republiek van Weimar grote politieke problemen had. Noem er twee.",
+  "stem": "Sulafat",
+  "sleutel": "fe70633d",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Noem drie kenmerken van het fascisme.",
+  "stem": "Sulafat",
+  "sleutel": "1def15c3",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Beschrijf hoe in Italië het fascisme opkwam.",
+  "stem": "Sulafat",
+  "sleutel": "4710ad5d",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit hoe de hyperinflatie van 1923 ontstond.",
+  "stem": "Sulafat",
+  "sleutel": "5dd5a32b",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Noem twee gevolgen van de Eerste Wereldoorlog voor Europa.",
+  "stem": "Sulafat",
+  "sleutel": "fe09a6fb",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Welke landen hoorden bij de centralen?",
+  "stem": "Sulafat",
+  "sleutel": "347a41c9",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Welke landen hoorden bij de centralen? A: Frankrijk en Rusland. B: Duitsland en Oostenrijk-Hongarije. C: Groot-Brittannië en de Verenigde Staten. D: Italië en Frankrijk",
+  "stem": "Sulafat",
+  "sleutel": "5f974efb",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit wat de dolkstootlegende is en waarom die slecht was voor de republiek.",
+  "stem": "Sulafat",
+  "sleutel": "14696aa3",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit waarom Nederland begin twintigste eeuw een neutraliteitspolitiek voerde. Geef twee redenen.",
+  "stem": "Sulafat",
+  "sleutel": "2d1fd75c",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Er staan 29 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "af54595e",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "De winnaars wilden Duitsland zwak maken. Maar veel Duitsers werden er woedend door. Wat is die woede?",
+  "stem": "Sulafat",
+  "sleutel": "b91cd470",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "De winnaars wilden Duitsland zwak maken. Maar veel Duitsers werden er woedend door. Wat is die woede? A: Een bedoeld gevolg. B: Een onbedoeld gevolg. C: Een indirecte oorzaak. D: Een gevolg op korte termijn",
+  "stem": "Sulafat",
+  "sleutel": "fb8b3e16",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Door het Verdrag van Versailles moest Duitsland herstelbetalingen betalen. Daardoor kwam er later hyperinflatie. Wat is de hyperinflatie voor gevolg van het verdrag?",
+  "stem": "Sulafat",
+  "sleutel": "35a670eb",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Door het Verdrag van Versailles moest Duitsland herstelbetalingen betalen. Daardoor kwam er later hyperinflatie. Wat is de hyperinflatie voor gevolg van het verdrag? A: Een direct gevolg. B: Een indirect gevolg. C: Een bedoeld gevolg. D: De aanleiding",
+  "stem": "Sulafat",
+  "sleutel": "cb4b7f62",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit wat het verschil is tussen een direct en een indirect gevolg.",
+  "stem": "Sulafat",
+  "sleutel": "260ef8de",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Wat gebeurde er bij de Mars op Rome, 1922?",
+  "stem": "Sulafat",
+  "sleutel": "4634252f",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Wat gebeurde er bij de Mars op Rome, 1922? A: Italiaanse soldaten vielen Oostenrijk aan. B: Fascisten trokken naar Rome en Mussolini werd premier. C: De koning van Italië vluchtte naar Nederland. D: Italië trad toe tot de Triple Entente",
+  "stem": "Sulafat",
+  "sleutel": "c44b821c",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Leg uit wat het verschil is tussen een gevolg op korte en op lange termijn. Geef bij de Eerste Wereldoorlog van allebei een voorbeeld.",
+  "stem": "Sulafat",
+  "sleutel": "f9033365",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Vier keizerrijken verdwijnen na de Eerste Wereldoorlog. Wat voor soort gevolg is dat?",
+  "stem": "Sulafat",
+  "sleutel": "dbafe37a",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Vier keizerrijken verdwijnen na de Eerste Wereldoorlog. Wat voor soort gevolg is dat? A: politiek-bestuurlijk. B: sociaal. C: economisch. D: cultureel",
+  "stem": "Sulafat",
+  "sleutel": "eb37caf9",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Na de oorlog maakten kunstenaars veel sombere schilderijen. Wat voor soort gevolg is dat?",
+  "stem": "Sulafat",
+  "sleutel": "5a14c19d",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Na de oorlog maakten kunstenaars veel sombere schilderijen. Wat voor soort gevolg is dat? A: politiek-bestuurlijk. B: sociaal. C: economisch. D: cultureel",
+  "stem": "Sulafat",
+  "sleutel": "d5ec6050",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Er staan 27 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "9dc067d8",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Er staan 25 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "882a53ea",
+  "waar": "geschiedenis-h1-toets"
+ },
+ {
+  "tekst": "Op volgorde van tijd. Eén stap: Tijdlijn.",
+  "stem": "Sulafat",
+  "sleutel": "c55b62ec",
+  "waar": "geschiedenis-h1-p1"
+ },
+ {
+  "tekst": "paragraaf 1.2. Spanningen in Europa. 2 stappen: Kruitvat. Sorteren.",
+  "stem": "Sulafat",
+  "sleutel": "a992bdd6",
+  "waar": "geschiedenis-h1-p2"
+ },
+ {
+  "tekst": "paragraaf 1.3. De Eerste Wereldoorlog. 3 stappen: Video. Filmpje. Oorzaak of gevolg.",
+  "stem": "Sulafat",
+  "sleutel": "4467796c",
+  "waar": "geschiedenis-h1-p3"
+ },
+ {
+  "tekst": "paragraaf 1.4. Europa na de oorlog. 3 stappen: Weimar. Italië. Nederland.",
+  "stem": "Sulafat",
+  "sleutel": "3a563537",
+  "waar": "geschiedenis-h1-p4"
+ },
+ {
+  "tekst": "Vaardigheid: oorzaken en gevolgen. Eén stap: Oorzaak-lab.",
+  "stem": "Sulafat",
+  "sleutel": "0ccb3fa3",
+  "waar": "geschiedenis-h1-p5"
+ },
+ {
+  "tekst": "Economie hoofdstuk vier. Een eigen bedrijf. Vul de datum van je toets in, dan plan ik je herhaling. Je lightstick is voor 0 procent opgeladen. Vandaag, ongeveer 11 minuten: Chat: nieuw stuk leren. 🃏 6 begrippen checken.",
+  "stem": "Sulafat",
+  "sleutel": "a2687140",
+  "waar": "economie-h4-overzicht"
+ },
+ {
+  "tekst": "Dit hoort bij Eigen baas. Een ondernemer heeft geen werkgever die doorbetaalt. Die moet dat zelf regelen.",
+  "stem": "Sulafat",
+  "sleutel": "e58ccf82",
+  "waar": "economie-h4-chat"
+ },
+ {
+  "tekst": "Dit hoort bij marketingplan. De prijs is een van de 5 P's, en die horen in het marketingplan.",
+  "stem": "Sulafat",
+  "sleutel": "f52560a6",
+  "waar": "economie-h4-bouwplan"
+ },
+ {
+  "tekst": "Er staan 0 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "bd1d2269",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 1 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "de24ae6d",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 1 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "6239a05e",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 2 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "a5d1f252",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 2 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "7b7575cf",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 3 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "ac78357f",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 3 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "c63cac0c",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 4 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "0ccd797d",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 5 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "29c30819",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 5 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "49bf5b62",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 6 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "662f8543",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 7 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "0f2d3090",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 9 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "1a4ca3a6",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 10 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "96aff449",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 10 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "77711752",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 11 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "2dfe41ed",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 12 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "0afe4940",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 13 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "bd6c9f73",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 15 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "aa2d4638",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 16 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "adcf65af",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 18 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "8bb49661",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 19 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "c9889a8c",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 19 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "1a8d1f35",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 20 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "80587300",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 20 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "ad797d31",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 21 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "348f1bc5",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 21 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "67675ca6",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 22 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "fd44190a",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 23 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "5b317c14",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 24 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "af261785",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 25 kaarten klaar om te checken.",
+  "stem": "Sulafat",
+  "sleutel": "cd6684f1",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 26 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "a1fe63cb",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 28 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "0a37db69",
+  "waar": "tellers"
+ },
+ {
+  "tekst": "Er staan 30 vragen klaar.",
+  "stem": "Sulafat",
+  "sleutel": "fbf8b024",
+  "waar": "tellers"
  }
 ]

@@ -2,8 +2,8 @@
 #   1. node tools/verzamel.js > tools/teksten.json      (server draaiend in de hoofdmap)
 #   2. python3 tools/maak-audio.py                       (maakt audio/z/<sleutel>.mp3 en js/ingesproken.js)
 # Daglimiet: 100 verzoeken per model per dag. Daarom:
-#  - bundels: tot 12 teksten met dezelfde stem in één verzoek; Gemini laat tussen alinea's een lange pauze,
-#    daar knippen we. Lukt knippen niet, dan wordt de bundel gehalveerd en opnieuw geprobeerd.
+#  - bundels: tot 12 teksten met dezelfde stem in één verzoek; we knippen op de pauzes die het best passen bij
+#    de lengte van elke tekst (zie knip). Lukt knippen niet, dan wordt de bundel gehalveerd en opnieuw geprobeerd.
 #  - twee modellen: is de daglimiet van het eerste op, dan gaat het verder met het tweede (klinken gelijk).
 #  - afgekeurde teksten gaan eerst opnieuw in bundels, pas daarna los.
 # Per stuk: begin en eind opschonen, en laten controleren of alles gezegd is.
@@ -78,12 +78,10 @@ def bewaar(pcm, uit):
 
 def inspreken(tekst, stem, uit): bewaar(tts(tekst, stem), uit)
 
-def knip(pcm, n):
-    """Knip in n stukken bij de n-1 langste stiltes. None als die niet duidelijk langer zijn dan de rest."""
-    if n == 1: return [pcm]
-    x = struct.unpack("<%dh" % (len(pcm) // 2), pcm); F = 240
+def stiltes(pcm, F=240, drempel=-45):
+    x = struct.unpack("<%dh" % (len(pcm) // 2), pcm)
     fr = [math.sqrt(sum(v * v for v in x[i:i + F]) / F) for i in range(0, len(x) - F, F)]
-    stil = [20 * math.log10(max(1, r) / 32768) < -45 for r in fr]
+    stil = [20 * math.log10(max(1, r) / 32768) < drempel for r in fr]
     st, i = [], 0
     while i < len(stil):
         if stil[i]:
@@ -92,11 +90,38 @@ def knip(pcm, n):
             if i > 0 and j < len(stil): st.append((j - i, i, j))
             i = j
         else: i += 1
-    st.sort(reverse=True)
-    if len(st) < n - 1: return None
-    gekozen, rest = st[:n - 1], st[n - 1:]
-    if min(g[0] for g in gekozen) < 45 or (rest and min(g[0] for g in gekozen) < 1.5 * rest[0][0]): return None
-    grenzen = [0] + sorted(((a + b) // 2) * F * 2 for _, a, b in gekozen) + [len(pcm)]
+    return st, len(stil)
+
+def knip(pcm, lengtes, F=240, extra=12):
+    """Knip een bundel in losse teksten. Het model laat ook binnen een tekst soms lange pauzes vallen; daarom
+    kiezen we de combinatie van n-1 pauzes (≥ 350 ms) waarbij de duur van elk stuk het best past bij de lengte
+    van de tekst (tekens + een vaste extra per tekst). Fouten vangt de woordcontrole daarna op.
+    Geeft de stukken, of None als er te weinig pauzes zijn."""
+    n = len(lengtes)
+    if n == 1: return [pcm]
+    st, N = stiltes(pcm, F)
+    kand = sorted([s for s in st if s[0] >= 35], key=lambda s: s[1])     # pauzes van minstens 350 ms
+    m = len(kand)
+    if m < n - 1: return None
+    mid = [(s[1] + s[2]) / 2 for s in kand]
+    gewicht = [l + extra for l in lengtes]; per = N / sum(gewicht)
+    verw = [g * per for g in gewicht]
+    def kost(dur, k): return ((dur - verw[k]) / max(verw[k], 60)) ** 2
+    INF = float("inf")
+    dp = [[INF] * m for _ in range(n - 1)]; terug = [[-1] * m for _ in range(n - 1)]
+    for j in range(m): dp[0][j] = kost(mid[j], 0) - kand[j][0] / 500
+    for k in range(1, n - 1):
+        for j in range(k, m):
+            best, bi = INF, -1
+            for i in range(k - 1, j):
+                c = dp[k - 1][i] + kost(mid[j] - mid[i], k)
+                if c < best: best, bi = c, i
+            dp[k][j] = best - kand[j][0] / 500; terug[k][j] = bi
+    eind = min(range(n - 2, m), key=lambda j: dp[n - 2][j] + kost(N - mid[j], n - 1))
+    gek = [eind]
+    for k in range(n - 2, 0, -1): gek.append(terug[k][gek[-1]])
+    gek = [kand[j] for j in reversed(gek)]
+    grenzen = [0] + [((a + b) // 2) * F * 2 for _, a, b in gek] + [len(pcm)]
     return [pcm[grenzen[k]:grenzen[k + 1]] for k in range(n)]
 
 def klopt(tekst, mp3):
@@ -120,7 +145,7 @@ def maak_bundel(groep):
     """Spreek een bundel in en knip; geeft de teksten terug die nog niet gelukt zijn.
     Lukt het knippen niet, dan worden beide helften apart geprobeerd."""
     try:
-        stukken = knip(tts("\n\n".join(x["tekst"] for x in groep), groep[0]["stem"]), len(groep))
+        stukken = knip(tts("\n\n".join(x["tekst"] for x in groep), groep[0]["stem"]), [len(x["tekst"]) for x in groep])
     except DagLimiet: return groep
     except Exception as e:
         print("bundel mislukt:", e, flush=True); stukken = None
