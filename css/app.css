@@ -8,7 +8,7 @@ body.theme-zon   { --bg:#FFF6E8; --card:#FFFFFF; --card2:#FFF1DC; --ink:#2D2316;
 body.ruim{ --ls:0.06em; --lh:1.9; }
 
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
-html,body{margin:0;overflow-x:hidden;touch-action:manipulation}
+html,body{margin:0;overflow-x:hidden;overflow-x:clip;touch-action:manipulation}
 img,canvas{max-width:100%}
 body{
   background:var(--bg); color:var(--ink);
@@ -604,3 +604,23 @@ body{ --oefen:var(--gold); --leren:var(--accent); }
 .breuk sub{font-size:1em;vertical-align:baseline}
 .veld-n{font-weight:700;margin-left:6px}
 .soort-rij{margin-bottom:8px}
+
+/* plusstof (verdieping uit het boek) */
+.plus-tag{display:inline-block;vertical-align:middle;background:var(--gold);color:var(--bg);font-weight:700;font-size:.72em;border-radius:999px;padding:1px 10px;white-space:nowrap}
+.plus-klein{color:var(--gold);font-weight:700}
+.sb-kop.plus{background:var(--gold);color:var(--bg)}
+
+/* de opdracht blijft zichtbaar bij tekenen en oefenen */
+.opdracht-strook{display:flex;gap:8px;align-items:flex-start;background:var(--card2);border-left:5px solid var(--gold);border-radius:12px;padding:8px 10px;margin-bottom:8px}
+.opdracht-strook .op-ic{font-size:1.2em;line-height:1.4}
+.opdracht-strook .op-t{flex:1;min-width:0;max-height:34vh;overflow:auto}
+.opdracht-strook.dicht .op-t{max-height:1.6em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.opdracht-strook.dicht .op-beeld{display:none}
+.op-beeld svg{width:100%;height:auto;max-height:24vh;display:block}
+.op-beeld svg text{font-family:"Atkinson Hyperlegible",Verdana,sans-serif}
+.op-dicht{border:none;background:none;color:var(--ink);font-size:1.2em;min-width:40px;min-height:40px;cursor:pointer}
+.opg-vast{position:sticky;top:0;z-index:6;background:var(--card);padding:6px 0 4px;margin:0 -2px}
+.opg-vast .opg-beeld svg{max-height:30vh}
+.opg-beeld.dicht{display:none}
+.studio.vol .opdracht-strook{margin-right:190px}
+.stap-tekst .plus-tag{align-self:flex-start;margin:2px 0}

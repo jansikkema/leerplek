@@ -65,12 +65,12 @@
   }
 
   /* ================= kladblok (Pencil) ================= */
-  function kladblok(host, aspect = 0.45) {
+  function kladblok(host, aspect = 0.45, opdracht) {
     let ui = null;
     host.innerHTML = `<button class="btn ghost small kb-open">✏️ Kladblok</button><div class="kb"></div>`;
     $(".kb-open", host).onclick = () => {
       if (ui) { ui.destroy(); ui = null; $(".kb", host).innerHTML = ""; $(".kb-open", host).textContent = "✏️ Kladblok"; return; }
-      ui = Studio($(".kb", host), { aspect, papier: "ruitjes" }); $(".kb-open", host).textContent = "✖ Kladblok dicht";
+      ui = Studio($(".kb", host), { aspect, papier: "ruitjes", opdracht }); $(".kb-open", host).textContent = "✖ Kladblok dicht";
     };
     return { destroy() { if (ui) ui.destroy(); } };
   }
@@ -138,7 +138,7 @@
       const k = d.kaarten[stapel[0]], gedaan = d.kaarten.length - stapel.length;
       el.innerHTML = `
         <div class="card sorteer">
-          <div class="row" style="justify-content:space-between"><h2 style="margin:0">${esc(d.titel)}</h2><span class="soft">${gedaan} / ${d.kaarten.length}</span></div>
+          <div class="row" style="justify-content:space-between"><h2 style="margin:0">${esc(d.titel)} ${d.plus ? '<span class="plus-tag">➕ Plusstof</span>' : ""}</h2><span class="soft">${gedaan} / ${d.kaarten.length}</span></div>
           ${d.uitleg ? `<p class="soft" style="margin-top:6px">${md(d.uitleg)}</p>` : ""}
           <div class="s-kaart" id="sk"><div>${md(k.t)}</div><button class="say-mini" aria-label="Lees voor">🔊</button></div>
           <div class="s-feedback" id="sf" hidden></div>
@@ -199,7 +199,7 @@
         </div>
         <div class="kaart-grid">${lijst.map(k => { const e = eigen(k.id), r = V.get().kaarten[k.id];
           return `<button class="kaart-tegel" data-id="${k.id}">${e.thumb ? `<img src="${e.thumb}" alt="">` : `<span class="ic">${k.icoon}</span>`}
-            <b>${esc(k.term)}</b><small>${e.woorden ? "✍️ " : ""}${e.thumb ? "🎨 " : ""}${r ? "★".repeat(r.box) + "☆".repeat(4 - r.box) : "nieuw"}</small></button>`; }).join("")}</div>`;
+            <b>${esc(k.term)}</b>${k.plus ? '<small class="plus-klein">➕ plus</small>' : ""}<small>${e.woorden ? "✍️ " : ""}${e.thumb ? "🎨 " : ""}${r ? "★".repeat(r.box) + "☆".repeat(4 - r.box) : "nieuw"}</small></button>`; }).join("")}</div>`;
       App.sayButton($("#lees-menu", el), () => ["Mijn begrippen. Maak van elk begrip jouw kaart. Zeg of schrijf het in je eigen woorden, en maak er een klein tekeningetje bij. Wat je zelf maakt, onthoud je beter.", `Er staan ${te.length} kaarten klaar om te checken.`, `De begrippen zijn: ${lijst.map(k => zg(k, "term")).join(", ")}.`]);   // vast en wisselend deel apart: het vaste deel krijgt een opname
       $("#check", el).onclick = check;
       $$(".kaart-tegel", el).forEach(b => b.onclick = () => maak(lijst.find(k => k.id === b.dataset.id)));
@@ -211,7 +211,7 @@
       el.innerHTML = `
         <div class="card kaart-maak">
           <button class="btn ghost small" id="terug">← Alle kaarten</button>
-          <div class="km-kop"><span class="ic">${k.icoon}</span><h1>${esc(k.term)}</h1></div>
+          <div class="km-kop"><span class="ic">${k.icoon}</span><h1>${esc(k.term)}</h1>${k.plus ? '<span class="plus-tag">➕ Plusstof</span>' : ""}</div>
           <button class="say" id="lees">🔊 Lees voor</button>
           <div class="km-blok"><b>Wat is het?</b><p>${md(k.uitleg)}</p></div>
           ${k.voorbeeld ? `<div class="km-blok vb"><b>Voorbeeld</b><p>${md(k.voorbeeld)}</p></div>` : ""}
@@ -226,7 +226,7 @@
       $("#woorden", el).oninput = ev => { store.set(eigenKey(k.id), { ...eigen(k.id), woorden: ev.target.value }); };
       $("#teken", el).onclick = () => {
         $("#tek", el).innerHTML = `<div id="kst"></div>`;
-        ui = Studio($("#kst", el), { aspect: 0.6, papier: "wit", strokes: eigen(k.id).strokes || [] });
+        ui = Studio($("#kst", el), { aspect: 0.6, papier: "wit", strokes: eigen(k.id).strokes || [], opdracht: { html: `Teken iets dat jou helpt om <b>${esc(k.term)}</b> te onthouden.` } });
       };
       $("#bewaar", el).onclick = () => {
         const nu = eigen(k.id); nu.woorden = $("#woorden", el).value;
@@ -408,7 +408,7 @@
         const vraagHtml = md(q.vraag).replace(TOETSWOORDEN, "<mark>$1</mark>");
         el.innerHTML = `
           <div class="card tvraag">
-            <div class="row" style="justify-content:space-between"><span class="soft">Vraag ${totaal - rij.length + 1} van ${totaal} · ${esc(q.par || "")}</span><button class="btn ghost small" id="stop">Stoppen</button></div>
+            <div class="row" style="justify-content:space-between"><span class="soft">Vraag ${totaal - rij.length + 1} van ${totaal} · ${esc(q.par || "")} ${q.plus ? '<span class="plus-tag">➕ Plusstof</span>' : ""}</span><button class="btn ghost small" id="stop">Stoppen</button></div>
             <div class="vraag">${vraagHtml}</div>
             <div class="row"><button class="say" id="lees" style="margin:0">🔊 Lees voor</button><button class="btn ghost small" id="tip">💡 Hoe pak ik dit aan?</button></div>
             <div class="tipbox" id="tipbox" hidden>${q.tip || TIPS[q.type] || ""}</div>
@@ -421,8 +421,8 @@
         if (autoLees()) App.speak(zg(q, "vraag"));
         $("#tip", el).onclick = () => { $("#tipbox", el).hidden = !$("#tipbox", el).hidden; };
         $("#stop", el).onclick = start;
-        kb = kladblok($("#kb", el));
         if (q.beeld) schetsStil($("#tbeeld", el), q.beeld, q.beeldMaat);
+        kb = kladblok($("#kb", el), 0.45, () => ({ html: vraagHtml + (q.beeld ? `<div class="op-beeld">${$("#tbeeld", el).innerHTML}</div>` : ""), zeg: zg(q, "vraag") }));
         const A = $("#antw", el), F = $("#fb", el);
         const oordeel = (auto) => {
           F.insertAdjacentHTML("beforeend", auto ? `<div class="row" style="margin-top:12px"><button class="btn" id="vd">Volgende →</button></div>` :
@@ -496,9 +496,9 @@
     }
     function teken(p) {
       opr();
-      el.innerHTML = `<div class="card geh-kop"><b>${p.icoon} Teken uit je hoofd: ${esc(p.titel)}</b><br><span class="soft">${md(p.opdracht)}</span>
+      el.innerHTML = `<div class="card geh-kop"><b>${p.icoon} Teken uit je hoofd: ${esc(p.titel)}</b>
         <div class="row" style="margin-top:10px"><button class="btn" id="klaar">✅ Klaar, laat zien</button><button class="btn ghost small" id="terug">← Terug</button></div></div><div id="st"></div>`;
-      ui = Studio($("#st", el), { aspect: 0.75, papier: "wit" });
+      ui = Studio($("#st", el), { aspect: 0.75, papier: "wit", opdracht: { html: `<b>${esc(p.titel)}</b><br>${md(p.opdracht)}`, zeg: `${p.titel}. ${p.opdracht}` } });
       $("#terug", el).onclick = menu;
       $("#klaar", el).onclick = () => vergelijk(p);
     }
@@ -686,7 +686,7 @@
       c.innerHTML = md(x.t) + (x.knop ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
       $$("#scp button", el).forEach((p, i) => { p.classList.toggle("gezien", i < sc); p.classList.toggle("nu", i === sc); });
       if (sc === S.length - 1 && onEind) onEind();
-      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet(d.teken); };
+      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet(d.teken, { html: `<b>${esc(d.titel)}</b><br>${md(x.t)}`, zeg: spreek(x) }); };
     }
     function advance() { clearTimeout(timer); if (!playing) return; if (sc >= S.length - 1) { pause(); return; } sc++; run(); }
     function run() {
@@ -729,7 +729,7 @@
     $("#m-kijk", el).onclick = () => setMode(false);
     $("#m-doe", el).onclick = () => setMode(true);
     el.addEventListener("click", e => { const b = e.target.closest(".blank"); if (b) b.classList.toggle("open"); });
-    const t = $("#teken-plaat", el); if (t) t.onclick = () => App.tekenMet(d.teken);
+    const t = $("#teken-plaat", el); if (t) t.onclick = () => App.tekenMet(d.teken, { html: `Teken de plaat <b>${esc(d.titel)}</b> na, zonder te kijken. Vergelijk daarna.` });
     App.bindSay(el);
   }
 
@@ -963,12 +963,12 @@
       zaad = 100 + i * 37 + k * 11;
       const b = new Tekenaar(stage); sc.zinnen[k].teken && sc.zinnen[k].teken(b, S);
       const duur = speel(b.items, false, T());
-      $("#sbk", el).textContent = sc.kop || ""; $("#sbk", el).hidden = !sc.kop;
+      $("#sbk", el).textContent = (sc.plus ? "➕ Plusstof · " : "") + (sc.kop || ""); $("#sbk", el).hidden = !sc.kop; $("#sbk", el).classList.toggle("plus", !!sc.plus);
       $("#sbt", el).innerHTML = sc.zinnen.slice(0, k + 1).map((z, j) => `<span class="sb-zin ${j === k ? "nu" : ""}">${opmaak(z.t)}</span>`).join(" ")
         + (n === lijst.length - 1 && d.teken ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
       $$("#scp button", el).forEach((p, j) => { p.classList.toggle("gezien", j < i); p.classList.toggle("nu", j === i); });
       $("#prev", el).disabled = n === 0; $("#nextS", el).disabled = n === lijst.length - 1;
-      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet(d.teken); };
+      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); const z = lijst[n].z; App.tekenMet(d.teken, { html: opmaak(z.t), zeg: spreek(z) }); };
       if (n === lijst.length - 1 && onEind) onEind();
       return duur;
     }
@@ -1054,19 +1054,20 @@
         <div class="card reken wstappen">
           <h2 style="margin-top:0">${esc(cfg.titel)}</h2>
           ${cfg.intro ? `<p class="soft" style="margin-top:0">${md(cfg.intro)}</p>` : ""}
-          ${SOORTEN.length > 1 ? `<div class="row soort-rij">${SOORTEN.map((x, i) => `<button class="chip ${i === sn ? "sel" : ""}" data-s="${i}">${esc(x.naam)}</button>`).join("")}</div>` : ""}
+          ${SOORTEN.length > 1 ? `<div class="row soort-rij">${SOORTEN.map((x, i) => `<button class="chip ${i === sn ? "sel" : ""}" data-s="${i}">${esc(x.naam)}${x.plus ? " ➕" : ""}</button>`).join("")}</div>` : ""}
+          ${C.plus ? `<p style="margin:0 0 8px"><span class="plus-tag">➕ Plusstof</span> <span class="soft">Verdieping uit je boek.</span></p>` : ""}
           <div class="row ronde-rij">${rondes.map((r, i) => `<button class="chip small ${i === ronde ? "sel" : ""}" data-r="${i}">${r.titel}</button>`).join("")}</div>
           <p class="soft" style="margin:8px 0 12px">${R.sub}</p>
           ${C.schema ? `<details class="schema" ${R.mode !== "zelf" ? "open" : ""}><summary>📋 ${esc(C.schema.titel)}</summary><ol>${C.schema.stappen.map(x => `<li>${md(x)}</li>`).join("")}</ol></details>` : ""}
-          <div class="casus"><div class="opg">${fmt(q.vraag)}</div><button class="say-mini" id="lq">🔊</button></div>
-          ${q.beeld ? `<div class="opg-beeld" id="ob"></div>` : ""}
+          <div class="opg-vast"><div class="casus"><div class="opg">${fmt(q.vraag)}</div><button class="say-mini" id="lq">🔊</button>${q.beeld ? `<button class="say-mini" id="obt" aria-label="Figuur in- of uitklappen">🖼️</button>` : ""}</div>
+          ${q.beeld ? `<div class="opg-beeld" id="ob"></div>` : ""}</div>
           <div id="stappen"></div>
           <div id="eind"></div>
         </div>`;
       $$("[data-s]", el).forEach(b => b.onclick = () => { sn = +b.dataset.s; render(); });
       $$("[data-r]", el).forEach(b => b.onclick = () => { rondeVan[sn] = +b.dataset.r; render(); });
       App.sayButton($("#lq", el), () => q.zeg || q.vraag.replace(/\*\*|`/g, ""), { audio: null });   // sommen wisselen: iPad-stem
-      if (q.beeld) schetsStil($("#ob", el), q.beeld, q.beeldMaat);
+      if (q.beeld) { schetsStil($("#ob", el), q.beeld, q.beeldMaat); $("#obt", el).onclick = () => $("#ob", el).classList.toggle("dicht"); }
       const box = $("#stappen", el), goed = [];
       function stap(i) {
         const st = q.stappen[i], gegeven = i < gegevenTot;

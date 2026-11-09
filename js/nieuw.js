@@ -2,6 +2,9 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
+  { datum: "2026-11-09", tekst: "Als je tekent, staat de opdracht nu bovenaan, ook op volledig scherm. Met 🔊 lees je hem voor, met ▴ klap je hem in." },
+  { datum: "2026-11-09", tekst: "Bij de sommen blijven de vraag en de figuur bovenaan staan als je naar beneden werkt. Met 🖼️ klap je de figuur in." },
+  { datum: "2026-11-09", tekst: "Plusstof uit je boek heeft nu een gouden label: ➕ Plusstof." },
   { datum: "2026-11-09", tekst: "Wiskunde H1 is af: bij elke paragraaf een filmpje, sommen stap voor stap (eerst kijk je mee, dan samen, dan zelf, met steeds nieuwe sommen) en een toetstraining zoals de diagnostische toets." },
   { datum: "2026-11-09", tekst: "Geen tikje meer tussen de zinnen als de stem voorleest." },
   { datum: "2026-11-09", tekst: "Nieuw: Wiskunde H1, Lineaire problemen. Eerst één filmpje om te proberen: hoe de grafiek van y = ax + b ontstaat. Aan het eind teken jij." },

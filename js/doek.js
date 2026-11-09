@@ -256,8 +256,11 @@
   }
 
   function Studio(host, o = {}) {
+    // o.opdracht = { html, zeg } (of een functie die dat geeft): de opdracht blijft bovenaan staan, ook op volledig scherm.
+    const op = typeof o.opdracht === "function" ? o.opdracht() : o.opdracht;
     host.innerHTML = `
       <div class="studio">
+        ${op ? `<div class="opdracht-strook"><span class="op-ic">📝</span><div class="op-t">${op.html}</div><button class="say-mini op-lees" aria-label="Lees de opdracht voor">🔊</button><button class="op-dicht" aria-label="Opdracht in- of uitklappen">▴</button></div>` : ""}
         <div class="studio-top">
           <div class="studio-extra"></div>
           <span class="spacer"></span>
@@ -281,6 +284,11 @@
     const studio = host.querySelector(".studio"), canvasHost = host.querySelector(".studio-canvas");
     const pop = host.querySelector(".kleur-pop"), volUit = host.querySelector(".vol-uit");
     if (o.extraHtml) { host.querySelector(".studio-extra").innerHTML = o.extraHtml; }
+    if (op) {
+      const strook = host.querySelector(".opdracht-strook");
+      if (window.App && App.sayButton) App.sayButton(host.querySelector(".op-lees"), () => op.zeg || strook.querySelector(".op-t").textContent, op.zeg ? {} : { audio: null });
+      host.querySelector(".op-dicht").onclick = () => { const dicht = strook.classList.toggle("dicht"); host.querySelector(".op-dicht").textContent = dicht ? "▾" : "▴"; setTimeout(() => doek.fit(), 30); };
+    }
 
     const doek = Doek(canvasHost, {
       ...o,

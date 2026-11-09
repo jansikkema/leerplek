@@ -255,7 +255,7 @@
         { t: "Stap 4: deel beide leden door het getal voor x: `x = 4`.", teken(b) { rij(b, 4, "4 delen door 6", [["x = 4", "vak"]], { fx: 260 }); } },
         { t: "Controleer: vul x = 4 in. Links: 4 · 5 = 20. Rechts: 22 − 2 · 1 = 20. Het klopt!", teken(b) { b.tekst(260, 425, "check: links 20, rechts 20 ✓", { anker: "start", vet: true, grootte: 22, c: "vak" }); } }
       ] },
-      { kop: "Plus: breuken", zinnen: [
+      { kop: "Breuken wegwerken", plus: true, zinnen: [
         { t: "Staan er breuken in? Werk ze eerst weg. Neem `½x + 2 = ⅓x + 3`.", teken(b) { b.tekst(400, 110, "½x + 2 = ⅓x + 3", { vet: true, grootte: 40 }); } },
         { t: "Vermenigvuldig alle termen met 6. Dat is het kleinste getal dat door 2 én door 3 te delen is.", teken(b) { b.tekst(400, 190, "alle termen · 6", { vet: true, grootte: 28, c: "rood" }); b.tekst(400, 225, "6 past in 2 én in 3", { grootte: 18, c: "zacht", leest: false }); } },
         { t: "Dan krijg je `3x + 12 = 2x + 18`. Nu gaat het verder zoals altijd: `x = 6`.", teken(b) { b.tekst(400, 300, "3x + 12 = 2x + 18", { vet: true, grootte: 36 }); b.tekst(400, 380, [["x = 6", "vak"]], { vet: true, grootte: 36 }); } }
@@ -304,7 +304,7 @@
           teken(b, S) { const A = S.P(2, 0), B = S.P(6, 0); b.cirkel(A[0], A[1], 7, { c: "rood", w: 2.6 }); b.pijl([A[0] + 8, A[1]], [B[0], B[1]], { c: "rood", w: 5 }); } },
         { t: "De oplossing is dus `x > 2`.", teken(b) { b.tekst(470, 260, [["x > 2", "rood"]], { anker: "start", vet: true, grootte: 44 }); } }
       ] },
-      { kop: "Zonder grafiek", zinnen: [
+      { kop: "Zonder grafiek", plus: true, zinnen: [
         { t: "Het kan ook zonder grafiek. Je rekent net als bij een vergelijking: `−x + 5 < x + 1`.", teken(b) { rij(b, 0, "", "−x + 5 < x + 1", { fx: 120 }); } },
         { t: "Haal links en rechts x weg, en ook 5: `−2x < −4`.", teken(b) { rij(b, 1, "", "−2x < −4", { fx: 120 }); } },
         { t: "Nu deel je door −2. Dat is een negatief getal. Dan **klapt het ongelijkheidsteken om**: < wordt >.",
@@ -374,7 +374,7 @@
     ].map(k => metZeg(k, "t", "uitleg"))
   };
   const SORT15 = {
-    titel: "🔄 Klapt het teken om?", uitleg: "Je lost een ongelijkheid op. Wat gebeurt er met < of > bij deze stap?",
+    titel: "🔄 Klapt het teken om?", plus: true, uitleg: "Je lost een ongelijkheid op. Wat gebeurt er met < of > bij deze stap?",
     bakken: [{ id: "om", icoon: "🔄", naam: "Klapt om", sub: "< wordt >" }, { id: "blijft", icoon: "➡️", naam: "Blijft staan", sub: "niets veranderen" }],
     kaarten: [
       { t: "Beide kanten delen door −2", bak: "om", uitleg: "Delen door een negatief getal." },
@@ -622,7 +622,7 @@
     oefen11: { titel: "🧮 Stap voor stap: lijnen en formules", intro: "Kies een soort som. Eerst kijk je mee, dan doen we het samen, dan doe je het zelf.", soorten: [
       { naam: "Formule bij een lijn", voorbeeld: g11formule({ dx: 3, dy: 2, b: -1 }), samen: g11formule({ dx: 1, dy: -2, b: 3 }), maak: g11formule },
       { naam: "Punt op een lijn", voorbeeld: g11punt({ a: -4, b: 9, k: 3, type: "A" }), samen: g11punt({ a: 5, b: -12, k: -2, yb: -22, type: "B" }), maak: g11punt },
-      { naam: "Plus: evenwijdige lijn", voorbeeld: g11evenwijdig({ a: 2, c: 5, px: 3, b: -1 }), samen: g11evenwijdig({ a: -3, c: 1, px: -2, b: 4 }), maak: g11evenwijdig }
+      { naam: "Evenwijdige lijn", plus: true, voorbeeld: g11evenwijdig({ a: 2, c: 5, px: 3, b: -1 }), samen: g11evenwijdig({ a: -3, c: 1, px: -2, b: 4 }), maak: g11evenwijdig }
     ] },
     oefen12: { titel: "🧮 Stap voor stap: lineaire verbanden", intro: "Uit een tabel of uit een grafiek met een schaal.", soorten: [
       { naam: "Uit een tabel", voorbeeld: g12tabel({ ctx: 0, start: 120, stap: 15, T: 12 }), samen: g12tabel({ ctx: 3, start: 3500, stap: 75, T: 14 }), maak: g12tabel },
@@ -631,14 +631,14 @@
     oefen13: { titel: "🧮 Stap voor stap: vergelijkingen oplossen", intro: "Gebruik het werkschema. Kies bij elke stap wat je doet.", soorten: [
       { naam: "Zonder haakjes", schema: WERKSCHEMA, voorbeeld: g13zonder({ a: 7, b: 2, c: 3, x: 4 }), samen: g13zonder({ a: 2, b: -9, c: 6, x: -4 }), maak: g13zonder },
       { naam: "Met haakjes", schema: WERKSCHEMA, voorbeeld: g13haakjes({ pp: 4, q: 1, s: -2, u: -3, x: 4 }), samen: g13haakjes({ pp: 5, q: -2, s: 2, u: 1, x: 6 }), maak: g13haakjes },
-      { naam: "Plus: met breuken", schema: SCHEMA_BREUK, voorbeeld: g13breuken({ m: 2, n: 3, a1: 1, a2: 2, k: 2, b: 3 }), samen: g13breuken({ m: 5, n: 2, a1: 2, a2: 1, k: 3, b: 1 }), maak: g13breuken }
+      { naam: "Met breuken", plus: true, schema: SCHEMA_BREUK, voorbeeld: g13breuken({ m: 2, n: 3, a1: 1, a2: 2, k: 2, b: 3 }), samen: g13breuken({ m: 5, n: 2, a1: 2, a2: 1, k: 3, b: 1 }), maak: g13breuken }
     ] },
     oefen14: { titel: "🧮 Stap voor stap: snijpunten", intro: "Eerst x, dan y. En schrijf het punt netjes op.", soorten: [
       { naam: "Met de assen", voorbeeld: g14assen({ a: -3, x0: 3 }), samen: g14assen({ a: 4, x0: -2 }), maak: g14assen },
       { naam: "Van twee lijnen", voorbeeld: g14twee({ a1: 3, b1: -2, a2: -1, x: 2 }), samen: g14twee({ a1: 2, b1: 9, a2: 5, x: 2 }), maak: g14twee }
     ] },
     oefen15: { titel: "🧮 Stap voor stap: ongelijkheden", intro: "Met rekenen of met de grafiek. Let op bij delen door een negatief getal.", soorten: [
-      { naam: "Met rekenen", schema: SCHEMA_ONG, voorbeeld: g15alg({ a: 2, b: 7, c: 5, k: 3, t: ">" }), samen: g15alg({ a: 4, b: -3, c: 1, k: 4, t: "<" }), maak: g15alg },
+      { naam: "Met rekenen", plus: true, schema: SCHEMA_ONG, voorbeeld: g15alg({ a: 2, b: 7, c: 5, k: 3, t: ">" }), samen: g15alg({ a: 4, b: -3, c: 1, k: 4, t: "<" }), maak: g15alg },
       { naam: "Met de grafiek", voorbeeld: g15grafiek({ a1: 2, a2: -1, x0: 2, y0: 3, t: ">" }), samen: g15grafiek({ a1: -2, a2: 1, x0: 3, y0: 1, t: "<" }), maak: g15grafiek }
     ] },
     oefen16: { titel: "🧮 Stap voor stap: twee variabelen", intro: "Invullen, oplossen, en herleiden tot y = ax + b.", soorten: [
@@ -656,17 +656,17 @@
     { id: "constant", icoon: "➖", term: "constant verband", uitleg: "Een formule y = b, dus a = 0. De grafiek is een horizontale lijn.", voorbeeld: "y = 4: wat x ook is, y blijft 4." },
     { id: "rechtevenredig", icoon: "📐", term: "recht evenredig verband", uitleg: "Een formule y = ax, dus b = 0. De grafiek is een lijn door de oorsprong.", voorbeeld: "Photocards van €2: prijs = 2 · aantal. Nul kaarten kost nul euro." },
     { id: "oorsprong", icoon: "⭕", term: "oorsprong", uitleg: "Het punt O(0, 0), waar de x-as en de y-as elkaar snijden." },
-    { id: "evenwijdig", icoon: "🟰", term: "evenwijdig", uitleg: "Evenwijdige lijnen lopen naast elkaar en snijden nooit. Ze hebben dezelfde rc.", voorbeeld: "y = 3x + 1 en y = 3x − 4 zijn evenwijdig." },
+    { id: "evenwijdig", icoon: "🟰", plus: true, term: "evenwijdig", uitleg: "Evenwijdige lijnen lopen naast elkaar en snijden nooit. Ze hebben dezelfde rc.", voorbeeld: "y = 3x + 1 en y = 3x − 4 zijn evenwijdig." },
     { id: "lineairverband", icoon: "📊", term: "lineair verband", uitleg: "Een verband waarbij de grafiek een rechte lijn is. Bij elke stap komt er evenveel bij of af. De letters mogen anders zijn dan x en y.", voorbeeld: "K = −250t + 2000: elk uur 250 kaartjes minder." },
     { id: "lineairevergelijking", icoon: "⚖️", term: "lineaire vergelijking", uitleg: "Een vergelijking zonder kwadraten, zoals 7x + 2 = 3x + 18. Oplossen = de x vinden waarvoor links en rechts gelijk zijn.", voorbeeld: "7x + 2 = 3x + 18 geeft x = 4." },
     { id: "leden", icoon: "↔️", term: "linkerlid en rechterlid", uitleg: "Wat links van het is-teken staat, is het linkerlid. Wat rechts staat, het rechterlid.", voorbeeld: "Bij 4x + 4 = 28 − 2x is 4x + 4 het linkerlid." },
     { id: "haakjes", icoon: "🧩", term: "haakjes wegwerken", uitleg: "Het getal voor de haakjes keer elke term tussen de haakjes. Let op min keer min is plus.", voorbeeld: "−2(x − 3) = −2x + 6." },
     { id: "herleiden", icoon: "🧹", term: "herleiden", uitleg: "Korter schrijven door gelijksoortige termen samen te nemen. Ook: een vergelijking omschrijven tot y = ax + b.", voorbeeld: "22 − 2x + 6 herleid je tot 28 − 2x." },
-    { id: "breuken", icoon: "🍰", term: "breuken wegwerken", uitleg: "Vermenigvuldig alle termen met hetzelfde getal, zodat de breuken verdwijnen. Neem het kleinste getal waar alle noemers in passen.", voorbeeld: "½x + 2 = ⅓x + 3: alles keer 6 geeft 3x + 12 = 2x + 18." },
+    { id: "breuken", icoon: "🍰", plus: true, term: "breuken wegwerken", uitleg: "Vermenigvuldig alle termen met hetzelfde getal, zodat de breuken verdwijnen. Neem het kleinste getal waar alle noemers in passen.", voorbeeld: "½x + 2 = ⅓x + 3: alles keer 6 geeft 3x + 12 = 2x + 18." },
     { id: "snijpunt", icoon: "✖️", term: "snijpunt", uitleg: "Het punt waar twee grafieken elkaar kruisen. Stel de formules gelijk, bereken x en vul x in voor y.", voorbeeld: "y = 2x + 1 en y = −x + 7 snijden in S(2, 5)." },
     { id: "coordinaten", icoon: "📍", term: "coördinaten", uitleg: "Twee getallen die zeggen waar een punt ligt: eerst x (opzij), dan y (omhoog).", voorbeeld: "A(4, 0) ligt 4 naar rechts, op de x-as." },
     { id: "ongelijkheid", icoon: "↔️", term: "lineaire ongelijkheid", uitleg: "Lijkt op een lineaire vergelijking, maar met < of >. De oplossing is een heel gebied, zoals x > 2.", voorbeeld: "−x + 5 < x + 1 geeft x > 2." },
-    { id: "omklappen", icoon: "🔄", term: "het ongelijkheidsteken klapt om", uitleg: "Deel of vermenigvuldig je beide kanten met een negatief getal, dan wordt < een > (en andersom).", voorbeeld: "−2x < −4 wordt x > 2." },
+    { id: "omklappen", icoon: "🔄", plus: true, term: "het ongelijkheidsteken klapt om", uitleg: "Deel of vermenigvuldig je beide kanten met een negatief getal, dan wordt < een > (en andersom).", voorbeeld: "−2x < −4 wordt x > 2." },
     { id: "tweevariabelen", icoon: "🛍️", term: "vergelijking met twee variabelen", uitleg: "Een vergelijking met x én y, zoals 2x + 4y = 20. Er zijn veel oplossingen. De grafiek is een lijn.", voorbeeld: "Photocards van €2 en posters van €4, samen €20." },
     { id: "getallenpaar", icoon: "👯", term: "getallenpaar", uitleg: "Een x en een y samen. Het is een oplossing als het klopt in de vergelijking.", voorbeeld: "(4, 3) is een oplossing van 2x + 4y = 20, want 8 + 12 = 20." }
   ].map(k => metZeg(k, "term", "uitleg", "voorbeeld"));
@@ -685,7 +685,7 @@
       { velden: ["a", "b"], toon: "a = 1½ en b = −2", hint: "b lees je af op de y-as. Voor a: zoek een roosterpunt en reken omhoog : opzij.",
         beeld: fig({ x: 200, y: 44, w: 400, h: 390, xmin: -1, xmax: 4, ymin: -3, ymax: 5, fs: 13 }, P => {}), beeldLijn: [1.5, -2] }),
     U("q5", "§1.1", "Welke van deze lijnen hoort bij een recht evenredig verband: y = 4x + 1 of y = 4x? Licht toe.", "y = 4x, want daar is b = 0. De lijn gaat door de oorsprong.", ["y = 4x", "b = 0 / door de oorsprong"]),
-    R("q6", "§1.1", "Plus: lijn k is evenwijdig met l: y = 4x − 7 en gaat door R(−3, 2). Stel de formule van k op. Vul a en b in.", [4, 14], "Evenwijdig, dus a = 4. Invullen: 2 = 4 · −3 + b, dus 2 = −12 + b en b = 14. Dus k: y = 4x + 14.", { velden: ["a", "b"], toon: "a = 4 en b = 14", hint: "Evenwijdig: zelfde rc. Vul daarna de coördinaten van R in." }),
+    R("q6", "§1.1", "Lijn k is evenwijdig met l: y = 4x − 7 en gaat door R(−3, 2). Stel de formule van k op. Vul a en b in.", [4, 14], "Evenwijdig, dus a = 4. Invullen: 2 = 4 · −3 + b, dus 2 = −12 + b en b = 14. Dus k: y = 4x + 14.", { velden: ["a", "b"], toon: "a = 4 en b = 14", plus: true, hint: "Evenwijdig: zelfde rc. Vul daarna de coördinaten van R in." }),
     K("q7", "§1.1", "Wat is de richtingscoëfficiënt van y = 7 − 2x?", ["7", "−2", "2", "−7"], 1, "De rc is het getal bij x, met zijn teken: −2. Dat de x achteraan staat, maakt niet uit."),
     R("q8", "§1.2", "Stel de formule van N op. Vul a en b in.", [-10, 500], "b = 500. Bij t = 50 is N = 0. a = −500 : 50 = −10. Dus N = −10t + 500.",
       { velden: ["a", "b"], toon: "a = −10 en b = 500", hint: "Let op de schaal. Lees twee punten af die precies op een hoek liggen.",
@@ -699,7 +699,7 @@
     R("q13", "§1.3", "Los op: −3a − 4 = −a + 10.", -7, "Links en rechts + a en + 4: −2a = 14. Delen door −2: a = −7.", { velden: ["a"] }),
     R("q14", "§1.3", "Los op: 2(x + 5) = 8x − 14.", 4, "2x + 10 = 8x − 14. Dan −6x = −24, dus x = 4.", { velden: ["x"] }),
     R("q15", "§1.3", "Los op: −4(2 − x) = 2(3x + 1).", -5, "−8 + 4x = 6x + 2. Dan −2x = 10, dus x = −5.", { velden: ["x"], hint: "−4 keer −x is +4x." }),
-    R("q16", "§1.3", "Plus: los op: ⅔x + 1 = ½x + 3.", 12, "Alle termen keer 6: 4x + 6 = 3x + 18. Dus x = 12.", { velden: ["x"], hint: "Het kleinste getal waar 3 en 2 in passen, is 6." }),
+    R("q16", "§1.3", "Los op: ⅔x + 1 = ½x + 3.", 12, "Alle termen keer 6: 4x + 6 = 3x + 18. Dus x = 12.", { velden: ["x"], plus: true, hint: "Het kleinste getal waar 3 en 2 in passen, is 6." }),
     K("q17", "§1.3", "Wat is de eerste stap bij het oplossen van 3(x − 2) = 5 − (x + 1)?", ["Delen door 3", "De haakjes wegwerken", "x-termen naar links", "Beide leden herleiden"], 1, "Stap 1 van het werkschema: eerst de haakjes weg."),
     K("q18", "§1.3", "Je werkt de haakjes weg in 5 − 2(x − 4). Wat krijg je?", ["5 − 2x − 8", "5 − 2x + 8", "5 − 2x − 4", "3x − 12"], 1, "−2 keer −4 is +8. Dus 5 − 2x + 8, en dat herleid je tot 13 − 2x."),
     R("q19", "§1.4", "De lijn k: y = −4x + 12 snijdt de x-as in A. Bereken de coördinaten van A.", [3, 0], "Op de x-as is y = 0: −4x + 12 = 0, dus −4x = −12 en x = 3. A(3, 0).", { velden: ["x", "y"], toon: "A(3, 0)" }),
@@ -708,11 +708,11 @@
     U("q22", "§1.4", "Waarom stel je de formules gelijk als je het snijpunt van twee lijnen zoekt?", "In het snijpunt hebben beide lijnen dezelfde x én dezelfde y. Dus de formules geven daar hetzelfde getal.", ["Zelfde x en zelfde y", "Dus de formules zijn daar gelijk"]),
     K("q23", "§1.5", "Los op: 2x − 1 > x + 1. Gebruik de figuur.", ["x < 2", "x > 2", "x > 3", "x < 3"], 1, "De lijnen snijden bij x = 2. Rechts daarvan ligt de lijn van 2x − 1 boven die van x + 1.",
       { beeld: fig({ x: 150, y: 44, w: 420, h: 390, xmin: -1, xmax: 5, ymin: -2, ymax: 7, fs: 13 }, (P, B) => { lijnDoor(B, P, 2, -1); lijnDoor(B, P, 1, 1, { c: "rood" }); B.tekst(600, 80, "y = 2x − 1", { anker: "start", vet: true, c: "vak", grootte: 22, leest: false }); B.tekst(600, 120, "y = x + 1", { anker: "start", vet: true, c: "rood", grootte: 22, leest: false }); }) }),
-    K("q24", "§1.5", "Los op: 4x − 3 < 7x − 9.", ["x < 2", "x > 2", "x < −2", "x > −2"], 1, "−3x < −6. Delen door −3: het teken klapt om. Dus x > 2."),
-    K("q25", "§1.5", "Los op: 2(a + 4) < a − 3.", ["a < −11", "a > −11", "a < −5", "a > 11"], 0, "2a + 8 < a − 3, dus a < −11. Je deelt niet door een negatief getal, dus het teken blijft."),
-    K("q26", "§1.5", "Los op: 3x > 7x.", ["x > 0", "x < 0", "x > 4", "Er is geen oplossing"], 1, "3x − 7x > 0, dus −4x > 0. Delen door −4: het teken klapt om. x < 0."),
-    U("q27", "§1.5", "Wanneer klapt het ongelijkheidsteken om?", "Als je beide kanten deelt door, of vermenigvuldigt met, een negatief getal.", ["Delen of vermenigvuldigen", "met een negatief getal"]),
-    K("q28", "§1.5", "Plus: los op: 1 + 2(x − 4) > −(x − 2).", ["x > 3", "x < 3", "x > 1", "x > −3"], 0, "1 + 2x − 8 > −x + 2, dus 2x − 7 > −x + 2. Dan 3x > 9, dus x > 3."),
+    K("q24", "§1.5", "Los op: 4x − 3 < 7x − 9.", ["x < 2", "x > 2", "x < −2", "x > −2"], 1, "−3x < −6. Delen door −3: het teken klapt om. Dus x > 2.", { plus: true }),
+    K("q25", "§1.5", "Los op: 2(a + 4) < a − 3.", ["a < −11", "a > −11", "a < −5", "a > 11"], 0, "2a + 8 < a − 3, dus a < −11. Je deelt niet door een negatief getal, dus het teken blijft.", { plus: true }),
+    K("q26", "§1.5", "Los op: 3x > 7x.", ["x > 0", "x < 0", "x > 4", "Er is geen oplossing"], 1, "3x − 7x > 0, dus −4x > 0. Delen door −4: het teken klapt om. x < 0.", { plus: true }),
+    U("q27", "§1.5", "Wanneer klapt het ongelijkheidsteken om?", "Als je beide kanten deelt door, of vermenigvuldigt met, een negatief getal.", ["Delen of vermenigvuldigen", "met een negatief getal"], { plus: true }),
+    K("q28", "§1.5", "Los op: 1 + 2(x − 4) > −(x − 2).", ["x > 3", "x < 3", "x > 1", "x > −3"], 0, "1 + 2x − 8 > −x + 2, dus 2x − 7 > −x + 2. Dan 3x > 9, dus x > 3.", { plus: true }),
     K("q29", "§1.6", "Is het getallenpaar (15, −4) een oplossing van 2x + 7y = 2?", ["Ja, want 2 · 15 + 7 · −4 = 2", "Nee, want 2 · 15 + 7 · −4 = 58", "Nee, want 15 + −4 = 11"], 0, "30 − 28 = 2. Het klopt, dus het is een oplossing."),
     R("q30", "§1.6", "Gegeven is 3x + 4y = 24. Bereken de oplossing met y = 9.", -4, "3x + 36 = 24, dus 3x = −12 en x = −4.", { velden: ["x"] }),
     U("q31", "§1.6", "Een tas kost €6 en een muts €8. Je koopt x tassen en y mutsen en betaalt €52. Stel een vergelijking op met de variabelen x en y.", "6x + 8y = 52", ["6x voor de tassen", "8y voor de mutsen", "= 52"]),
@@ -720,7 +720,7 @@
     R("q33", "§1.6", "De lijn k: 4x − 5y = 20 snijdt de x-as in B. Bereken de coördinaten van B.", [5, 0], "y = 0: 4x = 20, dus x = 5. B(5, 0).", { velden: ["x", "y"], toon: "B(5, 0)" }),
     R("q34", "§1.6", "De lijn k: 4x − 5y = 20 snijdt de y-as in C. Bereken de coördinaten van C.", [0, -4], "x = 0: −5y = 20, dus y = −4. C(0, −4).", { velden: ["x", "y"], toon: "C(0, −4)" }),
     R("q35", "§1.6", "Bereken de richtingscoëfficiënt van l: 2x + 3y = 9.", -2 / 3, "3y = −2x + 9, dus y = −⅔x + 3. De rc is −⅔.", { velden: ["rc"], toon: "−2/3", hint: "Herleid tot y = ax + b. Een breuk mag: typ −2/3." }),
-    R("q36", "§1.6", "Plus: bereken de coördinaten van het snijpunt S van l: x + y = 4 en m: x + 3y = 10.", [1, 3], "l: y = −x + 4. m: y = −⅓x + 3⅓. Of slimmer: trek de vergelijkingen van elkaar af: 2y = 6, dus y = 3 en x = 1. S(1, 3).", { velden: ["x", "y"], toon: "S(1, 3)", hint: "Herleid allebei tot y = ax + b en stel ze gelijk." })
+    R("q36", "§1.6", "Bereken de coördinaten van het snijpunt S van l: x + y = 4 en m: x + 3y = 10.", [1, 3], "l: y = −x + 4. m: y = −⅓x + 3⅓. Of slimmer: trek de vergelijkingen van elkaar af: 2y = 6, dus y = 3 en x = 1. S(1, 3).", { velden: ["x", "y"], toon: "S(1, 3)", hint: "Herleid allebei tot y = ax + b en stel ze gelijk." })
   ];
   VRAGEN.forEach(q => { if (q.beeldLijn) { const [a, b] = q.beeldLijn, o = { x: 200, y: 44, w: 400, h: 390, xmin: -1, xmax: 4, ymin: -3, ymax: 5, fs: 13 }; q.beeld = B => lijnDoor(B, assen(B, o), a, b); } metZeg(q, "vraag", "keuzes"); });
 
@@ -773,7 +773,7 @@
       "<b>Steeds een nieuwe som</b> bij 'Zelf': vergelijkbaar met de toets, maar nooit dezelfde getallen. Zo oefent ze de aanpak en niet het antwoord.",
       "<b>Toetstraining door elkaar</b> (interleaving): op de toets moet ze zelf herkennen welke aanpak een vraag nodig heeft.",
       "<b>Gespreid herhalen</b> tot de toetsdatum, en <b>uit je hoofd tekenen</b> van de kernschema's.",
-      "<b>Plus</b> = de verdiepingsstof uit het boek (evenwijdige lijn, breuken, lastige ongelijkheden)."
+      "<b>➕ Plusstof</b> = de stof die in het boek met een plusteken is gemarkeerd: de evenwijdige lijn (§1.1), breuken wegwerken (§1.3) en ongelijkheden oplossen met rekenen, met het omklappen van het teken (§1.5). In de app staat er een gouden label bij."
     ]
   });
 
@@ -801,16 +801,16 @@
       { id: "overzicht", naam: "Overzicht", icoon: "🗺️", groep: "", render: overzicht },
       { id: "film11", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "Kijk hoe de grafiek van y = ax + b ontstaat. Aan het eind teken jij.", render: film(FILM11, "film11") },
       { id: "verband11", naam: "Welk verband?", icoon: "🔀", groep: "Leren", kort: "Constant, recht evenredig of een ander lineair verband?", render: el => L.sorteer(el, SORT11, naKlaar("verband11", "Volgende stap: zelf formules opstellen.")) },
-      { id: "oefen11", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Formule bij een lijn, punt op een lijn, plus: evenwijdige lijn.", render: oefen("oefen11") },
+      { id: "oefen11", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Formule bij een lijn, punt op een lijn, en ➕ evenwijdige lijn.", render: oefen("oefen11") },
       { id: "film12", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "Kaartjes voor een tour: een lineair verband met andere letters.", render: film(FILM12, "film12") },
       { id: "oefen12", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Formule uit een tabel of uit een grafiek met een schaal.", render: oefen("oefen12") },
       { id: "film13", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "De weegschaal en het werkschema voor vergelijkingen.", render: film(FILM13, "film13") },
-      { id: "oefen13", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Vergelijkingen oplossen, met en zonder haakjes, plus: breuken.", render: oefen("oefen13") },
+      { id: "oefen13", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Vergelijkingen oplossen, met en zonder haakjes, en ➕ met breuken.", render: oefen("oefen13") },
       { id: "film14", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "Snijpunten met de assen en van twee lijnen.", render: film(FILM14, "film14") },
       { id: "oefen14", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Snijpunten berekenen: eerst x, dan y.", render: oefen("oefen14") },
       { id: "film15", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "Ongelijkheden: met de grafiek en met rekenen.", render: film(FILM15, "film15") },
-      { id: "teken15", naam: "Klapt het om?", icoon: "🔄", groep: "Leren", kort: "Bij welke stap klapt het ongelijkheidsteken om?", render: el => L.sorteer(el, SORT15, naKlaar("teken15", "Volgende stap: zelf ongelijkheden oplossen.")) },
-      { id: "oefen15", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Ongelijkheden oplossen, met rekenen en met de grafiek.", render: oefen("oefen15") },
+      { id: "teken15", naam: "Klapt het om?", icoon: "🔄", groep: "Leren", plus: true, kort: "Bij welke stap klapt het ongelijkheidsteken om?", render: el => L.sorteer(el, SORT15, naKlaar("teken15", "Volgende stap: zelf ongelijkheden oplossen.")) },
+      { id: "oefen15", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Ongelijkheden oplossen: met de grafiek, en ➕ met rekenen.", render: oefen("oefen15") },
       { id: "film16", naam: "Filmpje", icoon: "🎬", groep: "Leren", kort: "Merch kopen: een vergelijking met x én y.", render: film(FILM16, "film16") },
       { id: "oefen16", naam: "Stap voor stap", icoon: "🧮", groep: "Leren", kort: "Oplossingen controleren en berekenen, en de rc.", render: oefen("oefen16") },
       { id: "begrippen", naam: "Begrippen", icoon: "🃏", groep: "Oefenen", render: el => L.kaarten(el, MOD, BEGRIPPEN) },

@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 28;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 29;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -347,7 +347,7 @@
   const modules = [];
   const routes = {};
   let leave = [];
-  let pendingTag = "", pendingEdit = null;
+  let pendingTag = "", pendingEdit = null, pendingOpdracht = null;
 
   // Terug gaat één niveau omhoog: stap → paragraaf → hoofdstuk → start.
   const ouders = { notitie: "notities" };
@@ -488,9 +488,10 @@
   routes.tekenen = el => {
     const tag = pendingTag; pendingTag = "";
     const edit = pendingEdit; pendingEdit = null;
+    const opdracht = pendingOpdracht; pendingOpdracht = null;
     el.innerHTML = `<div id="studio"></div>`;
     const ui = Studio($("#studio", el), {
-      aspect: 0.75, papier: "wit", strokes: edit ? edit.strokes : [],
+      aspect: 0.75, papier: "wit", strokes: edit ? edit.strokes : [], opdracht,
       extraHtml: `<button class="btn small" id="save">💾 Bewaar</button>`
     });
     $("#save", el).onclick = async () => {
@@ -734,7 +735,7 @@
           <button class="kruimel" data-go="${m.id}-p${i + 1}">${ik("terug")}<span class="par-badge">${esc(parLabel(s))}</span><span>${esc(s.titel)}</span></button>
           <div class="stappen">${s.delen.map((d, k) => { const od = onderdeel(m, d), klaar = !!v.gedaan[d];
             return `<button class="stap ${d === o.id ? "nu" : ""} ${klaar ? "klaar" : ""}" data-go="${m.id}-${d}" ${d === o.id ? 'aria-current="step"' : ""}>
-              <span class="stap-n">${klaar && d !== o.id ? ik("check") : k + 1}</span><span class="stap-nm">${od.icoon} ${esc(od.naam)}</span></button>`; }).join("")}</div>
+              <span class="stap-n">${klaar && d !== o.id ? ik("check") : k + 1}</span><span class="stap-nm">${od.icoon} ${esc(od.naam)}${od.plus ? " ➕" : ""}</span></button>`; }).join("")}</div>
         </nav>`,
         onder: `<nav class="stap-nav">
           ${vorige ? `<button class="btn ghost" data-go="${m.id}-${vorige.d}">${ik("terug")}<span>${esc(naamVan(vorige))}</span></button>` : `<span></span>`}
@@ -768,7 +769,7 @@
         </div>
         <ol class="stap-lijst">${delen.map((d, k) => `<li><button class="stap-rij ${v.gedaan[d.id] ? "klaar" : ""}" data-go="${m.id}-${d.id}">
           <span class="stap-n">${v.gedaan[d.id] ? ik("check") : k + 1}</span><span class="tile-ic">${d.icoon}</span>
-          <span class="stap-tekst"><b>${esc(d.naam)}</b>${d.kort ? `<small>${esc(d.kort)}</small>` : ""}</span>${ik("verder", "chev")}</button></li>`).join("")}</ol>
+          <span class="stap-tekst"><b>${esc(d.naam)}</b>${d.plus ? ' <span class="plus-tag">➕ Plusstof</span>' : ""}${d.kort ? `<small>${esc(d.kort)}</small>` : ""}</span>${ik("verder", "chev")}</button></li>`).join("")}</ol>
         <div class="row par-start"><button class="btn groot" data-go="${m.id}-${(open || delen[0]).id}">${ik("play")} ${open ? (klaar ? "Verder met" : "Start met") : "Nog eens:"} ${esc((open || delen[0]).naam)}</button>
           <span class="soft">${klaar} van ${delen.length} gedaan</span></div>
       </div>
@@ -812,7 +813,7 @@
   window.App = {
     $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, spreekbaar, stemKwaliteit, huidigeStem: () => voice, sleutel, opname, bindSay, store, db, modal, meetBlock, go, onLeave,
     shareText, shareImage, imageFromFile, busy,
-    tekenMet(tag) { pendingTag = tag || ""; go("tekenen"); },
+    tekenMet(tag, opdracht) { pendingTag = tag || ""; pendingOpdracht = opdracht || null; go("tekenen"); },
     addRoute(name, fn) { routes[name] = fn; },
     addModule(m) {
       modules.push(m);

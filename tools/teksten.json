@@ -4104,378 +4104,6 @@
   "waar": "wiskunde-h1-p6"
  },
  {
-  "tekst": "Van min 3 iks is kleiner dan 6 naar iks . min 2",
-  "stem": "Sulafat",
-  "sleutel": "73360df2",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Beide kanten delen door 3",
-  "stem": "Sulafat",
-  "sleutel": "b41f21f6",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Dit hoort bij Blijft staan. 3 is positief.",
-  "stem": "Sulafat",
-  "sleutel": "ba06a2a1",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Alle termen keer 12, om breuken weg te werken",
-  "stem": "Sulafat",
-  "sleutel": "e3156934",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Dit hoort bij Blijft staan. 12 is positief.",
-  "stem": "Sulafat",
-  "sleutel": "852c0075",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Van 4 iks is groter dan min 8 naar iks . min 2",
-  "stem": "Sulafat",
-  "sleutel": "d48e02ae",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Dit hoort bij Blijft staan. Je deelt door 4. Dat het getal min 8 negatief is, maakt niet uit! Dus iks is groter dan min 2.",
-  "stem": "Sulafat",
-  "sleutel": "3f18d884",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Links en rechts 5 optellen",
-  "stem": "Sulafat",
-  "sleutel": "7ca1bc40",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Dit hoort bij Blijft staan. Optellen en aftrekken veranderen het teken nooit.",
-  "stem": "Sulafat",
-  "sleutel": "be18bdaf",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Beide kanten keer min 1",
-  "stem": "Sulafat",
-  "sleutel": "5e0ca2e1",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Beide kanten delen door min 5",
-  "stem": "Sulafat",
-  "sleutel": "e3a581dc",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Links en rechts min 7 optellen",
-  "stem": "Sulafat",
-  "sleutel": "025ce75e",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Dit hoort bij Blijft staan. Optellen blijft optellen, ook van een negatief getal.",
-  "stem": "Sulafat",
-  "sleutel": "e4f416b2",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Beide kanten delen door min 2",
-  "stem": "Sulafat",
-  "sleutel": "e2a58049",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Links en rechts 4 iks aftrekken",
-  "stem": "Sulafat",
-  "sleutel": "ffc0c0ee",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Dit hoort bij Blijft staan. Ook met iks erbij: aftrekken verandert het teken niet.",
-  "stem": "Sulafat",
-  "sleutel": "31516bb7",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Gegeven is de lijn l: ij is min 6 iks plus 11. Op l ligt het punt A met iks-coördinaat 9. Bereken de ij-coördinaat van A.",
-  "stem": "Sulafat",
-  "sleutel": "3157e1d4",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Welke van deze lijnen hoort bij een recht evenredig verband: ij is 4 iks plus 1 of ij is 4 iks? Licht toe.",
-  "stem": "Sulafat",
-  "sleutel": "0a5fc923",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Stel de formule van N op. Vul a en b in.",
-  "stem": "Sulafat",
-  "sleutel": "79ed51e0",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Stel de formule op van de lijn in de figuur. Vul a en b in.",
-  "stem": "Sulafat",
-  "sleutel": "07458a06",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Wat is de richtingscoëfficiënt van ij is 7 min 2 iks?",
-  "stem": "Sulafat",
-  "sleutel": "0ede462d",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Wat is de richtingscoëfficiënt van ij is 7 min 2 iks? A: 7. B: min 2. C: 2. D: min 7",
-  "stem": "Sulafat",
-  "sleutel": "83ea3001",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Ligt het punt B met coördinaten min 5 en 41 op de lijn l: ij is min 6 iks plus 11?",
-  "stem": "Sulafat",
-  "sleutel": "01d62da5",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Ligt het punt B met coördinaten min 5 en 41 op de lijn l: ij is min 6 iks plus 11? A: Nee, want min 6 keer min 5 plus 11 is 19. B: Nee, want min 6 keer min 5 plus 11 is min 19. C: Ja, want min 6 keer min 5 plus 11 is 41. D: Ja, want min 5 plus 41 is 36",
-  "stem": "Sulafat",
-  "sleutel": "89b7b313",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Teken in één figuur de lijnen k: ij is een half iks plus 1 en l: ij is min 2 iks plus 3. Hoe pak je dat aan?",
-  "stem": "Sulafat",
-  "sleutel": "18f5d13a",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Plus: lijn k is evenwijdig met l: ij is 4 iks min 7 en gaat door R met coördinaten min 3 en 2. Stel de formule van k op. Vul a en b in.",
-  "stem": "Sulafat",
-  "sleutel": "1f938865",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 6 iks min 11 is 2 iks plus 13.",
-  "stem": "Sulafat",
-  "sleutel": "0165ce28",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Plus: los op: twee derde iks plus 1 is een half iks plus 3.",
-  "stem": "Sulafat",
-  "sleutel": "58d5141a",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Er geldt A is min 25 t plus 3600, met t is 0 in 2024. Bereken A in 2040.",
-  "stem": "Sulafat",
-  "sleutel": "3fda88ee",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: min 3 a min 4 is min a plus 10.",
-  "stem": "Sulafat",
-  "sleutel": "5dd10b06",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Stel de formule van A op, zie de tabel. Vul a en b in.",
-  "stem": "Sulafat",
-  "sleutel": "86a1cca6",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: min 4 keer, 2 min iks, is 2 keer, 3 iks plus 1.",
-  "stem": "Sulafat",
-  "sleutel": "d5fed266",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 2 keer, iks plus 5, is 8 iks min 14.",
-  "stem": "Sulafat",
-  "sleutel": "a81b06a9",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "In de tabel zie je de oppervlakte A van een park, in m², per jaar t. Waarom is er sprake van een lineair verband?",
-  "stem": "Sulafat",
-  "sleutel": "97a57fe7",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "De lijn k: ij is min 4 iks plus 12 snijdt de iks-as in A. Bereken de coördinaten van A.",
-  "stem": "Sulafat",
-  "sleutel": "937f1c6a",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Wat is de eerste stap bij het oplossen van 3 keer, iks min 2, is 5 min, iks plus 1?",
-  "stem": "Sulafat",
-  "sleutel": "0e8ac329",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Wat is de eerste stap bij het oplossen van 3 keer, iks min 2, is 5 min, iks plus 1? A: Delen door 3. B: De haakjes wegwerken. C: iks-termen naar links. D: Beide leden herleiden",
-  "stem": "Sulafat",
-  "sleutel": "6912be4a",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "De lijn k: ij is min 4 iks plus 12 snijdt de ij-as in B. Bereken de coördinaten van B.",
-  "stem": "Sulafat",
-  "sleutel": "85b07abc",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Je werkt de haakjes weg in 5 min 2 keer, iks min 4. Wat krijg je?",
-  "stem": "Sulafat",
-  "sleutel": "edecf411",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Je werkt de haakjes weg in 5 min 2 keer, iks min 4. Wat krijg je? A: 5 min 2 iks min 8. B: 5 min 2 iks plus 8. C: 5 min 2 iks min 4. D: 3 iks min 12",
-  "stem": "Sulafat",
-  "sleutel": "e60cb1a0",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 2 iks min 1 is groter dan iks plus 1. Gebruik de figuur.",
-  "stem": "Sulafat",
-  "sleutel": "f4a352d2",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 2 iks min 1 is groter dan iks plus 1. Gebruik de figuur. A: iks is kleiner dan 2. B: iks is groter dan 2. C: iks is groter dan 3. D: iks is kleiner dan 3",
-  "stem": "Sulafat",
-  "sleutel": "001968e4",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "De lijnen k: ij is min 2 iks plus 5 en l: ij is 4 iks plus 17 snijden elkaar in S. Bereken de coördinaten van S.",
-  "stem": "Sulafat",
-  "sleutel": "bab7a412",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Waarom stel je de formules gelijk als je het snijpunt van twee lijnen zoekt?",
-  "stem": "Sulafat",
-  "sleutel": "ada74e44",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 4 iks min 3 is kleiner dan 7 iks min 9.",
-  "stem": "Sulafat",
-  "sleutel": "3a20e6f0",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 4 iks min 3 is kleiner dan 7 iks min 9. A: iks is kleiner dan 2. B: iks is groter dan 2. C: iks is kleiner dan min 2. D: iks is groter dan min 2",
-  "stem": "Sulafat",
-  "sleutel": "b5fa2e72",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Plus: los op: 1 plus 2 keer, iks min 4, is groter dan min, iks min 2.",
-  "stem": "Sulafat",
-  "sleutel": "df0be9ca",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Plus: los op: 1 plus 2 keer, iks min 4, is groter dan min, iks min 2. A: iks is groter dan 3. B: iks is kleiner dan 3. C: iks is groter dan 1. D: iks is groter dan min 3",
-  "stem": "Sulafat",
-  "sleutel": "ef9960c9",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 2 keer, a plus 4, is kleiner dan a min 3.",
-  "stem": "Sulafat",
-  "sleutel": "26cf1b3f",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 2 keer, a plus 4, is kleiner dan a min 3. A: a is kleiner dan min 11. B: a is groter dan min 11. C: a is kleiner dan min 5. D: a is groter dan 11",
-  "stem": "Sulafat",
-  "sleutel": "9733188c",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 3 iks is groter dan 7 iks.",
-  "stem": "Sulafat",
-  "sleutel": "15a49960",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Los op: 3 iks is groter dan 7 iks. A: iks is groter dan 0. B: iks is kleiner dan 0. C: iks is groter dan 4. D: Er is geen oplossing",
-  "stem": "Sulafat",
-  "sleutel": "f1a01f0c",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Wanneer klapt het ongelijkheidsteken om?",
-  "stem": "Sulafat",
-  "sleutel": "5f827e7c",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Gegeven is 3 iks plus 4 ij is 24. Bereken de oplossing met ij is 9.",
-  "stem": "Sulafat",
-  "sleutel": "1786b318",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Er geldt 6 iks plus 8 ij is 52, tassen en mutsen. Je koopt 2 mutsen. Bereken hoeveel tassen je koopt.",
-  "stem": "Sulafat",
-  "sleutel": "1963110c",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Is het getallenpaar 15 en min 4 een oplossing van 2 iks plus 7 ij is 2?",
-  "stem": "Sulafat",
-  "sleutel": "92906fda",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Is het getallenpaar 15 en min 4 een oplossing van 2 iks plus 7 ij is 2? A: Ja, want 2 keer 15 plus 7 keer min 4 is 2. B: Nee, want 2 keer 15 plus 7 keer min 4 is 58. C: Nee, want 15 plus min 4 is 11",
-  "stem": "Sulafat",
-  "sleutel": "390ccd9c",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Een tas kost 6 euro en een muts 8 euro. Je koopt iks tassen en ij mutsen en betaalt 52 euro. Stel een vergelijking op met de variabelen iks en ij.",
-  "stem": "Sulafat",
-  "sleutel": "ec44aba4",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Plus: bereken de coördinaten van het snijpunt S van l: iks plus ij is 4 en m: iks plus 3 ij is 10.",
-  "stem": "Sulafat",
-  "sleutel": "e571d7e2",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "De lijn k: 4 iks min 5 ij is 20 snijdt de ij-as in C. Bereken de coördinaten van C.",
-  "stem": "Sulafat",
-  "sleutel": "7253ecec",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "Bereken de richtingscoëfficiënt van l: 2 iks plus 3 ij is 9.",
-  "stem": "Sulafat",
-  "sleutel": "6c0137fb",
-  "waar": "wiskunde-h1-toets"
- },
- {
-  "tekst": "De lijn k: 4 iks min 5 ij is 20 snijdt de iks-as in B. Bereken de coördinaten van B.",
-  "stem": "Sulafat",
-  "sleutel": "69101ae2",
-  "waar": "wiskunde-h1-toets"
- },
- {
   "tekst": "ij is min 4 iks",
   "stem": "Sulafat",
   "sleutel": "1aa9e48d",
@@ -4588,5 +4216,377 @@
   "stem": "Sulafat",
   "sleutel": "4c51ec1b",
   "waar": "wiskunde-h1-verband11"
+ },
+ {
+  "tekst": "Ligt het punt B met coördinaten min 5 en 41 op de lijn l: ij is min 6 iks plus 11?",
+  "stem": "Sulafat",
+  "sleutel": "01d62da5",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Ligt het punt B met coördinaten min 5 en 41 op de lijn l: ij is min 6 iks plus 11? A: Nee, want min 6 keer min 5 plus 11 is 19. B: Nee, want min 6 keer min 5 plus 11 is min 19. C: Ja, want min 6 keer min 5 plus 11 is 41. D: Ja, want min 5 plus 41 is 36",
+  "stem": "Sulafat",
+  "sleutel": "89b7b313",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Welke van deze lijnen hoort bij een recht evenredig verband: ij is 4 iks plus 1 of ij is 4 iks? Licht toe.",
+  "stem": "Sulafat",
+  "sleutel": "0a5fc923",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Teken in één figuur de lijnen k: ij is een half iks plus 1 en l: ij is min 2 iks plus 3. Hoe pak je dat aan?",
+  "stem": "Sulafat",
+  "sleutel": "18f5d13a",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Gegeven is de lijn l: ij is min 6 iks plus 11. Op l ligt het punt A met iks-coördinaat 9. Bereken de ij-coördinaat van A.",
+  "stem": "Sulafat",
+  "sleutel": "3157e1d4",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Wat is de richtingscoëfficiënt van ij is 7 min 2 iks?",
+  "stem": "Sulafat",
+  "sleutel": "0ede462d",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Wat is de richtingscoëfficiënt van ij is 7 min 2 iks? A: 7. B: min 2. C: 2. D: min 7",
+  "stem": "Sulafat",
+  "sleutel": "83ea3001",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Stel de formule op van de lijn in de figuur. Vul a en b in.",
+  "stem": "Sulafat",
+  "sleutel": "07458a06",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Stel de formule van N op. Vul a en b in.",
+  "stem": "Sulafat",
+  "sleutel": "79ed51e0",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Lijn k is evenwijdig met l: ij is 4 iks min 7 en gaat door R met coördinaten min 3 en 2. Stel de formule van k op. Vul a en b in.",
+  "stem": "Sulafat",
+  "sleutel": "bdf9a493",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: min 3 a min 4 is min a plus 10.",
+  "stem": "Sulafat",
+  "sleutel": "5dd10b06",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Er geldt A is min 25 t plus 3600, met t is 0 in 2024. Bereken A in 2040.",
+  "stem": "Sulafat",
+  "sleutel": "3fda88ee",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: twee derde iks plus 1 is een half iks plus 3.",
+  "stem": "Sulafat",
+  "sleutel": "ae96aed8",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 6 iks min 11 is 2 iks plus 13.",
+  "stem": "Sulafat",
+  "sleutel": "0165ce28",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: min 4 keer, 2 min iks, is 2 keer, 3 iks plus 1.",
+  "stem": "Sulafat",
+  "sleutel": "d5fed266",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Stel de formule van A op, zie de tabel. Vul a en b in.",
+  "stem": "Sulafat",
+  "sleutel": "86a1cca6",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "In de tabel zie je de oppervlakte A van een park, in m², per jaar t. Waarom is er sprake van een lineair verband?",
+  "stem": "Sulafat",
+  "sleutel": "97a57fe7",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 2 keer, iks plus 5, is 8 iks min 14.",
+  "stem": "Sulafat",
+  "sleutel": "a81b06a9",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Je werkt de haakjes weg in 5 min 2 keer, iks min 4. Wat krijg je?",
+  "stem": "Sulafat",
+  "sleutel": "edecf411",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Je werkt de haakjes weg in 5 min 2 keer, iks min 4. Wat krijg je? A: 5 min 2 iks min 8. B: 5 min 2 iks plus 8. C: 5 min 2 iks min 4. D: 3 iks min 12",
+  "stem": "Sulafat",
+  "sleutel": "e60cb1a0",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 4 iks min 3 is kleiner dan 7 iks min 9.",
+  "stem": "Sulafat",
+  "sleutel": "3a20e6f0",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 4 iks min 3 is kleiner dan 7 iks min 9. A: iks is kleiner dan 2. B: iks is groter dan 2. C: iks is kleiner dan min 2. D: iks is groter dan min 2",
+  "stem": "Sulafat",
+  "sleutel": "b5fa2e72",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "De lijn k: ij is min 4 iks plus 12 snijdt de iks-as in A. Bereken de coördinaten van A.",
+  "stem": "Sulafat",
+  "sleutel": "937f1c6a",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Wat is de eerste stap bij het oplossen van 3 keer, iks min 2, is 5 min, iks plus 1?",
+  "stem": "Sulafat",
+  "sleutel": "0e8ac329",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Wat is de eerste stap bij het oplossen van 3 keer, iks min 2, is 5 min, iks plus 1? A: Delen door 3. B: De haakjes wegwerken. C: iks-termen naar links. D: Beide leden herleiden",
+  "stem": "Sulafat",
+  "sleutel": "6912be4a",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 2 iks min 1 is groter dan iks plus 1. Gebruik de figuur.",
+  "stem": "Sulafat",
+  "sleutel": "f4a352d2",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 2 iks min 1 is groter dan iks plus 1. Gebruik de figuur. A: iks is kleiner dan 2. B: iks is groter dan 2. C: iks is groter dan 3. D: iks is kleiner dan 3",
+  "stem": "Sulafat",
+  "sleutel": "001968e4",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "De lijn k: ij is min 4 iks plus 12 snijdt de ij-as in B. Bereken de coördinaten van B.",
+  "stem": "Sulafat",
+  "sleutel": "85b07abc",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "De lijnen k: ij is min 2 iks plus 5 en l: ij is 4 iks plus 17 snijden elkaar in S. Bereken de coördinaten van S.",
+  "stem": "Sulafat",
+  "sleutel": "bab7a412",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Waarom stel je de formules gelijk als je het snijpunt van twee lijnen zoekt?",
+  "stem": "Sulafat",
+  "sleutel": "ada74e44",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Een tas kost 6 euro en een muts 8 euro. Je koopt iks tassen en ij mutsen en betaalt 52 euro. Stel een vergelijking op met de variabelen iks en ij.",
+  "stem": "Sulafat",
+  "sleutel": "ec44aba4",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Is het getallenpaar 15 en min 4 een oplossing van 2 iks plus 7 ij is 2?",
+  "stem": "Sulafat",
+  "sleutel": "92906fda",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Is het getallenpaar 15 en min 4 een oplossing van 2 iks plus 7 ij is 2? A: Ja, want 2 keer 15 plus 7 keer min 4 is 2. B: Nee, want 2 keer 15 plus 7 keer min 4 is 58. C: Nee, want 15 plus min 4 is 11",
+  "stem": "Sulafat",
+  "sleutel": "390ccd9c",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 3 iks is groter dan 7 iks.",
+  "stem": "Sulafat",
+  "sleutel": "15a49960",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 3 iks is groter dan 7 iks. A: iks is groter dan 0. B: iks is kleiner dan 0. C: iks is groter dan 4. D: Er is geen oplossing",
+  "stem": "Sulafat",
+  "sleutel": "f1a01f0c",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 1 plus 2 keer, iks min 4, is groter dan min, iks min 2.",
+  "stem": "Sulafat",
+  "sleutel": "02136b50",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 1 plus 2 keer, iks min 4, is groter dan min, iks min 2. A: iks is groter dan 3. B: iks is kleiner dan 3. C: iks is groter dan 1. D: iks is groter dan min 3",
+  "stem": "Sulafat",
+  "sleutel": "2bb1262f",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Gegeven is 3 iks plus 4 ij is 24. Bereken de oplossing met ij is 9.",
+  "stem": "Sulafat",
+  "sleutel": "1786b318",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 2 keer, a plus 4, is kleiner dan a min 3.",
+  "stem": "Sulafat",
+  "sleutel": "26cf1b3f",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Los op: 2 keer, a plus 4, is kleiner dan a min 3. A: a is kleiner dan min 11. B: a is groter dan min 11. C: a is kleiner dan min 5. D: a is groter dan 11",
+  "stem": "Sulafat",
+  "sleutel": "9733188c",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Wanneer klapt het ongelijkheidsteken om?",
+  "stem": "Sulafat",
+  "sleutel": "5f827e7c",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Er geldt 6 iks plus 8 ij is 52, tassen en mutsen. Je koopt 2 mutsen. Bereken hoeveel tassen je koopt.",
+  "stem": "Sulafat",
+  "sleutel": "1963110c",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Bereken de coördinaten van het snijpunt S van l: iks plus ij is 4 en m: iks plus 3 ij is 10.",
+  "stem": "Sulafat",
+  "sleutel": "a9caa108",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "De lijn k: 4 iks min 5 ij is 20 snijdt de ij-as in C. Bereken de coördinaten van C.",
+  "stem": "Sulafat",
+  "sleutel": "7253ecec",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "De lijn k: 4 iks min 5 ij is 20 snijdt de iks-as in B. Bereken de coördinaten van B.",
+  "stem": "Sulafat",
+  "sleutel": "69101ae2",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Bereken de richtingscoëfficiënt van l: 2 iks plus 3 ij is 9.",
+  "stem": "Sulafat",
+  "sleutel": "6c0137fb",
+  "waar": "wiskunde-h1-toets"
+ },
+ {
+  "tekst": "Beide kanten delen door 3",
+  "stem": "Sulafat",
+  "sleutel": "b41f21f6",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Dit hoort bij Blijft staan. 3 is positief.",
+  "stem": "Sulafat",
+  "sleutel": "ba06a2a1",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Beide kanten keer min 1",
+  "stem": "Sulafat",
+  "sleutel": "5e0ca2e1",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Links en rechts 5 optellen",
+  "stem": "Sulafat",
+  "sleutel": "7ca1bc40",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Dit hoort bij Blijft staan. Optellen en aftrekken veranderen het teken nooit.",
+  "stem": "Sulafat",
+  "sleutel": "be18bdaf",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Links en rechts 4 iks aftrekken",
+  "stem": "Sulafat",
+  "sleutel": "ffc0c0ee",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Dit hoort bij Blijft staan. Ook met iks erbij: aftrekken verandert het teken niet.",
+  "stem": "Sulafat",
+  "sleutel": "31516bb7",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Van 4 iks is groter dan min 8 naar iks . min 2",
+  "stem": "Sulafat",
+  "sleutel": "d48e02ae",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Dit hoort bij Blijft staan. Je deelt door 4. Dat het getal min 8 negatief is, maakt niet uit! Dus iks is groter dan min 2.",
+  "stem": "Sulafat",
+  "sleutel": "3f18d884",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Van min 3 iks is kleiner dan 6 naar iks . min 2",
+  "stem": "Sulafat",
+  "sleutel": "73360df2",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Beide kanten delen door min 5",
+  "stem": "Sulafat",
+  "sleutel": "e3a581dc",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Beide kanten delen door min 2",
+  "stem": "Sulafat",
+  "sleutel": "e2a58049",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Links en rechts min 7 optellen",
+  "stem": "Sulafat",
+  "sleutel": "025ce75e",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Dit hoort bij Blijft staan. Optellen blijft optellen, ook van een negatief getal.",
+  "stem": "Sulafat",
+  "sleutel": "e4f416b2",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Alle termen keer 12, om breuken weg te werken",
+  "stem": "Sulafat",
+  "sleutel": "e3156934",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "Dit hoort bij Blijft staan. 12 is positief.",
+  "stem": "Sulafat",
+  "sleutel": "852c0075",
+  "waar": "wiskunde-h1-teken15"
  }
 ]
