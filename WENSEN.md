@@ -55,6 +55,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ### Opgenomen stemmen: verder uitrollen (besluit 17)
 - Stand 2026-11-09: H4 179/180, Geschiedenis H1 314/315, tellers en appschermen compleet. Twee teksten afgekeurd (de stem slaat een woord over of voegt er een toe); die lezen de iPad-stem. Bij de volgende run nog eens proberen.
+- **Schermen met zinnen na elkaar opnieuw inspreken in één opname per scherm** (filmpjes, chats en kaartfilmpje van H1, chat van H4). Die komen nu nog uit verschillende verzoeken en kunnen per zin net anders klinken. Het filmpje van H4 is al gedaan (2026-11-09). Werk: klein, ongeveer 15 verzoeken.
 - Knippen van bundels gaat nu op de lengte van de teksten (dynamisch programmeren): 270 teksten in ruim 5 minuten met 42 verzoeken (2026-11-09).
 - Gedaan (2026-11-08): wisselende teksten gesplitst, tellers apart; nieuwe opnames op 32 kbps; opnames per hoofdstuk geladen en blijvend bewaard (niet opnieuw downloaden na een update); verzamelaar 40× sneller.
 - **Verzamelaar** (`tools/verzamel.js`) klikt willekeurig rond met voorkeuren per leervorm. Een nieuwe leervorm heeft eigen voorkeursknoppen nodig, anders worden teksten gemist. Werk: klein, per nieuwe vorm.

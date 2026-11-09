@@ -141,26 +141,42 @@ def controleer(x, tmp):
     elif os.path.exists(tmp): os.unlink(tmp)
     return ok, a
 
-def maak_bundel(groep):
+def maak_bundel(groep, heel=False):
     """Spreek een bundel in en knip; geeft de teksten terug die nog niet gelukt zijn.
-    Lukt het knippen niet, dan worden beide helften apart geprobeerd."""
+    Lukt het knippen niet, dan worden beide helften apart geprobeerd.
+    heel=True: alleen bewaren als ALLE teksten goed zijn (één opname voor het hele scherm); anders niets bewaren."""
     try:
         stukken = knip(tts("\n\n".join(x["tekst"] for x in groep), groep[0]["stem"]), [len(x["tekst"]) for x in groep])
     except DagLimiet: return groep
     except Exception as e:
         print("bundel mislukt:", e, flush=True); stukken = None
     if stukken is None:
-        if len(groep) == 1: return groep
+        if len(groep) == 1 or heel: return groep
         h = len(groep) // 2; print(f"bundel van {len(groep)} niet te knippen, in tweeën", flush=True)
         return maak_bundel(groep[:h]) + maak_bundel(groep[h:])
-    def stuk(paar):   # opschonen en controleren, alle stukken van een bundel tegelijk
+    def stuk(paar):   # opschonen en controleren, alle stukken van een bundel tegelijk; eerst als .tmp
         x, pcm = paar; tmp = doel(x) + ".tmp.mp3"
         try:
-            bewaar(pcm, tmp); ok, a = controleer(x, tmp)
+            bewaar(pcm, tmp); ok, a = klopt(x["tekst"], tmp)
         except Exception as e: ok, a = False, str(e)
         print(x["sleutel"], "goed (bundel)" if ok else "afgekeurd: " + a[:120], "|", x["tekst"][:60], flush=True)
-        return None if ok else x
-    with ThreadPoolExecutor(len(groep)) as pool: return [x for x in pool.map(stuk, zip(groep, stukken)) if x]
+        return x, tmp, ok
+    with ThreadPoolExecutor(len(groep)) as pool: uit = list(pool.map(stuk, zip(groep, stukken)))
+    alles_goed = all(ok for _, _, ok in uit)
+    for x, tmp, ok in uit:
+        if ok and (alles_goed or not heel): os.replace(tmp, doel(x))
+        elif os.path.exists(tmp): os.unlink(tmp)
+    return [] if alles_goed else ([x for x, _, _ in uit] if heel else [x for x, _, ok in uit if not ok])
+
+def scherm_opnieuw(groep, keer=2):
+    """Een scherm waarvan een tekst afgekeurd is: het hele scherm opnieuw in één opname (max. `keer` pogingen).
+    Lukt dat niet, dan blijven de goedgekeurde stukken van de eerste opname staan en worden alleen de gaten gevuld."""
+    for _ in range(keer):
+        if model_nu[0] >= len(MODELLEN): break
+        print(f"scherm {groep[0]['waar']} opnieuw in één opname ({len(groep)} teksten)", flush=True)
+        if not maak_bundel(groep, heel=True):
+            return []
+    return [x for x in groep if not os.path.exists(doel(x))]
 
 def maak_los(x):
     for poging in range(2):
@@ -173,13 +189,16 @@ def maak_los(x):
     print(x["sleutel"], "MISLUKT: " + a[:150], "|", x["tekst"][:60], flush=True); return False
 
 def bundels(xs):
+    """Bundel per scherm en per stem, in de volgorde van het scherm. Elk verzoek levert een net iets andere versie
+    van een stem op; teksten die direct na elkaar klinken (filmpje, chat) moeten daarom uit één verzoek komen.
+    Een scherm met meer dan BUNDEL teksten wordt in zo gelijk mogelijke delen gesplitst."""
     groepen = []
-    for stem in sorted({x["stem"] for x in xs}):
-        g = []
-        for x in [x for x in xs if x["stem"] == stem]:
-            if g and (len(g) >= BUNDEL or sum(len(y["tekst"]) for y in g) + len(x["tekst"]) > MAXTEKENS): groepen.append(g); g = []
-            g.append(x)
-        if g: groepen.append(g)
+    for sleutel in dict.fromkeys((x["waar"], x["stem"]) for x in xs):
+        g = [x for x in xs if (x["waar"], x["stem"]) == sleutel]
+        tekens = sum(len(x["tekst"]) for x in g)
+        delen = max(-(-len(g) // BUNDEL), -(-tekens // MAXTEKENS))
+        per = -(-len(g) // delen)
+        groepen += [g[i:i + per] for i in range(0, len(g), per)]
     return groepen
 
 def lijst():
@@ -207,8 +226,23 @@ if __name__ == "__main__":
     if len(sys.argv) > 1: teksten = teksten[:int(sys.argv[1])]
     nog = [x for x in teksten if not os.path.exists(doel(x)) and not os.path.exists(os.path.join(Z, x["sleutel"] + ".mp3"))]
     print(len(nog), "teksten nog in te spreken", flush=True); t0 = time.time()
-    with ThreadPoolExecutor(4) as pool: over = [x for r in pool.map(maak_bundel, bundels(nog)) for x in r]
-    print(len(over), "opnieuw in bundels; eerste ronde klaar na", round(time.time() - t0), "s", flush=True)
+    groepen = bundels(nog)
+    with ThreadPoolExecutor(4) as pool: over = [x for r in pool.map(maak_bundel, groepen) for x in r]
+    print(len(over), "afgekeurd; eerste ronde klaar na", round(time.time() - t0), "s", flush=True)
+    if over and model_nu[0] < len(MODELLEN):
+        # schermen met een afgekeurde tekst: het hele scherm opnieuw, zodat alles uit één opname komt
+        mis = {x["sleutel"] for x in over}
+        opnieuw = [g for g in groepen if any(x["sleutel"] in mis for x in g)]
+        for g in opnieuw:
+            for x in g:   # bestaande stukken van dit scherm tijdelijk opzij; terug als het niet lukt
+                if os.path.exists(doel(x)): os.replace(doel(x), doel(x) + ".oud")
+        with ThreadPoolExecutor(4) as pool: list(pool.map(scherm_opnieuw, opnieuw))
+        for g in opnieuw:
+            for x in g:
+                if os.path.exists(doel(x) + ".oud"):
+                    if os.path.exists(doel(x)): os.unlink(doel(x) + ".oud")
+                    else: os.replace(doel(x) + ".oud", doel(x))
+        over = [x for x in over if not os.path.exists(doel(x))]
     if over and model_nu[0] < len(MODELLEN):
         with ThreadPoolExecutor(4) as pool: over = [x for r in pool.map(maak_bundel, bundels(over)) for x in r]
     print(len(over), "los opnieuw", flush=True)

@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 23;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 24;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -137,7 +137,7 @@
   const PER_DEEL = Array.isArray(self.INGESPROKEN) ? { app: self.INGESPROKEN } : (self.INGESPROKEN || {});   // { "economie-h4": [...], app: [...] }
   const ingesproken = new Set(Object.values(PER_DEEL).flat());
   // Opnames van een hoofdstuk vooraf binnenhalen (voor zonder internet) zodra het wordt geopend; één keer per keer openen van de app.
-  const AUDIOCACHE = "leerplek-audio-2";   // gelijk houden met AUDIO in sw.js
+  const AUDIOCACHE = "leerplek-audio-3";   // gelijk houden met AUDIO in sw.js
   const voorgeladen = new Set();
   function voorladen(name) {
     if (!("caches" in window)) return;

@@ -9,8 +9,8 @@
 // - Lettertypes van Google: eerst de bewaarde versie (die veranderen niet).
 // Opnames (audio/z/) veranderen nooit: een andere tekst krijgt een andere naam. Ze staan in een eigen, blijvende
 // opslag (AUDIO) die bij een nieuwe versie niet wordt gewist. De app laadt ze per hoofdstuk zodra dat wordt geopend.
-const AUDIO = "leerplek-audio-2";   // nummer omhoog als bestaande opnames zijn aangepast (2: rustiger tempo); gelijk houden met app.js
-const CACHE = "leerplek-v23";
+const AUDIO = "leerplek-audio-3";   // nummer omhoog als bestaande opnames zijn aangepast (2: rustiger tempo, 3: filmpje H4 uit één opname); gelijk houden met app.js
+const CACHE = "leerplek-v24";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
   "./js/ingesproken.js", "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/modules/economie-h4.js", "./js/modules/geschiedenis-h1.js",
