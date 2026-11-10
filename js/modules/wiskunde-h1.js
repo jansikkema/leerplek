@@ -367,8 +367,8 @@
       { t: "Links en rechts −7 optellen", bak: "blijft", uitleg: "Optellen blijft optellen, ook van een negatief getal." },
       { t: "Alle termen keer 12, om breuken weg te werken", bak: "blijft", uitleg: "12 is positief." },
       { t: "Beide kanten delen door −5", bak: "om", uitleg: "Delen door een negatief getal." },
-      { t: "Van −3x < 6 naar x … −2", bak: "om", uitleg: "Je deelt door −3. Dus x > −2." },
-      { t: "Van 4x > −8 naar x … −2", bak: "blijft", uitleg: "Je deelt door 4. Dat het getal −8 negatief is, maakt niet uit! Dus x > −2." }
+      { t: "−3x < 6: beide kanten delen door −3", bak: "om", uitleg: "Je deelt door −3. Dus x > −2." },
+      { t: "4x > −8: beide kanten delen door 4", bak: "blijft", uitleg: "Je deelt door 4. Dat het getal −8 negatief is, maakt niet uit! Dus x > −2." }
     ].map(k => metZeg(k, "t", "uitleg"))
   };
 

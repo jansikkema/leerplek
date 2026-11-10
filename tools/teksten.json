@@ -4536,21 +4536,9 @@
   "waar": "wiskunde-h1-teken15"
  },
  {
-  "tekst": "Van 4 iks is groter dan min 8 naar iks . min 2",
-  "stem": "Sulafat",
-  "sleutel": "d48e02ae",
-  "waar": "wiskunde-h1-teken15"
- },
- {
   "tekst": "Dit hoort bij Blijft staan. Je deelt door 4. Dat het getal min 8 negatief is, maakt niet uit! Dus iks is groter dan min 2.",
   "stem": "Sulafat",
   "sleutel": "3f18d884",
-  "waar": "wiskunde-h1-teken15"
- },
- {
-  "tekst": "Van min 3 iks is kleiner dan 6 naar iks . min 2",
-  "stem": "Sulafat",
-  "sleutel": "73360df2",
   "waar": "wiskunde-h1-teken15"
  },
  {
@@ -4587,6 +4575,18 @@
   "tekst": "Dit hoort bij Blijft staan. 12 is positief.",
   "stem": "Sulafat",
   "sleutel": "852c0075",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "min 3 iks is kleiner dan 6: beide kanten delen door min 3",
+  "stem": "Sulafat",
+  "sleutel": "72cc303d",
+  "waar": "wiskunde-h1-teken15"
+ },
+ {
+  "tekst": "4 iks is groter dan min 8: beide kanten delen door 4",
+  "stem": "Sulafat",
+  "sleutel": "c4d7e8d2",
   "waar": "wiskunde-h1-teken15"
  }
 ]
