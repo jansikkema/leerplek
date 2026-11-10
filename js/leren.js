@@ -218,19 +218,29 @@
           <p style="margin:16px 0 6px"><b>✍️ In mijn eigen woorden</b> <span class="soft">(typ of spreek in met 🎤)</span></p>
           <textarea id="woorden" placeholder="Zeg het zoals jij het aan een vriendin zou uitleggen…">${esc(e.woorden || "")}</textarea>
           <p style="margin:16px 0 6px"><b>🎨 Mijn tekeningetje</b> <span class="soft">(een plaatje dat jou helpt herinneren)</span></p>
-          <div id="tek">${e.thumb ? `<img src="${e.thumb}" class="km-thumb" alt=""><br>` : ""}<button class="btn ghost small" id="teken">✏️ ${e.thumb ? "Aanpassen" : "Tekenen"}</button></div>
+          <div id="tek">${e.thumb ? `<img src="${e.thumb}" class="km-thumb" alt=""><br>` : ""}<button class="btn ghost small" id="teken">✏️ ${e.thumb ? "Ander tekeningetje" : "Tekenen"}</button></div>
           <div class="row" style="margin-top:16px"><button class="btn" id="bewaar">💾 Bewaar kaart</button><span class="ok" id="ok"></span></div>
         </div>`;
       App.sayButton($("#lees", el), () => `${zg(k, "term")}. ${zg(k, "uitleg")} ${k.voorbeeld ? "Voorbeeld: " + zg(k, "voorbeeld") : ""}`);
       $("#terug", el).onclick = menu;
       $("#woorden", el).oninput = ev => { store.set(eigenKey(k.id), { ...eigen(k.id), woorden: ev.target.value }); };
-      $("#teken", el).onclick = () => {
-        $("#tek", el).innerHTML = `<div id="kst"></div>`;
-        ui = Studio($("#kst", el), { aspect: 0.6, papier: "wit", strokes: eigen(k.id).strokes || [], opdracht: { html: `Teken iets dat jou helpt om <b>${esc(k.term)}</b> te onthouden.` } });
+      let geplakt = null;
+      const kOpdracht = { html: `Teken iets dat jou helpt om <b>${esc(k.term)}</b> te onthouden.`, zeg: `Teken iets dat jou helpt om ${zg(k, "term")} te onthouden.` };
+      $("#teken", el).onclick = () => {   // eerst Procreate en plakken; het tekenbord van de app als reserve
+        $("#tek", el).innerHTML = `<div id="kplak"></div>`;
+        ui = { destroy: App.plakBlok($("#kplak", el), {
+          opdracht: kOpdracht,
+          onPlak: (groot, klein) => { geplakt = klein; $("#kplak", el).insertAdjacentHTML("beforeend", `<img src="${klein}" class="km-thumb" alt="Jouw tekeningetje">`); $(".plak-blok", el).remove(); },
+          onZelf: () => {
+            $("#tek", el).innerHTML = `<div id="kst"></div>`;
+            ui = Studio($("#kst", el), { aspect: 0.6, papier: "wit", strokes: eigen(k.id).strokes || [], opdracht: kOpdracht });
+          }
+        }) };
       };
       $("#bewaar", el).onclick = () => {
         const nu = eigen(k.id); nu.woorden = $("#woorden", el).value;
-        if (ui && !ui.doek.isEmpty()) { nu.strokes = ui.doek.getStrokes(); nu.thumb = ui.doek.toImage(360); }
+        if (geplakt) { nu.thumb = geplakt; delete nu.strokes; }
+        else if (ui && ui.doek && !ui.doek.isEmpty()) { nu.strokes = ui.doek.getStrokes(); nu.thumb = ui.doek.toImage(360); }
         store.set(eigenKey(k.id), nu); $("#ok", el).textContent = "✓ Bewaard"; setTimeout(menu, 600);
       };
     }
@@ -494,16 +504,23 @@
       App.sayButton($("#lees-geh", el), () => ["Uit je hoofd. Teken een plaat zonder te kijken. Daarna vergelijk je. Het voelt moeilijk, en juist dat moeilijke ophalen zorgt dat het blijft hangen. Kies een plaat. De bovenste heb je het langst niet gedaan. De platen zijn:", ...sorted.map(p => p.titel + ".")]);   // volgorde wisselt: elke titel apart
       $$(".geh-kies", el).forEach(b => b.onclick = () => teken(prompts.find(p => p.id === b.dataset.id)));
     }
-    function teken(p) {
+    function teken(p) {   // eerst Procreate en plakken; het tekenbord van de app als reserve
+      opr();
+      const opdracht = { html: `<b>${esc(p.titel)}</b><br>${md(p.opdracht)}`, zeg: `${p.titel}. ${p.opdracht}` };
+      el.innerHTML = `<div class="card"><div class="row" style="justify-content:space-between"><b>${p.icoon} Teken uit je hoofd</b><button class="btn ghost small" id="terug">← Terug</button></div>
+        <p class="soft" style="margin:6px 0 10px">Niet kijken! Daarna vergelijk je.</p><div id="plak"></div></div>`;
+      $("#terug", el).onclick = menu;
+      ui = { destroy: App.plakBlok($("#plak", el), { opdracht, onPlak: groot => { opr(); vergelijk(p, groot, null); }, onZelf: () => zelf(p, opdracht) }) };
+    }
+    function zelf(p, opdracht) {
       opr();
       el.innerHTML = `<div class="card geh-kop"><b>${p.icoon} Teken uit je hoofd: ${esc(p.titel)}</b>
         <div class="row" style="margin-top:10px"><button class="btn" id="klaar">✅ Klaar, laat zien</button><button class="btn ghost small" id="terug">← Terug</button></div></div><div id="st"></div>`;
-      ui = Studio($("#st", el), { aspect: 0.75, papier: "wit", opdracht: { html: `<b>${esc(p.titel)}</b><br>${md(p.opdracht)}`, zeg: `${p.titel}. ${p.opdracht}` } });
+      ui = Studio($("#st", el), { aspect: 0.75, papier: "wit", opdracht });
       $("#terug", el).onclick = menu;
-      $("#klaar", el).onclick = () => vergelijk(p);
+      $("#klaar", el).onclick = () => { const s = ui.doek.getStrokes(), b = ui.doek.toImage(1200); opr(); vergelijk(p, b, s); };
     }
-    function vergelijk(p) {
-      const strokes = ui.doek.getStrokes(), beeld = ui.doek.toImage(1200);
+    function vergelijk(p, beeld, strokes) {
       opr();
       el.innerHTML = `<div class="card"><h2>Vergelijk 🔍</h2>
         <div class="vergelijk"><div><p class="soft">Jouw tekening</p><img src="${beeld}" alt=""></div><div><p class="soft">Zo ziet het eruit</p><div class="model-plaat">${p.model}</div></div></div>
@@ -513,7 +530,7 @@
       V.update(v => v.geheugen[p.id] = { laatst: Date.now() });
       $("#terug", el).onclick = menu;
       $("#bew", el).onclick = async () => {
-        await App.db.put("tekeningen", { id: "t" + Date.now(), datum: Date.now(), titel: "Uit mijn hoofd: " + p.titel, tag: "geheugen", data: beeld, strokes, aspect: 0.75 });
+        await App.db.put("tekeningen", { id: "t" + Date.now(), datum: Date.now(), titel: "Uit mijn hoofd: " + p.titel, tag: "geheugen", data: beeld, ...(strokes ? { strokes } : {}), aspect: 0.75 });
         $("#ok", el).textContent = "✓ Bewaard";
       };
     }

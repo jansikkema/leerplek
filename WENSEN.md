@@ -9,12 +9,6 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Open
 
-### Tekenen in Procreate in plaats van het eigen tekenbord (haar wens, 2026-11-10)
-- Ze tekent liever in Procreate (potloden, lijnen die netjes afronden, eigen ruitjes- en lijnenpapier, ook voor aantekeningen). Het tekenbord in de app kan daardoor bij tekenopdrachten vervallen. Ze wil haar tekening wel blijven vergelijken met een voorbeeldschets.
-- Proef gepubliceerd (versie 32): 'Mijn app' → 🧪 Proef. Drie manieren om de tekening binnen te halen: plakken (kopiëren in Procreate), slepen (Split View) en kiezen uit Foto's/Bestanden. Daarna naast elkaar vergelijken en stap voor stap: de voorbeeldschets tekent zich deel voor deel, met stem, en zij tikt 👍 of 👎. Uitkomst via 'Stuur uitkomst'.
-- Daarna: de beste manier wordt een bouwsteen in `leren.js` voor alle tekenopdrachten (uit je hoofd, tekenen na een filmpje, tekeningetje bij een begrip). De voorbeelden bij 'Uit je hoofd' worden echte schetsen in plaats van tekstlijstjes. Nog te beslissen: blijven het kladblok en de aantekeningen in de app, of gaat ze ook die in Procreate maken?
-- Werk: middel (bouwsteen), daarna middel per hoofdstuk (schetsen). Wacht op: de uitkomst van de proef.
-
 ### Schetsbord: verder uitbouwen (besluit 20)
 - Stand 2026-11-09: `L.schetsbord` werkt en is gebruikt voor zes filmpjes in Wiskunde H1. Tekening en stem lopen per zin gelijk. Haar eerste reactie: goed.
 - Nog doen: poppetje, gebouw, ketting en kaart uit de proef (`tools/proef/schetsbord.html`) naar `L.schets`, zodat geschiedenis en aardrijkskunde ze kunnen gebruiken. Daarna de bestaande filmpjes (Italië, kaartfilmpje §1.3, H4) overzetten.
@@ -95,6 +89,7 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-10 · Tekenen in Procreate en plakken (haar wens, versie 33).** Na een proef met drie manieren (plakken, slepen, kiezen uit Foto's) koos ze plakken. Bouwsteen `App.plakBlok`: opdracht in beeld, drie korte stappen, knop Plakken (de iPad vraagt zelf nog één tik op zijn wolkje Plakken; dat kan een website niet overslaan). Gebruikt bij tekenen na een filmpje of plaat, Uit je hoofd en het tekeningetje bij een begrip. Het tekenbord van de app blijft als reserve ("Of teken hier in de app"). Kladblok bij sommen en aantekeningen ongewijzigd. Zie besluit 23. Nog open: de voorbeelden bij Uit je hoofd worden echte schetsen met stap voor stap vergelijken (nu nog tekstlijstjes).
 - **2026-11-10 · Wiskunde H1 helemaal ingesproken (versie 31).** Alle zes filmpjes elk uit één opname, plus sorteren, begrippen en toetsvragen. Twee sorteerkaarten met '…' herschreven ('4x > −8: beide kanten delen door 4'): duidelijker voor haar, en de stem struikelde over het puntje-puntje-puntje.
 - **2026-11-09 · Opdracht blijft zichtbaar, plusstof gemarkeerd (versie 29, vraag van vader).** Opdrachtstrook in elk tekenvlak (ook volledig scherm), vraag en figuur vast bovenaan bij stap voor stap, gouden label ➕ Plusstof (§1.1 evenwijdig, §1.3 breuken, §1.5 ongelijkheden met rekenen). Vaste kop bij uit je hoofd werkt nu ook echt (sticky stond uit door overflow-x). Zie besluit 22. Nog: de voorleestekst van de opdrachtstrook bij uit je hoofd is niet ingesproken (iPad-stem).
 - **2026-11-09 · Wiskunde H1 Lineaire problemen, compleet (versie 28).** Zes schetsbord-filmpjes (§1.1 t/m §1.6), oefenen stap voor stap met nieuwe vorm `L.stappen` (15 soorten sommen, kijk mee → samen → zelf, steeds nieuwe getallen), sorteren 'welk verband?' en 'klapt het teken om?', 19 begrippen, 6 uit-je-hoofd-platen, 36 toetsvragen in de stijl van de diagnostische toets (met figuren en vakjes voor x en y). Zie besluit 21. Getest: 6.000 gegenereerde sommen zonder fout, alle Samen-rondes en alle toetsvragen via het scherm doorlopen.

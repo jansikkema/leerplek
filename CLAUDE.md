@@ -19,6 +19,7 @@ Zij is de eigenaar: zij bepaalt wat er komt (via de ideeënbus in de app), vader
 - Overhoren en zelf uitleggen zitten ingebouwd in vormen die zij leuk vindt (doe-versie, zelf tekenen), niet als quiz.
 - Leesdrempel laag: voorleesknop op elk scherm, korte zinnen, Atkinson Hyperlegible, tekstgrootte en extra ruimte instelbaar.
 - Toetswoorden uit haar boek zijn leidend; check begrippen tegen het boek.
+- Tekenen doet ze in Procreate en plakt het in de app met `App.plakBlok` (besluit 23); het tekenbord van de app is reserve. Nieuwe tekenopdracht: gebruik `App.plakBlok`, niet direct `Studio`.
 - Tekent of oefent ze, dan blijft de opdracht in beeld, ook op volledig scherm (besluit 22). Plusstof uit het boek krijgt `plus: true` en een gouden label.
 
 ## Opslag

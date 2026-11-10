@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 32;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 33;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -276,6 +276,50 @@
     });
   }
 
+  /* ---------- tekening uit Procreate plakken (2026-11-10, haar keuze) ----------
+     Ze tekent in Procreate, kopieert (drie vingers omlaag → Kopieer) en tikt hier op Plakken.
+     De iPad toont dan zelf een klein wolkje 'Plakken' ter bevestiging; dat kan een website niet overslaan.
+     o = { opdracht: { html, zeg }, onPlak(groot, klein), onZelf?() } – groot: max. 1600 px, klein: max. 360 px (JPEG, witte achtergrond). */
+  function plakBlok(host, o) {
+    const op = o.opdracht;
+    host.innerHTML = `<div class="plak-blok">
+      ${op ? `<div class="opdracht-strook"><span class="op-ic">📝</span><div class="op-t">${op.html}</div><button class="say-mini op-lees" aria-label="Lees de opdracht voor">🔊</button></div>` : ""}
+      <ol class="plak-stappen"><li><span class="pi">✏️</span><span>Teken in Procreate.</span></li><li><span class="pi">👇</span><span>Veeg met drie vingers omlaag. Tik op <b>Kopieer</b>.</span></li><li><span class="pi">📋</span><span>Kom terug en tik op <b>Plakken</b>.</span></li></ol>
+      <div class="row"><button class="btn groot plak-knop">📋 Plakken</button>
+        <button class="say plak-lees" style="margin:0">🔊 Lees voor</button></div>
+      <p class="plak-melding" hidden></p>
+      ${o.onZelf ? `<button class="btn ghost small plak-zelf">✏️ Of teken hier in de app</button>` : ""}
+    </div>`;
+    const melding = (t) => { const m = $(".plak-melding", host); m.innerHTML = t; m.hidden = !t; };
+    if (op) $(".op-lees", host).onclick = () => { stopSpeak(); speak(op.zeg || $(".op-t", host).textContent); };
+    sayButton($(".plak-lees", host), () => "Teken in Procreate. Veeg met drie vingers omlaag. Tik op Kopieer. Kom terug en tik op Plakken.");
+    let klaar = false;
+    async function binnen(blob) {
+      if (klaar) return; klaar = true;
+      try { o.onPlak(await imageFromFile(blob, 1600), await imageFromFile(blob, 360)); document.removeEventListener("paste", opPlak); }
+      catch (e) { klaar = false; melding("Dat is geen tekening. Kopieer je tekening opnieuw in Procreate."); }
+    }
+    $(".plak-knop", host).onclick = async () => {
+      if (!(navigator.clipboard && navigator.clipboard.read)) { melding("Plakken werkt hier niet. Kies je tekening bij Mijn tekeningen → 📷 Foto toevoegen."); return; }
+      melding("Tik op <b>Plakken</b> in het wolkje van de iPad.");
+      try {
+        for (const it of await navigator.clipboard.read()) {
+          const type = it.types.find(t => t.startsWith("image/"));
+          if (type) { melding(""); return binnen(await it.getType(type)); }
+        }
+        melding("Er staat nog geen tekening klaar. Kopieer je tekening eerst in Procreate: drie vingers omlaag, dan <b>Kopieer</b>.");
+      } catch (e) { melding("Dat lukte niet. Tik nog eens op <b>Plakken</b>, en dan op het wolkje <b>Plakken</b> van de iPad."); }
+    };
+    function opPlak(ev) {   // met een toetsenbord: ⌘V werkt ook
+      if (!document.body.contains(host)) return document.removeEventListener("paste", opPlak);
+      const f = [...(ev.clipboardData?.items || [])].find(i => i.type.startsWith("image/"));
+      if (f) { ev.preventDefault(); binnen(f.getAsFile()); }
+    }
+    document.addEventListener("paste", opPlak);
+    if (o.onZelf) $(".plak-zelf", host).onclick = () => { document.removeEventListener("paste", opPlak); o.onZelf(); };
+    return () => document.removeEventListener("paste", opPlak);
+  }
+
   /* ---------- even geduld ---------- */
   function busy(text) {
     let b = $("#busy");
@@ -350,7 +394,7 @@
   let pendingTag = "", pendingEdit = null, pendingOpdracht = null;
 
   // Terug gaat één niveau omhoog: stap → paragraaf → hoofdstuk → start.
-  const ouders = { notitie: "notities", "proef-procreate": "mijn-app" };
+  const ouders = { notitie: "notities" };
   let ouder = "start";
 
   function go(name) { if (location.hash === "#" + name) render(); else location.hash = name; }
@@ -489,8 +533,24 @@
     const tag = pendingTag; pendingTag = "";
     const edit = pendingEdit; pendingEdit = null;
     const opdracht = pendingOpdracht; pendingOpdracht = null;
+    let ui = null, stop = null;
+    if (!edit) {   // standaard: tekenen in Procreate en plakken; het tekenbord van de app blijft als reserve
+      el.innerHTML = `<div class="card"><h1>✏️ Tekenen</h1><div id="plak"></div></div>`;
+      stop = plakBlok($("#plak", el), {
+        opdracht,
+        onPlak: async groot => {
+          el.querySelector(".plak-blok").insertAdjacentHTML("afterend", `<img src="${groot}" class="plak-voorbeeld" alt="Jouw tekening">`);
+          const titel = await modal(`<h2>Hoe heet je tekening?</h2><input type="text" placeholder="Bijvoorbeeld: omzet en winst" value="${esc(tag)}">`, [["Annuleer", null, "ghost"], ["Bewaar", "__input"]]);
+          if (titel === null) return go("tekenen");
+          await db.put("tekeningen", { id: "t" + Date.now(), datum: Date.now(), titel: titel || "Tekening", tag, data: groot, aspect: 0.75 });
+          go("tekeningen");
+        },
+        onZelf: () => { if (stop) stop(); studio(); }
+      });
+    } else studio();
+    function studio() {
     el.innerHTML = `<div id="studio"></div>`;
-    const ui = Studio($("#studio", el), {
+    ui = Studio($("#studio", el), {
       aspect: 0.75, papier: "wit", strokes: edit ? edit.strokes : [], opdracht,
       extraHtml: `<button class="btn small" id="save">💾 Bewaar</button>`
     });
@@ -504,7 +564,8 @@
       });
       go("tekeningen");
     };
-    return () => ui.destroy();
+    }
+    return () => { if (stop) stop(); if (ui) ui.destroy(); };
   };
 
   /* ---------- mijn tekeningen ---------- */
@@ -610,7 +671,6 @@
         <p><label for="naam">Naam van je app</label></p>
         <input type="text" id="naam" value="${esc(store.get("naam", "leren met BTS"))}">
         <p class="soft" style="margin-top:16px;font-size:.85em">Iets anders veranderen? Zet het in de <a href="#ideeen" style="color:var(--accent)">ideeënbus</a>. Wat er al veranderd is: <a href="#nieuw" style="color:var(--accent)">✨ Wat is er nieuw</a>.</p>
-        <div class="row" style="margin-top:12px"><a class="btn ghost" href="#proef-procreate" style="text-decoration:none;display:inline-flex;align-items:center">🧪 Proef: tekenen in Procreate</a></div>
       </div>
       <div class="card">
         <h2>🔊 Voorlezen</h2>
@@ -813,7 +873,7 @@
   /* ---------- publieke functies ---------- */
   window.App = {
     $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, spreekbaar, stemKwaliteit, huidigeStem: () => voice, sleutel, opname, bindSay, store, db, modal, meetBlock, go, onLeave,
-    shareText, shareImage, imageFromFile, busy,
+    shareText, shareImage, imageFromFile, plakBlok, busy,
     tekenMet(tag, opdracht) { pendingTag = tag || ""; pendingOpdracht = opdracht || null; go("tekenen"); },
     addRoute(name, fn) { routes[name] = fn; },
     addModule(m) {

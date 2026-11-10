@@ -2,7 +2,7 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
-  { datum: "2026-11-10", tekst: "Proef: teken in Procreate en zet je tekening in de app. Je vindt hem bij Mijn app. Probeer welke manier het fijnst is.", idee: true },
+  { datum: "2026-11-10", tekst: "Teken in Procreate! Kopieer je tekening met drie vingers omlaag en tik in de app op Plakken. Dat werkt bij Uit je hoofd, bij je begrippenkaarten en na een filmpje. Liever toch in de app tekenen? Dat kan nog steeds.", idee: true },
   { datum: "2026-11-10", tekst: "Wiskunde H1 praat nu helemaal met jouw stem: alle filmpjes, de kaarten en de toetsvragen.", idee: true },
   { datum: "2026-11-09", tekst: "Als je tekent, staat de opdracht nu bovenaan, ook op volledig scherm. Met 🔊 lees je hem voor, met ▴ klap je hem in." },
   { datum: "2026-11-09", tekst: "Bij de sommen blijven de vraag en de figuur bovenaan staan als je naar beneden werkt. Met 🖼️ klap je de figuur in." },

@@ -10,10 +10,10 @@
 // Opnames (audio/z/) veranderen nooit: een andere tekst krijgt een andere naam. Ze staan in een eigen, blijvende
 // opslag (AUDIO) die bij een nieuwe versie niet wordt gewist. De app laadt ze per hoofdstuk zodra dat wordt geopend.
 const AUDIO = "leerplek-audio-5";   // nummer omhoog als bestaande opnames zijn aangepast (4: originele tempo terug, filmpje H4 uit één opname; 5: losse tikken aan het begin weg); gelijk houden met app.js
-const CACHE = "leerplek-v32";
+const CACHE = "leerplek-v33";
 const CORE = [
   "./", "./index.html", "./manifest.json", "./css/app.css",
-  "./js/ingesproken.js", "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/proef-procreate.js", "./js/modules/economie-h4.js", "./js/modules/geschiedenis-h1.js", "./js/modules/wiskunde-h1.js",
+  "./js/ingesproken.js", "./js/app.js", "./js/doek.js", "./js/notities.js", "./js/leren.js", "./js/nieuw.js", "./js/modules/economie-h4.js", "./js/modules/geschiedenis-h1.js", "./js/modules/wiskunde-h1.js",
   "./vendor/pdfjs/pdf.min.js", "./vendor/pdfjs/pdf.worker.min.js",
   "./icons/icon-180.png", "./icons/icon-192.png", "./icons/icon-512.png"
 ];
