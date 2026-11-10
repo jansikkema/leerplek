@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 33;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 34;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -277,14 +277,14 @@
   }
 
   /* ---------- tekening uit Procreate plakken (2026-11-10, haar keuze) ----------
-     Ze tekent in Procreate, kopieert (drie vingers omlaag → Kopieer) en tikt hier op Plakken.
+     Ze tekent in Procreate, kopieert (steeksleuteltje → Canvas kopiëren) en tikt hier op Plakken.
      De iPad toont dan zelf een klein wolkje 'Plakken' ter bevestiging; dat kan een website niet overslaan.
      o = { opdracht: { html, zeg }, onPlak(groot, klein), onZelf?() } – groot: max. 1600 px, klein: max. 360 px (JPEG, witte achtergrond). */
   function plakBlok(host, o) {
     const op = o.opdracht;
     host.innerHTML = `<div class="plak-blok">
       ${op ? `<div class="opdracht-strook"><span class="op-ic">📝</span><div class="op-t">${op.html}</div><button class="say-mini op-lees" aria-label="Lees de opdracht voor">🔊</button></div>` : ""}
-      <ol class="plak-stappen"><li><span class="pi">✏️</span><span>Teken in Procreate.</span></li><li><span class="pi">👇</span><span>Veeg met drie vingers omlaag. Tik op <b>Kopieer</b>.</span></li><li><span class="pi">📋</span><span>Kom terug en tik op <b>Plakken</b>.</span></li></ol>
+      <ol class="plak-stappen"><li><span class="pi">✏️</span><span>Teken in Procreate.</span></li><li><span class="pi">🔧</span><span>Tik in Procreate op het steeksleuteltje en kies <b>Canvas kopiëren</b>.</span></li><li><span class="pi">📋</span><span>Kom terug en tik op <b>Plakken</b>.</span></li></ol>
       <div class="row"><button class="btn groot plak-knop">📋 Plakken</button>
         <button class="say plak-lees" style="margin:0">🔊 Lees voor</button></div>
       <p class="plak-melding" hidden></p>
@@ -292,23 +292,23 @@
     </div>`;
     const melding = (t) => { const m = $(".plak-melding", host); m.innerHTML = t; m.hidden = !t; };
     if (op) $(".op-lees", host).onclick = () => { stopSpeak(); speak(op.zeg || $(".op-t", host).textContent); };
-    sayButton($(".plak-lees", host), () => "Teken in Procreate. Veeg met drie vingers omlaag. Tik op Kopieer. Kom terug en tik op Plakken.");
+    sayButton($(".plak-lees", host), () => "Teken in Procreate. Tik in Procreate op het steeksleuteltje en kies Canvas kopiëren. Kom terug en tik op Plakken. Dan verschijnt er een zwart wolkje met Plak. Tik daarop.");
     let klaar = false;
     async function binnen(blob) {
       if (klaar) return; klaar = true;
       try { o.onPlak(await imageFromFile(blob, 1600), await imageFromFile(blob, 360)); document.removeEventListener("paste", opPlak); }
-      catch (e) { klaar = false; melding("Dat is geen tekening. Kopieer je tekening opnieuw in Procreate."); }
+      catch (e) { klaar = false; melding("Dat is geen tekening. Kopieer je tekening opnieuw in Procreate: 🔧, dan <b>Canvas kopiëren</b>."); }
     }
     $(".plak-knop", host).onclick = async () => {
       if (!(navigator.clipboard && navigator.clipboard.read)) { melding("Plakken werkt hier niet. Kies je tekening bij Mijn tekeningen → 📷 Foto toevoegen."); return; }
-      melding("Tik op <b>Plakken</b> in het wolkje van de iPad.");
+      melding(`<span class="plak-wolk-uitleg"><span class="plak-wolk">Plak</span> Tik nu op het zwarte wolkje <b>Plak</b> bij de knop.</span>`);
       try {
         for (const it of await navigator.clipboard.read()) {
           const type = it.types.find(t => t.startsWith("image/"));
           if (type) { melding(""); return binnen(await it.getType(type)); }
         }
-        melding("Er staat nog geen tekening klaar. Kopieer je tekening eerst in Procreate: drie vingers omlaag, dan <b>Kopieer</b>.");
-      } catch (e) { melding("Dat lukte niet. Tik nog eens op <b>Plakken</b>, en dan op het wolkje <b>Plakken</b> van de iPad."); }
+        melding("Er staat nog geen tekening klaar. Kopieer je tekening eerst in Procreate: 🔧 steeksleuteltje, dan <b>Canvas kopiëren</b>.");
+      } catch (e) { melding(`<span class="plak-wolk-uitleg"><span class="plak-wolk">Plak</span> Dat lukte niet. Tik nog eens op <b>Plakken</b>, en dan op het zwarte wolkje <b>Plak</b>.</span>`); }
     };
     function opPlak(ev) {   // met een toetsenbord: ⌘V werkt ook
       if (!document.body.contains(host)) return document.removeEventListener("paste", opPlak);
@@ -391,7 +391,7 @@
   const modules = [];
   const routes = {};
   let leave = [];
-  let pendingTag = "", pendingEdit = null, pendingOpdracht = null;
+  let pendingTag = "", pendingEdit = null, pendingOpdracht = null, pendingTerug = "";
 
   // Terug gaat één niveau omhoog: stap → paragraaf → hoofdstuk → start.
   const ouders = { notitie: "notities" };
@@ -533,40 +533,69 @@
     const tag = pendingTag; pendingTag = "";
     const edit = pendingEdit; pendingEdit = null;
     const opdracht = pendingOpdracht; pendingOpdracht = null;
+    const terug = pendingTerug && pendingTerug !== "tekenen" ? pendingTerug : ""; pendingTerug = "";
+    if (terug) ouder = terug;   // terugknop bovenaan: terug naar de oefening
     let ui = null, stop = null;
+    const bewaar = async (data, strokes) => {   // vanuit een oefening: bewaren onder de naam van de oefening, zonder te vragen
+      let titel = tag || "Tekening";
+      if (!terug || edit) {
+        titel = await modal(`<h2>Hoe heet je tekening?</h2><input type="text" placeholder="Bijvoorbeeld: omzet en winst" value="${esc(edit ? edit.titel : tag)}">`, [["Annuleer", null, "ghost"], ["Bewaar", "__input"]]);
+        if (titel === null) return false;
+      }
+      await db.put("tekeningen", { id: edit ? edit.id : "t" + Date.now(), datum: Date.now(), titel: titel || "Tekening", tag, data, ...(strokes ? { strokes } : {}), aspect: 0.75 });
+      return true;
+    };
+    const naarOefening = terug ? `<button class="btn groot" id="naar-oef">${ik("terug")} Terug naar de oefening</button>` : "";
     if (!edit) {   // standaard: tekenen in Procreate en plakken; het tekenbord van de app blijft als reserve
-      el.innerHTML = `<div class="card"><h1>✏️ Tekenen</h1><div id="plak"></div></div>`;
-      stop = plakBlok($("#plak", el), {
+      el.innerHTML = `<div class="card"><h1>✏️ Tekenen</h1><div id="plak"></div></div><div class="card" id="jouw" hidden></div>`;
+      const jouw = (data, wanneer) => {
+        const j = $("#jouw", el); j.hidden = false;
+        j.innerHTML = `<h2>Jouw tekening</h2><p class="soft" style="margin-top:0">${wanneer}</p><img src="${data}" class="plak-voorbeeld" alt="Jouw tekening">${naarOefening ? `<div class="row" style="margin-top:12px">${naarOefening}</div>` : ""}`;
+        const n = $("#naar-oef", j); if (n) n.onclick = () => go(terug);
+      };
+      if (tag) laatsteTekening(tag).then(t => { if (t && $("#jouw", el)?.hidden) jouw(t.data, "Gemaakt op " + new Date(t.datum).toLocaleDateString("nl-NL", { day: "numeric", month: "long" }) + ". Nieuwe tekening? Plak hem hierboven."); });
+      const plakken = () => { stop = plakBlok($("#plak", el), {
         opdracht,
         onPlak: async groot => {
-          el.querySelector(".plak-blok").insertAdjacentHTML("afterend", `<img src="${groot}" class="plak-voorbeeld" alt="Jouw tekening">`);
-          const titel = await modal(`<h2>Hoe heet je tekening?</h2><input type="text" placeholder="Bijvoorbeeld: omzet en winst" value="${esc(tag)}">`, [["Annuleer", null, "ghost"], ["Bewaar", "__input"]]);
-          if (titel === null) return go("tekenen");
-          await db.put("tekeningen", { id: "t" + Date.now(), datum: Date.now(), titel: titel || "Tekening", tag, data: groot, aspect: 0.75 });
-          go("tekeningen");
+          if (!(await bewaar(groot))) { plakken(); return; }
+          if (!terug) return go("tekeningen");
+          jouw(groot, "✓ Bewaard bij Mijn tekeningen.");
+          $("#jouw", el).scrollIntoView({ behavior: "smooth" });
+          plakken();   // nog eens plakken kan altijd
         },
         onZelf: () => { if (stop) stop(); studio(); }
-      });
+      }); };
+      plakken();
     } else studio();
     function studio() {
-    el.innerHTML = `<div id="studio"></div>`;
-    ui = Studio($("#studio", el), {
-      aspect: 0.75, papier: "wit", strokes: edit ? edit.strokes : [], opdracht,
-      extraHtml: `<button class="btn small" id="save">💾 Bewaar</button>`
-    });
-    $("#save", el).onclick = async () => {
-      if (ui.doek.isEmpty()) { await modal("<p>Je hebt nog niks getekend 🙂</p>", [["Oké", true]]); return; }
-      const titel = await modal(`<h2>Hoe heet je tekening?</h2><input type="text" placeholder="Bijvoorbeeld: omzet en winst" value="${esc(edit ? edit.titel : tag)}">`, [["Annuleer", null, "ghost"], ["Bewaar", "__input"]]);
-      if (titel === null) return;
-      await db.put("tekeningen", {
-        id: edit ? edit.id : "t" + Date.now(), datum: Date.now(), titel: titel || "Tekening", tag,
-        data: ui.doek.toImage(1400), strokes: ui.doek.getStrokes(), aspect: 0.75
+      el.innerHTML = `<div id="studio"></div>`;
+      ui = Studio($("#studio", el), {
+        aspect: 0.75, papier: "wit", strokes: edit ? edit.strokes : [], opdracht,
+        extraHtml: `<button class="btn small" id="save">💾 Bewaar</button>`
       });
-      go("tekeningen");
-    };
+      $("#save", el).onclick = async () => {
+        if (ui.doek.isEmpty()) { await modal("<p>Je hebt nog niks getekend 🙂</p>", [["Oké", true]]); return; }
+        if (!(await bewaar(ui.doek.toImage(1400), ui.doek.getStrokes()))) return;
+        go(terug && !edit ? terug : "tekeningen");
+      };
     }
     return () => { if (stop) stop(); if (ui) ui.destroy(); };
   };
+
+  // De nieuwste tekening met dit label (uit een oefening), of null.
+  async function laatsteTekening(tag) {
+    if (!tag) return null;
+    try { return (await db.all("tekeningen")).filter(t => t.tag === tag).sort((a, b) => b.datum - a.datum)[0] || null; } catch (e) { return null; }
+  }
+  // Bij de knop 'Ga tekenen' in een oefening: haar laatste tekening klein ernaast laten zien.
+  function toonTekening(knop, tag) {
+    if (!knop || !tag) return;
+    laatsteTekening(tag).then(t => {
+      if (!t || !document.body.contains(knop) || knop.nextElementSibling?.classList.contains("plak-mini")) return;
+      knop.insertAdjacentHTML("afterend", `<button class="plak-mini" aria-label="Jouw tekening bekijken"><img src="${t.data}" alt=""><span>Jouw tekening</span></button>`);
+      knop.nextElementSibling.onclick = () => modal(`<img src="${t.data}" alt="Jouw tekening" style="width:100%;background:#fff;border-radius:12px">`, [["Sluiten", true]]);
+    });
+  }
 
   /* ---------- mijn tekeningen ---------- */
   routes.tekeningen = el => {
@@ -873,8 +902,8 @@
   /* ---------- publieke functies ---------- */
   window.App = {
     $, $$, esc, speak, stopSpeak, canSpeak, sayButton, nlVoices, spreekbaar, stemKwaliteit, huidigeStem: () => voice, sleutel, opname, bindSay, store, db, modal, meetBlock, go, onLeave,
-    shareText, shareImage, imageFromFile, plakBlok, busy,
-    tekenMet(tag, opdracht) { pendingTag = tag || ""; pendingOpdracht = opdracht || null; go("tekenen"); },
+    shareText, shareImage, imageFromFile, plakBlok, toonTekening, busy,
+    tekenMet(tag, opdracht) { pendingTag = tag || ""; pendingOpdracht = opdracht || null; pendingTerug = (location.hash || "").slice(1); go("tekenen"); },
     addRoute(name, fn) { routes[name] = fn; },
     addModule(m) {
       modules.push(m);

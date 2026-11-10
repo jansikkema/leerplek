@@ -529,10 +529,12 @@
         <div class="row" style="margin-top:14px"><button class="btn" id="bew">💾 Bewaar in Mijn tekeningen</button><button class="btn ghost" id="terug">← Andere plaat</button><span class="ok" id="ok"></span></div></div>`;
       V.update(v => v.geheugen[p.id] = { laatst: Date.now() });
       $("#terug", el).onclick = menu;
-      $("#bew", el).onclick = async () => {
+      const bewaar = async () => {
         await App.db.put("tekeningen", { id: "t" + Date.now(), datum: Date.now(), titel: "Uit mijn hoofd: " + p.titel, tag: "geheugen", data: beeld, ...(strokes ? { strokes } : {}), aspect: 0.75 });
-        $("#ok", el).textContent = "✓ Bewaard";
+        $("#bew", el).remove(); $("#ok", el).textContent = "✓ Bewaard bij Mijn tekeningen";
       };
+      $("#bew", el).onclick = bewaar;
+      if (!strokes) bewaar();   // geplakt uit Procreate: meteen bewaren, dan is hij niet kwijt
     }
     menu();
     return opr;
@@ -703,7 +705,7 @@
       c.innerHTML = md(x.t) + (x.knop ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
       $$("#scp button", el).forEach((p, i) => { p.classList.toggle("gezien", i < sc); p.classList.toggle("nu", i === sc); });
       if (sc === S.length - 1 && onEind) onEind();
-      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet(d.teken, { html: `<b>${esc(d.titel)}</b><br>${md(x.t)}`, zeg: spreek(x) }); };
+      const nt = $("#naar-teken", el); if (nt) { nt.onclick = () => { pause(); App.tekenMet(d.teken, { html: `<b>${esc(d.titel)}</b><br>${md(x.t)}`, zeg: spreek(x) }); }; App.toonTekening(nt, d.teken); }
     }
     function advance() { clearTimeout(timer); if (!playing) return; if (sc >= S.length - 1) { pause(); return; } sc++; run(); }
     function run() {
@@ -746,7 +748,7 @@
     $("#m-kijk", el).onclick = () => setMode(false);
     $("#m-doe", el).onclick = () => setMode(true);
     el.addEventListener("click", e => { const b = e.target.closest(".blank"); if (b) b.classList.toggle("open"); });
-    const t = $("#teken-plaat", el); if (t) t.onclick = () => App.tekenMet(d.teken, { html: `Teken de plaat <b>${esc(d.titel)}</b> na, zonder te kijken. Vergelijk daarna.` });
+    const t = $("#teken-plaat", el); if (t) { t.onclick = () => App.tekenMet(d.teken, { html: `Teken de plaat <b>${esc(d.titel)}</b> na, zonder te kijken. Vergelijk daarna.` }); App.toonTekening(t, d.teken); }
     App.bindSay(el);
   }
 
@@ -985,7 +987,7 @@
         + (n === lijst.length - 1 && d.teken ? `<br><button class="btn small" id="naar-teken" style="margin-top:10px">✏️ Ga tekenen</button>` : "");
       $$("#scp button", el).forEach((p, j) => { p.classList.toggle("gezien", j < i); p.classList.toggle("nu", j === i); });
       $("#prev", el).disabled = n === 0; $("#nextS", el).disabled = n === lijst.length - 1;
-      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); const z = lijst[n].z; App.tekenMet(d.teken, { html: opmaak(z.t), zeg: spreek(z) }); };
+      const nt = $("#naar-teken", el); if (nt) { nt.onclick = () => { pause(); const z = lijst[n].z; App.tekenMet(d.teken, { html: opmaak(z.t), zeg: spreek(z) }); }; App.toonTekening(nt, d.teken); }
       if (n === lijst.length - 1 && onEind) onEind();
       return duur;
     }

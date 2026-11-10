@@ -633,3 +633,10 @@ body{ --oefen:var(--gold); --leren:var(--accent); }
 .plak-melding{margin:0;background:var(--tint);border-radius:12px;padding:10px 14px}
 .plak-zelf{justify-self:start}
 .plak-voorbeeld{width:100%;background:#fff;border-radius:12px;margin-top:12px}
+.plak-wolk-uitleg{display:flex;gap:12px;align-items:center}
+.plak-wolk{flex:none;position:relative;background:#1c1c1e;color:#fff;font-weight:700;border-radius:9px;padding:8px 14px;box-shadow:0 2px 8px rgba(0,0,0,.35);animation:plak-puls 1.2s ease-in-out infinite}
+.plak-wolk::after{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-7px;border:7px solid transparent;border-bottom:0;border-top-color:#1c1c1e}
+@keyframes plak-puls{50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion: reduce){.plak-wolk{animation:none}}
+.plak-mini{display:inline-flex;align-items:center;gap:8px;margin:10px 0 0 10px;background:var(--tint);border:none;border-radius:12px;padding:4px 10px 4px 4px;color:var(--ink);cursor:pointer;vertical-align:middle}
+.plak-mini img{width:56px;height:42px;object-fit:cover;background:#fff;border-radius:8px}

@@ -256,7 +256,7 @@
     $("#m-kijk", el).onclick = () => setMode(false);
     $("#m-doe", el).onclick = () => setMode(true);
     el.addEventListener("click", e => { const b = e.target.closest(".blank"); if (b) b.classList.toggle("open"); });
-    $("#teken-plaat", el).onclick = () => App.tekenMet("Marketingplan");
+    $("#teken-plaat", el).onclick = () => App.tekenMet("Marketingplan"); App.toonTekening($("#teken-plaat", el), "Marketingplan");
   }
 
   /* ===== Het filmpje: financieel plan ===== */
@@ -317,7 +317,7 @@
       $("#caption", el).innerHTML = sc_.t;
       $("#progbar", el).style.width = ((sc + 1) / S.length * 100) + "%";
       if (sc === S.length - 1 && onEind) onEind();
-      const nt = $("#naar-teken", el); if (nt) nt.onclick = () => { pause(); App.tekenMet("Omzet en winst"); };
+      const nt = $("#naar-teken", el); if (nt) { nt.onclick = () => { pause(); App.tekenMet("Omzet en winst"); }; App.toonTekening(nt, "Omzet en winst"); }
     }
     function advance() { clearTimeout(timer); if (!playing) return; if (sc >= S.length - 1) { pause(); return; } sc++; run(); }
     function run() {
