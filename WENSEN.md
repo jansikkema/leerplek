@@ -9,6 +9,12 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Open
 
+### Tekenen in Procreate in plaats van het eigen tekenbord (haar wens, 2026-11-10)
+- Ze tekent liever in Procreate (potloden, lijnen die netjes afronden, eigen ruitjes- en lijnenpapier, ook voor aantekeningen). Het tekenbord in de app kan daardoor bij tekenopdrachten vervallen. Ze wil haar tekening wel blijven vergelijken met een voorbeeldschets.
+- Proef gepubliceerd (versie 32): 'Mijn app' → 🧪 Proef. Drie manieren om de tekening binnen te halen: plakken (kopiëren in Procreate), slepen (Split View) en kiezen uit Foto's/Bestanden. Daarna naast elkaar vergelijken en stap voor stap: de voorbeeldschets tekent zich deel voor deel, met stem, en zij tikt 👍 of 👎. Uitkomst via 'Stuur uitkomst'.
+- Daarna: de beste manier wordt een bouwsteen in `leren.js` voor alle tekenopdrachten (uit je hoofd, tekenen na een filmpje, tekeningetje bij een begrip). De voorbeelden bij 'Uit je hoofd' worden echte schetsen in plaats van tekstlijstjes. Nog te beslissen: blijven het kladblok en de aantekeningen in de app, of gaat ze ook die in Procreate maken?
+- Werk: middel (bouwsteen), daarna middel per hoofdstuk (schetsen). Wacht op: de uitkomst van de proef.
+
 ### Schetsbord: verder uitbouwen (besluit 20)
 - Stand 2026-11-09: `L.schetsbord` werkt en is gebruikt voor zes filmpjes in Wiskunde H1. Tekening en stem lopen per zin gelijk. Haar eerste reactie: goed.
 - Nog doen: poppetje, gebouw, ketting en kaart uit de proef (`tools/proef/schetsbord.html`) naar `L.schets`, zodat geschiedenis en aardrijkskunde ze kunnen gebruiken. Daarna de bestaande filmpjes (Italië, kaartfilmpje §1.3, H4) overzetten.

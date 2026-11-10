@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 31;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 32;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -350,7 +350,7 @@
   let pendingTag = "", pendingEdit = null, pendingOpdracht = null;
 
   // Terug gaat één niveau omhoog: stap → paragraaf → hoofdstuk → start.
-  const ouders = { notitie: "notities" };
+  const ouders = { notitie: "notities", "proef-procreate": "mijn-app" };
   let ouder = "start";
 
   function go(name) { if (location.hash === "#" + name) render(); else location.hash = name; }
@@ -610,6 +610,7 @@
         <p><label for="naam">Naam van je app</label></p>
         <input type="text" id="naam" value="${esc(store.get("naam", "leren met BTS"))}">
         <p class="soft" style="margin-top:16px;font-size:.85em">Iets anders veranderen? Zet het in de <a href="#ideeen" style="color:var(--accent)">ideeënbus</a>. Wat er al veranderd is: <a href="#nieuw" style="color:var(--accent)">✨ Wat is er nieuw</a>.</p>
+        <div class="row" style="margin-top:12px"><a class="btn ghost" href="#proef-procreate" style="text-decoration:none;display:inline-flex;align-items:center">🧪 Proef: tekenen in Procreate</a></div>
       </div>
       <div class="card">
         <h2>🔊 Voorlezen</h2>
