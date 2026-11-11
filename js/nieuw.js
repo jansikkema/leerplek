@@ -2,7 +2,7 @@
    idee: true = kwam uit haar ideeënbus (dan staat er een ✨ bij).
    Openbaar: geen letterlijke tekst uit de ideeënbus, geen namen, geen resultaten. Nieuwste bovenaan. */
 App.nieuw = [
-  { datum: "2026-11-11", tekst: "De filmpjes blijven niet meer hangen als je even in Procreate was. Hoor je toch niets? Tik één keer op het scherm, dan doet het geluid het weer." },
+  { datum: "2026-11-11", tekst: "De filmpjes blijven niet meer hangen, en je hoort de stem meteen vanaf de eerste zin. Hoor je toch niets? Tik één keer op het scherm, dan doet het geluid het weer." },
   { datum: "2026-11-10", tekst: "Plakken uit Procreate gaat nu beter: kopieer met het steeksleuteltje → Canvas kopiëren. Je blijft in je oefening, je tekening wordt vanzelf bewaard, en je ziet hem terug als je de oefening weer opent.", idee: true },
   { datum: "2026-11-10", tekst: "Teken in Procreate! Kopieer je tekening en tik in de app op Plakken. Dat werkt bij Uit je hoofd, bij je begrippenkaarten en na een filmpje. Liever toch in de app tekenen? Dat kan nog steeds.", idee: true },
   { datum: "2026-11-10", tekst: "Wiskunde H1 praat nu helemaal met jouw stem: alle filmpjes, de kaarten en de toetsvragen.", idee: true },

@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 35;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 36;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -121,7 +121,7 @@
       return kanaal;
     } catch (e) { return null; }
   }
-  ["touchend", "pointerdown", "keydown"].forEach(t => document.addEventListener(t, kanaalOpen, { passive: true }));
+  ["touchend", "pointerup", "click", "keydown"].forEach(t => document.addEventListener(t, kanaalOpen, { passive: true }));
   const naTerugkomst = () => { if (kanaal) kanaalVerdacht = true; };
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") naTerugkomst(); });
   window.addEventListener("pageshow", e => { if (e.persisted) naTerugkomst(); });
@@ -198,6 +198,14 @@
     if (window.__opname && text && opts.audio === undefined) window.__opname.push({ tekst: spreekbaar(text), stem: opts.stem || STANDAARDSTEM, sleutel: sleutel(text, opts.stem) });
     if (opts.audio === undefined && text) opts = { ...opts, audio: opname(text, opts.stem) };
     const snelheid = (opts.rate || store.get("tempo", 0.95)) / 0.95;
+    /* Bij de eerste tik (en na een vers kanaal) is het kanaal nog aan het opstarten. Toen speelde de eerste zin via het
+       Audio-element; op de iPad botsen die twee dan soms: geen geluid, en het filmpje bleef hangen. Nu wachten we heel even. */
+    if (opts.audio && !opts.element && !opts.gewacht && kanaal && kanaal.state === "suspended" && !kanaalVerdacht && Math.abs(snelheid - 1) < 0.01) {
+      const mijn = beurt;
+      Promise.race([kanaal.resume(), new Promise(r => setTimeout(r, 700))]).catch(() => {})
+        .then(() => { if (mijn === beurt) speak(text, onend, { ...opts, gewacht: true }); });
+      return;
+    }
     if (opts.audio && !opts.element && kanaal && kanaal.state === "running" && !kanaalVerdacht && Math.abs(snelheid - 1) < 0.01) {   // via het open kanaal (geen tik)
       const mijn = beurt, ctx = kanaal; let gedaan = false, s = null; const w = [];
       const af = () => { if (gedaan) return false; gedaan = true; w.forEach(clearTimeout); if (s && bron === s) bron = null; return true; };
