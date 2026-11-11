@@ -75,7 +75,7 @@
   /* ---------- voorlezen ---------- */
   /* De iPad heeft basisstemmen (compact), betere stemmen (enhanced/premium, eerst downloaden)
      en robotstemmen (Eloquence: Eddy, Flo, Reed… en grapstemmen). We kiezen de beste, of de stem die zij koos. */
-  const VERSIE = 34;   // gelijk houden met CACHE in sw.js
+  const VERSIE = 35;   // gelijk houden met CACHE in sw.js
   const canSpeak = "speechSynthesis" in window;
   const GRAP = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i;
   function stemKwaliteit(v) {
@@ -101,31 +101,42 @@
   /* Liever via Web Audio: één geluidskanaal dat blijft openstaan. Met het Audio-element gaat het geluid van de iPad bij
      elk fragment aan en uit, en dat geeft tussen fragmenten een tikje. Het kanaal gaat open bij de eerste tik op het
      scherm (iOS-regel). Tot dan, of als het niet lukt, speelt het Audio-element zoals voorheen. */
-  let kanaal = null, bron = null;
+  /* Na een onderbreking (even naar Procreate, scherm op slot, een melding) raakt dat kanaal op de iPad soms kapot: het
+     zegt 'aan', maar er komt geen geluid en het einde van een zin wordt nooit gemeld. Een filmpje bleef dan hangen. Daarom:
+     na terugkomen in de app maken we bij de eerstvolgende tik een vers kanaal, en elke zin heeft een vangnet (zie speak). */
+  let kanaal = null, bron = null, kanaalVerdacht = false;
   const buffers = new Map();
   function kanaalOpen() {
     try {
       const C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
+      const stuk = kanaal && (kanaalVerdacht || kanaal.state === "closed" || kanaal.state === "interrupted");
+      if (stuk && !bron) { try { kanaal.close(); } catch (e) {} kanaal = null; buffers.clear(); }
       if (!kanaal) {
         try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}   // ook geluid als de iPad op stil staat, net als het Audio-element
-        kanaal = new C();
+        kanaal = new C(); kanaalVerdacht = false;
+        const k = kanaal; let liep = false;   // valt een kanaal dat al liep stil (onderbreking), dan is het verdacht
+        k.onstatechange = () => { if (k.state === "running") liep = true; else if (liep && k === kanaal) kanaalVerdacht = true; };
       }
       if (kanaal.state !== "running") kanaal.resume().catch(() => {});
       return kanaal;
     } catch (e) { return null; }
   }
   ["touchend", "pointerdown", "keydown"].forEach(t => document.addEventListener(t, kanaalOpen, { passive: true }));
+  const naTerugkomst = () => { if (kanaal) kanaalVerdacht = true; };
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") naTerugkomst(); });
+  window.addEventListener("pageshow", e => { if (e.persisted) naTerugkomst(); });
   function buffer(url) {
     if (buffers.has(url)) return buffers.get(url);
+    const ctx = kanaal;
     const p = fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
-      .then(a => new Promise((ok, mis) => kanaal.decodeAudioData(a, ok, mis)));
+      .then(a => new Promise((ok, mis) => ctx.decodeAudioData(a, ok, mis)));
     buffers.set(url, p); p.catch(() => buffers.delete(url));
     if (buffers.size > 80) buffers.delete(buffers.keys().next().value);
     return p;
   }
   function stopSpeak() {
     beurt++;
-    if (speler) { speler.onended = speler.onerror = null; speler.pause(); }
+    if (speler) { speler.onended = speler.onerror = speler.onplaying = null; speler.pause(); }
     if (bron) { try { bron.onended = null; bron.stop(); } catch (e) {} bron = null; }
     if (canSpeak) speechSynthesis.cancel();
     $$(".say.speaking").forEach(b => { b.classList.remove("speaking"); b.textContent = b.dataset.label || "🔊 Lees voor"; });
@@ -187,30 +198,52 @@
     if (window.__opname && text && opts.audio === undefined) window.__opname.push({ tekst: spreekbaar(text), stem: opts.stem || STANDAARDSTEM, sleutel: sleutel(text, opts.stem) });
     if (opts.audio === undefined && text) opts = { ...opts, audio: opname(text, opts.stem) };
     const snelheid = (opts.rate || store.get("tempo", 0.95)) / 0.95;
-    if (opts.audio && kanaal && kanaal.state === "running" && Math.abs(snelheid - 1) < 0.01) {   // via het open kanaal (geen tik)
-      const mijn = beurt;
+    if (opts.audio && !opts.element && kanaal && kanaal.state === "running" && !kanaalVerdacht && Math.abs(snelheid - 1) < 0.01) {   // via het open kanaal (geen tik)
+      const mijn = beurt, ctx = kanaal; let gedaan = false, s = null; const w = [];
+      const af = () => { if (gedaan) return false; gedaan = true; w.forEach(clearTimeout); if (s && bron === s) bron = null; return true; };
+      const klaar = () => { if (af() && mijn === beurt) onend && onend(); };
+      // Vangnet: lukt het kanaal niet, dan dezelfde opname via het Audio-element (en anders de iPad-stem).
+      const terug = () => {
+        if (!af()) return;
+        if (s) { try { s.onended = null; s.stop(); } catch (e) {} }
+        if (mijn === beurt) speak(text, onend, { ...opts, element: true });
+      };
+      w.push(setTimeout(terug, 8000));   // opname laden duurt te lang
       buffer(opts.audio).then(buf => {
-        if (mijn !== beurt) return;
-        const s = kanaal.createBufferSource(); s.buffer = buf; s.connect(kanaal.destination);
-        s.onended = () => { if (bron === s) bron = null; if (mijn === beurt) onend && onend(); };
+        if (gedaan || mijn !== beurt) return af();
+        clearTimeout(w.pop());
+        s = ctx.createBufferSource(); s.buffer = buf; s.connect(ctx.destination);
+        s.onended = klaar;
         bron = s; s.start();
-      }).catch(() => { if (mijn === beurt) speak(text, onend, { ...opts, audio: null }); });
+        const t0 = ctx.currentTime;
+        // Loopt de klok van het kanaal niet, dan is het kapot: bij de volgende tik komt er een nieuw.
+        w.push(setTimeout(() => { if (!gedaan && ctx.currentTime - t0 < 0.1) { kanaalVerdacht = true; terug(); } }, Math.min(700, buf.duration * 500 + 200)));
+        w.push(setTimeout(klaar, buf.duration * 1000 + 2500));   // het einde wordt nooit gemeld: dan toch verder
+      }).catch(terug);
       return;
     }
     if (opts.audio && speler) {   // eerst het ingesproken bestand; lukt dat niet, dan de iPad-stem
-      let klaar = false;
-      const terug = () => { if (klaar) return; klaar = true; speler.onended = speler.onerror = null; speak(text, onend, { ...opts, audio: null }); };
-      speler.onended = () => { if (!klaar) { klaar = true; speler.onended = speler.onerror = null; onend && onend(); } };
+      let klaar = false; const w = [], mijn = beurt;
+      const af = () => { if (klaar || mijn !== beurt) return false; klaar = true; w.forEach(clearTimeout); speler.onended = speler.onerror = speler.onplaying = null; return true; };
+      const terug = () => { if (af()) { speler.pause(); speak(text, onend, { ...opts, audio: null }); } };
+      speler.onended = () => { if (af()) onend && onend(); };
       speler.onerror = terug;
+      speler.onplaying = () => {   // speelt hij: hooguit de duur van de opname plus wat ruimte, dan toch verder
+        const rest = (speler.duration - speler.currentTime) / (speler.playbackRate || 1);
+        if (isFinite(rest)) w.push(setTimeout(() => { if (af()) onend && onend(); }, rest * 1000 + 2500));
+      };
+      w.push(setTimeout(() => { if (!klaar && speler.currentTime < 0.05) terug(); }, 6000));   // start hij niet, dan de iPad-stem
       speler.src = opts.audio; speler.playbackRate = (opts.rate || store.get("tempo", 0.95)) / 0.95;
       const p = speler.play(); if (p && p.catch) p.catch(terug);
       return;
     }
     const delen = canSpeak && text ? zinnen(spreekbaar(text)) : [];
     if (!delen.length) { onend && onend(); return; }
-    let klaar = false;
-    const einde = () => { if (!klaar) { klaar = true; onend && onend(); } };
+    let klaar = false; const mijn = beurt;
     const v = opts.voice || voice, rate = opts.rate || store.get("tempo", 0.95), pitch = opts.pitch || 1;
+    // De iPad-stem meldt na een onderbreking soms nooit dat hij klaar is: na een ruime schatting gaan we toch verder.
+    const vangnet = setTimeout(() => { if (!klaar && mijn === beurt) { klaar = true; speechSynthesis.cancel(); onend && onend(); } }, 4000 + delen.join(" ").length * 110 / rate);
+    const einde = () => { clearTimeout(vangnet); if (!klaar) { klaar = true; onend && onend(); } };
     delen.forEach((zin, i) => {
       const u = new SpeechSynthesisUtterance(zin);
       u.lang = v ? v.lang : "nl-NL"; if (v) u.voice = v; u.rate = rate; u.pitch = pitch;
