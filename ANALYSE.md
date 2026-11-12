@@ -4,6 +4,11 @@ Een doorlichting van de app, de werkwijze en de skills, op verzoek van vader. Be
 
 **Status: dit zijn voorstellen, geen besluiten.** Bouw hier niets van uit eigen beweging. Vader kiest wat doorgaat; pas dan gaat het naar `WENSEN.md` (werkvoorraad) of `BESLUITEN.md` (besluit). Zet bij een voorstel dat is opgepakt de datum en de uitkomst erbij.
 
+**Stand per 2026-11-12 (keuzes van vader via het stuurbord):**
+- Gekozen: 2, 3, 4, 5 (eerst) en 11 (daarna, eigen sessie). Staan in `WENSEN.md` onder Open.
+- Vervallen: 1 (vader: het is goed zo) en 10 (zij vindt meelezen niet prettig, besluit 24).
+- Nog geen keuze: de overige voorstellen. Open vragen: 2 (kwaliteitseisen) en 4 (weekritme).
+
 Let op: deze repository is openbaar. Dit bestand beschrijft alles in neutrale woorden; persoonlijke achtergrond staat hier niet en hoort hier niet.
 
 Onderzocht: `BESLUITEN.md`, `WENSEN.md`, beide skills, `js/app.js`, `js/leren.js`, de modules, `sw.js`, de hulpscripts, en alle 61 schermen in iPad-formaat in een testbrowser (niet op haar iPad).
@@ -29,7 +34,7 @@ In `WENSEN.md` wachten 14 punten op controle op haar iPad. Dat is voorraad die d
 ## 2. Bevindingen
 
 ### Privacy
-- **P1 · Oude versies.** Zie `WENSEN.md`, Gedaan 2026-11-07 ("Privacy"). Vader legt aan haar voor of dat zo mag blijven. Zo niet: een nieuwe repository met exact dezelfde naam (dan blijft het adres van de site gelijk en blijven haar gegevens op de iPad staan; vooraf een back-up maken). Niet uit eigen beweging de geschiedenis herschrijven.
+- **P1 · Oude versies.** Afgehandeld op 2026-11-12: vader besluit dat het zo blijft. Oorspronkelijk: zie `WENSEN.md`, Gedaan 2026-11-07 ("Privacy"). Vader legt aan haar voor of dat zo mag blijven. Zo niet: een nieuwe repository met exact dezelfde naam (dan blijft het adres van de site gelijk en blijven haar gegevens op de iPad staan; vooraf een back-up maken). Niet uit eigen beweging de geschiedenis herschrijven.
 - **P2 · Lettertype komt van Google.** `index.html` laadt Atkinson Hyperlegible van fonts.googleapis.com bij elke start. Dat botst met "geen tik = geen contact met Google" (besluit 18). Bij een eerste start zonder internet valt de app terug op Verdana, want het lettertype staat niet in `CORE`.
 
 ### Opslag
@@ -131,9 +136,9 @@ Advies: nu niet. Eerst de nulmeting (16) en een half jaar gegevens bij haar, dan
 
 ## 6. Open vragen aan vader
 
-1. Oude versies (voorstel 1): wat vindt zij?
+1. ~~Oude versies (voorstel 1): wat vindt zij?~~ Beantwoord 2026-11-12: blijft zo.
 2. Welke kwaliteitseisen gelden voor haar: cijfers, leertijd, stress, zelfstandigheid? Daar hangt de nulmeting (16) aan.
-3. Mogen voorstellen 2 tot en met 5 als eerste gebouwd worden?
+3. ~~Mogen voorstellen 2 tot en met 5 als eerste gebouwd worden?~~ Beantwoord 2026-11-12: ja.
 4. Weekritme (14): past dat, of blijft direct publiceren de regel?
 
 ## 7. Bronnen

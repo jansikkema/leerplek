@@ -9,6 +9,14 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Open
 
+### Gekozen uit de analyse van 2026-11-12 (zie `ANALYSE.md`)
+Vader heeft deze voorstellen gekozen via het stuurbord. Volgorde: eerst 2 tot en met 5, daarna 11.
+- **Voorstel 2 · Lettertype zelf meeleveren** en opnemen in `CORE`. Werk: klein.
+- **Voorstel 3 · Tekeningetjes bij begrippen naar IndexedDB**, bestaande gegevens meeverhuizen, schrijffout zichtbaar maken. Werk: klein tot middel; opslag, dus extra zorg (besluit 15).
+- **Voorstel 4 · Leesronde:** regels hooguit ongeveer 65 tekens, niets onder 16 px, geen hoofdletterlabels, cursief weg, contrast en kleine knoppen herstellen. Daarna `node tools/meet-leesbaarheid.js` en de cijfers in `ANALYSE.md` zetten. Werk: klein.
+- **Voorstel 5 · Afvinkpunten tellen mee in het oordeel**, en uit je hoofd tekenen telt mee voor lightstick en planning. Werk: klein.
+- **Voorstel 11 · Voorleesteksten rechtstreeks uit de data**, met inhoudscontrole. Werk: groot, eigen sessie.
+
 ### Schetsbord: verder uitbouwen (besluit 20)
 - Stand 2026-11-09: `L.schetsbord` werkt en is gebruikt voor zes filmpjes in Wiskunde H1. Tekening en stem lopen per zin gelijk. Haar eerste reactie: goed.
 - Nog doen: poppetje, gebouw, ketting en kaart uit de proef (`tools/proef/schetsbord.html`) naar `L.schets`, zodat geschiedenis en aardrijkskunde ze kunnen gebruiken. Daarna de bestaande filmpjes (Italië, kaartfilmpje §1.3, H4) overzetten.
@@ -43,11 +51,6 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Nu: de tip in 'Mijn app' verwijst naar Spreek selectie / Spreek scherm van iOS, die wel de verbeterde stemmen gebruiken.
 - Opties voor in de app: opgenomen stemmen voor vaste teksten (zie hieronder); een echte app via een app-schil (vraagt een betaald Apple-ontwikkelaarsaccount en bouwen op een Mac in de cloud); een online voorleesdienst (botst met besluit 2 en 3, en mogelijk met 1).
 - Werk: zie de opties. Wacht op: besluit van vader.
-
-### Meelezen: de zin die wordt voorgelezen oplichten
-- Tijdens voorlezen de zin markeren die op dat moment klinkt. Helpt bij het volgen en verbindt horen met lezen.
-- Lastig omdat de voorleestekst nu vaak los staat van de tekst op het scherm. Eerst doen bij de chat en het filmpje, waar tekst en stem al gelijk lopen.
-- Werk: middel.
 
 ### Opgenomen stemmen: verder uitrollen (besluit 17)
 - Stand 2026-11-09: H4 179/180, Geschiedenis H1 314/315, tellers en appschermen compleet. Wiskunde H1: compleet (2026-11-10, 48 verzoeken op dag 2). Twee teksten afgekeurd (de stem slaat een woord over of voegt er een toe); die lezen de iPad-stem. Bij de volgende run nog eens proberen.
@@ -94,6 +97,9 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 - Werk: middel, per vorm.
 
 ## Gedaan
+- **2026-11-12 · Meelezen met oplichtende zin vervalt.** Zij vindt het niet prettig. Zie besluit 24.
+- **2026-11-12 · Oude versies in de geschiedenis: blijft zo.** Besluit van vader via het stuurbord: het is goed zo. Voorstel 1 uit de analyse vervalt.
+- **2026-11-12 · Stuurbord voor vader.** Besloten overzichtspagina met bord, vragen en documenten; werkwijze in `CLAUDE.md`. Analyse met 22 voorstellen in `ANALYSE.md`.
 - **2026-11-10 · Plakken verbeterd (versie 34, na test op haar iPad).** Stappen volgen nu het menu van Procreate (steeksleuteltje → Canvas kopiëren). Na Plakken toont de app een nagemaakt zwart wolkje "Plak" met uitleg, omdat het echte wolkje van de iPad onduidelijk was (overslaan kan niet). Geplakte tekening wordt zonder naamvraag bewaard en ze blijft in de oefening ("Terug naar de oefening", terugknop ook); bij de teken-knop in de oefening staat haar laatste tekening klein. Bij Uit je hoofd wordt een geplakte tekening meteen bewaard.
 - **2026-11-10 · Tekenen in Procreate en plakken (haar wens, versie 33).** Na een proef met drie manieren (plakken, slepen, kiezen uit Foto's) koos ze plakken. Bouwsteen `App.plakBlok`: opdracht in beeld, drie korte stappen, knop Plakken (de iPad vraagt zelf nog één tik op zijn wolkje Plakken; dat kan een website niet overslaan). Gebruikt bij tekenen na een filmpje of plaat, Uit je hoofd en het tekeningetje bij een begrip. Het tekenbord van de app blijft als reserve ("Of teken hier in de app"). Kladblok bij sommen en aantekeningen ongewijzigd. Zie besluit 23. Nog open: de voorbeelden bij Uit je hoofd worden echte schetsen met stap voor stap vergelijken (nu nog tekstlijstjes).
 - **2026-11-10 · Wiskunde H1 helemaal ingesproken (versie 31).** Alle zes filmpjes elk uit één opname, plus sorteren, begrippen en toetsvragen. Twee sorteerkaarten met '…' herschreven ('4x > −8: beide kanten delen door 4'): duidelijker voor haar, en de stem struikelde over het puntje-puntje-puntje.
