@@ -65,6 +65,11 @@ Let op: deze repository is openbaar. Beschrijf ideeën in eigen, neutrale woorde
 
 ## Voorstellen van Claude (graag beoordelen)
 
+### Analyse van 2026-11-12: 22 genummerde voorstellen
+- Doorlichting van app, werkwijze en skills: zie `ANALYSE.md`. Bevat bevindingen (privacy, opslag, didactiek, leesbaarheid, gebruiksgemak, onderhoud), voorstellen op volgorde en vier open vragen aan vader.
+- Kiest vader een voorstel, dan komt het hier onder Open te staan met het nummer erbij.
+- Werk: per voorstel aangegeven. Wacht op: keuze van vader.
+
 ### Wiskunde H1: nakijken met haar
 - Werkt het typen op de iPad in de vakjes (min-teken, breuk met /)? Zo niet: een eigen toetsenblokje met cijfers, − en /.
 - Is 'Wat doe je nu?' bij elke stap helpend of hinderlijk? Eventueel alleen bij Samen.
