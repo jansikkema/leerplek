@@ -1,0 +1,425 @@
+<title>Leerplek Stuurbord</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Indeling: vaste kop met vier tabbladen; daaronder één kolom van hooguit 1040 px. Het bord is een lijst per status,
+   geen brede kolommen, zodat het ook op een telefoon werkt. Lettertype en paars komen uit de leerapp zelf. */
+:root{
+  --bg:#F5F3FA; --vlak:#FFFFFF; --vlak2:#EFEBF8; --inkt:#1E1838; --zacht:#5D5677; --lijn:#DCD6EC;
+  --accent:#6246D0; --accent-op:#FFFFFF; --accent-tint:#EAE5FB;
+  --s-voorstel:#9A5B00; --s-voorstel-bg:#FCEFD6;
+  --s-gekozen:#1F5FB0; --s-gekozen-bg:#DFECFB;
+  --s-bezig:#6246D0; --s-bezig-bg:#EAE5FB;
+  --s-ipad:#0B6F66; --s-ipad-bg:#D9F2EE;
+  --s-klaar:#2B6B2F; --s-klaar-bg:#DFF1DD;
+  --s-niet:#5D5677; --s-niet-bg:#E9E6F0;
+  --waarschuw:#A3340F; --waarschuw-bg:#FBE6DD;
+  --letter:"Atkinson Hyperlegible",Verdana,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#1B1530; --vlak:#261F45; --vlak2:#2F2752; --inkt:#F2EFFA; --zacht:#B6AED2; --lijn:#3D3466;
+  --accent:#B79CFF; --accent-op:#1B1530; --accent-tint:#372C63;
+  --s-voorstel:#F3C56B; --s-voorstel-bg:#45361A;
+  --s-gekozen:#8EC0FA; --s-gekozen-bg:#1D3555;
+  --s-bezig:#C6B2FF; --s-bezig-bg:#372C63;
+  --s-ipad:#74D8CC; --s-ipad-bg:#163F3B;
+  --s-klaar:#96D79A; --s-klaar-bg:#1F3F22;
+  --s-niet:#B6AED2; --s-niet-bg:#322B4D;
+  --waarschuw:#FFB199; --waarschuw-bg:#4A2418;
+  color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#1B1530; --vlak:#261F45; --vlak2:#2F2752; --inkt:#F2EFFA; --zacht:#B6AED2; --lijn:#3D3466;
+  --accent:#B79CFF; --accent-op:#1B1530; --accent-tint:#372C63;
+  --s-voorstel:#F3C56B; --s-voorstel-bg:#45361A;
+  --s-gekozen:#8EC0FA; --s-gekozen-bg:#1D3555;
+  --s-bezig:#C6B2FF; --s-bezig-bg:#372C63;
+  --s-ipad:#74D8CC; --s-ipad-bg:#163F3B;
+  --s-klaar:#96D79A; --s-klaar-bg:#1F3F22;
+  --s-niet:#B6AED2; --s-niet-bg:#322B4D;
+  --waarschuw:#FFB199; --waarschuw-bg:#4A2418;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--inkt);font-family:var(--letter);font-size:17px;line-height:1.55}
+button,textarea,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1,h2,h3{line-height:1.25;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+
+.kop{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--lijn)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.binnen{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.kop .binnen{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding-block:12px}
+.naam{font-weight:700;font-size:1.15em;margin-right:auto}
+.naam small{display:block;font-weight:400;font-size:.72em;color:var(--zacht)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab{background:none;border:1px solid transparent;border-radius:999px;padding:8px 14px;min-height:44px;color:var(--zacht)}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-op);font-weight:700}
+.tab .tel{display:inline-block;min-width:1.5em;margin-left:6px;padding:0 6px;border-radius:999px;background:var(--waarschuw-bg);color:var(--waarschuw);font-size:.8em;font-weight:700;text-align:center}
+main.binnen{padding-block:22px 60px;display:flex;flex-direction:column;gap:22px}
+
+.melding{background:var(--waarschuw-bg);color:var(--waarschuw);border-radius:var(--r);padding:12px 16px}
+.leeg{border:2px dashed var(--lijn);border-radius:var(--r);padding:22px;color:var(--zacht);text-align:center}
+.vlak{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);padding:18px 20px}
+.vlak h2{font-size:1.1em;margin-bottom:10px}
+.zacht{color:var(--zacht)}
+.klein{font-size:.88em}
+.rij{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.twee{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px}
+ul.kaal{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ul.kaal li{padding-left:22px;position:relative}
+ul.kaal li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--punt,var(--accent))}
+
+/* nu */
+.stand{display:flex;flex-wrap:wrap;gap:6px 26px;align-items:baseline}
+.stand h1{font-size:1.5em}
+.wacht{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.wacht button{display:flex;gap:14px;align-items:center;text-align:left;background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);padding:14px 16px;min-height:76px}
+.wacht button:hover{border-color:var(--accent)}
+.wacht .n{font-size:1.9em;font-weight:700;font-variant-numeric:tabular-nums;min-width:1.4em;color:var(--kleur)}
+.wacht .t{line-height:1.3}
+.wacht .t small{display:block;color:var(--zacht)}
+.balk{display:flex;height:14px;border-radius:999px;overflow:hidden;background:var(--vlak2)}
+.balk i{display:block;height:100%}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px}
+.legenda span{display:inline-flex;align-items:center;gap:6px;font-size:.88em;color:var(--zacht)}
+.legenda span::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--kleur)}
+
+/* bord */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--vlak);border:1px solid var(--lijn);border-radius:999px;padding:8px 14px;min-height:44px}
+.chip[aria-pressed="true"]{background:var(--accent-tint);border-color:var(--accent);font-weight:700}
+.groep-kop{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:10px}
+.groep-kop h2{font-size:1.1em}
+.pil{display:inline-block;border-radius:999px;padding:2px 12px;font-size:.82em;font-weight:700;background:var(--pbg);color:var(--pk);white-space:nowrap}
+.kaarten{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;align-items:start}
+.kaart{background:var(--vlak);border:1px solid var(--lijn);border-left:5px solid var(--pk);border-radius:var(--r);min-width:0}
+.kaart.open{grid-column:1/-1}
+.kaart-kop{display:flex;gap:12px;align-items:flex-start;width:100%;background:none;border:none;text-align:left;padding:14px 16px;min-height:44px}
+.kaart-kop .nr{flex:none;font-weight:700;color:var(--zacht);font-variant-numeric:tabular-nums;min-width:1.8em}
+.kaart-kop .tt{flex:1;min-width:0}
+.kaart-kop .tt b{display:block;line-height:1.3}
+.kaart-kop .tt span{display:block;color:var(--zacht);font-size:.86em;margin-top:3px}
+.kaart-kop .eigen{flex:none;font-size:.78em;font-weight:700;color:var(--waarschuw);background:var(--waarschuw-bg);border-radius:999px;padding:2px 9px}
+.kaart-in{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px;max-width:72ch}
+.kies{display:flex;flex-wrap:wrap;gap:6px}
+.kies button{background:var(--vlak2);border:1px solid transparent;border-radius:999px;padding:7px 13px;min-height:44px}
+.kies button[aria-pressed="true"]{background:var(--pbg);color:var(--pk);border-color:var(--pk);font-weight:700}
+textarea{width:100%;min-height:92px;background:var(--bg);border:1px solid var(--lijn);border-radius:10px;padding:10px 12px;line-height:1.5;resize:vertical}
+.knop{background:var(--accent);color:var(--accent-op);border:none;border-radius:999px;padding:9px 18px;min-height:44px;font-weight:700}
+.knop.stil{background:var(--vlak2);color:var(--inkt);font-weight:400}
+.knop:disabled{opacity:.5;cursor:default}
+.ok{color:var(--s-klaar);font-weight:700}
+
+/* vragen */
+.vraag{display:flex;flex-direction:column;gap:10px}
+.vraag h2{font-size:1.05em;margin:0}
+
+/* documenten */
+.doc-lijst{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.doc{display:flex;flex-direction:column;gap:6px;text-align:left;background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);padding:14px 16px;min-width:0;text-decoration:none;color:inherit}
+button.doc:hover,a.doc:hover{border-color:var(--accent)}
+.doc b{line-height:1.3}
+.doc code{font-family:var(--mono);font-size:.8em;color:var(--zacht);overflow-wrap:anywhere}
+.doc .wat{color:var(--zacht);font-size:.9em}
+.doc .open{margin-top:auto;padding-top:6px;color:var(--accent);font-weight:700;font-size:.9em}
+.lezer{max-width:74ch}
+.lezer-kop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.lezer-kop h1{font-size:1.3em;margin-right:auto}
+.md{overflow-wrap:anywhere}
+.md h1{font-size:1.35em;margin:1.1em 0 .4em}.md h2{font-size:1.15em;margin:1.3em 0 .4em;padding-top:.6em;border-top:1px solid var(--lijn)}
+.md h3{font-size:1.02em;margin:1.1em 0 .3em}.md h4{font-size:1em;margin:1em 0 .3em}
+.md p{margin:.6em 0}.md ul,.md ol{margin:.5em 0;padding-left:1.4em}.md li{margin:.3em 0}.md li.in{margin-left:1.4em}
+.md code{font-family:var(--mono);font-size:.86em;background:var(--vlak2);border-radius:5px;padding:1px 5px}
+.md pre{background:var(--vlak2);border-radius:10px;padding:12px 14px;overflow-x:auto;line-height:1.45}
+.md pre code{background:none;padding:0}
+.md .tabel{overflow-x:auto;margin:.8em 0}
+.md table{border-collapse:collapse;font-size:.92em;min-width:100%}
+.md th,.md td{border:1px solid var(--lijn);padding:7px 10px;text-align:left;vertical-align:top}
+.md th{background:var(--vlak2)}
+.md blockquote{margin:.6em 0;padding:2px 14px;border-left:4px solid var(--lijn);color:var(--zacht)}
+.md hr{border:none;border-top:1px solid var(--lijn);margin:1.2em 0}
+textarea.groot{min-height:60vh;font-family:var(--mono);font-size:.9em}
+
+/* uitleg */
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;counter-reset:stap}
+.route div{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);padding:14px;counter-increment:stap;min-width:0}
+.route div::before{content:counter(stap);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-op);font-weight:700;margin-bottom:8px}
+.route b{display:block;line-height:1.3}
+.route span{display:block;color:var(--zacht);font-size:.88em;margin-top:4px}
+dl.woorden{display:grid;grid-template-columns:minmax(120px,max-content) 1fr;gap:10px 20px;margin:0}
+dl.woorden dt{font-weight:700}dl.woorden dd{margin:0;max-width:62ch}
+@media (max-width:560px){dl.woorden{grid-template-columns:1fr;gap:2px}dl.woorden dd{margin-bottom:10px}}
+</style>
+
+<header class="kop"><div class="binnen">
+  <div class="naam">Leerplek Stuurbord<small id="bijgewerkt">Overzicht van het project voor de leerapp</small></div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+</div></header>
+<main class="binnen" id="view"></main>
+
+<script>
+(function () {
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const datum = iso => { if (!iso) return ""; const d = new Date(iso); return isNaN(d) ? String(iso) : d.toLocaleDateString("nl-NL", { day: "numeric", month: "long" }); };
+
+  const STATUS = [
+    { id: "voorstel", naam: "Voorstel", uitleg: "Wacht op uw keuze." },
+    { id: "gekozen", naam: "Gekozen", uitleg: "Mag gebouwd worden." },
+    { id: "bezig", naam: "In aanbouw", uitleg: "Claude werkt eraan." },
+    { id: "ipad", naam: "Controle op iPad", uitleg: "Gebouwd; samen met haar nakijken." },
+    { id: "klaar", naam: "Klaar", uitleg: "Gebouwd en gezien op haar iPad." },
+    { id: "niet", naam: "Niet doen", uitleg: "Bewust afgewezen of vervallen." }
+  ];
+  const kleur = id => `--pk:var(--s-${id});--pbg:var(--s-${id}-bg)`;
+  const TABS = [["nu", "Nu"], ["bord", "Bord"], ["vragen", "Vragen"], ["documenten", "Waar staat wat"], ["uitleg", "Hoe het werkt"]];
+
+  const S = { db: null, geenDb: false, traag: false, fout: "", items: null, vragen: null, docs: null, stand: null,
+    thema: "", open: "", doc: "", bewerk: false, concept: {}, notitie: {}, antwoord: {}, bewaard: "", uitgesteld: false };
+
+  /* ---------- eenvoudige opmaak van Markdown (tekst wordt eerst veilig gemaakt) ---------- */
+  function regel(t) {
+    return esc(t).replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/~~(.+?)~~/g, "<s>$1</s>")
+      .replace(/(^|[\s(])\*([^*\s][^*]*?)\*(?=[\s).,;:!?]|$)/g, "$1<i>$2</i>")
+      .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2">$1</a>');
+  }
+  function md(tekst) {
+    const L = String(tekst || "").replace(/\r/g, "").split("\n"); const uit = []; let i = 0, lijst = "";
+    const sluit = () => { if (lijst) { uit.push(`</${lijst}>`); lijst = ""; } };
+    if (L[0] === "---") { const e = L.indexOf("---", 1); if (e > 0) { uit.push(`<pre><code>${esc(L.slice(1, e).join("\n"))}</code></pre>`); i = e + 1; } }
+    for (; i < L.length; i++) {
+      const r = L[i]; let m;
+      if (/^```/.test(r)) { sluit(); const b = []; for (i++; i < L.length && !/^```/.test(L[i]); i++) b.push(L[i]); uit.push(`<pre><code>${esc(b.join("\n"))}</code></pre>`); continue; }
+      if ((m = r.match(/^(#{1,4})\s+(.*)$/))) { sluit(); uit.push(`<h${m[1].length}>${regel(m[2])}</h${m[1].length}>`); continue; }
+      if (/^\s*(---+|\*\*\*+)\s*$/.test(r)) { sluit(); uit.push("<hr>"); continue; }
+      if (/^\s*\|.*\|\s*$/.test(r) && /^\s*\|[\s:|-]+\|\s*$/.test(L[i + 1] || "")) {
+        sluit(); const cel = x => x.trim().replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map(c => regel(c.trim()));
+        let h = `<div class="tabel"><table><thead><tr>${cel(r).map(c => `<th>${c}</th>`).join("")}</tr></thead><tbody>`;
+        for (i += 2; i < L.length && /^\s*\|.*\|\s*$/.test(L[i]); i++) h += `<tr>${cel(L[i]).map(c => `<td>${c}</td>`).join("")}</tr>`;
+        i--; uit.push(h + "</tbody></table></div>"); continue;
+      }
+      if ((m = r.match(/^(\s*)([-*]|\d+\.)\s+(.*)$/))) {
+        const soort = /\d/.test(m[2]) ? "ol" : "ul";
+        if (!lijst) { lijst = m[1].length >= 2 ? "ul" : soort; uit.push(`<${lijst}>`); }
+        uit.push(`<li${m[1].length >= 2 ? ' class="in"' : ""}>${regel(m[3])}</li>`); continue;
+      }
+      if (lijst && /^\s{2,}\S/.test(r)) { uit.push(`<li class="in" style="list-style:none">${regel(r.trim())}</li>`); continue; }
+      if ((m = r.match(/^>\s?(.*)$/))) { sluit(); uit.push(`<blockquote>${regel(m[1])}</blockquote>`); continue; }
+      if (!r.trim()) { sluit(); continue; }
+      sluit(); const p = [r]; while (i + 1 < L.length && L[i + 1].trim() && !/^(#{1,4}\s|```|\s*[-*]\s|\s*\d+\.\s|>|\s*\|)/.test(L[i + 1])) p.push(L[++i]);
+      uit.push(`<p>${p.map(regel).join("<br>")}</p>`);
+    }
+    sluit(); return uit.join("\n");
+  }
+
+  /* ---------- gegevens ---------- */
+  const lijst = k => S[k] || [];
+  const perStatus = id => lijst("items").filter(x => (x.status || "voorstel") === id && (!S.thema || x.thema === S.thema))
+    .sort((a, b) => (a.volgorde ?? 999) - (b.volgorde ?? 999) || String(a.titel).localeCompare(String(b.titel), "nl"));
+  const openVragen = () => lijst("vragen").filter(v => !String(v.antwoord || "").trim());
+  const vanU = () => lijst("items").filter(x => x.door === "vader" && !x.verwerkt).length
+    + lijst("vragen").filter(v => String(v.antwoord || "").trim() && !v.verwerkt).length
+    + lijst("docs").filter(d => d.concept != null).length;
+
+  async function schrijf(pad, velden, sleutel) {
+    if (!S.db) return;
+    try { await S.db.doc(pad).update(velden); S.bewaard = sleutel; S.fout = ""; }
+    catch (e) { S.fout = e && e.code === "quota_exceeded" ? "De opslag van dit stuurbord is vol. Meld het aan Claude." : "Bewaren lukte niet. Probeer het nog eens."; }
+    render();
+  }
+
+  /* ---------- schermen ---------- */
+  function nu() {
+    const st = S.stand || {}, items = lijst("items");
+    const telling = STATUS.map(s => ({ ...s, n: items.filter(x => (x.status || "voorstel") === s.id).length }));
+    const totaal = items.length || 1, v = openVragen().length, wacht = vanU();
+    const blok = (n, tab, t, sub, k) => `<button data-tab="${tab}" style="--kleur:var(${k})"><span class="n">${n}</span><span class="t">${t}<small>${sub}</small></span></button>`;
+    return `
+      <section class="stand"><h1>${esc(st.kop || "Stand van het project")}</h1>
+        <span class="zacht">${st.versie ? `Versie ${esc(st.versie)} staat op haar iPad` : ""}${st.datum ? ` · bijgewerkt op ${esc(datum(st.datum))}` : ""}</span></section>
+      <section><div class="wacht">
+        ${blok(v, "vragen", "Vragen aan u", "Claude heeft uw antwoord nodig", "--s-voorstel")}
+        ${blok(telling[0].n, "bord", "Voorstellen", "wachten op uw keuze", "--s-voorstel")}
+        ${blok(telling[3].n, "bord", "Controle op iPad", "samen met haar nakijken", "--s-ipad")}
+        ${blok(wacht, "bord", "Van u, nog niet verwerkt", "pakt Claude op in de volgende chat", "--s-bezig")}
+      </div></section>
+      <section class="vlak"><h2>Alle ${items.length} punten naar status</h2>
+        <div class="balk" role="img" aria-label="${telling.map(s => `${s.naam}: ${s.n}`).join(", ")}">${telling.map(s => s.n ? `<i style="width:${s.n / totaal * 100}%;background:var(--s-${s.id})"></i>` : "").join("")}</div>
+        <div class="legenda">${telling.map(s => `<span style="--kleur:var(--s-${s.id})">${s.naam} ${s.n}</span>`).join("")}</div></section>
+      <div class="twee">
+        <section class="vlak"><h2>Staat op haar iPad</h2>${(st.opIpad || []).length ? `<ul class="kaal" style="--punt:var(--s-klaar)">${st.opIpad.map(x => `<li>${regel(x)}</li>`).join("")}</ul>` : `<p class="zacht">Nog niets ingevuld.</p>`}</section>
+        <section class="vlak"><h2>Gemaakt, nog niet gepubliceerd</h2>${(st.nietGepubliceerd || []).length ? `<ul class="kaal" style="--punt:var(--s-voorstel)">${st.nietGepubliceerd.map(x => `<li>${regel(x)}</li>`).join("")}</ul><p class="zacht klein" style="margin-top:10px">Dit staat klaar in een kladversie. Nieuwe chats zien het pas na publiceren.</p>` : `<p class="zacht">Alles wat gemaakt is, is gepubliceerd.</p>`}</section>
+      </div>
+      <section class="vlak"><h2>Laatste sessies</h2>${(st.laatste || []).length ? `<ul class="kaal">${st.laatste.map(x => `<li><b>${esc(datum(x.datum))}</b> · ${regel(x.tekst)}</li>`).join("")}</ul>` : `<p class="zacht">Nog niets ingevuld.</p>`}</section>`;
+  }
+
+  function kaart(x) {
+    const open = S.open === x.id, st = x.status || "voorstel";
+    const sub = [x.thema, x.werk && "werk: " + x.werk, x.wachtOp && "wacht op: " + x.wachtOp].filter(Boolean).join(" · ");
+    let h = `<article class="kaart ${open ? "open" : ""}" style="${kleur(st)}">
+      <button class="kaart-kop" data-open="${esc(x.id)}" aria-expanded="${open}">${x.nr ? `<span class="nr">${esc(x.nr)}</span>` : ""}
+        <span class="tt"><b>${esc(x.titel)}</b><span>${esc(sub)}</span></span>${x.door === "vader" && !x.verwerkt ? `<span class="eigen">van u</span>` : ""}</button>`;
+    if (open) {
+      const n = S.notitie[x.id] ?? x.notitie ?? "";
+      h += `<div class="kaart-in">
+        ${x.uitleg ? `<p>${regel(x.uitleg)}</p>` : ""}
+        ${x.lostOp ? `<p class="zacht klein"><b>Waarom:</b> ${regel(x.lostOp)}</p>` : ""}
+        ${x.bron ? `<p class="zacht klein">Meer hierover: ${regel(x.bron)}</p>` : ""}
+        <div><p class="klein" style="margin-bottom:6px"><b>Status</b></p><div class="kies">${STATUS.map(s => `<button data-status="${s.id}" data-id="${esc(x.id)}" aria-pressed="${s.id === st}" style="${kleur(s.id)}" title="${esc(s.uitleg)}">${s.naam}</button>`).join("")}</div></div>
+        <div><label class="klein" for="n-${esc(x.id)}"><b>Uw opmerking voor Claude</b></label>
+          <textarea id="n-${esc(x.id)}" data-notitie="${esc(x.id)}" placeholder="Bijvoorbeeld: eerst dit, of: alleen als het weinig werk is.">${esc(n)}</textarea>
+          <div class="rij" style="margin-top:8px"><button class="knop" data-bewaar-notitie="${esc(x.id)}">Bewaar opmerking</button>${S.bewaard === "n-" + x.id ? `<span class="ok">Bewaard</span>` : ""}
+            ${x.gewijzigd ? `<span class="zacht klein">Laatst gewijzigd op ${esc(datum(x.gewijzigd))} door ${x.door === "vader" ? "u" : "Claude"}</span>` : ""}</div></div>
+      </div>`;
+    }
+    return h + `</article>`;
+  }
+  function bord() {
+    const themas = [...new Set(lijst("items").map(x => x.thema).filter(Boolean))].sort((a, b) => a.localeCompare(b, "nl"));
+    return `<section><div class="chips" role="group" aria-label="Kies een thema">
+        <button class="chip" data-thema="" aria-pressed="${!S.thema}">Alle thema's</button>${themas.map(t => `<button class="chip" data-thema="${esc(t)}" aria-pressed="${S.thema === t}">${esc(t)}</button>`).join("")}</div>
+        <p class="zacht klein" style="margin-top:10px">Tik op een punt voor uitleg. Daar kiest u de status en schrijft u een opmerking. Claude leest dat aan het begin van de volgende chat.</p></section>
+      ${STATUS.map(s => { const L = perStatus(s.id); return !L.length ? "" : `<section><div class="groep-kop"><h2>${s.naam}</h2><span class="pil" style="${kleur(s.id)}">${L.length}</span><span class="zacht klein">${s.uitleg}</span></div><div class="kaarten">${L.map(kaart).join("")}</div></section>`; }).join("")}`;
+  }
+
+  function vragen() {
+    const L = lijst("vragen").slice().sort((a, b) => (a.volgorde ?? 99) - (b.volgorde ?? 99));
+    if (!L.length) return `<div class="leeg">Er zijn nu geen vragen aan u.</div>`;
+    return `<p class="zacht" style="max-width:65ch">Dit zijn beslissingen die Claude niet voor u kan nemen. Typ uw antwoord; Claude leest het aan het begin van de volgende chat.</p>` + L.map(v => {
+      const a = S.antwoord[v.id] ?? v.antwoord ?? "";
+      return `<section class="vlak vraag"><h2>${esc(v.vraag)}</h2>${v.toelichting ? `<p class="zacht klein" style="max-width:68ch">${regel(v.toelichting)}</p>` : ""}
+        <label class="klein" for="a-${esc(v.id)}"><b>Uw antwoord</b></label><textarea id="a-${esc(v.id)}" data-antwoord="${esc(v.id)}">${esc(a)}</textarea>
+        <div class="rij"><button class="knop" data-bewaar-antwoord="${esc(v.id)}">Bewaar antwoord</button>${S.bewaard === "a-" + v.id ? `<span class="ok">Bewaard</span>` : ""}
+          ${String(v.antwoord || "").trim() ? `<span class="zacht klein">${v.verwerkt ? "Verwerkt door Claude" : "Beantwoord op " + esc(datum(v.beantwoord)) + ", nog niet verwerkt"}</span>` : ""}</div></section>`;
+    }).join("");
+  }
+
+  function documenten() {
+    const D = lijst("docs");
+    if (S.doc) {
+      const d = D.find(x => x.id === S.doc); if (!d) { S.doc = ""; return documenten(); }
+      const heeftConcept = d.concept != null;
+      if (S.bewerk) {
+        const t = S.concept[d.id] ?? d.concept ?? d.tekst ?? "";
+        return `<section class="lezer"><div class="lezer-kop"><h1>${esc(d.titel)} aanpassen</h1></div>
+          <p class="zacht klein" style="margin-bottom:10px">U past hier een kopie aan. Claude neemt uw wijziging in de volgende chat over in het echte bestand en meldt wat er veranderd is. Een regel met # is een kopje, ** maakt tekst vet.</p>
+          <label class="klein" for="concept"><b>Tekst van ${esc(d.pad || d.titel)}</b></label>
+          <textarea class="groot" id="concept" data-concept="${esc(d.id)}" spellcheck="false">${esc(t)}</textarea>
+          <div class="rij" style="margin-top:10px"><button class="knop" data-bewaar-concept="${esc(d.id)}">Bewaar als wijziging voor Claude</button><button class="knop stil" data-annuleer>Annuleer</button></div></section>`;
+      }
+      return `<section class="lezer"><div class="lezer-kop"><button class="knop stil" data-terug>← Alle documenten</button><h1>${esc(d.titel)}</h1>
+          ${d.tekst != null ? `<button class="knop stil" data-bewerk>Aanpassen</button>` : ""}</div>
+        <p class="zacht klein">${esc(d.wat || "")}${d.bijgewerkt ? ` Kopie van ${esc(datum(d.bijgewerkt))}.` : ""}${d.link ? ` <a href="${esc(d.link)}">Bekijk op GitHub</a>` : ""}</p>
+        ${heeftConcept ? `<div class="melding" style="margin-top:12px">Uw wijziging van ${esc(datum(d.conceptDatum))} wacht op verwerking door Claude. Hieronder staat nog de huidige versie.
+          <div class="rij" style="margin-top:8px"><button class="knop stil" data-bewerk>Verder aanpassen</button><button class="knop stil" data-intrekken="${esc(d.id)}">Wijziging intrekken</button></div></div>` : ""}
+        <div class="md" style="margin-top:14px">${md(d.tekst)}</div></section>`;
+    }
+    if (!D.length) return `<div class="leeg">De lijst met documenten is nog leeg. Claude vult die bij de eerste keer bijwerken.</div>`;
+    const groepen = [...new Set(D.slice().sort((a, b) => (a.volgorde ?? 99) - (b.volgorde ?? 99)).map(d => d.groep || "Overig"))];
+    return `<p class="zacht" style="max-width:65ch">Alles wat bij het project hoort, in gewone woorden. Documenten met “Openen” kunt u hier lezen en aanpassen. De rest is programmacode; die opent op GitHub.</p>` +
+      groepen.map(g => `<section><div class="groep-kop"><h2>${esc(g)}</h2></div><div class="doc-lijst">${D.filter(d => (d.groep || "Overig") === g).sort((a, b) => (a.volgorde ?? 99) - (b.volgorde ?? 99)).map(d => {
+        const in_ = `<b>${esc(d.titel)}</b>${d.pad ? `<code>${esc(d.pad)}</code>` : ""}<span class="wat">${esc(d.wat || "")}</span>
+          ${d.concept != null ? `<span class="pil" style="${kleur("bezig")};align-self:flex-start">uw wijziging wacht</span>` : ""}${d.stand ? `<span class="pil" style="${kleur("voorstel")};align-self:flex-start">${esc(d.stand)}</span>` : ""}`;
+        return d.tekst != null ? `<button class="doc" data-doc="${esc(d.id)}">${in_}<span class="open">Openen</span></button>`
+          : d.link ? `<a class="doc" href="${esc(d.link)}">${in_}<span class="open">Bekijk op GitHub</span></a>` : `<div class="doc">${in_}</div>`;
+      }).join("")}</div></section>`).join("");
+  }
+
+  function uitleg() {
+    return `<section><div class="groep-kop"><h2>Van idee tot haar iPad</h2></div>
+      <div class="route">
+        <div><b>Idee</b><span>Van haar (ideeënbus in de app) of van u.</span></div>
+        <div><b>Chat met Claude</b><span>U geeft het idee door. Claude leest eerst de huisregels en dit stuurbord.</span></div>
+        <div><b>Kladversie</b><span>Claude bouwt en test in een eigen kopie. Haar iPad merkt nog niets.</span></div>
+        <div><b>Publiceren</b><span>De kladversie wordt de echte versie. Dit is het moment van “naar main”.</span></div>
+        <div><b>De site</b><span>GitHub zet de echte versie binnen een minuut online.</span></div>
+        <div><b>Haar iPad</b><span>Haalt de nieuwe versie op bij de volgende keer openen.</span></div>
+      </div></section>
+    <div class="twee">
+      <section class="vlak"><h2>Drie plekken, drie soorten inhoud</h2><ul class="kaal">
+        <li><b>GitHub</b> · alles wat Claude maakt: de app, de documenten, de werkwijzen. Openbaar, dus zonder persoonlijke gegevens.</li>
+        <li><b>Haar iPad</b> · haar tekeningen, aantekeningen en voortgang. Staat nergens anders.</li>
+        <li><b>Dit stuurbord</b> · uw keuzes, opmerkingen en antwoorden. Alleen voor u zichtbaar; Claude leest ze in een nieuwe chat.</li></ul></section>
+      <section class="vlak"><h2>Wat u hier wel en niet verandert</h2><ul class="kaal">
+        <li>Status, opmerkingen en antwoorden die u hier bewaart, blijven staan.</li>
+        <li>Een aangepast document is een verzoek aan Claude. Het echte bestand verandert pas in de volgende chat.</li>
+        <li>De app zelf verandert nooit vanuit dit stuurbord.</li></ul></section>
+    </div>
+    <section class="vlak"><h2>Woorden die Claude gebruikt</h2><dl class="woorden">
+      <dt>Repository</dt><dd>De projectmap op GitHub met alle bestanden en alle eerdere versies.</dd>
+      <dt>Commit</dt><dd>Eén opgeslagen stap, met een korte beschrijving van wat er veranderd is.</dd>
+      <dt>Werktak</dt><dd>De kladversie van één chat. Staat wel op GitHub, maar niet op haar iPad.</dd>
+      <dt>Main</dt><dd>De echte versie. Wat hier staat, komt op haar iPad en is het startpunt van elke nieuwe chat.</dd>
+      <dt>Publiceren</dt><dd>De kladversie overzetten naar main.</dd>
+      <dt>GitHub Pages</dt><dd>De dienst die van de repository een website maakt. Daar haalt de iPad de app vandaan.</dd>
+      <dt>Skill</dt><dd>Een vaste werkwijze voor Claude, zoals “nieuw hoofdstuk maken”. Een draaiboek dat elke keer hetzelfde wordt gevolgd.</dd>
+      <dt>CLAUDE.md</dt><dd>De huisregels. Claude leest dit bestand aan het begin van elke chat.</dd>
+      <dt>Versie en cache</dt><dd>Het versienummer onderaan “Mijn app”. Gaat bij elke publicatie één omhoog, zodat de iPad weet dat er iets nieuws is.</dd>
+    </dl></section>`;
+  }
+
+  /* ---------- tekenen ---------- */
+  const tabNu = () => { const h = (location.hash || "").slice(1); return TABS.some(t => t[0] === h) ? h : "nu"; };
+  function render() {
+    const a = document.activeElement;
+    if (a && a.tagName === "TEXTAREA" && $("#view").contains(a) && !S.forceer) { S.uitgesteld = true; return; }   // niet onder het typen opnieuw tekenen
+    S.forceer = false; S.uitgesteld = false;
+    const tab = tabNu(), v = openVragen().length;
+    $("#tabs").innerHTML = TABS.map(([id, n]) => `<button class="tab" role="tab" data-tab="${id}" aria-selected="${id === tab}">${n}${id === "vragen" && v ? `<span class="tel">${v}</span>` : ""}</button>`).join("");
+    if (S.stand && S.stand.datum) $("#bijgewerkt").textContent = "Bijgewerkt door Claude op " + datum(S.stand.datum);
+    let boven = "";
+    if (S.fout) boven += `<div class="melding" role="alert">${esc(S.fout)}</div>`;
+    if (S.geenDb) boven += `<div class="melding">De gegevens van het stuurbord zijn hier niet bereikbaar. Open deze pagina in claude.ai terwijl u bent ingelogd. De uitleg onder “Hoe het werkt” kunt u wel lezen.</div>`;
+    else if (S.items === null && tab !== "uitleg") boven += `<div class="leeg">${S.traag ? "De gegevens zijn nog niet bereikbaar. Dit scherm vult zich vanzelf zodra dat lukt." : "Gegevens ophalen…"}</div>`;
+    else if (S.traag) boven += `<div class="melding">De verbinding hapert. Wat u ziet kan verouderd zijn.</div>`;
+    const klaar = S.items !== null || tab === "uitleg";
+    $("#view").innerHTML = boven + (!klaar ? "" : tab === "bord" ? bord() : tab === "vragen" ? vragen() : tab === "documenten" ? documenten() : tab === "uitleg" ? uitleg() : nu());
+  }
+  const teken = () => { S.forceer = true; render(); };
+
+  document.addEventListener("click", e => {
+    const b = e.target.closest("button,[data-tab]"); if (!b) return; const d = b.dataset;
+    if (d.tab) { S.doc = ""; S.bewerk = false; if (tabNu() === d.tab) teken(); else location.hash = d.tab; window.scrollTo(0, 0); return; }
+    if (d.thema !== undefined) { S.thema = d.thema; return teken(); }
+    if (d.open) { S.open = S.open === d.open ? "" : d.open; S.bewaard = ""; return teken(); }
+    if (d.status) { const x = lijst("items").find(i => i.id === d.id); if (!x || (x.status || "voorstel") === d.status) return;
+      S.forceer = true; return schrijf("items/" + d.id, { status: d.status, door: "vader", verwerkt: false, gewijzigd: new Date().toISOString() }, "s-" + d.id); }
+    if (d.bewaarNotitie) { const id = d.bewaarNotitie, t = S.notitie[id]; if (t === undefined) return; delete S.notitie[id]; S.forceer = true;
+      return schrijf("items/" + id, { notitie: t, door: "vader", verwerkt: false, gewijzigd: new Date().toISOString() }, "n-" + id); }
+    if (d.bewaarAntwoord) { const id = d.bewaarAntwoord, t = S.antwoord[id]; if (t === undefined) return; delete S.antwoord[id]; S.forceer = true;
+      return schrijf("vragen/" + id, { antwoord: t, verwerkt: false, beantwoord: new Date().toISOString() }, "a-" + id); }
+    if (d.doc) { S.doc = d.doc; S.bewerk = false; window.scrollTo(0, 0); return teken(); }
+    if (d.terug !== undefined) { S.doc = ""; return teken(); }
+    if (d.bewerk !== undefined) { S.bewerk = true; return teken(); }
+    if (d.annuleer !== undefined) { delete S.concept[S.doc]; S.bewerk = false; return teken(); }
+    if (d.bewaarConcept) { const id = d.bewaarConcept, doc = lijst("docs").find(x => x.id === id), t = S.concept[id] ?? (doc && (doc.concept ?? doc.tekst)) ?? "";
+      delete S.concept[id]; S.bewerk = false; S.forceer = true;
+      if (doc && t === doc.tekst) return teken();   // niets veranderd
+      return schrijf("documenten/" + id, { concept: t, conceptDatum: new Date().toISOString() }, "d-" + id); }
+    if (d.intrekken) { S.forceer = true; return schrijf("documenten/" + d.intrekken, { concept: null, conceptDatum: null }, ""); }
+  });
+  document.addEventListener("input", e => { const d = e.target.dataset || {};
+    if (d.notitie) S.notitie[d.notitie] = e.target.value; if (d.antwoord) S.antwoord[d.antwoord] = e.target.value; if (d.concept) S.concept[d.concept] = e.target.value; });
+  document.addEventListener("focusout", () => setTimeout(() => { if (S.uitgesteld) render(); }, 0));
+  window.addEventListener("hashchange", teken);
+
+  /* ---------- start ---------- */
+  render();
+  const use = window.claude && window.claude.use ? window.claude.use("db") : Promise.resolve(null);
+  use.then(db => {
+    if (!db) { S.geenDb = true; S.items = S.items || []; return render(); }
+    S.db = db;
+    const klok = setTimeout(() => { S.traag = true; render(); }, 10000);
+    const vers = snap => { if (!snap.metadata || !snap.metadata.fromCache) { clearTimeout(klok); S.traag = false; } };
+    const stuk = () => { clearTimeout(klok); S.traag = false; S.fout = "De gegevens zijn niet meer bereikbaar. Open de pagina later opnieuw."; S.items = S.items || []; render(); };
+    const volg = (pad, sleutel) => db.collection(pad).onSnapshot(s => { vers(s); S[sleutel] = s.docs.map(d => ({ id: d.id, ...d.data() })); render(); }, stuk);
+    volg("items", "items"); volg("vragen", "vragen"); volg("documenten", "docs");
+    db.doc("stand/nu").onSnapshot(s => { S.stand = s.exists ? s.data() : null; render(); }, stuk);
+  }).catch(() => { S.geenDb = true; S.items = S.items || []; render(); });
+})();
+</script>
